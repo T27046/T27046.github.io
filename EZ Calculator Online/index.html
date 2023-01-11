@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://fonts.font.im/css?family=Roboto:100" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale:1.0">
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        div{
+            box-sizing: border-box;
+
+        }
+        #main{
+            height: 100%;
+        }
+        #run{
+            height: 20%;
+        }
+        .c3{
+            float: left;
+            width: 25%;
+            height: 16%;
+            line-height: 100px;
+            text-align: center;
+            line-height: 3em;
+			background-color: #B8C6DB;
+			color:black;
+			border-radius: 10px;
+			transition-duration: 0.4s;
+			font-size:18pt;
+        }
+		.c3:hover{
+			background: #F5F7FA;
+			border-radius: 1px;
+		}
+        .c6{
+            width: 50%;
+            height: 16%;
+            float: left;
+            line-height: 100px;
+            text-align: center;
+            height: 3em;
+            line-height: 3em;
+			background-color: #B8C6DB;
+			color:black;
+			border-radius: 10px;
+			transition-duration: 0.4s;
+			font-size:18pt;
+        }
+		.c6:hover{
+			background: #F5F7FA;
+			border-radius: 1px;
+		}
+		.c9{
+			width: 100%;
+			background-color: aliceblue;
+			text-align: right;
+			color:#323232;
+			font-size: 36pt;
+			border: 1px solid black
+			height:20%;
+		}
+		.bg{background-image:linear-gradient(to top , #B8C6DB, #F5F7FA);}
+		.about{text-align: center;color:white}
+    </style>
+</head>
+<body class="bg">
+    <div id="main">
+        <div id="run" class="c9"></div>
+        <div class="c3">AC</div>
+        <div class="c3">back</div>
+		<div class="c3">+/-</div>
+        <div class="c3">/</div>
+        <div class="c3">7</div>
+        <div class="c3">8</div>
+        <div class="c3">9</div>
+        <div class="c3">-</div>
+        <div class="c3">4</div>
+        <div class="c3">5</div>
+        <div class="c3">6</div>
+        <div class="c3">+</div>
+        <div class="c3">1</div>
+        <div class="c3">2</div>
+        <div class="c3">3</div>
+        <div class="c3">*</div>
+        <div class="c3">0</div>
+		<div class="c3">00</div>
+		<div class="c3">000</div>
+        <div class="c3">.</div>
+
+    </div>
+</body>
+<script>
+    var main = document.getElementById('main');
+    var run = document.getElementById('run');
+
+    main.onclick = function (ev) {
+        var el = ev.target;
+
+        if(el.className.indexOf('c')!=0){
+            return;
+        }
+
+        if(el.innerHTML=='AC'){
+            run.innerHTML='';
+        }else if(el.innerHTML=='back'){
+            run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);
+        }else{
+            run.innerHTML += el.innerHTML;
+			run.innerHTML=eval(run.innerHTML);
+        }
+		
+		if(run.innerHTML=='Na+'){
+			location.href = 'https://t27046.github.io/'
+		}
+
+    }
+</script>
+
+
+</html>
