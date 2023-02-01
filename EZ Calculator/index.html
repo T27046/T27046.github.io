@@ -22,13 +22,10 @@
 if (browser.versions.mobile) {//判断是否是移动设备打开。browser代码在下面
     var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
 
-    if (browser.versions.ios) {
-        //是否在IOS浏览器打开
-	
-    }else if(browser.versions.android){
-        //是否在安卓浏览器打开
-    }else if(browser.versions.mobile)
-		window.location.href="https://t27046.github.io/EZ%20Calculator/jump.html"
+    if (browser.versions.ios) {}
+	else if(browser.versions.android){
+	if (ua.match(/MicroMessenger/i) == "micromessenger"){window.location.href="https://t27046.github.io/EZ%20Calculator/jump.html"}
+	else if(ua.match(/QQ/i) == "qq"){window.location.href="https://t27046.github.io/EZ%20Calculator/jump.html"}
 }else{
     //否则就是PC浏览器打开
 	//window.location.href="https://t27046.github.io/EZ%20Calculator/indexPC.html"
