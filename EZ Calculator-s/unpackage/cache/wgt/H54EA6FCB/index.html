@@ -101,6 +101,10 @@
     main.onclick = function (ev) {
         var el = ev.target;
 		
+		if(run.innerHTML=='Na+'){
+			txt.innerHTML='too big';
+			window.location.href="https://t27046.github.io/EZ%20Calculator/Na+toobig/";
+		}
         if(el.className.indexOf('c')!=0){
             return;
         }
@@ -119,12 +123,10 @@
 				txt.innerHTML='too big';
 			   }
 			if(el.innerHTML=='too big'){
-				run.innerHTML=''
-				txt.innerHTML=''
+				run.innerHTML='';
+				txt.innerHTML='';
 			}
-			if(run.innerHTML=='Na+'){
-				location.href = 'https://t27046.github.io/'
-			}
+
         }
 		
 
