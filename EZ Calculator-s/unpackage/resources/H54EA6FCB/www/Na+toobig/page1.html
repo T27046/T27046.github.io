@@ -1,0 +1,100 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>错误</title>
+	<script>
+		function goBack(){
+    	window.history.back()
+		}
+		
+		function sleep (time) {
+  		return new Promise((resolve) => setTimeout(resolve, time));
+		}
+
+		// 用法
+		sleep(6666).then(() => {window.location.href="page2.html";
+    	// 这里写sleep之后需要去做的事情
+		})
+	</script>
+
+	<link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet">
+		</head>
+		<style>
+	.button {
+	    background-color: #7A88FF; 
+      	color: #FFFFFF;
+    	width: 15%;
+		height:5%;    
+		text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	font-size: 32px;
+    	margin: 4px 200px;
+    	cursor: pointer;
+		border-radius: 25px;
+		transition-duration: 0.4s;
+	
+	}  
+	.button1 {
+   	 	background-color:  #1B212C; 
+    	color: white; 
+    	border: 2px solid #1B212C;
+    	border-radius: 25px;
+	}
+
+	.button1:hover {
+    	background-color: #7B818C;
+    	color: white;
+     	border: 2px solid #7B818C;
+   		border-radius: 5px;
+	}
+		.auto-style1 {
+			font-size:36pt;
+			color: #ffffff;
+			text-align: left;
+	margin-left: 80px;
+}
+		.auto-style2 {
+			text-align: left;
+		}
+		.auto-style3 {
+	text-align: right;
+}
+		.auto-style4 {
+	font-size: 18pt;
+
+	color: #ffffff;
+	text-align: left;
+	margin-left: 80px;
+}
+		.auto-style5 {
+			text-align: center;
+		}
+		.auto-style6 {
+	color: #FFFFFF;
+}
+.auto-style7 {
+	text-decoration: none;
+}
+		</style>
+<body style="background:#213451; ">
+<div class="auto-style2">
+<input type="button" value="◄" onclick="goBack()"class="stickyButton button1" style="margin-left: 0px;  />
+</div>
+
+<div class="auto-style2">
+
+
+</div>
+<p class="auto-style1">钠离子</p>
+<p class="auto-style4">钠离子是一种金属阳离子。<br>钠离子是由钠原子失去最外层的一个电子得到的，显正1价，书写为Na+。<br>钠是一种质地软、轻、蜡状而极有伸展性的银白色的IA族的碱金属元素。</p>
+<div class="auto-style2">
+<p class="auto-style5">
+</div>
+
+</p>
+<p class="auto-style3">
+</p>
+</div>
+</body>
+</html>

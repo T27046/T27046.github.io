@@ -188,12 +188,13 @@
                 "android" : {
                     "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
                     "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
-                    "hdpi" : "", /*高分屏启动图片，分辨率：480x762*/
-                    "xhdpi" : "", /*720P高分屏启动图片，分辨率：720x1242*/
-                    "xxhdpi" : "" /*1080P高分屏启动图片，分辨率：1080x1882*/
+                    "hdpi" : ".9/drawable-hdpi/ez_calculator.9.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : ".9/drawable-xhdpi/ez_calculator.9.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : ".9/drawable-xxhdpi/ez_calculator.9.png" /*1080P高分屏启动图片，分辨率：1080x1882*/
                 },
                 "useOriginalMsgbox" : false,
-                "androidStyle" : "common"
+                "androidStyle" : "common",
+                "iosStyle" : "common"
             },
             "ios" : {
                 "dSYMs" : false
@@ -211,5 +212,6 @@
             }
         }
     },
-    "screenOrientation" : [ "portrait-primary" ]
+    "screenOrientation" : [ "landscape-primary", "landscape-secondary" ],
+    "fullscreen" : true
 }

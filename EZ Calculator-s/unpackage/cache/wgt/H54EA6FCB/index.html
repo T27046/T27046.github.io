@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="https://fonts.font.im/css?family=Roboto:100" rel="stylesheet">
+	<link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Document</title>
     <meta name="viewport" content="width=device-width,initial-scale:1.0">
@@ -98,11 +98,16 @@
     var main = document.getElementById('main');
     var run = document.getElementById('run');
 	var txt =document.getElementById('btn')
+	if(run.innerHTML=='Na+too big'){
+		window.location.href="Na+toobig/index.html";
+	}
     main.onclick = function (ev) {
         var el = ev.target;
 		
-		if(run.innerHTML=='Na+'){
+		if(run.innerHTML=='NaN'){
 			txt.innerHTML='too big';
+		}
+		if(run.innerHTML=='Na+too big'){
 			window.location.href="Na+toobig/index.html";
 		}
         if(el.className.indexOf('c')!=0){
