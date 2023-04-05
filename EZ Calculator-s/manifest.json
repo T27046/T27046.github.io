@@ -17,41 +17,17 @@
         "url" : "T27046.github.io" /*开发者个人主页地址*/
     },
     "permissions" : {
-        "Accelerometer" : {
-            "description" : "访问加速度感应器"
-        },
-        "Audio" : {
-            "description" : "访问麦克风"
-        },
-        "Cache" : {
-            "description" : "管理应用缓存"
-        },
         "Console" : {
             "description" : "跟踪调试输出日志"
         },
         "Device" : {
             "description" : "访问设备信息"
         },
-        "Downloader" : {
-            "description" : "文件下载管理"
-        },
-        "Events" : {
-            "description" : "应用扩展事件"
-        },
         "File" : {
             "description" : "访问本地文件系统"
         },
-        "Gallery" : {
-            "description" : "访问系统相册"
-        },
         "Invocation" : {
             "description" : "使用Native.js能力"
-        },
-        "Orientation" : {
-            "description" : "访问方向感应器"
-        },
-        "Proximity" : {
-            "description" : "访问距离感应器"
         },
         "Storage" : {
             "description" : "管理应用本地数据"
@@ -64,9 +40,6 @@
         },
         "XMLHttpRequest" : {
             "description" : "跨域网络访问"
-        },
-        "Zip" : {
-            "description" : "文件压缩与解压缩"
         },
         "Webview" : {
             "description" : "窗口管理"
@@ -105,7 +78,7 @@
                 "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
                 "permissions" : [],
                 "autoSdkPermissions" : false,
-                "abiFilters" : [ "armeabi-v7a" ]
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
             },
             /*使用Native.js调用原生安卓API需要使用到的系统权限*/
             "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
@@ -193,7 +166,7 @@
                     "xhdpi" : ".9/drawable-xhdpi/ez_calculator.9.png", /*720P高分屏启动图片，分辨率：720x1242*/
                     "xxhdpi" : ".9/drawable-xxhdpi/ez_calculator.9.png" /*1080P高分屏启动图片，分辨率：1080x1882*/
                 },
-                "useOriginalMsgbox" : false,
+                "useOriginalMsgbox" : true,
                 "androidStyle" : "common",
                 "iosStyle" : "common"
             },
