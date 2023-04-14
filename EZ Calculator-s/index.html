@@ -69,26 +69,30 @@
     </style>
 </head>
 <body class="bg">
+	<audio id="Audio" >
+	    <source src="/p2.wav"
+	    type="audio/mpeg">
+	</audio>
     <div id="main">
         <div id="run" class="c9"></div>
-        <div class="c3" id="19" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">AC</div>
-        <div class="c3" id="18" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">back</div>
-		<div class="c3" id="16" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">+/-</div>
-        <div class="c3" id="15" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">/</div>
-        <div class="c3" id="7" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">7</div>
-        <div class="c3" id="8" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">8</div>
-        <div class="c3" id="9" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">9</div>
-        <div class="c3" id="13" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">-</div>
-        <div class="c3" id="4" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">4</div>
-        <div class="c3" id="5" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">5</div>
-        <div class="c3" id="6" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">6</div>
-        <div class="c3" id="12" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">+</div>
-        <div class="c3" id="1" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">1</div>
-        <div class="c3" id="2" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">2</div>
-        <div class="c3" id="3" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">3</div>
-        <div class="c3" id="14" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">*</div>
-        <div class="c3" id="10" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">0</div>
-		<div class="c3" id="11" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">00</div>
+        <div class="c3" id="19" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">AC</div>
+        <div class="c3" id="18" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">back</div>
+		<div class="c3" id="16" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">+/-</div>
+        <div class="c3" id="15" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">/</div>
+        <div class="c3" id="7" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">7</div>
+        <div class="c3" id="8" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">8</div>
+        <div class="c3" id="9" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">9</div>
+        <div class="c3" id="13" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">-</div>
+        <div class="c3" id="4" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">4</div>
+        <div class="c3" id="5" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">5</div>
+        <div class="c3" id="6" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">6</div>
+        <div class="c3" id="12" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">+</div>
+        <div class="c3" id="1" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">1</div>
+        <div class="c3" id="2" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">2</div>
+        <div class="c3" id="3" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">3</div>
+        <div class="c3" id="14" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">*</div>
+        <div class="c3" id="10" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">0</div>
+		<div class="c3" id="11" onClick="btnc();this.innerHTML= getRandom(1, 9) ;playbeep();">00</div>
 		<div class="c3" id="17" onClick="run.innerHTML=eval(run.innerHTML)">=</div>
         <div class="c3">.</div>
 
@@ -96,13 +100,16 @@
 </body>
 <script>
 	
-	
+	var sound = document.getElementById('Audio');
     var main = document.getElementById('main');
     var run = document.getElementById('run');
 	var txt =document.getElementById('btn')
 	 function getRandom(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+	function playbeep(){
+	    sound.play()
+		}
 	function btnc(){	var r = Math.floor(Math.random() *256);
     var g = Math.floor(Math.random() *256);
     var b = Math.floor(Math.random() *256);
@@ -127,7 +134,7 @@
 					bd.style.color=color
 					body.style.background=color
 				
-					document.getElementById(getRandom(1, 12)).innerHTML= getRandom(1, 9) 
+					document.getElementById(getRandom(1, 12)).innerHTML= getRandom(1, 9) ;
 				   
 				   }
 	

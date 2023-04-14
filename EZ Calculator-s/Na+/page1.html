@@ -4,7 +4,7 @@
 	<title>错误</title>
 	
 
-	<link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet">
+	<!-- <link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet"> -->
 		</head>
 		<style>
 	.button {
@@ -63,8 +63,10 @@
 .auto-style7 {
 	text-decoration: none;
 }
+			.badbg{background-image:linear-gradient(to top , #fff, #000);}
+			.goodbg{background:#213451; }
 		</style>
-<body style="background:#213451; ">
+<body class="goodbg" id="bg"></body>
 <div class="auto-style2">
 
 </div>
@@ -72,16 +74,28 @@
 <div class="auto-style2">
 
 
-</div>
-<p class="auto-style1">钠离子</p>
-<p class="auto-style4">钠离子是一种金属阳离子。<br>钠离子是由钠原子失去最外层的一个电子得到的，显正1价，书写为Na+。<br>钠是一种质地软、轻、蜡状而极有伸展性的银白色的IA族的碱金属元素。</p>
-<div class="auto-style2">
-<p class="auto-style5">
-</div>
+</div><div id="content">
+<p class="auto-style1" id="content">钠离子</p>
+<p class="auto-style4" id="content">钠离子是一种金属阳离子。<br>钠离子是由钠原子失去最外层的一个电子得到的，显正1价，书写为Na+。<br>钠是一种质地软、轻、蜡状而极有伸展性的银白色的IA族的碱金属元素。</div>
+</p>
 
 </p>
-<p class="auto-style3">
+<p class="auto-style3" id="content">
 </p>
 </div>
 </body>
+<script>
+
+setTimeout("changeState()",6666 );  
+function changeState(){  
+	let content=document.getElementById('content');  
+	content.innerHTML="<div style='color:red;font-size:36pt;'>�좂┿耶먧맏訝뷰�阿덁�阿덁맏餓�阿덁맏餓�阿덁맏餓�阿덆뮔獵삣춴���訝뷰�阿덄쭕�묈콪�념맏餓�阿덄┿訝뷰�訝뷰�阿덁퉰耶먦�귡뮔獵삣춴��맏餓�阿덁맏訝뷰�阿덁퉰�깁뮔�잋맏餓�阿덂춴鸚긴맏餓�阿덂렮��덂쨼掠귞쉪訝�訝ょ뵷耶먨풓�곁쉪竊뚧샑閭�1餓뤄펽阿�넍訝튞a+�귡뮔���燁띹뇽�계쉴�곮슥�곮쑁�띈�뚧엨�됦맏餓�阿덁섯掠뺜맏餓�阿덃�㎫쉪�뜸맏餓�阿덄쇋�꿰쉪IA�뤹쉪閻깁뇫掠욃뀇榮졼</div>";
+	document.getElementById("bg").className = "badbg";
+	const music = new Audio('p2.wav');
+	music.play();
+
+}
+
+
+</script>
 </html>
