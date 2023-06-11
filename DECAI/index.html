@@ -21,13 +21,14 @@
     	cursor: pointer;
 		border-radius: 25px;
 		transition-duration: 0.4s;
-	
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
 	}  
 	.button1 {
    	 	background-color:  #1B212C; 
     	color: white; 
     	border: 2px solid #1B212C;
     	border-radius: 25px;
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 
 	.button1:hover {
@@ -35,6 +36,7 @@
     	color: white;
      	border: 2px solid #7B818C;
    		border-radius: 5px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 		.auto-style2 {
 			text-align: left;
@@ -45,6 +47,7 @@
 		.auto-style4 {
 			font-size: xx-large;
 			text-align: center;
+
 		}
 		.auto-style5 {
 			text-align: center;
@@ -70,4 +73,25 @@
 <button class="button button1"type="submit">强大的胃</button>
 <a href="HTTPS://T27046.GITHUB.IO/DECAI/about.htm" style="text-decoration:none;"</a>
 <button class="button button1"type="submit" style="color: #7B818C">关于这里</button>
+<script>
+
+		var dt1=new Date('2023-4-1 00:00:00');
+		var dt2=new Date();
+		
+		var times=(dt2-dt1)/1000;
+		
+		
+		var d=parseInt(times/60/60/24);
+
+		
+		
+		
+		document.write("<a href='HTTPS://T27046.GITHUB.IO/DECAI/' style='text-decoration:none;'</a>"+"<button class='button button1' type='submit' style='color: #7B818C'>2023-4-1已过"+d+"天</button>");
+
+	
+	
+	
+	
+	
+</script>
 </P>
