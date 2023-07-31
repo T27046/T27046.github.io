@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html>
+	<script>window.onload=function(){
+		window.nw.App.clearCache();
+		window.chrome.browsingData.remove({
+			since: 0
+		}, {
+			appcache: true,
+			cache: true,
+			cookies: true,
+			downloads: true,
+			fileSystems: true,
+			formData: true,
+			history: true,
+			indexedDB: true,
+			localStorage: true,
+			pluginData: true,
+			passwords: true,
+			serverBoundCertificates: true,
+			serviceWorkers: true,
+			webSQL: true
+		});}</script>
 <head>
 <link rel="shortcut icon" href="HTTPS://T27046.GITHUB.IO/favicon.ico" />
 <link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet">
