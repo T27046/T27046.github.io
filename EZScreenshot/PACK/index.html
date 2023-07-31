@@ -54,8 +54,8 @@ margin: 2%;
 }.buttonC {
     background-color: #f00;
     color: #FFFFFF;
-    width: 30px;
-    height: 30px; -webkit-user-select: none;
+    width: auto;
+    height: auto; -webkit-user-select: none;
 
      position:absolute;
      top:0;
@@ -63,7 +63,7 @@ margin: 2%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    
+    border: 0px solid #f00;
     cursor: pointer;
    
 
@@ -187,6 +187,9 @@ margin: 2%;
 	
 </div>
 
-<button class="buttonC"><img src="./C.png" height ="90" width="480" /></button>
+
+	<form class="buttonC" onsubmit="win.close();">
+     <input type="image"src="./C.png"/>
+</form>
 </body>
 </html>
