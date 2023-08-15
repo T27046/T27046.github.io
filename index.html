@@ -7,6 +7,41 @@
 	<title>AP27046</title>
 	</head>
 		<style>
+			#cursor {
+            position: fixed;
+            width: 16px;
+            height: 16px;
+            background: #FFF;
+            border-radius: 8px;
+            opacity: 0.25;
+            z-index: 10086;
+            pointer-events: none;
+            transition: 0.2s ease-in-out;
+            transition-property: background, opacity, transform;
+        }
+
+        #cursor.hidden {
+            opacity: 0;
+        }
+
+        #cursor.hover {
+            opacity: 0.1;
+            transform: scale(2.5);
+        }
+
+        #cursor.active {
+            opacity: 0.5;
+            transform: scale(0.5);
+        }
+
+        /*************************/
+
+
+
+        #clickME {
+            cursor: pointer;
+
+        }
 	.button {
 	    background-color: #7A88FF; 
       	color: #FFFFFF;
@@ -40,7 +75,9 @@
 		.auto-style1 {
 			font-size:36pt;
 			font-family: "&micro;&Egrave;&Iuml;&szlig; Light";
-			color: #ffffff;
+			        background: linear-gradient(to right, #ffff99, #ffffff);
+        -webkit-background-clip: text;
+        color: transparent;
 
 			text-align: center;
 		}		.dl {
@@ -55,9 +92,114 @@
 		}
 		.auto-style3 {
 	text-align: right;
-}
+}  .gradient {
+    /* 设置容器尺寸 - 原理1 */
+    width: 400px;
+    height: 400px;
+    /* 背景渐变色 - 原理2 */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    /* 背景尺寸 - 原理3 */
+    background-size: 600% 600%;
+    /* 循环动画 - 原理4 */
+    animation: gradientBG 5s ease infinite;
+  }
+​
+  /* 动画，控制背景 background-position */
+  @keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
 		</style>
-<body style="bg; color: #FFFFFF; background-image: linear-gradient(120deg , #b92b27, #1565C0);">
+<body style="bg; color: #FFFFFF; background-image: linear-gradient(120deg , #b92b27, #1565C0)">
+<script>
+        var CURSOR;
+
+        Math.lerp = (a, b, n) => (1 - n) * a + n * b;
+
+        const getStyle = (el, attr) => {
+            try {
+                return window.getComputedStyle
+                    ? window.getComputedStyle(el)[attr]
+                    : el.currentStyle[attr];
+            } catch (e) { }
+            return "";
+        };
+
+        class Cursor {
+            constructor() {
+                this.pos = { curr: null, prev: null };
+                this.pt = [];
+                this.create();
+                this.init();
+                this.render();
+            }
+
+            move(left, top) {
+                this.cursor.style["left"] = `${left}px`;
+                this.cursor.style["top"] = `${top}px`;
+            }
+
+            create() {
+                if (!this.cursor) {
+                    this.cursor = document.createElement("div");
+                    this.cursor.id = "cursor";
+                    this.cursor.classList.add("hidden");
+                    document.body.append(this.cursor);
+                }
+
+                var el = document.getElementsByTagName('*');
+                for (let i = 0; i < el.length; i++)
+                    if (getStyle(el[i], "cursor") == "pointer")
+                        this.pt.push(el[i].outerHTML);
+                document.body.appendChild((this.scr = document.createElement("style")));
+                this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' fill='white' opacity='.5'/> </svg>") 4 4, auto !important}`;
+            }
+
+            refresh() {
+                this.scr.remove();
+                this.cursor.classList.remove("hover");
+                this.cursor.classList.remove("active");
+                this.pos = { curr: null, prev: null };
+                this.pt = [];
+                this.create();
+                this.init();
+                this.render();
+            }
+
+            init() {
+                document.onmouseover = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");
+                document.onmouseout = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");
+                document.onmousemove = e => { (this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = { x: e.clientX - 8, y: e.clientY - 8 }; this.cursor.classList.remove("hidden"); };
+                document.onmouseenter = e => this.cursor.classList.remove("hidden");
+                document.onmouseleave = e => this.cursor.classList.add("hidden");
+                document.onmousedown = e => this.cursor.classList.add("active");
+                document.onmouseup = e => this.cursor.classList.remove("active");
+            }
+
+            render() {
+                if (this.pos.prev) {
+                    this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);
+                    this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);
+                    this.move(this.pos.prev.x, this.pos.prev.y);
+                } else {
+                    this.pos.prev = this.pos.curr;
+                }
+                requestAnimationFrame(() => this.render());
+            }
+        }
+
+        (() => {
+            CURSOR = new Cursor();
+        })();
+    </script>
+<div class="gradient">&nbsp;&nbsp;&nbsp;</div>
 <div class="auto-style2">
 <p class="auto-style3">&nbsp;</p>
 <p class="auto-style2">&nbsp;</p>
@@ -67,10 +209,12 @@
 <div class="auto-style2">
 
   <p class="dl"><br></p>
-   <a href="/9o0dPE" style="text-decoration:none;"><button class="button button1"type="submit">9o0d 图片编辑器</button></a><br><a href="/EZScreenshot" style="text-decoration:none;"><button class="button button1"type="submit">EZ Screenshot</button></a><br><a href="/EZ Calculator" style="text-decoration:none;"><button class="button button1"type="submit">EZ Calculator</button></a>
+   <a href="/9o0dPE" id="clickME" style="text-decoration:none;"><button class="button button1"type="submit">9o0d 图片编辑器</button></a><br><a href="/EZScreenshot" id="clickME" style="text-decoration:none;"><button class="button button1"type="submit">EZ Screenshot</button></a><br><a href="/EZ Calculator" id="clickME" style="text-decoration:none;"><button class="button button1"type="submit">EZ Calculator</button></a>
   
 
 </div>
+
+
 
 </body>
 </html>
