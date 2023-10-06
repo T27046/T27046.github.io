@@ -4,9 +4,56 @@
 	<link rel="shortcut icon" href="HTTPS://T27046.GITHUB.IO/favicon.ico" />
 	<link rel="bookmark"href="HTTPS://T27046.GITHUB.IO/favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>402</title>
+	<title>402</title><script>
+var monthname = ['1 -', '2 -', '3 -', '4 -', '5 -', '6 -', '7 -', '8 -', '9 -', '10 -', '11 -', '12 -'];
+function padding(topad)
+{
+    topad = topad.toString();
+    if (topad.length == 1)
+    {
+    topad = '0' + topad;
+    };
+    return topad;
+};
+function tempus()
+{
+    now = new Date();
+    document.getElementById("time").innerHTML = padding(now.getHours()) + ':' + padding(now.getMinutes()) + ':' + padding(now.getSeconds());
+    document.getElementById("date").innerHTML = now.getFullYear()+' - '+monthname[now.getMonth()] +' ' + now.getDate() + ' '   ;
+    setTimeout("tempus()", 1000);
+}
+</script>
 	</head>
 		<style>
+			.time {
+    font-family: Impact;
+    font-size: 50px;
+    
+	
+
+	z-index: 100;
+
+    display: block;
+    font-weight: bold;
+    line-height:10px;
+    text-indent:30px;
+    text-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				
+
+}
+.date {
+	font-family: Impact;
+    font-weight: bold;
+    font-size: 30px;
+    	background-image:-webkit-linear-gradient(top, #d75d10,#de6912);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+	z-index: 100;
+
+    display: block;
+    text-indent:30px;
+    text-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 			#cursor {
             position: fixed;
             width: 16px;
@@ -107,6 +154,7 @@
 		}
 		.auto-style3 {
 	text-align: right;
+			margin-right: 1%;
 }  .gradient {
     /* 设置容器尺寸 - 原理1 */
     width: 400px;
@@ -139,8 +187,11 @@
 	 background-image: linear-gradient(to right , #A10000, #AF0000)
 			}
 		</style>
-<body style="bg; color: #FFFFFF; background-image: linear-gradient(120deg , #3AD9E3, #1565C0)"><div class="toptext">让  知  识  在  无  边  的  海  洋  中  涨  潮</div>
-<script>
+<body onload="tempus();" style="bg; color: #FFFFFF; background-image: linear-gradient(120deg , #3AD9E3, #1565C0)"><div class="toptext">让  知  识  在  无  边  的  海  洋  中  涨  潮</div>
+	<div class="auto-style3">
+	<span id="time" class="time">TIME</span><br>
+<span id="date" class="date">DATE</span>
+</div><script>
         var CURSOR;
 
         Math.lerp = (a, b, n) => (1 - n) * a + n * b;
