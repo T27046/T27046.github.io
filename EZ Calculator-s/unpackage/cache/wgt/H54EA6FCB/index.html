@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://fonts.css.network/css?family=Roboto:100" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale:1.0">
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        div{
+            box-sizing: border-box;
+
+        }
+        #main{
+            height: 100%;
+        }
+        #run{
+            height: 20%;
+        }
+        .c3{
+            float: left;
+            width: 25%;
+            height: 16%;
+            line-height: 100px;
+            text-align: center;
+            line-height: 3em;
+			background-color: ;
+			color:black;
+			border-radius: 10px;
+			transition-duration: 0.4s;
+			font-size:18pt;
+        }
+		.c3:active{
+			background: #F5F7FA;
+			border-radius: 1px;
+		}
+        .c6{
+            width: 50%;
+            height: 16%;
+            float: left;
+            line-height: 100px;
+            text-align: center;
+            height: 3em;
+            line-height: 3em;
+			background-color: #B8C6DB;
+			color:black;
+			border-radius: 10px;
+			transition-duration: 0.4s;
+			font-size:18pt;
+        }
+		.c6:active{
+			background: #F5F7FA;
+			border-radius: 1px;
+		}
+		.c9{
+			width: 100%;
+			background-color: aliceblue;
+			text-align: right;
+			color:#323232;
+			font-size: 36pt;
+			border: 1px solid black
+			height:20%;
+		}
+		.bg{background-image:linear-gradient(to top , #B8C6DB, #F5F7FA);}
+		.about{text-align: center;color:white}
+    </style>
+</head>
+<body class="bg">
+    <div id="main">
+        <div id="run" class="c9"></div>
+        <div class="c3" id="19" onClick="btnc();">AC</div>
+        <div class="c3" id="18" onClick="btnc();">back</div>
+		<div class="c3" id="16" onClick="btnc();">+/-</div>
+        <div class="c3" id="15" onClick="btnc();">/</div>
+        <div class="c3" id="7" onClick="btnc();plus.nativeUI.toast('7'); ">7</div>
+        <div class="c3" id="8" onClick="btnc();plus.nativeUI.toast('8');">8</div>
+        <div class="c3" id="9" onClick="btnc();plus.nativeUI.toast('9');">9</div>
+        <div class="c3" id="13" onClick="btnc();">-</div>
+        <div class="c3" id="4" onClick="btnc();plus.nativeUI.toast('4'); ">4</div>
+        <div class="c3" id="5" onClick="btnc();plus.nativeUI.toast('5'); ">5</div>
+        <div class="c3" id="6" onClick="btnc();plus.nativeUI.toast('6'); ">6</div>
+        <div class="c3" id="12" onClick="btnc();">+</div>
+        <div class="c3" id="1" onClick="btnc();plus.nativeUI.toast('1');">1</div>
+        <div class="c3" id="2" onClick="btnc();plus.nativeUI.toast('2');">2</div>
+        <div class="c3" id="3" onClick="btnc();plus.nativeUI.toast('3');">3</div>
+        <div class="c3" id="14" onClick="btnc();">*</div>
+        <div class="c3" id="10" onClick="btnc();plus.nativeUI.toast('0');">0</div>
+		<div class="c3" id="11" onClick="btnc();plus.nativeUI.toast('00');">00</div>
+		<div class="c3" id="17" onClick="run.innerHTML=eval(run.innerHTML)">=</div>
+        <div class="c3">.</div>
+
+    </div>
+</body>
+<script>
+	
+
+    var main = document.getElementById('main');
+    var run = document.getElementById('run');
+	var txt =document.getElementById('btn')
+	 function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+	function btnc(){	var r = Math.floor(Math.random() *256);
+    var g = Math.floor(Math.random() *256);
+    var b = Math.floor(Math.random() *256);
+    console.log(b);
+    var color = "rgb("+r+","+g+","+b+")";
+    console.log(color)
+    var bd = document.getElementById(getRandom(1, 19))
+    bd.style.background= color;
+						var r = Math.floor(Math.random() *256);
+    var g = Math.floor(Math.random() *256);
+    var b = Math.floor(Math.random() *256);
+    console.log(b);
+    var color = "rgb("+r+","+g+","+b+")";
+    console.log(color)
+	run.style.background= color;
+						var r = Math.floor(Math.random() *256);
+    var g = Math.floor(Math.random() *256);
+    var b = Math.floor(Math.random() *256);
+    console.log(b);
+    var color = "rgb("+r+","+g+","+b+")";
+    console.log(color)
+					bd.style.color=color
+					
+				var pppoooppp=Math.floor(Math.random()*3);
+					
+					if(pppoooppp==1){rewardedVideoAd();}}
+					
+//视频激励广告  
+var adReward = null;  
+function rewardedVideoAd(){  
+  if(adReward){  
+    outLine('正在加载激励视频广告');  
+    return;  
+  }  
+  console.log('#视频激励广告#');  
+  adReward = plus.ad.createRewardedVideoAd({adpid:'1074727127'});  // 注意替换为自己申请的adpid，此广告位标识仅在HBuilderX标准基座中有效  
+  adReward.onLoad(function(){  
+    console.log('加载成功')  
+    adReward.show();  
+  });  
+  adReward.onError(function(e){  
+    console.log('加载失败: '+JSON.stringify(e));  
+    adReward.destroy();  
+    adReward = null;  
+  });  
+  adReward.onClose(function(e){  
+    if(e.isEnded){  
+      console.log('激励视频播放完成');  
+       
+    }else{  
+      console.log('激励视频未播放完成关闭!')  
+    }  
+    adReward.destroy();  
+    adReward = null;  
+  });  
+  adReward.load();  
+}
+				   
+	
+	if(run.innerHTML=='Na+'){
+		window.location.href="Na+/index.html";
+	}
+    main.onclick = function (ev) {
+        var el = ev.target;
+		
+		
+		if(run.innerHTML=='Na+'){
+			window.location.href="Na+/index.html";
+		}
+		if(run.innerHTML=='Infinity'){
+
+		}
+        if(el.className.indexOf('c')!=0){
+            
+	btnc()
+			
+			return;
+        }
+
+        if(el.innerHTML=='AC'){
+            run.innerHTML='';document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
+        }else if(el.innerHTML=='back'){
+            run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
+        }else{
+            run.innerHTML += el.innerHTML;document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
+			if(el.innerHTML=='='){
+				run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);
+		}
+			if(run.innerHTML.length>12){
+				run.innerHTML='';
+				run.innerHTML='too long';
+			   }
+			if(el.innerHTML=='too long'){
+				run.innerHTML='';
+				txt.innerHTML='';
+			}
+
+        }
+		
+
+
+    }
+
+//                    .. ...'''''...''....:~1|((\\1+:       
+//.                   ......'^":;IIII;;lI!}/\(|\||\\(       
+//                  .....'";i<<~<<<<<<~~<~}\\\\\||\|)         ######     #########    #########    ##########     ###########        #        ###########
+//         .   .   .'.'^;!><>><<<>>>><>!iii_{)(|\)?l"        #      #    #        #            #            #     #         #       ##        #
+//        .'...''.'^";i<<>><>><<ii<~<<I^'...`Il!l,. .       #        #   #        #            #            #     #         #      # #        #
+//         ..''..^l<<<<<<<<>i><~<>>>i;`..''.    .   .       #        #   #        #            #            #     #         #     #  #        #
+//         ..'''"l<~<<<<~~<>><<>><<I"' ..........           #        #   #        #            #            #     #         #    #   #        #
+//        .'.'':i+<i><<<<<<<<><~<>l^'......'.... ....       #        #   #        #            #            #     #         #   #    #        #
+//     ..''^:!>~<>><<<<<<<<<<<<<>illI,`.''`'..              #        #   #        #            #            #     #         #   #    #        #
+//        ';i~+~<<<<<<<<<<<<<~<<<<<<~~!:'..'...             #        #   #        #            #            #     #         #   #    #        #
+//...'.''^I+~>><<>!!i>>>>>>>i!!i<<<<>><>:'..'..             ##########   #########    #########             #     #         #   ##########    ###########
+//       ^I!lii>i+{{[!!ii>!!-{1}ii>iii!l,'..''.             #        #   #            #                     #     #         #        #        #         #
+//        .''Il!!\hhQ>l!l>!!nhbZ!!!li!^'  .. .              #        #   #            #                     #     #         #        #        #         #
+//        .''!!!l+{{{!ii!<i!+]]{!>i!i;.....  .              #        #   #            #                     #     #         #        #        #         #
+//         .'!ii>ill!!i!ii!i!II!!!i<!"...  ...              #        #   #            #                     #     #         #        #        #         #
+//         .`l!!>i!ii>!!illii!!!>l!>,.... ....              #        #   #            #                     #     #         #        #        #         #
+//         .^;i<i!!i>>>>>>>>iiil>i!i"                       #        #   #            #                     #     #         #        #        #         #
+//         .':!<>i!}bbbbbbbk/!il>i!i"                       #        #   #            ##########            #     ###########        #        ####AP27046
+//         ..`;!iii]LQQQQQQ0)!il>i!i,                       
+//        .'..^;!iii!lllllll!!!l>>!I^                       
+//         ....^,Il!!!!iiiiiii!ii!:'.                       
+//         .''..`,;;;Il!iiii>>i>i;'...                      
+</script>
+
+
+</html>

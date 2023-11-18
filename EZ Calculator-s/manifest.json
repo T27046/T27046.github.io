@@ -189,6 +189,6 @@
             "url" : "404.html"
         }
     },
-    "screenOrientation" : [ "landscape-primary", "landscape-secondary" ],
+    "screenOrientation" : [ "portrait-secondary" ],
     "fullscreen" : true
 }

@@ -7,7 +7,6 @@
     "buttonRefuse" : "暂不同意",
     "hrefLoader" : "system|default",
     "backToExit" : "false",
-
     "disagreeMode" : {
         "support" : false,
         "loadNativePlugins" : false,

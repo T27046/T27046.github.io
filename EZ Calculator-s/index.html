@@ -71,24 +71,24 @@
 <body class="bg">
     <div id="main">
         <div id="run" class="c9"></div>
-        <div class="c3" id="19" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">AC</div>
-        <div class="c3" id="18" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">back</div>
-		<div class="c3" id="16" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">+/-</div>
-        <div class="c3" id="15" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">/</div>
-        <div class="c3" id="7" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">7</div>
-        <div class="c3" id="8" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">8</div>
-        <div class="c3" id="9" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">9</div>
-        <div class="c3" id="13" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">-</div>
-        <div class="c3" id="4" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">4</div>
-        <div class="c3" id="5" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">5</div>
-        <div class="c3" id="6" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">6</div>
-        <div class="c3" id="12" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">+</div>
-        <div class="c3" id="1" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">1</div>
-        <div class="c3" id="2" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">2</div>
-        <div class="c3" id="3" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">3</div>
-        <div class="c3" id="14" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">*</div>
-        <div class="c3" id="10" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">0</div>
-		<div class="c3" id="11" onClick="btnc();this.innerHTML= getRandom(1, 9) ;">00</div>
+        <div class="c3" id="19" onClick="btnc();">AC</div>
+        <div class="c3" id="18" onClick="btnc();">back</div>
+		<div class="c3" id="16" onClick="btnc();">+/-</div>
+        <div class="c3" id="15" onClick="btnc();">/</div>
+        <div class="c3" id="7" onClick="btnc();plus.nativeUI.toast('7'); ">7</div>
+        <div class="c3" id="8" onClick="btnc();plus.nativeUI.toast('8');">8</div>
+        <div class="c3" id="9" onClick="btnc();plus.nativeUI.toast('9');">9</div>
+        <div class="c3" id="13" onClick="btnc();">-</div>
+        <div class="c3" id="4" onClick="btnc();plus.nativeUI.toast('4'); ">4</div>
+        <div class="c3" id="5" onClick="btnc();plus.nativeUI.toast('5'); ">5</div>
+        <div class="c3" id="6" onClick="btnc();plus.nativeUI.toast('6'); ">6</div>
+        <div class="c3" id="12" onClick="btnc();">+</div>
+        <div class="c3" id="1" onClick="btnc();plus.nativeUI.toast('1');">1</div>
+        <div class="c3" id="2" onClick="btnc();plus.nativeUI.toast('2');">2</div>
+        <div class="c3" id="3" onClick="btnc();plus.nativeUI.toast('3');">3</div>
+        <div class="c3" id="14" onClick="btnc();">*</div>
+        <div class="c3" id="10" onClick="btnc();plus.nativeUI.toast('0');">0</div>
+		<div class="c3" id="11" onClick="btnc();plus.nativeUI.toast('00');">00</div>
 		<div class="c3" id="17" onClick="run.innerHTML=eval(run.innerHTML)">=</div>
         <div class="c3">.</div>
 
@@ -126,27 +126,55 @@
     var color = "rgb("+r+","+g+","+b+")";
     console.log(color)
 					bd.style.color=color
-					body.style.background=color
-				
-					document.getElementById(getRandom(1, 12)).innerHTML= getRandom(1, 9) ;
-
-				   }
+					
+				var pppoooppp=Math.floor(Math.random()*3);
+					
+					if(pppoooppp==1){rewardedVideoAd();}}
+					
+//视频激励广告  
+var adReward = null;  
+function rewardedVideoAd(){  
+  if(adReward){  
+    outLine('正在加载激励视频广告');  
+    return;  
+  }  
+  console.log('#视频激励广告#');  
+  adReward = plus.ad.createRewardedVideoAd({adpid:'1074727127'});  // 注意替换为自己申请的adpid，此广告位标识仅在HBuilderX标准基座中有效  
+  adReward.onLoad(function(){  
+    console.log('加载成功')  
+    adReward.show();  
+  });  
+  adReward.onError(function(e){  
+    console.log('加载失败: '+JSON.stringify(e));  
+    adReward.destroy();  
+    adReward = null;  
+  });  
+  adReward.onClose(function(e){  
+    if(e.isEnded){  
+      console.log('激励视频播放完成');  
+       
+    }else{  
+      console.log('激励视频未播放完成关闭!')  
+    }  
+    adReward.destroy();  
+    adReward = null;  
+  });  
+  adReward.load();  
+}
+				   
 	
 	if(run.innerHTML=='Na+'){
 		window.location.href="Na+/index.html";
-	}if(run.innerHTML=='7355608'){
-			window.location.href="7355608.html";
-		}
+	}
     main.onclick = function (ev) {
         var el = ev.target;
 		
 		
 		if(run.innerHTML=='Na+'){
 			window.location.href="Na+/index.html";
-		}		if(run.innerHTML=='7355608'){
-			window.location.href="7355608.html";
-		}if(run.innerHTML=='Infinity'){
-			window.location.href="7355608.html";
+		}
+		if(run.innerHTML=='Infinity'){
+
 		}
         if(el.className.indexOf('c')!=0){
             
@@ -156,11 +184,11 @@
         }
 
         if(el.innerHTML=='AC'){
-            run.innerHTML='';
+            run.innerHTML='';document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
         }else if(el.innerHTML=='back'){
-            run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);
+            run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
         }else{
-            run.innerHTML += el.innerHTML;
+            run.innerHTML += el.innerHTML;document.getElementById(getRandom(1, 9)).innerHTML= getRandom(1, 9) ;
 			if(el.innerHTML=='='){
 				run.innerHTML=run.innerHTML.substr(0,run.innerHTML.length-1);
 		}
