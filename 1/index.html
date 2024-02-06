@@ -59,7 +59,15 @@
 			color:#212121;
 				font-size:20pt;
 			margin:20%;
-		}.toptext{
+		}.bottom-element {
+right:20px;
+    position: fixed;
+  bottom: 20px;
+text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-bottom-left-radius: 10px;
+			border-top-right-radius:10px;
+}
+.toptext{
 		margin:-10px;		
   top:-2px;
  width:100%;text-align: left;color: white;
@@ -83,7 +91,7 @@
     	window.history.back()
 			plus.runtime.restart();
 		}
-		function ZX(){alert("如何退出账号\n在系统应用设置清除 一栋宿风部（六组） 的缓存")}
+		function ZX(){alert("如何退出账号\n在系统应用设置清除 一栋宿风部（六组） 的数据储存")}
 	function memb(){console.log("c0");
 					var usrid = Number(window.location.search.slice(1,2))-1;
 					console.log(String(usrid));
@@ -111,5 +119,5 @@ function _0x4336(){var _0x274c17=['6814602jiRsdg','重点关注宿舍名单：<f
 
 </div>
 </body>
-<img src="1ztitle.jpg" width=100%></img>
+<img class="bottom-element" src="1ztitle.png" height=10%></img>
 </html>
