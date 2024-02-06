@@ -100,8 +100,8 @@
 		var a=0;
 		console.log(pw-789456123);
 		if(isInteger(pw-789456123)){a+=1};console.log(isInteger(pw-789456123));
-		if(pw-789456123<=Date.now()){a+=1};console.log(pw-789456123<=Date.now());
-		if(pw-789456123>=Date.now()-3000000){a+=1};console.log(pw-789456123>=Date.now()-3000000);
+		if(pw-789456123<=Date.now()){a+=1};console.log(pw-789456123<=Date.now()+300000);
+		if(pw-789456123>=Date.now()-3000000){a+=1};console.log(pw-789456123>=Date.now()-300000);
 		console.log(a);
 		if(a==3){console.log(a);memb();}
 	}
