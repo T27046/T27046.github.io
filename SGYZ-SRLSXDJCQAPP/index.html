@@ -1,35 +1,37 @@
 <html>
 <head>
-<link rel="shortcut icon" href="HTTPS://T27046.GITHUB.IO/favicon.ico" />
-<link rel="bookmark"href="HTTPS://T27046.GITHUB.IO/favicon.ico" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="https://t27046.github.io/favicon.ico">
+<link rel="bookmark" href="https://t27046.github.io/favicon.ico">
+<link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>下载页</title>
-</head>
 <style>
 .button {
-    background-color: #1d9146;
-    color: #FFFFFF;
-    width: 25%;
-    height: 5%;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 200px;
+    
     cursor: pointer;
     border-radius: 25px;
     transition-duration: 0.4s;
 }
 .button1 {
-    background-color: #1d9146;
+    background-color: #000000;
     color: white;
-    border: 2px solid #1d9146;
+    border: 2px solid #000000;
     border-radius: 25px;
 }
 .button1:hover {
-    background-color: #2cdd6a;
-    color: white;
-    border: 2px solid #2cdd6a;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: black;
+    border: 2px solid #000000
     border-radius: 5px;
 }
 .button2 {
@@ -90,49 +92,103 @@
     text-align: left;
 }
 .apapapap9 {
-    text-align: right;
-    margin-left: 200px;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .apapapap10 {
     text-align: center;
     color: grey;
 }
-</style>
-<body style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #ffffff, #f0f3f9);">
-<div class="apapapap2">
-  <p class="apapapap3">&nbsp;</p>
+</style><script>
+	function c(){
+		navigator.clipboard.writeText(document.getElementById('websiteURL').innerHTML).then(
+  () => {
+     console.log("粘贴文本成功");alert("链接复制成功！");
+   },
+   () => {
+     console.log("clipboard write failed");
+   }
+);
+}
+	
+	</script></head>
+
+<body style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #ffffff, #f0f3f9);" inject_video_svd="true" inmaintabuse="1" onLoad="document.getElementById('websiteURL').innerHTML=window.location.href">
+	
+<div class="apapapap7" ><br><p style="text-align: right;">
+  <button class="button button1"  type="submit" onClick="window.location.href='./setup.exe'"><font>下载客户端</font></button></p><font color='black' style="text-align: left;">当前链接为：<font id="websiteURL" onclick="c()">??????????</font></font>
+  
   <p class="apapapap2">&nbsp;</p>
 </div>
 <div>
-  <p class="apapapap1">下载 生肉类生鲜灯检测器客户端？<img src="https://t27046.github.io/1/1z.png" height="164" style="float: right" class="apapapap7" ><br><font size="2">&nbsp;仅支持Windows 10 及以上操作系统</font></p>
+  <p class="apapapap1">生肉类生鲜灯检测器<img src="./1z.png" width="20%" style="float: right" class="apapapap7"><br><font size="2">&nbsp;广东省第三十九届青少年科技创新大赛参赛作品</font></p>
 </div>
-<div class="apapapap9">
-<p class="apapapap8">                                                                                  <br>生肉类生鲜灯检测器管理客户端</p>
-<p class="apapapap81">广东省第三十九届青少年科技创新大赛参赛作品</p>
 
-<p><a href="./setup.exe" >
-  <button class="button button1" style="margin-left: 40px" type="submit" onclick="dl()">下载最新版本（for Windows）</button>
-  </a><br>
+<div class="apapapap9">
+
+
+<p><br>
 </p>
 <div class="apapapap2">
   <p class="apapapap4">&nbsp; </p>
-  <div id="footer">
-    <p class="apapapap10">&nbsp;韶关市第一中学 创客社<br>生肉类生鲜灯检测器<br>吴铭乐 黄文淼</p>
-  </div>
+
 </div>
-</body>
-	<script>
-	function dl(){
-		var wt=plus.nativeUI.showWaiting('客户端不兼容移动设备！');
-                                var url="";//下载地址
-                                var dtask=plus.downloader.createDownload(url,{},function(d,status){
-                                     if(status==200){
-                                         var path=d.filename;
-                                         plus.runtime.install(path);
-                                     }else{//下载失败
-                                         alert('Download failed:'+status);
-                                     }
-                                 });
-                                dtask.start();}
-	</script>
-</html>
+
+
+</div>
+	<br>
+	<div class="apapapap7"><br>
+	<ul id="myTab" class="nav nav-tabs" style="width:40%;">
+
+	
+	<li  class="dropdown">
+		<a href="#" id="myTabDrop1" class="dropdown-toggle" 
+		   data-toggle="dropdown">作品介绍 
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+			<li><a href="#czbj" tabindex="-1" data-toggle="tab">创作背景</a></li>
+			<li><a href="#gzyl" tabindex="-1" data-toggle="tab">工作原理</a></li>
+			<li><a href="#zptd" tabindex="-1" data-toggle="tab">作品特点</a></li>
+			<li><a href="#zpqx" tabindex="-1" data-toggle="tab">作品缺陷与改进方向</a></li>
+			<li><a href="#yyqj" tabindex="-1" data-toggle="tab">应用前景与社会价值</a></li>
+			<li><a href="#zjzw" tabindex="-1" data-toggle="tab">总结与展望</a></li>
+		</ul>
+	</li>
+	<li><a href="#sc" data-toggle="tab">客户端截图</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" style="color: black" id="home">
+		<p style="color: black;text-align: center;"><br><font size="+2">单击上方标签页以了解作品信息</font></p>
+	</div>
+	<div class="tab-pane fade" style="color: black" id="sc">
+		<p><img src=".\SC.png" style="text-align: center;" width="100%"></p>
+	</div>
+	<div class="tab-pane fade" style="color: black" id="czbj">
+		<p style="color: black;font-size: 20px;"><font size="+6">创作背景</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在食品安全问题备受关注的今天，生鲜食品的质量安全尤为重要。2023年7月，市场监管总局公布的《食用农产品市场销售质量安全监督管理办法》明确禁止使用生鲜灯等照明设施误导消费者对商品的感官认知。这一举措彰显了政府对于维护消费者权益的决心，也凸显了生鲜食品检测技术的重要性。在这样的背景下，我们研发了生肉类生鲜灯检测器，旨在通过科技手段提高生鲜食品检测的效率和准确性，为消费者提供更加安全、可靠的肉类食品。</p>
+	</div>
+	<div class="tab-pane fade" style="color: black" id="gzyl">
+		<p style="color: black;font-size: 20px;"><font size="+6">工作原理</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生肉类生鲜灯检测器运用人工智能算法，通过内置的Huckylens AI视觉传感器捕捉生肉图像，并对图像进行深度分析和处理。该算法能够识别生鲜灯的图像特征，并据此判断检测器前是否有生鲜灯存在。通过这一原理，我们成功实现了对生鲜灯的快速、准确检测。
+		</p>
+	</div>
+		<div class="tab-pane fade" style="color: black" id="zptd">
+		<p style="color: black;font-size: 20px;"><font size="+6">作品特点</font><br><p>1.高效便捷：生肉类生鲜灯检测器采用先进的图像识别技术，能够在短时间内完成检测过程，提高了检测效率。同时，内置的OBLOQ物联网模块可将检测数据实时发送至电脑客户端，实现了检测数据的实时传输和管理。这一技术的应用使得用户可以随时随地查看检测数据，便于对检测器进行长期跟踪和管理。同时，物联网技术的应用也为食品安全监管部门提供了更加便捷、高效的监管手段。</p><p>
+2.效率更高：我们成功将人工智能算法应用于生鲜灯检测领域，实现了对生鲜灯照射下的生肉图像的快速、准确识别。这一技术创新不仅大大提高了检测效率，还降低了误判率。通过不断优化算法和提升图像识别能力，我们的检测器能够在一定距离内准确识别生鲜灯，降低了误判率。此外，设备内置的暂停检测按钮可有效避免在移动过程中因技术限制而导致的误判问题。</p><p>
+3.操作简易：检测器配套客户端采用人性化界面设计，使得用户能够轻松上手，无需专业培训即可进行操作。同时，简洁的外观设计也方便了用户的使用。简洁的外观设计和人性化的界面设计使得用户可以轻松上手，无需专业培训即可进行操作。这些创新不仅提升了用户的使用体验，也增强了设备的实用性。</p>
+		</p>
+	</div>
+			<div class="tab-pane fade" style="color: black" id="zpqx">
+		<p style="color: black;font-size: 20px;"><font size="+6">作品缺陷与社会价值</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尽管生肉类生鲜灯检测器在多个方面表现出色，但由于硬件限制，它目前无法识别距离较远的生鲜灯。针对这一问题，我们将在未来的创作中着力优化算法，提升检测器的稳定性和可靠性，以满足更多场景下的使用需求。
+		</p>
+	</div>
+			<div class="tab-pane fade" style="color: black" id="yyqj">
+		<p style="color: black;font-size: 20px;"><font size="+6">应用前景</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生肉类生鲜灯检测器具有广泛的应用前景和巨大的社会价值。在家庭日常生鲜食品检测方面，它可以帮助消费者准确判断生肉的新鲜度和安全性，保障家庭成员的饮食健康。在超市、餐馆等商业场所，该检测器可协助商家提高生鲜食品的管理水平，增强消费者对产品的信任度，从而促进市场的公平竞争和良性发展。同时，该检测器还可为食品安全监管部门提供技术支持，协助监管部门加强对生鲜食品市场的监管力度，维护公众的健康权益。
+		</p>
+	</div>
+		<div class="tab-pane fade" style="color: black" id="zjzw">
+		<p style="color: black;font-size: 20px;"><font size="+6">总结与展望</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生肉类生鲜灯检测器作为一款创新型生鲜食品检测工具，不仅能够有效满足现代人对食品安全的需求，还具有广阔的市场前景和社会价值。我们将继续致力于优化算法、提升硬件性能以及探索更多应用场景，为人们的健康饮食生活贡献更多的力量，为保障公众健康、推动食品安全事业作出更大的贡献。
+		</p>
+	</div>
+</div>
+	</div>
+</body></html>
