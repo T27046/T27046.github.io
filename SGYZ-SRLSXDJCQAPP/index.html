@@ -129,7 +129,7 @@ font-family:"dx";
 }
 </style><script>
 	function c(){
-		navigator.clipboard.writeText(document.getElementById('websiteURL').innerHTML).then(
+		navigator.clipboard.writeText(window.location.href).then(
   () => {
      console.log("done");alert("链接复制成功！");
    },
