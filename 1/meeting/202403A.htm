@@ -6,7 +6,22 @@
 		function goBack(){
     	window.history.back()
 		}
-		
+		function code(){
+			var codea=Math.floor(Math.random()*100);
+			var codeb=Math.floor(Math.random()*60);
+			if(codea+codeb%2==0){var codec="A";}else{var codec="C";}
+			document.getElementById("confcode").innerHTML=codea*30 + "-" +codeb*7+codec+"-"+"202403B";
+		}
+			function c(){
+		navigator.clipboard.writeText(document.getElementById("confcode").innerHTML).then(
+  () => {
+     console.log("done");alert("确认码已复制");
+   },
+   () => {
+     console.log("failed");
+   }
+);
+}
 	</script>
 
 
@@ -82,7 +97,7 @@
   播放错误 NOT_SPT
 </video>
 	<input type="button" value="若网络不畅，可单击此处" onclick="location.href='https://t27046.github.io/1/meeting/202403A24.htm';window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px;"  />
-  202403A
+  202403A<br><font color='black' >你的会议确认码是：</font><font id="confcode" color='black'>（加载错误）</font>&nbsp;<input type="button" value="复制" onclick="c();" class="stickyButton button1"   />
 </div>
 
 </p>

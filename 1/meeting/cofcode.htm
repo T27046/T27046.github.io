@@ -6,22 +6,23 @@
 		function goBack(){
     	window.history.back()
 		}
-		function code(){
-			var codea=Math.floor(Math.random()*100);
-			var codeb=Math.floor(Math.random()*60);
-			if(codea+codeb%2==0){var codec="A";}else{var codec="C";}
-			document.getElementById("confcode").innerHTML=codea*30 + "-" +codeb*7+codec+"-"+"202403B";
+
+				function code(){
+					console.log("c");
+					var wrong=false;
+			var codea=document.getElementById("ca").value;
+			var codeb=document.getElementById("cb").value;
+			var codec=document.getElementById("cc").value;
+					codea=codea/30;
+					if(codea>100){wrong=true;}
+					if(codea<0){wrong=true;}
+					codeb=codeb/7;
+					if(codeb>60){wrong=true;}
+					if(codeb<0){wrong=true;}
+					if(codea+codeb%2==0){if(codec!="A"){wrong=true;} }else{if(codec!="C"){wrong=true;}}
+					if(wrong){alert("无效")}else{alert("有效")}
 		}
-			function c(){
-		navigator.clipboard.writeText(document.getElementById("confcode").innerHTML).then(
-  () => {
-     console.log("done");alert("确认码已复制");
-   },
-   () => {
-     console.log("failed");
-   }
-);
-}
+			
 	</script>
 
 
@@ -79,7 +80,7 @@
 			color:#212121
 		}
 		</style>
-<body style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #aaffff, #aaaaff);" onload="code();">
+<body style="bg; color: #000000; background-image: linear-gradient(to right , #aaffff, #aaaaff);" >
 <div class="auto-style2">
 <input type="button" value="◄" onclick="goBack()"class="stickyButton button1" style="margin-left: 0px;"  />
 </div>
@@ -88,16 +89,8 @@
 
 
 </div>
-<video width="100%" height="auto" controls >
-
-  <source src="202403B.1dsf"  type="video/mp4">
-  <source src="https://t27046.github.io/1/202403B.1dsf"  type="video/mp4">
-			  <source src="https://helpful-licorice-ca28fe.netlify.app/1/202403B.1dsf"  type="video/mp4">
-  播放错误 NOT_SPT
-</video>
-	
-  202403B<br>
-	<font color='black' >你的会议确认码是：</font><font id="confcode" color='black'>（加载错误）</font>&nbsp;<input type="button" value="复制" onclick="c();" class="stickyButton button1"   />
+ <input style="border-radius:50px;font-family: 'dx'" type="text" name="" id="ca" value="" placeholder="数字"/>-<input style="border-radius:50px;font-family: 'dx'" type="text" name="" id="cb" value="" placeholder="数字"/><input style="border-radius:50px;font-family: 'dx'" type="text" name="" id="cc" value="" placeholder="字母"/>-XXXXXXX<br>
+	<input type="button" value="验证" onclick="code();" class="stickyButton button1"  />
 </div>
 
 </p>
