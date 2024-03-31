@@ -1,5 +1,6 @@
 <html>
 	<head>
+			
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title></title>
 
@@ -87,7 +88,7 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 	 background-image: linear-gradient(to right , #00A100, #00AF00)
 			}
 		</style>
-	<script>
+<script>
 		document.body.onselectstart = function () { 
     return false; 
 };
@@ -98,36 +99,35 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
     	window.history.back()
 			plus.runtime.restart();
 		}
-		function lc(){
-			var now = new Date();
-var nowTime = now.getTime();
-var day = now.getDay();
-var oneDayTime = 24*60*60*1000;
-var MondayTime = nowTime - (day-1)*oneDayTime;
-			 MondayTime = new Date(MondayTime);
-			MondayTime = MondayTime.getDate();
-			console.log(MondayTime);
-			var glc=false;
-			if(MondayTime%2==0){var glc=true;}			
-		}
+
 
 		function cf(){location.href='./meeting/cofcode.htm'+ '?random=' + Date.now();window.name = 'reloaded';}
 		function ZX(){alert("如何退出账号\n安卓：在系统应用设置清除 一栋宿风部（六组） 的数据储存\nPC:删除C:\\sgyz.sf11.ini")}
 	function memb(){console.log("c0");
+					var now = new Date();
+					var nowTime = now.getTime();
+					var day = now.getDay();
+					var oneDayTime = 24*60*60*1000;
+					var MondayTime = nowTime - (day-1)*oneDayTime;
+					MondayTime = new Date(MondayTime);
+					MondayTime = MondayTime.getDate();
+					console.log(MondayTime);
+					var glc=false;
+					if(MondayTime%2==0){var glc=true;}	
 					var usrid = Number(window.location.search.slice(1,2))-1;
 					var usrid2 = window.location.search.slice(1,2);
 					console.log(String(usrid));
-					if(usrid2=="1"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 吴铭乐</font>";var templc="  -  组长";document.getElementById("topTitle").innerHTML+=templc；document.getElementById("BT").innerHTML+="<input type='button' value='微会议确认码验证' onclick='cf()' class='stickyButton button1'  style='margin-left: 0px'  />";}
-					if(usrid2=="2"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 邝锦逵</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="3"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 陈宇飞</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="4"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>202 邹志远</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="5"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>105 朱浩然</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="6"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>203 陈宇坤</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="7"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>110 杨杰铭</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="8"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>209 廖家祥</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="9"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>220 张晨</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"}；document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="A"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>316 罗炫林</font>";var templc="  -  外围";document.getElementById("topTitle").innerHTML+=templc；}
-					if(usrid2=="B"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>315 李梓锐</font>";var templc="  -  外围";document.getElementById("topTitle").innerHTML+=templc；}
+					if(usrid2=="1"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 吴铭乐</font>";var templc="  -  组长";document.getElementById("topTitle").innerHTML+=templc;document.getElementById("BT").innerHTML+="<input type='button' value='微会议确认码验证' onclick='cf()' class='stickyButton button1'  style='margin-left: 0px'  />";}
+					if(usrid2=="2"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 邝锦逵</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="3"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 陈宇飞</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="4"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>202 邹志远</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="5"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>105 朱浩然</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="6"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>203 陈宇坤</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="7"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>110 杨杰铭</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="8"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>209 廖家祥</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="9"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>220 张晨</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"};document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="A"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>316 罗炫林</font>";var templc="  -  外围";document.getElementById("topTitle").innerHTML+=templc;}
+					if(usrid2=="B"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>315 李梓锐</font>";var templc="  -  外围";document.getElementById("topTitle").innerHTML+=templc;}
 					document.getElementById("memb1").innerHTML="重点关注宿舍名单：<font\x20size=\x272\x27>-禁止向外泄露-\x20-禁止录屏、截图-</font><br>一楼：<br>04\x2006\x2009\x2015<br>二楼:<br>04\x2008\x2010\x2012<br>15\x2018<br>三楼：<br>07\x2010\x2011\x2012<br>四楼：\x20<br>01\x2003\x2005<br>07\x2011\x2014<br>\x2015\x2017\x2019<br><br><font\x20size=\x272\x27>------</font><br>巡查时段分为两部分:<br>\x20·\x20警告时段\x20(巡查开始\x20至\x20熄灯后\x20179秒\x20\x20以警告为主)\x20<br>\x20·\x20扣分时段\x20(熄灯后180秒\x20至\x20巡查结束\x20以扣分为主)<br><font\x20size=\x272\x27>*扣分时段起始时间可结合实际情况适当提前。<br>------</font><br>外巡人员夜晚巡查时务必注意安全。<br>若有宿舍厕所有可疑灯光需上报组长。<br><br><font color='red'>禁止将手电指向宿舍阳台内！</font>"
 				   
 				   }
@@ -143,7 +143,7 @@ var MondayTime = nowTime - (day-1)*oneDayTime;
 		}
 	}
 </script>
-<body oncontextmenu="return false;" onselectstart="return false" onLoad="cof();lc();" style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #F3F3F3, #ffffFF);">
+<body oncontextmenu="return false;" onselectstart="return false"  style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #F3F3F3, #ffffFF);"onLoad="cof();">
 <div class="toptext" id="topTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;韶关市第一中学 一栋宿风部（六组）<br></div><div class="toptext1"> </div>
 <p id="BT" style="text-align: center">					  
 <input type="button" value="应用下载页" onclick="location.href='./app.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px;"  />
@@ -157,4 +157,5 @@ var MondayTime = nowTime - (day-1)*oneDayTime;
 </div>
 </body>
 <img class="bottom-element" src="1ztitle.png" width=25%></img>
+
 </html>
