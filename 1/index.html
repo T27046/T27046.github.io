@@ -103,7 +103,7 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 					var usrid = Number(window.location.search.slice(1,2))-1;
 					var usrid2 = window.location.search.slice(1,2);
 					console.log(String(usrid));
-					if(usrid2=="1"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 吴铭乐</font>"}
+					if(usrid2=="1"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 吴铭乐</font>";document.getElementById("BT").innerHTML+="<input type='button' value='微会议确认码验证'onclick='location.href='./meeting/cofcode.htm'+ '?random=' + Date.now();window.name = 'reloaded';'class='stickyButton button1'  style='margin-left: 0px'  />";}
 					if(usrid2=="2"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 邝锦逵</font>"}
 					if(usrid2=="3"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 陈宇飞</font>"}
 					if(usrid2=="4"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>202 邹志远</font>"}
