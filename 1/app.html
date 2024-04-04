@@ -126,11 +126,8 @@
 </div>
 </body>
 	<script>
-	function dl(){
-		try{if(plus.runtime.version==""){window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}}catch{window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}
-		
-		var wt=plus.nativeUI.showWaiting('下载中，请勿关闭');
-                                console.log('2');
+				function svn(t){
+				console.log('2');
 				var xhr=new plus.net.XMLHttpRequest();
 				xhr.onreadystatechange=function(){
 				if(xhr.readyState==4)   {console.log('4');
@@ -139,10 +136,10 @@
 					var tsize=res.tsize;
 					if(res.state=='yes'){console.log('sy');
                     if(res.mark!=t){
-                        var upr;plus.runtime.setBadgeNumber(9999);plus.nativeUI.toast('检测到新版本！');
+                        var upr;plus.runtime.setBadgeNumber(9999);plus.nativeUI.toast('提示');
                         plus.nativeUI.confirm('是否更新？',
 						function(e){
-                            upr=(e.index==0)?'N':'Y';if(upr=='N'){plus.nativeUI.toast('下次启动应用时仍会提醒你更新');location.href="https://t27046.gitee.io/1/login.html";window.name = "reloaded";}
+                            upr=(e.index==0)?'N':'Y';if(upr=='N'){}
                             if(upr=='Y'){
 								
                                 var url=res.url;//下载地址
@@ -210,13 +207,10 @@
                             }
                         },'',['否','是']);
                     }else {
-                        console.log('最新');
-						location.href="https://t27046.gitee.io/1/login.html";
-						window.name = "reloaded";
+
                     }
                 }
-            }else {location.href="./404.html";
-                plus.nativeUI.toast('网络连接错误!');
+            }else {
             }
         }
     }      
@@ -244,6 +238,11 @@
    		　　　　s_x += '0'; 
    		　　} 
    		　　return s_x; 
-   		}
+   		}	
+	function dl(){
+		try{if(plus.runtime.version==""){window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}}catch{window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}
+			svn(0);
+	}
+		
 	</script>
 </html>
