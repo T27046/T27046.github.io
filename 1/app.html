@@ -108,7 +108,7 @@
 </div>
 <div class="apapapap9">
 <p class="apapapap8">这是专门为一栋宿风部六组宿风建立的通知发布平台。<br></p>
-<p class="apapapap81">该软件仅作交流用，而非用于商业用途！</p>
+<p class="apapapap81" id="proc">该软件仅作交流用，而非用于商业用途！</p>
 
 <p><a href="https://t27046.github.io/1/1zsf1-0.apk" >
   <button class="button button1" style="margin-left: 40px" type="submit" onclick="dl()">下载最新版本（for Android）<br>安卓客户端更新入口</button>
@@ -128,15 +128,68 @@
 	<script>
 	function dl(){
 		var wt=plus.nativeUI.showWaiting('下载中，请勿关闭');
-                                var url="https://t27046.gitee.io/1/1zsf1-0.apk";//下载地址
-                                var dtask=plus.downloader.createDownload(url,{},function(d,status){
+                                var url=res.url;//下载地址
+								let progressVal = 0;
+								
+                                var dtask=plus.downloader.createDownload(url,{filename:"_doc/"+"sf11.apk"},
+								function(d,status){
                                      if(status==200){
+										 console.log("200");
                                          var path=d.filename;
-                                         plus.runtime.install(path);
-                                     }else{//下载失败
-                                         alert('Download failed:'+status);
+										 plus.runtime.openFile(path)
+                                         plus.runtime.install(path,{force:true},function(){
+                                                 console.log("success"+e.message); 
+                                             },function(e){  
+                                                 console.log("failed: "+e.message);  
+                                             });
+                                     }
+									 else{
+                                         alert('Download failed:'+status);//下载失败
                                      }
                                  });
-                                dtask.start();}
+								 
+                                dtask.addEventListener('statechanged', (task) => {
+                                	if (!dtask) {
+                                		return;
+                                	}
+                                
+                                	// no default
+                                			
+                                	switch (task.state) {
+                                				
+                                		case 1:
+                                
+                                			console.log('开始下载');
+                                
+                                			break;
+                                
+                                		case 2:
+                                
+                                			console.log('链接到服务器...');
+                                
+                                			break;
+                                
+                                		case 3:
+                                					
+                                			progressVal = changeTwoDecimal_f((task.downloadedSize / tsize)) * 100 + "%";
+                                			console.log(progressVal);
+											
+											document.getElementById("proc").innerHTML="一栋宿风部（六组）<br>sgyz.sf11<br>开始下载位于"+res.url+"的文件"+"<br>进度 "+progressVal+"<br>已下载 "+task.downloadedSize+"字节"+"<br>总共 "+tsize+"字节";
+                                			break;
+                                
+                                		case 4:
+                                				
+                                			console.log('监听下载完成');
+                                			
+                                			
+                                			break;
+                                
+                                	}
+                                
+                                	});
+                                
+                                	dtask.start(); 
+                                
+                            }
 	</script>
 </html>
