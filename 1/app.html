@@ -110,9 +110,9 @@
 <p class="apapapap8">这是专门为一栋宿风部六组宿风建立的通知发布平台。<br></p>
 <p class="apapapap81" id="proc">该软件仅作交流用，而非用于商业用途！</p>
 
-<p><a href="https://t27046.github.io/1/1zsf1-0.apk" >
+<p>
   <button class="button button1" style="margin-left: 40px" type="submit" onclick="dl()">下载最新版本（for Android）<br>安卓客户端更新入口</button>
-  </a><br><a href="./sgyzsf11.exe" >
+  <br><a href="./sgyzsf11.exe" >
   <button class="button button1" style="margin-left: 40px" type="submit" onclick="plus.runtime.restart();">下载最新版本（for Windows）<br>PC客户端下载入口</button>
   </a><br><a href="./login.html" >
   <button class="button button1" onClick="plus.runtime.restart();" style="margin-left: 40px" type="submit" >网页版入口（ios用户请移步此处）</button>
@@ -127,6 +127,8 @@
 </body>
 	<script>
 	function dl(){
+		try{if(plus.runtime.version==""){window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}}catch{window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}
+		
 		var wt=plus.nativeUI.showWaiting('下载中，请勿关闭');
                                 var url=res.url;//下载地址
 								let progressVal = 0;
