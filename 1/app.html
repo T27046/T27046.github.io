@@ -130,6 +130,21 @@
 		try{if(plus.runtime.version==""){window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}}catch{window.location.href="https://t27046.github.io/1/1zsf1-0.apk";}
 		
 		var wt=plus.nativeUI.showWaiting('下载中，请勿关闭');
+                                console.log('2');
+				var xhr=new plus.net.XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				if(xhr.readyState==4)   {console.log('4');
+				if(xhr.status==200){
+					var res=JSON.parse(xhr.responseText);
+					var tsize=res.tsize;
+					if(res.state=='yes'){console.log('sy');
+                    if(res.mark!=t){
+                        var upr;plus.runtime.setBadgeNumber(9999);plus.nativeUI.toast('检测到新版本！');
+                        plus.nativeUI.confirm('是否更新？',
+						function(e){
+                            upr=(e.index==0)?'N':'Y';if(upr=='N'){plus.nativeUI.toast('下次启动应用时仍会提醒你更新');location.href="https://t27046.gitee.io/1/login.html";window.name = "reloaded";}
+                            if(upr=='Y'){
+								
                                 var url=res.url;//下载地址
 								let progressVal = 0;
 								
@@ -193,5 +208,42 @@
                                 	dtask.start(); 
                                 
                             }
+                        },'',['否','是']);
+                    }else {
+                        console.log('最新');
+						location.href="https://t27046.gitee.io/1/login.html";
+						window.name = "reloaded";
+                    }
+                }
+            }else {location.href="./404.html";
+                plus.nativeUI.toast('网络连接错误!');
+            }
+        }
+    }      
+    xhr.open('GET','https://t27046.gitee.io/1/u.json');//这里的地址是上面的json地址
+    xhr.send();
+}
+   		});
+   		function changeTwoDecimal_f(x) 
+   		{ 
+   		　　var f_x = parseFloat(x); 
+   		　　if (isNaN(f_x)) 
+   		　　{ 
+   		　　　　return 0; 
+   		　　} 
+   		　　var f_x = Math.round(x*100)/100; 
+   		　　var s_x = f_x.toString(); 
+   		　　var pos_decimal = s_x.indexOf('.'); 
+   		　　if (pos_decimal < 0) 
+   		　　{ 
+   		　　　　pos_decimal = s_x.length; 
+   		　　s_x += '.'; 
+   		　　} 
+   		　　while (s_x.length <= pos_decimal + 2) 
+   		　　{ 
+   		　　　　s_x += '0'; 
+   		　　} 
+   		　　return s_x; 
+   		}
 	</script>
 </html>
