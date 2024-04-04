@@ -72,8 +72,10 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 			border-top-right-radius:10px;
 }
 .toptext{
-		margin:-10px;		
-  top:-2px;
+		margin:-10px;
+	    position: fixed;	        /* 设置fixed固定定位 */
+
+  top:10px;
  width:100%;text-align: left;color: white;
 				height: auto;
 	  font-size: x-large;
@@ -145,6 +147,7 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 </script>
 <body oncontextmenu="return false;" onselectstart="return false"  style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #F3F3F3, #ffffFF);"onLoad="cof();">
 <div class="toptext" id="topTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;韶关市第一中学 一栋宿风部（六组）<br></div><div class="toptext1"> </div>
+	<p style="height:10%"><br></p>
 <p id="BT" style="text-align: center">					  
 <input type="button" value="应用下载页" onclick="location.href='./app.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px;"  />
 <input type="button" value="刷新" onclick="plus.runtime.restart();location.href='./login.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
