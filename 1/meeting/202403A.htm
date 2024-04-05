@@ -10,7 +10,7 @@
 			var codea=Math.floor(Math.random()*100);
 			var codeb=Math.floor(Math.random()*60);
 			if(codea+codeb%2==0){var codec="A";}else{var codec="C";}
-			document.getElementById("confcode").innerHTML=codea*30 + "-" +codeb*7+codec+"-"+"202403B";
+			document.getElementById("confcode").innerHTML=codea*30 + "-" +codeb*7+codec+"-"+"202403A";
 		}
 			function c(){
 		navigator.clipboard.writeText(document.getElementById("confcode").innerHTML).then(
@@ -79,7 +79,7 @@
 			color:#212121
 		}
 		</style>
-<body style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #aaffff, #aaaaff);">
+<body style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #aaffff, #aaaaff);" onload="code();">
 <div class="auto-style2">
 <input type="button" value="◄" onclick="goBack()"class="stickyButton button1" style="margin-left: 0px;  />
 </div>
