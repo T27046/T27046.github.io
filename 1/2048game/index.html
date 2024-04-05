@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+			<style>
+	.button {
+	    background-color: #7A88FF; 
+      	color: #FFFFFF;
+    	width: 15%;
+		height:5%;    
+		text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	font-size: 32px;
+    	margin: 4px 200px;
+    	cursor: pointer;
+		border-radius: 25px;
+		transition-duration: 0.4s;
+	
+	}  
+	.button1 {
+   	 	background-color:  #1B212C; 
+    	color: white; 
+    	border: 2px solid #1B212C;
+    	border-radius: 25px;
+	}
+
+	.button1:hover {
+    	background-color: #7B818C;
+    	color: white;
+     	border: 2px solid #7B818C;
+   		border-radius: 5px;
+	}
+		.auto-style1 {
+			font-size:36pt;
+			color: #212121;
+			text-align: left;
+	margin-left: 80px;
+}
+		.auto-style2 {
+			text-align: left;
+		}
+		.auto-style3 {
+	text-align: right;
+}
+		.auto-style4 {
+	font-size: 18pt;
+
+	color: #ffffff;
+	text-align: left;
+	margin-left: 80px;
+}
+		.auto-style5 {
+			text-align: center;
+			color:#212121
+		}
+		</style>
+  <meta charset="utf-8">
+  
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body onLoad="document.getElementById('playername').innerHTML=window.location.search.slice(1,8)">
+	<input type="button" value="◄" onclick="goBack()"class="stickyButton button1" style="margin-left: 0px;"  />
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">2048</h1>
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+
+    <div class="above-game">
+      <p id="playername"></p>
+      <a class="restart-button">新回合</a>
+    </div>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a class="keep-playing-button">继续</a>
+          <a class="retry-button">再来</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container">
+
+      </div>
+    </div>
+    <div id="podinfo" class="game-explanation">
+    </div>
+    <hr>
+
+  </div>
+
+  <script src="js/bind_polyfill.js"></script>
+  <script src="js/classlist_polyfill.js"></script>
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/local_storage_manager.js"></script>
+  <script src="js/game_manager.js"></script>
+  <script src="js/application.js"></script>
+</body>
+</html>
