@@ -55,7 +55,18 @@
 		}
 		</style>
   <meta charset="utf-8">
-  
+  <script>
+	function aaa(){
+		var uri_encode=encodeURIComponent(window.location.search.slice(1,4));
+		var aaaaa=decodeURIComponent(uri_encode);
+		console.log(decodeURIComponent(uri_encode));
+		document.getElementById('playername').innerHTML="玩家 "+aaaaa;
+		
+	}
+	function goBack(){
+    	window.history.back()
+		}
+	</script>
 
   <link href="style/main.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
@@ -69,7 +80,7 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
-<body onLoad="document.getElementById('playername').innerHTML=window.location.search.slice(1,8)">
+<body onLoad="aaa();">
 	<input type="button" value="◄" onclick="goBack()"class="stickyButton button1" style="margin-left: 0px;"  />
   <div class="container">
     <div class="heading">
