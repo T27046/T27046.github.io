@@ -102,7 +102,8 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 			plus.runtime.restart();
 		}
 
-		function JX(){location.href='./2048game/index.html'+ '?'+ document.getElementById("topTitle").innerHTML.slice(111,118)+ Date.now();window.name = 'reloaded';}
+		function JX1(){location.href='./2048game/index.html'+ '?'+ document.getElementById("topTitle").innerHTML.slice(111,118)+ Date.now();window.name = 'reloaded';}
+		function JX2(){location.href='./xiangqigame/index.html'+ '?'+ document.getElementById("topTitle").innerHTML.slice(111,118)+ Date.now();window.name = 'reloaded';}
 		function cf(){location.href='./meeting/cofcode.htm'+ '?random=' + Date.now();window.name = 'reloaded';}
 		function ZX(){alert("如何退出账号\n安卓：在系统应用设置清除 一栋宿风部（六组） 的数据储存\nPC:删除C:\\sgyz.sf11.ini")}
 	function memb(){console.log("c0");
@@ -141,7 +142,7 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 		else{if(window.location.search!=""){alert("登录已过期，请重启程序");}}
 		if(window.location.search!="")
 		{
-			document.getElementById("BT").innerHTML += "<input type='button' value='如何退出账号' onclick='ZX();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮' onclick='JX();' class='stickyButton button1' style='margin-left: 0px'  />"
+			document.getElementById("BT").innerHTML += "<input type='button' value='如何退出账号' onclick='ZX();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮 1号' onclick='JX1();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮 2号' onclick='JX2();' class='stickyButton button1' style='margin-left: 0px'  />"
 		}
 	}
 </script>
