@@ -8,7 +8,7 @@
 
 		</head>
 		<style>
-
+ 
 	.button {
 	    background-color: #7A88FF; 
       	color: #FFFFFF;
@@ -62,7 +62,8 @@
 			text-align: left;
 			color:#212121;
 				font-size:20pt;
-			margin:20%;
+			margin-left:20%;
+			margin-right:20%;
 		}.bottom-element {
 right:20px;
     position: fixed;
@@ -72,23 +73,93 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 			border-top-right-radius:10px;
 }
 .toptext{
-		margin:-10px;
-	    position: fixed;	        /* 设置fixed固定定位 */
+	margin:-10px;
+	backdrop-filter: blur(30px);
+	backdrop-filter: brightness(120%);
+	position: fixed;
+  	top:10px;
+ 	width:100%;
+	height:70px ;
+	text-align: left;
+	min-height:70px;
+	color: white;
+	font-size: x-large;
+	background-color:rgba(30, 98, 236, .8);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+.toptext1{
+	margin:-2px;
+	width:100%;
+	position: fixed;
+  	top:70px;
+ 	left:0px;
+	text-align: center;
+	color: white;
+	height: auto;
+	font-size: large;
+	background-image: linear-gradient(to right , #A10000aa, #AF0000aa);
+	backdrop-filter: blur(30px);
+	backdrop-filter: brightness(120%);
+	}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
 
-  top:10px;
- width:100%;text-align: left;color: white;
-				height: auto;
-	  font-size: x-large;
-	 background-image: linear-gradient(to right , #2A2A2A, #AFafaf);box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			}.toptext1{
-				
-  margin:-2px;
- width:100%;text-align: center;color: white;
-				height: auto;
-	  font-size: xx-large;
-				
-	 background-image: linear-gradient(to right , #00A100, #00AF00)
-			}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+.menu.icon {
+  color: #fff;
+  position: absolute;
+  margin-left: 2px;
+  margin-top: 10px;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.menu.icon:before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.menu.icon:after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+
+
+
+
 		</style>
 <script>
 		document.body.onselectstart = function () { 
@@ -105,7 +176,6 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 		function JX1(){location.href='./2048game/index.html'+ '?'+ document.getElementById("topTitle").innerHTML.slice(111,118)+ Date.now();window.name = 'reloaded';}
 		function JX2(){location.href='./xiangqigame/index.html'+ '?'+ document.getElementById("topTitle").innerHTML.slice(111,118)+ Date.now();window.name = 'reloaded';}
 		function cf(){location.href='./meeting/cofcode.htm'+ '?random=' + Date.now();window.name = 'reloaded';}
-		function ZX(){alert("如何退出账号\n安卓：在系统应用设置清除 一栋宿风部（六组） 的数据储存\nPC:删除C:\\sgyz.sf11.ini")}
 	function memb(){console.log("c0");
 					var now = new Date();
 					var nowTime = now.getTime();
@@ -120,19 +190,20 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 					var usrid = Number(window.location.search.slice(1,2))-1;
 					var usrid2 = window.location.search.slice(1,2);
 					console.log(String(usrid));
-					if(usrid2=="1"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 吴铭乐</font>";var templc="  -  组长";document.getElementById("topTitle").innerHTML+=templc;document.getElementById("BT").innerHTML+="<input type='button' value='微会议确认码验证' onclick='cf()' class='stickyButton button1'  style='margin-left: 0px'  />";}
-					if(usrid2=="2"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>214 邝锦逵</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="3"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>106 张振皓</font>";var templc="  -  ";if(glc){templc+="管理三楼"}else{templc+="管理四楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="4"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>202 邹志远</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="5"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>105 朱浩然</font>";var templc="  -  ";if(glc){templc+="管理二楼"}else{templc+="管理一楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="6"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>203 陈宇坤</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="7"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>110 杨杰铭</font>";var templc="  -  ";if(glc){templc+="管理一楼"}else{templc+="管理二楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="8"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>209 廖家祥</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="9"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>305 阮粤华</font>";var templc="  -  ";if(glc){templc+="管理四楼"}else{templc+="管理三楼"};document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="A"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>316 罗炫林</font>";var templc="  -  离组（机动）：将在5月初注销账号";document.getElementById("topTitle").innerHTML+=templc;}
-					if(usrid2=="B"){document.getElementById("topTitle").innerHTML+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size='36px'>117 曾韦睿</font>";var templc="  -  优先机动";document.getElementById("topTitle").innerHTML+=templc;}
-					document.getElementById("memb1").innerHTML="重点关注宿舍名单：<font\x20size=\x272\x27>-禁止向外泄露-\x20-禁止录屏、截图-</font><br>一楼：<br>04\x2009\x2015<br>二楼:<br>04\x2008\x2010\x2012<br>15\x2018<br>三楼：<br>07\x2010\x2011\x2012<br>四楼：\x20<br>01\x2003\x2005<br>07\x2011\x2014<br>\x2015\x2017\x2019<br><br><font\x20size=\x272\x27>------</font><br>巡查时段分为两部分:<br>\x20·\x20警告时段\x20(巡查开始\x20至\x20熄灯后\x20179秒\x20\x20以警告为主)\x20<br>\x20·\x20扣分时段\x20(熄灯后180秒\x20至\x20巡查结束\x20以扣分为主)<br><font\x20size=\x272\x27>*扣分时段起始时间可结合实际情况适当提前。<br>------</font><br><font color='red'>---</font>"
-				   
+					function ZZ(){document.getElementById("BT").innerHTML+="<input type='button' value='微会议确认码验证' onclick='cf()' class='stickyButton button1'  style='margin-left: 0px'  />";}
+					if(usrid2=="1"){document.getElementById("topTitle").innerHTML="吴铭乐";ZZ();}
+					if(usrid2=="2"){document.getElementById("topTitle").innerHTML="邝锦逵";}
+					if(usrid2=="3"){document.getElementById("topTitle").innerHTML="张振皓";}
+					if(usrid2=="4"){document.getElementById("topTitle").innerHTML="邹志远";}
+					if(usrid2=="5"){document.getElementById("topTitle").innerHTML="朱浩然";}
+					if(usrid2=="6"){document.getElementById("topTitle").innerHTML="陈宇坤";}
+					if(usrid2=="7"){document.getElementById("topTitle").innerHTML="杨杰铭";}
+					if(usrid2=="8"){document.getElementById("topTitle").innerHTML="廖家祥";}
+					if(usrid2=="9"){document.getElementById("topTitle").innerHTML="阮粤华";}
+					if(usrid2=="A"){document.getElementById("topTitle").innerHTML="罗炫林";}
+					if(usrid2=="B"){document.getElementById("topTitle").innerHTML="曾韦睿";}
+					document.getElementById("memb1").innerHTML="重点关注宿舍名单：<br>一楼：<br>04\x2009\x2015<br>二楼:<br>04\x2008\x2010\x2012<br>15\x2018<br>三楼：<br>07\x2010\x2011\x2018<br>四楼：\x20<br>01\x2005\x2006\<br><br><font\x20size=\x272\x27>------</font>";
+				   document.getElementById("lgmn").innerHTML+="<a href='#' onclick='lgout()'>退出登录</a>";
 				   }
 
 	
@@ -142,24 +213,57 @@ text-align: center;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgb
 		else{if(window.location.search!=""){alert("登录已过期，请重启程序");}}
 		if(window.location.search!="")
 		{
-			document.getElementById("BT").innerHTML += "<input type='button' value='如何退出账号' onclick='ZX();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮 1号' onclick='JX1();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮 2号' onclick='JX2();' class='stickyButton button1' style='margin-left: 0px'  />"
+			document.getElementById("BT").innerHTML += "<input type='button' value='惊喜按钮 1号' onclick='JX1();' class='stickyButton button1' style='margin-left: 0px'  /><input type='button' value='惊喜按钮 2号' onclick='JX2();' class='stickyButton button1' style='margin-left: 0px'  />"
 		}
 	}
+			
+		
+			
+				   
+		
+
+// 如果用户在下拉框外单击，则关闭下拉框
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+	    
+function lgout(){location.href='./login.html'+ '?A' + Date.now();window.name = 'reloaded';}
+
 </script>
 <body oncontextmenu="return false;" onselectstart="return false"  style="bg; color: #FFFFFF; background-image: linear-gradient(to right , #F3F3F3, #ffffFF);"onLoad="cof();">
-<div class="toptext" id="topTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;韶关市第一中学 一栋宿风部（六组）<br></div><div class="toptext1"> </div>
-	<p style="height:10%"><br></p>
+<div class="toptext" >
+	<div style="position: fixed;left:30px;top:15px;width: 50%;" >韶关市第一中学 一栋宿风部（六组）
+	</div>
+	<br>
+	<div style="position: fixed;right:5%;top:18px;">
+		<div style="margin-left: 0px" ><div onclick="document.getElementById('lgmn').classList.toggle('show');" class="menu icon">&nbsp;</div></i>
+		</div>
+	</div>
+	<div class="dropdown-content" style="position: fixed;right:2px;top:70px;" id="lgmn">
+      <a href="#"  id="topTitle" onclick="location.href='./login.html'+ '?random=' + Date.now();window.name = 'reloaded';">登录</a>
+      
+    </div>
+</div>
+    
+    
+  
+</div>
+<div class="toptext1">公告：本网站将迁移到 sgyz.us.kg </div>
+	<p style="height:90px">&nbsp;</p>
 <p id="BT" style="text-align: center">					  
-<input type="button" value="应用下载页" onclick="location.href='./app.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px;"  />
-<input type="button" value="刷新" onclick="plus.runtime.restart();location.href='./login.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
-<input type="button" value="判定标准：被褥遮挡问题" onclick="location.href='./1203bed.html'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
+
 <input type="button" value="微会议 202403A" onclick="location.href='./meeting/202403A.htm'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
 <input type="button" value="微会议 202403B" onclick="location.href='./meeting/202403B.htm'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
 <input type="button" value="微会议 202404A" onclick="location.href='./meeting/202404A.htm'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
 <input type="button" value="微会议 202405A" onclick="location.href='./meeting/202405A.htm'+ '?random=' + Date.now();window.name = 'reloaded';"class="stickyButton button1"  style="margin-left: 0px"  />
-</p><p style="background: red;font-size: xx-large;color: white;border-radius: 50px;text-align: left;width: 100%"><br>&nbsp;&nbsp;通知：<br>&nbsp;&nbsp;&nbsp;原定于6月6日至6月10日的微会议“202406A”延期，时间待定。<br><br>&nbsp;&nbsp;&nbsp;2024.6.9<br>&nbsp;</p>
-<p class="auto-style5" id="memb1">暂无内容</p>
-	<p style="text-align: center"><img src="n202404A.png" width=80%></img></p>
+</p>
+<p class="auto-style5" id="memb1"></p>
+	<p style="text-align: center"></p>
 
 </div>
 </body>

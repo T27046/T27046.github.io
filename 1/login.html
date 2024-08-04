@@ -13,7 +13,7 @@
 		
 			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
 
-		function l2(){
+		function l2(){if(window.location.search.slice(1,2)=="A"){localStorage.setItem("p","");location.reload(true);}
 			var n=localStorage.getItem("n");
 			var p=localStorage.getItem("p");
 			 var i=0;
@@ -54,7 +54,7 @@ function _0xe0d9(){var _0x231fc4=['2309968JNobRd','4592241mHqwXN','4LFSxhM','129
 <input style="border-radius:50px ;font-family: 'dx'" type="text" name="" id="name" value="" placeholder="请输入姓名" /><br><br>
 		<input style="border-radius:50px ;font-family: 'dx'" type="text" name="" id="password" value="" placeholder="请输入密码" />
 		<br><br>
-		<button style="border-radius:50px;font-family: 'dx' " id="LB" onClick="ddddd();">登录</button><br><br><br><a href="http://t27046.gitee.io/1" style="text-align:center;font-family: 'dx'">如果你是一栋宿风部的其他组成员，请单击此处</a><br><br><br>若不能登录，请报告组长</body>
+		<button style="border-radius:50px;font-family: 'dx' " id="LB" onClick="ddddd();">登录</button><br><br><br><a href="./index.html" style="text-align:center;font-family: 'dx'">如果你是一栋宿风部的其他组成员，请单击此处</a><br><br><br>若不能登录，请报告组长</body>
     
 </head>
 <body>
