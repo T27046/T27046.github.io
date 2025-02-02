@@ -366,7 +366,7 @@ function disableInAppInstallPrompt() {
     }
     var bar = false;
     let ist = false;
-    document.addEventListener('touchstart', function (touchEvent) {
+    document.addEventListener('touchstart', function (touchEvent) {fullScreen(document.documentElement);
         let rect = document.getElementById('brushSize').getBoundingClientRect();
         let mouseX = touchEvent.touches[0].clientX;
         let mouseY = touchEvent.touches[0].clientY;
@@ -419,7 +419,7 @@ function disableInAppInstallPrompt() {
     body.onpointerup = function (e) {
         updersui();
     }
-    body.onpointerdown=function(e){}
+    body.onpointerdown=function(e){fullScreen(document.documentElement);}
     canvas.onpointerdown = function (e) {
         updersui();
         canvas.setPointerCapture(e.pointerId); isDrawing = true; isMouseDown = true;
