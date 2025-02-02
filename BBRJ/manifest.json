@@ -1,0 +1,11 @@
+{
+    "name": "白板软件",
+    "icons": [
+      {
+        "src": "icon256.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  

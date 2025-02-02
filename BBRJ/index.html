@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="manifest" href="manifest.json" />
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>画板</title>
+    <style>
+        * {
+            vertical-align: middle;
+        }
+
+        .content {
+            margin: 20px;
+            float: left;
+        }
+
+        .content div {
+            width: 80px;
+            text-align: center;
+        }
+
+        #canvas {
+            background-color: transparent;
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+
+        .range1 {
+            width: 76px;
+            height: 5px;
+
+        }
+
+        label {
+            color: rgb(255, 255, 255);font-family:"等线 Light";
+        }
+
+        label span {
+            color: #fff;font-family:"等线 Light";
+        }
+
+        #brushSizeLine {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s 0s ease;
+        }
+
+        .ud.icon {
+            color: #000;
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border-top: solid 1px currentColor;
+            border-bottom: solid 1px currentColor;
+            border-left: solid 1px transparent;
+            border-right: solid 1px currentColor;
+        }
+
+        .ud.icon:before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: -1px;
+            width: 3px;
+            height: 3px;
+            border-top: solid 1px currentColor;
+            border-left: solid 1px currentColor;
+            -webkit-transform: rotate(270deg);
+        }
+
+        .rd.icon {
+            color: #000;
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border-top: solid 1px currentColor;
+            border-bottom: solid 1px currentColor;
+            border-right: solid 1px transparent;
+            border-left: solid 1px currentColor;
+        }
+
+        .rd.icon:before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: -1px;
+            width: 3px;
+            height: 3px;
+            border-top: solid 1px currentColor;
+            border-left: solid 1px currentColor;
+            -webkit-transform: rotate(180deg);
+        }
+
+        .button2 {
+            margin-top: 3px;
+            height: 28px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            color: black;
+            background-color: white;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: #000;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+        }
+
+        .button2:active {
+            border-color: #54C3AA;
+        }
+
+        .btn {
+            border: transparent;
+            position: fixed;
+            bottom: 10px;
+            background-color: transparent;
+            z-index: 999;
+            transition: all 0.5s 0s ease;
+        }
+
+        .btnE {
+            border: transparent;
+            position: fixed;
+            bottom: 70px;
+            background-color: transparent;
+            z-index: 999;
+            transition: all 0.5s 0s ease;
+        }
+        .btnC {
+            border: transparent;
+            position: fixed;
+            left: 70px;
+            bottom: -100px;
+            background-color: transparent;
+            z-index: 998;
+            transition: all 0.5s 0s ease;
+        }
+    </style>
+</head>
+
+<body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
+    <div style="position: fixed;
+                    z-index: 999;
+                    left: 0px;
+                    bottom: 10px;
+                    background-color: transparent;
+                    border-radius: 5px;
+                    border-style: solid;
+                    border-color: #54C3AA;
+                    transition: all 0.5s 0s ease;
+                    width: 0px;
+                    height: 50px;
+                    " id="hl"></div>
+    <div class="content" style="position:fixed;bottom: 180px;left: 0px; border: 1px solid rgba(255, 255, 255, 0.18);
+        background-color: rgb(89, 89, 89);border-radius: 20px;z-index: 9999;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        ">
+        <br>
+
+        <div>
+
+            <button class="btn" style="left: 10px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#ff0000'; " id="R">
+                <img src="./R.svg"></img>
+            </button>
+            <button class="btn" style="left: 70px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#ffdd00';" id="Y">
+                <img src="./Y.svg"></img>
+            </button>
+            <button class="btn" style="left: 130px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#00bb00';" id="G">
+                <img src="./G.svg"></img>
+            </button>
+            <button class="btn" style="left: 190px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#0011ff';" id="B">
+                <img src="./B.svg"></img>
+            </button>
+            <button class="btn" style="left: 250px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#000000';" id="D">
+                <img src="./D.svg"></img>
+            </button>
+            <button class="btn" style="left: 250px;bottom: -100px;"
+                onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#FFFFFF';" id="W">
+                <img src="./W.svg"></img>
+            </button>
+            <button class="btnE" style="left: 10px;" ondblclick="document.getElementById('C').style.transform = `translate(0px, -170px)`;" onclick="updersui();ers=1;" id="E">
+                <img src="./E.svg"></img>
+            </button>
+            <button class="btnE" style="left: 10px;bottom: 130px;" onclick="S();" id="S">
+                <img src="./S.svg"></img>
+            </button>
+            <button class="btnC" onclick="cl();ers=0;document.getElementById('C').style.transform = `translate(0px, 0px)`;" id="C">
+                <img src="./C.svg"></img>
+            </button>
+        </div>
+
+        <div>
+            <div style="align-content: center;">
+                <label for="brushSize">画笔大小 <span id="brushSizeValue">03</span></label>
+            </div>
+            <div><input class="range1" type="range" id="brushSize" min="1" max="70" value="03"
+                    onchange="updateValue('brushSize')"
+                    oninput="updateValue('brushSize');updateLine('brushSize', 'brushSizeLine')">
+                <div style="width: 80px;height: 50px">
+                    <div id="brushSizeLine"></div>
+                </div>
+            </div><br>
+        </div>
+        <div>
+            <button class="button2" style="width:28px;" onclick="undo();" id="udb">
+                <div class="ud icon"></div>
+            </button>
+            <button class="button2" style="width:28px;" onclick="restore();" id="rsb">
+                <div class="rd icon"></div>
+            </button><br>
+        </div><br>
+    </div>
+    <div><canvas id="canvas" style="position: fixed;top: 0px;left: 0px;width: 100%;height: 100%;"></canvas></div>
+</body>
+<script>
+    function S() {
+        if (document.body.style.backgroundColor=='rgb(211, 211, 211)') {
+            document.body.style.backgroundColor="#212121";
+            document.getElementById('W').style.transform = `translate(0px, -110px)`;
+            document.getElementById('D').style.transform = `translate(0px, 170px)`;
+            document.getElementById('S').style.transform = `rotate(180deg)`;
+        } else {
+            document.body.style.backgroundColor="rgb(211, 211, 211)";
+            document.getElementById('D').style.transform = `translate(0px, 0px)`;
+            document.getElementById('W').style.transform = `translate(0px, 0px)`;
+            document.getElementById('S').style.transform = `rotate(0deg)`;
+        }
+    }
+    function cl() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); step = 0; points = []; undoStack = []; ers = 0;
+    }
+    function updersui() {
+        if (ers == 0) { document.getElementById('hl').style.transform = `translate(0px, 0px)`; }
+        else { document.getElementById('hl').style.transform = `translate(0px, -60px)`; }
+    }
+    window.onload = function () {
+        document.getElementById('R').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#ff0000'; });
+        document.getElementById('Y').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#ffdd00'; });
+        document.getElementById('G').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#00bb00'; });
+        document.getElementById('B').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#0011ff'; });
+        document.getElementById('D').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#000000'; });
+        document.getElementById('W').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 0; document.getElementById('brushSizeLine').value = '#FFFFFF'; });
+        document.getElementById('E').addEventListener('touchstart',
+            function (touchEvent) { updersui(); ers = 1; });
+        document.getElementById('udb').addEventListener('touchstart',
+            function (touchEvent) { undo(); });
+        document.getElementById('rsb').addEventListener('touchstart',
+            function (touchEvent) { restore(); });
+        document.getElementById('C').addEventListener('touchstart',
+            function (touchEvent) { cl();ers=0;});
+        document.getElementById('S').addEventListener('touchstart',
+            function (touchEvent) { S();});
+    }
+    var bar = false;
+    let ist = false;
+    document.addEventListener('touchstart', function (touchEvent) {
+        let rect = document.getElementById('brushSize').getBoundingClientRect();
+        let mouseX = touchEvent.touches[0].clientX;
+        let mouseY = touchEvent.touches[0].clientY;
+        if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
+            bar=true;
+        } else {
+            bar=false;
+        }
+        document.getElementById('brushSizeValue').style.color = "#f0f0f2"; lst = true;
+        var mouseEvent = new MouseEvent('mousedown', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            clientX: touchEvent.touches[0].clientX,
+            clientY: touchEvent.touches[0].clientY
+        });
+        touchEvent.target.dispatchEvent(mouseEvent);
+    }, { passive: false });
+    document.addEventListener('touchmove', function (touchEvent) {
+        if (!bar) {
+            touchEvent.preventDefault();
+        }
+        
+        if (touchEvent.touches.length >= 2) { ers = 1; }
+        var mouseEvent = new MouseEvent('mousemove', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            clientX: touchEvent.touches[0].clientX,
+            clientY: touchEvent.touches[0].clientY
+        });
+        touchEvent.target.dispatchEvent(mouseEvent);
+    }, { passive: false }); document.addEventListener('touchend', function (touchEvent) {
+        bar=false; var mouseEvent = new MouseEvent('mouseup', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            clientX: touchEvent.changedTouches[0].clientX,
+            clientY: touchEvent.changedTouches[0].clientY
+        }); touchEvent.target.dispatchEvent(mouseEvent);
+    }, { passive: false }); const canvas = document.getElementById('canvas'); try { canvas.width = win.width; canvas.height = win.height; } catch { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+
+    var body = (document.compatMode && document.compatMode == 'CSS1Compat') ? document.documentElement : document.body; const ctx = canvas.getContext('2d');
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round'; let isDrawing = false; let mx = 0; let my = 0;
+    let isMouseDown = false; let lineColor; let lineWidth; let points = []; let step = 0; let ers = 0; let undoStack = [];
+    body.onpointermove = function (e) {
+        updersui();
+        document.getElementById('brushSizeLine').style.backgroundColor = document.getElementById('brushSizeLine').value;
+    }
+    body.onpointerup = function (e) {
+        updersui();
+    }
+    canvas.onpointerdown = function (e) {
+        updersui();
+        canvas.setPointerCapture(e.pointerId); isDrawing = true; isMouseDown = true;
+        points.push({
+            x: e.offsetX,
+            y: e.offsetY
+        }); mx = e.offsetX; my = e.offsetY;
+        if (ers == 1) { ctx.globalCompositeOperation = 'destination-out'; } else { ctx.globalCompositeOperation = 'source-over'; }
+        ctx.beginPath();
+        document.getElementById('C').style.transform = `translate(0px, 0px)`;
+    };
+    try { nw.Window.get().setShowInTaskbar(false); } catch (error) { } finally { }
+    canvas.onpointerup = function (e) {
+        isMouseDown = false;
+        points = [];
+        isDrawing = false;
+        ctx.closePath();
+        ctx.globalCompositeOperation = 'source-over';
+        addUndoStack(canvas.toDataURL()); canvas.releasePointerCapture(e.pointerId);
+    };
+    canvas.onpointerout = function (e) { if (isMouseDown) { points = []; if (ers == 1) { isDrawing = false; isMouseDown = false; } ctx.closePath(); ctx.globalCompositeOperation = 'source-over'; addUndoStack(canvas.toDataURL()); } };
+    canvas.onpointermove = function (e) {
+        if (isDrawing) {
+            const brushSize = document.getElementById('brushSize').value; lineWidth = brushSize; lineColor = document.getElementById('brushSizeLine').value; ctx.lineWidth = lineWidth; ctx.strokeStyle = lineColor; points.push({
+                x: e.offsetX,
+                y: e.offsetY
+            }); ctx.beginPath(); let x = (points[points.length - 2].x + points[points.length - 1].x) / 2,
+                y = (points[points.length - 2].y + points[points.length - 1].y) / 2; if (points.length == 2) { ctx.moveTo(points[points.length - 2].x, points[points.length - 2].y); ctx.lineTo(x, y); } else { let lastX = (points[points.length - 3].x + points[points.length - 2].x) / 2, lastY = (points[points.length - 3].y + points[points.length - 2].y) / 2; ctx.moveTo(lastX, lastY); ctx.quadraticCurveTo(points[points.length - 2].x, points[points.length - 2].y, x, y); } ctx.stroke(); points.slice(0, 1);
+        }
+    };
+    function addUndoStack(url) { if (step < undoStack.length) { undoStack.length = step; } undoStack.push(url); step++; }
+    function undo() { if (step > 1) { step--; const image = new Image(); image.src = undoStack[step - 1]; image.onload = function () { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.drawImage(image, 0, 0); } } else { step = 0; ctx.clearRect(0, 0, canvas.width, canvas.height); } }
+    function restore() { if (step < undoStack.length) { step++; const image = new Image(); image.src = undoStack[step - 1]; image.onload = function () { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.drawImage(image, 0, 0); } } }
+    function updateValue(inputId) { var value = document.getElementById(inputId).value; if (value < 10) { value = '0' + value; } document.getElementById(inputId + "Value").textContent = value; }
+    function updateLine(inputId, lineId) { var value = document.getElementById(inputId).value; var line = document.getElementById(lineId); line.style.height = value + 'px'; line.style.width = value + 'px'; }
+    window.addEventListener('keydown', (e) => { if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); } if (e.ctrlKey && e.key === 'y') { e.preventDefault(); restore(); } });
+</script>
+
+</html>
