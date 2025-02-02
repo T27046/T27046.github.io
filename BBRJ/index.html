@@ -194,7 +194,7 @@ box-shadow:  20px 20px 60px #bebebe,
 </head>
 
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
-    <div id="PWAUI" class="PWAUI"><p style="position: relative; left: 10px;">是否将 白板软件 安装为PWA应用？</p><br><button id="install" style="color: #fff; position: relative;top: 0px;left: 0px;border-radius: 5px;border: transparent;background-color: #212133;">是</button></div>
+    <div id="PWAUI" class="PWAUI"><p style="position: relative; left: 10px;">是否将 白板软件 安装为PWA应用？</p><br><button id="install" style="position: relative;left: 50px; color: #fff; position: relative;top: 0px;left: 0px;border-radius: 5px;border: transparent;background-color: #212133;">是</button><button onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" style="position: relative;rightright: 50px; color: #fff; position: relative;top: 0px;left: 0px;border-radius: 5px;border: transparent;background-color: #212133;">否</button></div>
     
     <div style="position: fixed;
                     z-index: 999;
@@ -282,7 +282,7 @@ const installButton = document.querySelector("#install");
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   installPrompt = event;
-  document.getElementById('PWAUI').style.transform = `translate(-600px, 0px)`;
+  document.getElementById('PWAUI').style.transform = `translate(-500px, 0px)`;
 });
 
 installButton.addEventListener("click", async () => {
