@@ -282,7 +282,7 @@ const installButton = document.querySelector("#install");
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   installPrompt = event;
-  document.getElementById('PWAUI').style.right = "100px";
+  document.getElementById('PWAUI').style.transform = `translate(-300px, 0px)`;
 });
 
 installButton.addEventListener("click", async () => {
