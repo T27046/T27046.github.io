@@ -1,5 +1,6 @@
 {
     "name": "白板软件",
+    "display": "standalone",
     "icons": [
       {
         "src": "icon256.png",

@@ -2,6 +2,14 @@
 <html>
 
 <head>
+    <script>
+        if (navigator.serviceWorker != null) {
+          navigator.serviceWorker.register('sw.js')
+          .then(function(registration) {
+            console.log('Registered events at scope: ', registration.scope);
+          });
+        }
+      </script>
     <link rel="manifest" href="manifest.json" />
     <meta charset="UTF-8" name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -158,6 +166,7 @@
 </head>
 
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
+    <button id="install" hidden>Install as PWA APP</button>
     <div style="position: fixed;
                     z-index: 999;
                     left: 0px;
@@ -237,6 +246,38 @@
     <div><canvas id="canvas" style="position: fixed;top: 0px;left: 0px;width: 100%;height: 100%;"></canvas></div>
 </body>
 <script>
+
+let installPrompt = null;
+const installButton = document.querySelector("#install");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+  installButton.removeAttribute("hidden");
+});
+
+installButton.addEventListener("click", async () => {
+  if (!installPrompt) {
+    return;
+  }
+  const result = await installPrompt.prompt();
+  console.log(`Install prompt was: ${result.outcome}`);
+  disableInAppInstallPrompt();
+});
+
+function disableInAppInstallPrompt() {
+  installPrompt = null;
+  installButton.setAttribute("hidden", "");
+}
+window.addEventListener("appinstalled", () => {
+  disableInAppInstallPrompt();
+});
+
+function disableInAppInstallPrompt() {
+  installPrompt = null;
+  installButton.setAttribute("hidden", "");
+}
+
     function S() {
         if (document.body.style.backgroundColor=='rgb(211, 211, 211)') {
             document.body.style.backgroundColor="#212121";
