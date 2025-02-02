@@ -183,10 +183,10 @@
         }
         .PWAUI{border-radius: 50px;
             position: fixed;z-index: 9999;
-            right: -170px;
+            right: -300px;
             bottom: 100px;
-            height: 150px;
-            width: 150px;
+            height: 70px;
+            width: 200px;
 background: #e0e0e0;transition: all 0.5s 0s ease;
 box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;}
@@ -282,7 +282,7 @@ const installButton = document.querySelector("#install");
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   installPrompt = event;
-  document.getElementById('PWAUI').style.transform = `translate(-300px, 0px)`;
+  document.getElementById('PWAUI').style.transform = `translate(-600px, 0px)`;
 });
 
 installButton.addEventListener("click", async () => {
