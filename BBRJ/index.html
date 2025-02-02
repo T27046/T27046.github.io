@@ -2,68 +2,7 @@
 <html>
 
 <head>
-    <script>
-        if (navigator.serviceWorker != null) {
-            navigator.serviceWorker.register('sw.js')
-                .then(function (registration) {
-                    console.log('Registered events at scope: ', registration.scope);
-                });
-        }
-        window.addEventListener("resize", (event) => {
-            canvas.width = window.screen.width;
-            canvas.height = window.screen.height;
-        });
-
-        window.onresize = (event) => {
-            canvas.width = window.screen.width;
-            canvas.height = window.screen.height;
-        }; 
-        function fullScreen(el) {
-            if (!document.fullscreen) {
-                document.getElementById('ef').style.transform = `translate(-60px, 0px)`;
-                var rfs =
-                    el.requestFullScreen ||
-                    el.webkitRequestFullScreen ||
-                    el.mozRequestFullScreen ||
-                    el.msRequestFullScreen,
-                    wscript;
-                if (typeof rfs != "undefined" && rfs) {
-                    rfs.call(el);
-                    return;
-                }
-                if (typeof window.ActiveXObject != "undefined") {
-                    wscript = new ActiveXObject("WScript.Shell");
-                    if (wscript) {
-                        wscript.SendKeys("{F11}");
-                    }
-                }
-            }
-
-        }
-        function exitFullScreen(el) {
-            if (document.fullscreen) {
-                document.getElementById('ef').style.transform = `translate(0px, 0px)`;
-                var el = document,
-                    cfs =
-                        el.cancelFullScreen ||
-                        el.webkitCancelFullScreen ||
-                        el.mozCancelFullScreen ||
-                        el.exitFullScreen,
-                    wscript;
-                if (typeof cfs != "undefined" && cfs) {
-                    cfs.call(el);
-                    return;
-                }
-                if (typeof window.ActiveXObject != "undefined") {
-                    wscript = new ActiveXObject("WScript.Shell");
-                    if (wscript != null) {
-                        wscript.SendKeys("{F11}");
-                    }
-                }
-            }
-        }
-
-    </script>
+    
     <link rel="manifest" href="manifest.json" />
     <meta charset="UTF-8" name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -497,6 +436,67 @@
     function updateValue(inputId) { var value = document.getElementById(inputId).value; if (value < 10) { value = '0' + value; } document.getElementById(inputId + "Value").textContent = value; }
     function updateLine(inputId, lineId) { var value = document.getElementById(inputId).value; var line = document.getElementById(lineId); line.style.height = value + 'px'; line.style.width = value + 'px'; }
     window.addEventListener('keydown', (e) => { if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); } if (e.ctrlKey && e.key === 'y') { e.preventDefault(); restore(); } });
-</script>
 
+    if (navigator.serviceWorker != null) {
+        navigator.serviceWorker.register('sw.js')
+            .then(function (registration) {
+                console.log('Registered events at scope: ', registration.scope);
+            });
+    }
+    window.addEventListener("resize", (event) => {
+        canvas.width = window.screen.width;
+        canvas.height = window.screen.height;
+    });
+
+    window.onresize = (event) => {
+        canvas.width = window.screen.width;
+        canvas.height = window.screen.height;
+    }; 
+    function fullScreen(el) {
+        if (!document.fullscreen) {
+            document.getElementById('ef').style.transform = `translate(-60px, 0px)`;
+            var rfs =
+                el.requestFullScreen ||
+                el.webkitRequestFullScreen ||
+                el.mozRequestFullScreen ||
+                el.msRequestFullScreen,
+                wscript;
+            if (typeof rfs != "undefined" && rfs) {
+                rfs.call(el);
+                return;
+            }
+            if (typeof window.ActiveXObject != "undefined") {
+                wscript = new ActiveXObject("WScript.Shell");
+                if (wscript) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+            undo();
+        }
+
+    }
+    function exitFullScreen(el) {
+        if (document.fullscreen) {
+            document.getElementById('ef').style.transform = `translate(0px, 0px)`;
+            var el = document,
+                cfs =
+                    el.cancelFullScreen ||
+                    el.webkitCancelFullScreen ||
+                    el.mozCancelFullScreen ||
+                    el.exitFullScreen,
+                wscript;
+            if (typeof cfs != "undefined" && cfs) {
+                cfs.call(el);
+                return;
+            }
+            if (typeof window.ActiveXObject != "undefined") {
+                wscript = new ActiveXObject("WScript.Shell");
+                if (wscript != null) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+        }
+    }
+
+</script>
 </html>
