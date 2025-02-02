@@ -196,7 +196,8 @@ box-shadow:  20px 20px 60px #bebebe,
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
     <div id="PWAUI" class="PWAUI"><p style="position: relative; left: 10px;">是否将 白板软件 安装为PWA应用？</p>
         <br>
-        <button id="install" style="position: relative;left: 50px; color: #fff; position: relative;top: -25px;
+        <button id="install" onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" 
+        style="position: relative;left: 50px; color: #fff; position: relative;top: -25px;
         border-radius: 5px;border: transparent;background-color: #212133;">是</button>
         <button onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" 
         style="left: 125px; color: #fff; position: relative;top: -25px;
