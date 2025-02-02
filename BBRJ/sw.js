@@ -8,7 +8,10 @@ var cacheList = [
   "G.svg", 
   "D.svg",
   "S.svg", 
-  "C.svg",
+  "C.svg", 
+  "B.svg", 
+  "W.svg",  
+  "icon256.png", 
   "E.png"
 ]
 self.addEventListener('install', e => {
