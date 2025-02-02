@@ -4,42 +4,66 @@
 <head>
     <script>
         if (navigator.serviceWorker != null) {
-          navigator.serviceWorker.register('sw.js')
-          .then(function(registration) {
-            console.log('Registered events at scope: ', registration.scope);
-          });
+            navigator.serviceWorker.register('sw.js')
+                .then(function (registration) {
+                    console.log('Registered events at scope: ', registration.scope);
+                });
         }
         window.addEventListener("resize", (event) => {
-            canvas.width=window.screen.width;
-            canvas.height=window.screen.height;
-});
+            canvas.width = window.screen.width;
+            canvas.height = window.screen.height;
+        });
 
-window.onresize = (event) => {
-    canvas.width=window.screen.width;
-            canvas.height=window.screen.height;
-};fullScreen(document.documentElement);
-function fullScreen(el) {
-         
-    if(!document.fullscreen){var rfs =
-      el.requestFullScreen ||
-      el.webkitRequestFullScreen ||
-      el.mozRequestFullScreen ||
-      el.msRequestFullScreen,
-    wscript;
-  if (typeof rfs != "undefined" && rfs) {
-    rfs.call(el);
-    return;
-  }
-  if (typeof window.ActiveXObject != "undefined") {
-    wscript = new ActiveXObject("WScript.Shell");
-    if (wscript) {
-      wscript.SendKeys("{F11}");
-    }
-  }}
-  
-}
+        window.onresize = (event) => {
+            canvas.width = window.screen.width;
+            canvas.height = window.screen.height;
+        }; fullScreen(document.documentElement);
+        function fullScreen(el) {
+            if (!document.fullscreen) {
+                document.getElementById('ef').style.transform = `translate(-60px, 0px)`;
+                var rfs =
+                    el.requestFullScreen ||
+                    el.webkitRequestFullScreen ||
+                    el.mozRequestFullScreen ||
+                    el.msRequestFullScreen,
+                    wscript;
+                if (typeof rfs != "undefined" && rfs) {
+                    rfs.call(el);
+                    return;
+                }
+                if (typeof window.ActiveXObject != "undefined") {
+                    wscript = new ActiveXObject("WScript.Shell");
+                    if (wscript) {
+                        wscript.SendKeys("{F11}");
+                    }
+                }
+            }
 
-      </script>
+        }
+        function exitFullScreen(el) {
+            if (document.fullscreen) {
+                document.getElementById('ef').style.transform = `translate(0px, 0px)`;
+                var el = document,
+                    cfs =
+                        el.cancelFullScreen ||
+                        el.webkitCancelFullScreen ||
+                        el.mozCancelFullScreen ||
+                        el.exitFullScreen,
+                    wscript;
+                if (typeof cfs != "undefined" && cfs) {
+                    cfs.call(el);
+                    return;
+                }
+                if (typeof window.ActiveXObject != "undefined") {
+                    wscript = new ActiveXObject("WScript.Shell");
+                    if (wscript != null) {
+                        wscript.SendKeys("{F11}");
+                    }
+                }
+            }
+        }
+
+    </script>
     <link rel="manifest" href="manifest.json" />
     <meta charset="UTF-8" name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -72,11 +96,13 @@ function fullScreen(el) {
         }
 
         label {
-            color: rgb(255, 255, 255);font-family:"等线 Light";
+            color: rgb(255, 255, 255);
+            font-family: "等线 Light";
         }
 
         label span {
-            color: #fff;font-family:"等线 Light";
+            color: #fff;
+            font-family: "等线 Light";
         }
 
         #brushSizeLine {
@@ -183,6 +209,7 @@ function fullScreen(el) {
             z-index: 999;
             transition: all 0.5s 0s ease;
         }
+
         .btnC {
             border: transparent;
             position: fixed;
@@ -192,27 +219,33 @@ function fullScreen(el) {
             z-index: 998;
             transition: all 0.5s 0s ease;
         }
-        .PWAUI{border-radius: 10px;
-            position: fixed;z-index: 9999;
+
+        .PWAUI {
+            border-radius: 10px;
+            position: fixed;
+            z-index: 9999;
             right: -300px;
             bottom: 100px;
             height: 100px;
             width: 250px;
-background: #e0e0e0;transition: all 0.5s 0s ease;}
+            background: #e0e0e0;
+            transition: all 0.5s 0s ease;
+        }
     </style>
 </head>
 
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
-    <div id="PWAUI" class="PWAUI"><p style="position: relative; left: 10px;">是否将 白板软件 安装为PWA应用？</p>
+    <button id="ef" onclick="exitFullScreen(document.documentElement);"
+        style="transition: all 0.5s ease-out;box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height: 32px;position: fixed;z-index: 9999999;bottom: 0px;right: -60px; width: 32px;border:transparent; background-image: url('https://learn.microsoft.com/zh-cn/windows/apps/design/style/images/glyphs/segoe-fluent-icons/e73f.png');background-size: cover;"></button>
+    <div id="PWAUI" class="PWAUI">
+        <p style="position: relative; left: 10px;">是否将 白板软件 安装为PWA应用？</p>
         <br>
-        <button id="install" onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" 
-        style="position: relative;left: 50px; color: #fff; position: relative;top: -25px;
+        <button id="install" onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" style="position: relative;left: 50px; color: #fff; position: relative;top: -25px;
         border-radius: 5px;border: transparent;background-color: #212133;">是</button>
-        <button onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" 
-        style="left: 125px; color: #fff; position: relative;top: -25px;
+        <button onclick="document.getElementById('PWAUI').style.transform = `translate(0px, 0px)`;" style="left: 125px; color: #fff; position: relative;top: -25px;
         border-radius: 5px;border: transparent;background-color: #212133;">否</button>
-        </div>
-    
+    </div>
+
     <div style="position: fixed;
                     z-index: 999;
                     left: 0px;
@@ -257,13 +290,16 @@ background: #e0e0e0;transition: all 0.5s 0s ease;}
                 onclick="updersui();ers=0;document.getElementById('brushSizeLine').value = '#FFFFFF';" id="W">
                 <img src="./W.svg"></img>
             </button>
-            <button class="btnE" style="left: 10px;" ondblclick="document.getElementById('C').style.transform = `translate(0px, -170px)`;" onclick="updersui();ers=1;" id="E">
+            <button class="btnE" style="left: 10px;"
+                ondblclick="document.getElementById('C').style.transform = `translate(0px, -170px)`;"
+                onclick="updersui();ers=1;" id="E">
                 <img src="./E.svg"></img>
             </button>
             <button class="btnE" style="left: 10px;bottom: 130px;" onclick="S();" id="S">
                 <img src="./S.svg"></img>
             </button>
-            <button class="btnC" onclick="cl();ers=0;document.getElementById('C').style.transform = `translate(0px, 0px)`;" id="C">
+            <button class="btnC"
+                onclick="cl();ers=0;document.getElementById('C').style.transform = `translate(0px, 0px)`;" id="C">
                 <img src="./C.svg"></img>
             </button>
         </div>
@@ -293,45 +329,45 @@ background: #e0e0e0;transition: all 0.5s 0s ease;}
 </body>
 <script>
 
-let installPrompt = null;
-const installButton = document.querySelector("#install");
+    let installPrompt = null;
+    const installButton = document.querySelector("#install");
 
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  installPrompt = event;
-  document.getElementById('PWAUI').style.transform = `translate(-500px, 0px)`;
-});
+    window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        installPrompt = event;
+        document.getElementById('PWAUI').style.transform = `translate(-500px, 0px)`;
+    });
 
-installButton.addEventListener("click", async () => {
-  if (!installPrompt) {
-    return;
-  }
-  const result = await installPrompt.prompt();
-  console.log(`Install prompt was: ${result.outcome}`);
-  disableInAppInstallPrompt();
-});
+    installButton.addEventListener("click", async () => {
+        if (!installPrompt) {
+            return;
+        }
+        const result = await installPrompt.prompt();
+        console.log(`Install prompt was: ${result.outcome}`);
+        disableInAppInstallPrompt();
+    });
 
-function disableInAppInstallPrompt() {
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
-}
-window.addEventListener("appinstalled", () => {
-  disableInAppInstallPrompt();
-});
+    function disableInAppInstallPrompt() {
+        installPrompt = null;
+        installButton.setAttribute("hidden", "");
+    }
+    window.addEventListener("appinstalled", () => {
+        disableInAppInstallPrompt();
+    });
 
-function disableInAppInstallPrompt() {
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
-}
+    function disableInAppInstallPrompt() {
+        installPrompt = null;
+        installButton.setAttribute("hidden", "");
+    }
 
     function S() {
-        if (document.body.style.backgroundColor=='rgb(211, 211, 211)') {
-            document.body.style.backgroundColor="#212121";
+        if (document.body.style.backgroundColor == 'rgb(211, 211, 211)') {
+            document.body.style.backgroundColor = "#212121";
             document.getElementById('W').style.transform = `translate(0px, -110px)`;
             document.getElementById('D').style.transform = `translate(0px, 170px)`;
             document.getElementById('S').style.transform = `rotate(180deg)`;
         } else {
-            document.body.style.backgroundColor="rgb(211, 211, 211)";
+            document.body.style.backgroundColor = "rgb(211, 211, 211)";
             document.getElementById('D').style.transform = `translate(0px, 0px)`;
             document.getElementById('W').style.transform = `translate(0px, 0px)`;
             document.getElementById('S').style.transform = `rotate(0deg)`;
@@ -364,20 +400,21 @@ function disableInAppInstallPrompt() {
         document.getElementById('rsb').addEventListener('touchstart',
             function (touchEvent) { restore(); });
         document.getElementById('C').addEventListener('touchstart',
-            function (touchEvent) { cl();ers=0;});
+            function (touchEvent) { cl(); ers = 0; });
         document.getElementById('S').addEventListener('touchstart',
-            function (touchEvent) { S();});
+            function (touchEvent) { S(); });
     }
     var bar = false;
     let ist = false;
-    document.addEventListener('touchstart', function (touchEvent) {fullScreen(document.documentElement);
+    document.addEventListener('touchstart', function (touchEvent) {
+        fullScreen(document.documentElement);
         let rect = document.getElementById('brushSize').getBoundingClientRect();
         let mouseX = touchEvent.touches[0].clientX;
         let mouseY = touchEvent.touches[0].clientY;
         if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
-            bar=true;
+            bar = true;
         } else {
-            bar=false;
+            bar = false;
         }
         document.getElementById('brushSizeValue').style.color = "#f0f0f2"; lst = true;
         var mouseEvent = new MouseEvent('mousedown', {
@@ -393,7 +430,7 @@ function disableInAppInstallPrompt() {
         if (!bar) {
             touchEvent.preventDefault();
         }
-        
+
         if (touchEvent.touches.length >= 2) { ers = 1; }
         var mouseEvent = new MouseEvent('mousemove', {
             bubbles: true,
@@ -404,7 +441,7 @@ function disableInAppInstallPrompt() {
         });
         touchEvent.target.dispatchEvent(mouseEvent);
     }, { passive: false }); document.addEventListener('touchend', function (touchEvent) {
-        bar=false; var mouseEvent = new MouseEvent('mouseup', {
+        bar = false; var mouseEvent = new MouseEvent('mouseup', {
             bubbles: true,
             cancelable: true,
             view: window,
@@ -423,7 +460,7 @@ function disableInAppInstallPrompt() {
     body.onpointerup = function (e) {
         updersui();
     }
-    body.onpointerdown=function(e){fullScreen(document.documentElement);}
+    body.onpointerdown = function (e) { fullScreen(document.documentElement); }
     canvas.onpointerdown = function (e) {
         updersui();
         canvas.setPointerCapture(e.pointerId); isDrawing = true; isMouseDown = true;
