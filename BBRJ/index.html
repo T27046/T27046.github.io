@@ -181,11 +181,21 @@
             z-index: 998;
             transition: all 0.5s 0s ease;
         }
+        .PWAUI{border-radius: 50px;
+            position: fixed;z-index: 9999;
+            right: -170px;
+            bottom: 100px;
+            height: 150px;
+            width: 150px;
+background: #e0e0e0;transition: all 0.5s 0s ease;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;}
     </style>
 </head>
 
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
-    <button id="install" style="z-index: 9999;position: fixed;top: 0px;left: 0px;" hidden>Install as PWA APP</button>
+    <div id="PWAUI"><button id="install">Install as PWA APP</button></div>
+    
     <div style="position: fixed;
                     z-index: 999;
                     left: 0px;
@@ -272,7 +282,7 @@ const installButton = document.querySelector("#install");
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   installPrompt = event;
-  installButton.removeAttribute("hidden");
+  document.getElementById('PWA').style.transform = `translate(-300px, 0px)`;
 });
 
 installButton.addEventListener("click", async () => {
