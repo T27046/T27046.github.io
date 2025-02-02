@@ -10,14 +10,17 @@
           });
         }
         window.addEventListener("resize", (event) => {
-            location.reload();
+            canvas.width=window.screen.width;
+            canvas.height=window.screen.height;
 });
 
 window.onresize = (event) => {
-    location.reload();
+    canvas.width=window.screen.width;
+            canvas.height=window.screen.height;
 };fullScreen(document.documentElement);
 function fullScreen(el) {
-  var rfs =
+         
+    if(!document.fullscreen){var rfs =
       el.requestFullScreen ||
       el.webkitRequestFullScreen ||
       el.mozRequestFullScreen ||
@@ -32,7 +35,8 @@ function fullScreen(el) {
     if (wscript) {
       wscript.SendKeys("{F11}");
     }
-  }
+  }}
+  
 }
 
       </script>
