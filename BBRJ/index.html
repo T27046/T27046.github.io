@@ -194,7 +194,7 @@ box-shadow:  20px 20px 60px #bebebe,
 </head>
 
 <body style="top:0px;left:0px;position: fixed;background-color: rgb(211, 211, 211);" onselectstart="return false">
-    <div id="PWAUI"><button id="install">Install as PWA APP</button></div>
+    <div id="PWAUI"><button id="install" style="position: relative;top: 0px;left: 0px;">Install as PWA APP</button></div>
     
     <div style="position: fixed;
                     z-index: 999;
@@ -282,7 +282,7 @@ const installButton = document.querySelector("#install");
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   installPrompt = event;
-  document.getElementById('PWAUI').style.transform = `translate(-300px, 0px)`;
+  document.getElementById('PWAUI').style.right = "100px";
 });
 
 installButton.addEventListener("click", async () => {
