@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+		html,
+		body {
+			height: 100%;
+			left: 0px;
+			top: 0px;
+			position: fixed;
+			overflow-y: hidden;
+			overflow-x: hidden;
+		}
+	</style>
+	<title></title>
+	<style>
+		.vdoc {
+			z-index: 0;
+			color: #F00;
+			transform: rotate(0deg);
+			position: absolute;
+			margin: auto;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			box-shadow:
+				0 0 0 0 rgba(0, 0, 0, 0.2), 10px 10px 10px 0 rgba(0, 0, 0, 0.1),
+				0 0 0 0 rgba(0, 0, 0, 0.2), -10px -10px 10px 0 rgba(0, 0, 0, 0.1),
+				0 0 0 0 rgba(0, 0, 0, 0.2), -10px 10px 10px 0 rgba(0, 0, 0, 0.1),
+				0 0 0 0 rgba(0, 0, 0, 0.2), 10px -10px 10px 0 rgba(0, 0, 0, 0.1);
+		}
+
+		.bar {
+			background-color: rgba(255, 255, 255, 0.65);
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow:
+				rgba(255, 255, 255, 0.69), 5px 5px 5px 0,
+				rgba(255, 255, 255, 0.69), -5px -5px 5px 0,
+				rgba(255, 255, 255, 0.69), -5px 5px 5px 0,
+				rgba(255, 255, 255, 0.69), 5px -5px 5px 0;
+			border-radius: 23px;
+			-webkit-border-radius: 23px;
+			color: rgb(255, 255, 255);
+			z-index: 99;
+		}
+
+		.cbtn {
+			z-index: 99;
+		}
+
+		.micon {
+			color: #FFF;
+			position: absolute;
+			margin-top: -10px;
+			margin-left: -14px;
+			width: 21px;
+			height: 2px;
+		}
+
+		.close.icon {
+			color: #FFF;
+			position: absolute;
+			margin-top: -10px;
+			margin-left: -14px;
+			width: 21px;
+			height: 21px;
+		}
+
+		.close.icon:before {
+			content: '';
+			position: absolute;
+			top: 10px;
+			width: 21px;
+			height: 2px;
+			background-color: currentColor;
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+			border-radius: 2px;
+		}
+
+		.micon:before {
+			content: '';
+			position: absolute;
+			top: 16px;
+			width: 18px;
+			height: 2px;
+			background-color: #323232;
+			border-radius: 2px;
+		}
+
+		.close.icon:after {
+			content: '';
+			position: absolute;
+			top: 10px;
+			width: 21px;
+			height: 2px;
+			background-color: currentColor;
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+			border-radius: 2px;
+		}
+
+		.closeBtn {
+			background-color: rgba(255, 0, 0);
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			border: 1px solid rgba(255, 0, 0);
+			box-shadow:
+				rgba(255, 0, 0, 1), 15px 15px 15px rgba(255, 0, 0, 0.2),
+				rgba(255, 0, 0, 1), -15px -15px 15px rgba(255, 0, 0, 0.2),
+				rgba(255, 0, 0, 1), -15px 15px 15px rgba(255, 0, 0, 0.2),
+				rgba(255, 0, 0, 1), 15px -15px 15px rgba(255, 0, 0, 0.2);
+			border-top-right-radius: 23px;
+			border-bottom-right-radius: 23px;
+			color: rgb(255, 255, 255);
+		}
+
+		.mBtn {
+			background-color: rgba(255, 255, 255, 0.65);
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow:
+				rgba(142, 142, 142, 0.19), 5px 5px 5px 0,
+				rgba(142, 142, 142, 0.19), -5px -5px 5px 0,
+				rgba(142, 142, 142, 0.19), -5px 5px 5px 0,
+				rgba(142, 142, 142, 0.19), 5px -5px 5px 0;
+			border-top-left-radius: 23px;
+			border-bottom-left-radius: 23px;
+			color: #212121;
+		}
+
+		.btn {
+			color: #212121;
+			/* background-color:#fee; */
+			border-radius: 23px;
+			text-align: center;
+		}
+
+		#body {
+			backdrop-filter: blur(30px);
+		}
+
+		.reset.icon {
+			position: absolute;
+			margin-left: 4px;
+			margin-top: 3px;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			left: 15px;
+			top: 7px;
+			border-top: solid 2px currentColor;
+			border-bottom: solid 2px currentColor;
+			border-left: solid 2px transparent;
+			border-right: solid 2px currentColor;
+		}
+
+		.reset.icon:before {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -1px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			-webkit-transform: rotate(-112.5deg);
+			transform: rotate(-112.5deg);
+		}
+
+		.cArrow {
+			position: absolute;
+			margin-left: 4px;
+			margin-top: 3px;
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			left: 20px;
+			top: 12px;
+			border-top: solid 2px currentColor;
+			border-bottom: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			border-right: solid 2px currentColor;
+		}
+
+		.cArrow::before {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -6px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			-webkit-transform: rotate(45deg);
+		}
+
+		.cArrow::after {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: 6px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			-webkit-transform: rotate(225deg);
+		}
+
+		.cArrow i {
+			content: '';
+			position: absolute;
+			left: 6px;
+			top: 0px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			-webkit-transform: rotate(135deg);
+		}
+
+		.cArrow b {
+			content: '';
+			position: absolute;
+			left: -6px;
+			top: 0px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 2px currentColor;
+			border-left: solid 2px currentColor;
+			-webkit-transform: rotate(315deg);
+		}
+
+		.penB.icon {
+			position: absolute;
+			margin-left: 0px;
+			margin-top: -3px;
+			width: 14px;
+			height: 2px;
+			left: 21px;
+			top: 18px;
+			border-radius: 1px;
+			border: solid 1px currentColor;
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+
+		.penB.icon:before {
+			content: '';
+			position: absolute;
+			left: -10px;
+			top: -1px;
+			width: 0px;
+			height: 0px;
+			border-left: solid 5px transparent;
+			border-right: solid 5px currentColor;
+			border-top: solid 2px transparent;
+			border-bottom: solid 2px transparent;
+		}
+
+		.pen.icon {
+			color: #000;
+			position: absolute;
+			margin-left: 0px;
+			margin-top: -3px;
+			width: 14px;
+			height: 2px;
+			border-radius: 1px;
+			border: solid 1px currentColor;
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+
+		.pen.icon:before {
+			content: '';
+			position: absolute;
+			left: -10px;
+			top: -1px;
+			width: 0px;
+			height: 0px;
+			border-left: solid 5px transparent;
+			border-right: solid 5px currentColor;
+			border-top: solid 2px transparent;
+			border-bottom: solid 2px transparent;
+		}
+
+		* {
+			vertical-align: middle;
+			transition: all 0.2s ease-out;
+		}
+
+		.content {
+			margin: 20px;
+			float: left;
+		}
+
+		.content div {
+			width: 80px;
+			text-align: center;
+		}
+
+		#canvas {
+			background-color: transparent;
+			margin-left: 0px;
+			margin-top: 0px;
+		}
+
+		.button1:hover {
+			border-radius: 10px;
+			color: white;
+			background-color: black;
+		}
+
+		.button1:active {
+			border-radius: 5px;
+			background-color: #212121;
+		}
+
+		.button1 {
+			height: 20px;
+			/*			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+			font-size: 15px;
+			color: black;
+			background-color: white;
+			border-radius: 50px;
+			border-style: solid;
+			border-color: #000;
+			margin-right: 10px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.button2 {
+			margin-top: 3px;
+			height: 28px;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			font-size: 15px;
+			color: black;
+			background-color: white;
+			border-radius: 5px;
+			border-style: solid;
+			border-color: #000;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.button4 {
+			margin-top: 3px;
+			height: 28px;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			font-size: 15px;
+			color: black;
+			background-color: white;
+			border-radius: 5px;
+			border-style: solid;
+			border-color: #54C3AA;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.button2:hover {
+			border-radius: 10px;
+			color: white;
+			background-color: #AAAAAA;
+		}
+
+		.button2:active {
+			border-radius: 5px;
+			background-color: #212121;
+		}
+
+		.button3 {
+			margin-top: 3px;
+			height: 28px;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			font-size: 15px;
+			color: black;
+			background-color: white;
+			border-radius: 5px;
+			border-style: solid;
+			border-color: #a00;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.button3:hover {
+			border-radius: 10px;
+			color: white;
+			background-color: #a00;
+		}
+
+		.button3:active {
+			border-radius: 5px;
+			background-color: #a00;
+		}
+
+		.range1 {
+			width: 76px;
+			height: 5px;
+			background: linear-gradient(to right, #ffa200, white 0%, white);
+		}
+
+		label {
+			color: black;
+		}
+
+		label span {
+			color: #48c0a4;
+		}
+
+		#brushSizeLine {
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: black;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		.ud.icon {
+			color: #000;
+			position: absolute;
+			margin-left: 0px;
+			margin-top: -7px;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			border-top: solid 1px currentColor;
+			border-bottom: solid 1px currentColor;
+			border-left: solid 1px transparent;
+			border-right: solid 1px currentColor;
+		}
+
+		.ud.icon:before {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -1px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 1px currentColor;
+			border-left: solid 1px currentColor;
+			-webkit-transform: rotate(270deg);
+		}
+
+		.rd.icon {
+			color: #000;
+			position: absolute;
+			margin-left: 0px;
+			margin-top: -7px;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			border-top: solid 1px currentColor;
+			border-bottom: solid 1px currentColor;
+			border-right: solid 1px transparent;
+			border-left: solid 1px currentColor;
+		}
+
+		.rd.icon:before {
+			content: '';
+			position: absolute;
+			left: 8px;
+			top: -1px;
+			width: 3px;
+			height: 3px;
+			border-top: solid 1px currentColor;
+			border-left: solid 1px currentColor;
+			-webkit-transform: rotate(180deg);
+		}
+
+		.er.icon {
+			color: #000;
+			position: absolute;
+			margin-left: -2px;
+			margin-top: -5px;
+			width: 14px;
+			height: 9px;
+			border-radius: 1px;
+			border-bottom-left-radius: 5px;
+			border: solid 1px currentColor;
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+
+		.pointer {
+			color: #000;
+			position: absolute;
+			margin-top: -10px;
+			margin-left: -44px;
+			width: 21px;
+			height: 21px;
+		}
+
+		.pointer:before {
+			content: '';
+			position: absolute;
+			top: 12px;
+			left: 52px;
+			width: 4px;
+			height: 1px;
+			background-color: currentColor;
+			-webkit-transform: rotate(20deg);
+		}
+
+		.pointer:after {
+			content: '';
+			position: absolute;
+			top: 14px;
+			left: 48px;
+			width: 7px;
+			height: 2px;
+			border-radius: 10%;
+			border-color: currentColor;
+			border-right: solid 1px currentColor;
+			border-top: solid 1px currentColor;
+			border-bottom: solid 1px currentColor;
+			background-color: transparent;
+			-webkit-transform: rotate(70deg);
+		}
+
+		.pointer i:before {
+			content: '';
+			position: absolute;
+			top: 6px;
+			left: 43px;
+			width: 16px;
+			height: 1px;
+			background-color: currentColor;
+			-webkit-transform: rotate(50deg);
+		}
+
+		.pointer span {
+			content: '';
+			position: absolute;
+			top: 15px;
+			left: 45px;
+			width: 4px;
+			height: 1px;
+			background-color: currentColor;
+			-webkit-transform: rotate(-40deg);
+		}
+
+		.pointer i:after {
+			content: '';
+			position: absolute;
+			top: 0px;
+			left: 45px;
+			width: 1px;
+			height: 16px;
+			background-color: currentColor;
+		}
+
+		.trash.icon {
+			color: #000;
+			position: absolute;
+			margin-left: 1px;
+			margin-top: -3px;
+			width: 9px;
+			height: 10px;
+			border-left: solid 1px currentColor;
+			border-right: solid 1px currentColor;
+			border-bottom: solid 1px currentColor;
+			border-radius: 0 0 2px 2px;
+		}
+
+		.trash.icon:before {
+			content: '';
+			position: absolute;
+			left: -4px;
+			top: -2px;
+			width: 17px;
+			height: 1px;
+			background-color: currentColor;
+		}
+
+		.trash.icon:after {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -5px;
+			width: 7px;
+			height: 2px;
+			border-left: solid 1px currentColor;
+			border-right: solid 1px currentColor;
+			border-top: solid 1px currentColor;
+			border-radius: 4px 4px 0 0;
+		}
+
+		.s {
+			content: '';
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			left: 19px;
+			top: 9px;
+			background-color: transparent;
+			border: solid 2px currentColor;
+		}
+
+		.pauseicon {
+			content: '';
+			position: absolute;
+			left: 24px;
+			top: 11px;
+			width: 3px;
+			height: 18px;
+			background-color: currentColor;
+		}
+
+		.pauseicon::before {
+			content: '';
+			position: absolute;
+			left: 7px;
+			top: 0px;
+			width: 3px;
+			height: 18px;
+			background-color: currentColor;
+		}
+
+		.spfz-icon {
+			content: '';
+			position: absolute;
+			left: 30px;
+			top: 9px;
+			width: 2px;
+			height: 20px;
+			background-color: currentColor;
+		}
+
+		.spfz-icon::before {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -1px;
+			width: 2px;
+			height: 22px;
+			background-color: currentColor;
+			-webkit-transform: rotate(50deg);
+		}
+
+		.spfz-icon::after {
+			content: '';
+			position: absolute;
+			left: 0px;
+			top: -1px;
+			width: 2px;
+			height: 22px;
+			background-color: currentColor;
+			-webkit-transform: rotate(-50deg);
+		}
+
+		.spfz-icon i {
+			content: '';
+			position: absolute;
+			left: 8px;
+			top: 2px;
+			width: 2px;
+			height: 16px;
+			background-color: currentColor;
+
+		}
+
+		.spfz-icon i::after {
+			content: '';
+			position: absolute;
+			left: -16px;
+			top: 0px;
+			width: 2px;
+			height: 16px;
+			background-color: currentColor;
+
+		}
+	</style>
+</head>
+
+<body style="text-align: center;background-color: #212121;backdrop-filter: blur(30px);" onselectstart="return false">
+	<!-- 视频背景容器 -->
+	<div id="bg" style="position: fixed;top: 0px; width: 100%;height: 100%;text-align: center;"
+		onselectstart="return false" draggable="false">
+		<!-- 视频嵌套容器 -->
+		<div id="ct">
+			<div id="videoc">
+				<video id="video" class="vdoc" autoplay style="border-radius: 10px;"></video>
+			</div>
+		</div>
+	</div>
+	<!-- 双画布层：M层用于标记，主层用于批注 -->
+	<canvas id="canvasM" style="height: 100%;width: 100%;left: 0px;top: 0px;position: fixed;z-index: 98;"></canvas>
+	<canvas id="canvas" style="height: 100%;width: 100%;left: 0px;top: 0px;position: fixed;z-index: 99;"></canvas>
+	<!-- 控制栏 -->
+	<div style="bottom: 0px;text-align: center;position: fixed;display: block;width: 100%;z-index: 100;">
+		<div class="bar" id="cBar" style="height: 60px;width: 440px;margin: 10px auto;">
+			<!-- 按钮图标和文字 -->
+			<div class="btn" onclick="mode1();" id="btn1"
+				style="position: relative; left:0px;top:0px;height: 60px;width: 60px;margin: 0px;">
+				<div class="cArrow"><i></i><b></b></div>
+				<div class="btnT" id="btn1t"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					平移旋转</div>
+			</div>
+			<div class="btn" onclick="mode2();" id="btn2"
+				style="position: relative; left:60px;top:-60px;height: 60px;width: 60px;margin: 0px;">
+				<div class="penB icon"></div>
+				<div class="btnT" id="btn2t"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					批注</div>
+			</div>
+			<div class="btn" onclick="mode3();" id="btn5"
+				style="position: relative; left: 120px;top:-120px;height: 60px;width: 60px;margin: 0px;">
+				<div class="s"></div>
+				<div class="btnT" id="btn5t"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					缩放</div>
+			</div>
+			<div class="btn" onclick="setTYR();" id="btn3"
+				style="position: relative; left:180px;top:-180px;height: 60px;width: 60px;margin: 0px;">
+				<div class="spfz-icon"><i></i></div>
+				<div class="btnT" id="btn3t"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					水平翻转</div>
+			</div>
+			<div class="btn" onclick="setTXR();" id="btn4"
+				style="position: relative; left:240px;top:-240px;height: 60px;width: 60px;margin: 0px;">
+				<div class="spfz-icon" style="-webkit-transform: rotate(-90deg);"><i></i></div>
+				<div class="btnT" id="btn4t"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					垂直翻转</div>
+			</div>
+
+			<div class="btn" onclick="reset();" id="btnR"
+				style="position: relative; left:300px;top:-300px;height: 60px;width: 60px;margin: 0px;">
+				<div class="reset icon"></div>
+				<div class="btnT" id="btnRt"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					恢复</div>
+			</div>
+			<div style="content: '';
+			position: absolute;
+			left: 370px;
+			top: 15px;
+			width: 1px;
+			height: 24px;
+			background-color: #212121aa;"></div>
+			<div class="btn" onclick="freeze();" id="btnP"
+				style="position: relative; left:380px;top:-360px;height: 60px;width: 60px;margin: 0px;">
+				<div class="pauseicon"></div>
+				<div class="btnT" id="btnPt"
+					style="left: -1px;position: relative;top: 32px;font-size: small;font-family:等线;color: #000;">
+					定格</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 批注工具栏 -->
+	<div class="content" id="pz" style="display: none;position:fixed;bottom: 30%;left: 0px;z-index: 99;
+		background-color: rgba(255, 255, 255, 0.65);
+		backdrop-filter: blur(30px);
+		-webkit-backdrop-filter: blur(30px);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		box-shadow:
+			rgba(142, 142, 142, 0.19), 5px 5px 5px 0,
+			rgba(142, 142, 142, 0.19), -5px -5px 5px 0,
+			rgba(142, 142, 142, 0.19), -5px 5px 5px 0,
+			rgba(142, 142, 142, 0.19), 5px -5px 5px 0;
+		border-radius: 23px;">
+		<br>
+		<div>
+			<!-- 工具按钮 -->
+			<button class="button2" style="width: 28px;" onclick="ers=2;" id="er2">
+				<div class="pointer"><i></i><span></span></div>
+			</button>
+			<button class="button2" style="width: 28px;"
+				onclick="ctx.clearRect(0, 0, canvas.width, canvas.height);step = 0;points = [];undoStack = [];ers = 0;"
+				id="clrb">
+				<div class="trash icon"></div>
+			</button>
+			<button class="button2" style="width:28px;" id="er0" onclick="ers=0;" id="pbtn">
+				<div class="pen icon"></div>
+			</button>
+			<button class="button2" style="width:28px;" id="er1" onclick="ers=1;" id="ebtn">
+				<div class="er icon"></div>
+			</button>
+			<button class="button2" style="width:28px;" onclick="undo();" id="udb">
+				<div class="ud icon"></div>
+			</button>
+			<button class="button2" style="width:28px;" onclick="restore();" id="rsb">
+				<div class="rd icon"></div>
+			</button>
+		</div>
+		<div>
+			<label>画笔颜色</label><br><input type="color" id="brushColor"
+				style="width: 100%;height: 30px;background-color: transparent;border-radius: 5px;border: none;">
+		</div>
+		<div>
+			<div>
+				<label for="brushSize">画笔大小 <span id="brushSizeValue">03</span></label>
+			</div>
+			<div>
+				<input class="range1" type="range" onMouseDown="" id="brushSize" min="1" max="70" value="03"
+					onchange="updateValue('brushSize')" oninput="updateLine('brushSize', 'brushSizeLine')">
+				<div style="width: 80px;height: 50px">
+					<div id="brushSizeLine"></div>
+				</div>
+			</div>
+			<br>
+		</div>
+		<br>
+	</div>
+</body>
+<script>
+	// 坐标系相关变量
+	var X = 0;      // 线条起点X坐标
+	var Y = 0;      // 线条起点Y坐标
+	var NX = 0;     // 当前鼠标X坐标
+	var NY = 0;     // 当前鼠标Y坐标
+
+	// 旋转角度控制
+	var AG = 0;     // 视频元素累计旋转角度
+	var AGG = 0;    // 实时计算的线条角度
+
+	// 状态标志
+	let mouseD = false; // 鼠标按下状态
+
+	// 视频元素位置参数
+	var vx = 0;     // 视频元素X偏移量
+	var vy = 0;     // 视频元素Y偏移量
+	var rect;       // 视频元素边界矩形
+	var vcx = 0;    // 视频中心点相对坐标X
+	var vcy = 0;    // 视频中心点相对坐标Y
+	var vcxA = 0;   // 视频中心点绝对坐标X
+	var vcyA = 0;   // 视频中心点绝对坐标Y
+
+	// 标记画布初始化
+	var ctxx = document.getElementById("canvasM").getContext("2d");
+	ctxx.lineJoin = 'round';
+	ctxx.lineCap = 'round';
+	// 新增画布尺寸同步
+	const canvasM = document.getElementById("canvasM");
+	canvasM.width = canvasM.offsetWidth;
+	canvasM.height = canvasM.offsetHeight;
+
+	// 应用模式控制
+	var modeID = 0; // 当前操作模式标识 (1-平移旋转模式 / 2-批注模式)
+
+	// NW.js 窗口初始化
+	var ss = 1;                 // 屏幕缩放系数
+	try {
+		nw.Screen.Init();           // 初始化屏幕模块
+	} catch (error) {
+
+	}
+
+
+
+	// 视频元素及拖拽参数
+	const element = document.getElementById('video');
+	let startX, startY, isDragging = false; // 拖拽起始坐标及状态标志
+	var OX = 0, OY = 0; // 原始坐标偏移量
+	function getElementPosition(element) {
+		let rect = element.getBoundingClientRect();
+		return {
+			top: rect.top + window.scrollY,
+			left: rect.left + window.scrollX
+		};
+	}
+	function calculateDistanceFromCenter(e) {
+		const { clientX, clientY } = e;
+		// 获取屏幕中心坐标
+		const screenCenterX = window.innerWidth / 2;
+		const screenCenterY = window.innerHeight / 2;
+
+
+		// 计算两点之间距离
+		const deltaX = clientX - screenCenterX;
+		const deltaY = clientY - screenCenterY;
+
+
+		return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+	}
+	// 坐标转换函数组
+	function getElementPosition(element) {
+		/* 获取元素在页面中的绝对位置（含滚动偏移）*/
+		let rect = element.getBoundingClientRect();
+		return {
+			top: rect.top + window.scrollY,
+			left: rect.left + window.scrollX
+		};
+	}
+
+	function convertAbsoluteToRelative(absX, absY, element) {
+		/* 将绝对坐标转换为相对于指定元素的坐标 */
+		let elementPosition = getElementPosition(element);
+		let relativeX = absX - elementPosition.left;
+		let relativeY = absY - elementPosition.top;
+		return { x: relativeX, y: relativeY };
+	}
+
+	function isPointInElement(element, x, y) {
+		/* 检测坐标点是否在元素区域内 */
+		const rect = element.getBoundingClientRect();
+		return (
+			x >= rect.left &&
+			x <= rect.right &&
+			y >= rect.top &&
+			y <= rect.bottom
+		);
+	}
+	let isDrawingRect = false;
+	// 标记绘制函数（canvasM画布）
+	function drawMMMMM(mousex, mousey, m) {
+		if (m) {
+			points.push({ x: mousex, y: mousey });
+			ctxx.beginPath();
+
+			// 优化后的贝塞尔曲线处理逻辑
+			if (points.length > 1) {
+				// 计算前一个点作为控制点的基础
+				const prev = points[points.length - 2];
+				const current = points[points.length - 1];
+
+				// 计算控制点（取前后点的平均值）
+				const ctrlX = prev.x + (current.x - prev.x) / 2;
+				const ctrlY = prev.y + (current.y - prev.y) / 2;
+
+				if (points.length === 2) {
+					// 初始两点使用二次贝塞尔
+					ctxx.moveTo(prev.x, prev.y);
+					ctxx.quadraticCurveTo(prev.x, prev.y, ctrlX, ctrlY);
+				} else {
+					// 后续点使用连续贝塞尔曲线
+					const prePrev = points[points.length - 3];
+					const cp1x = (prePrev.x + prev.x) / 2;
+					const cp1y = (prePrev.y + prev.y) / 2;
+
+					ctxx.moveTo(cp1x, cp1y);
+					ctxx.quadraticCurveTo(
+						prev.x, prev.y,
+						ctrlX, ctrlY
+					);
+				}
+				ctxx.stroke();
+			}
+		} else {
+			// 延迟处理路径起点
+			window.setTimeout("ctxx.moveTo(mousex,mousey)", 5)
+			ctxx.lineTo(mousex, mousey);
+		}
+	}
+
+
+	let rectStartX, rectStartY;
+
+	document.addEventListener('mousedown', (e) => {
+		startX = e.clientX;  // 记录起始X坐标
+		startY = e.clientY;  // 记录起始Y坐标
+		if (modeID == 1) {
+			rect = document.getElementById("video").getBoundingClientRect();
+			vcx = (rect.right - rect.left) / 2;  // 视频中心X坐标（相对）
+			vcy = (rect.bottom - rect.top) / 2;  // 视频中心Y坐标（相对）
+			vcxA = rect.left + vcx;  // 视频中心X坐标（绝对）
+			vcyA = rect.top + vcy;  // 视频中心Y坐标（绝对）
+			isDragging = true;  // 激活拖拽状态
+
+			if (isPointInElement(document.getElementById('video'), startX, startY)) {
+				canT = true;  // 标记有效操作区域
+			}
+		} else if (modeID == 3 && isDragging) {
+			// 记录矩形起始点
+			rectStartX = e.clientX;
+			rectStartY = e.clientY;
+		}
+		if (modeID == 3) {
+			// 记录矩形起始点（转换为canvasM坐标
+			// 转换鼠标坐标为canvasM坐标系
+			const rect = canvasM.getBoundingClientRect();
+			const scaleX = canvasM.width / rect.width;
+			const scaleY = canvasM.height / rect.height;
+			const mouseX = (e.clientX - rect.left) * scaleX;
+			const mouseY = (e.clientY - rect.top) * scaleY;
+			ctxx.clearRect(0, 0, canvasM.width, canvasM.height);
+			ctxx.beginPath();
+			ctxx.arc(canvasM.width / 2, canvasM.height / 2, 5, 0, Math.PI * 2);
+			ctxx.fillStyle = "#ff0000";
+			ctxx.fill();
+			// 绘制中心到鼠标的红色实线
+			ctxx.beginPath();
+			ctxx.moveTo(canvasM.width / 2, canvasM.height / 2); // 起点：画布中心
+			ctxx.lineTo(mouseX, mouseY);                     // 终点：鼠标位置
+			ctxx.strokeStyle = "#FF0000";
+			ctxx.lineWidth = 2;
+			ctxx.stroke();
+			rectStartX = (e.clientX - rect.left) * scaleX;
+			rectStartY = (e.clientY - rect.top) * scaleY;
+			isDragging = true;  // 确保拖拽状态激活
+			sc = getCurrentScale("ct");
+		}
+	});
+	var sc = 0;
+	sc = getCurrentScale("ct");
+	// 鼠标移动处理（实时计算旋转角度）
+	addEventListener('mousemove', (event) => {
+		const { clientX, clientY } = event;
+		if (isDragging && modeID == 1) {
+			// 获取正确的画布坐标
+			ctxx.clearRect(0, 0, canvasM.width, canvasM.height);
+			const rect = canvasM.getBoundingClientRect();
+			const scaleX = canvasM.width / rect.width;
+			const scaleY = canvasM.height / rect.height;
+			const mouseX = (event.clientX - rect.left) * scaleX;
+			const mouseY = (event.clientY - rect.top) * scaleY;
+			ctxx.setLineDash([5, 5]);
+			ctxx.beginPath();
+			ctxx.moveTo(
+				(startX - rect.left) * scaleX,
+				(startY - rect.top) * scaleY
+			);
+			ctxx.lineTo(mouseX, mouseY);                     // 终点：鼠标位置
+			ctxx.strokeStyle = "#FF0000";
+			ctxx.lineWidth = 2;
+			ctxx.stroke();
+
+		}
+
+
+		// 批注模式处理（主canvas）
+		if (modeID === 2 && isDrawing) {
+			const rect = canvas.getBoundingClientRect();
+			const scaleX = canvas.width / rect.width;
+			const scaleY = canvas.height / rect.height;
+
+			const mouseX = (event.clientX - rect.left) * scaleX;
+			const mouseY = (event.clientY - rect.top) * scaleY;
+
+			ctx.lineWidth = document.getElementById('brushSize').value;
+			ctx.strokeStyle = document.getElementById('brushColor').value;
+			draw(mouseX, mouseY, true);
+		}
+
+		if (isDragging && modeID == 3) {
+
+			const rect = canvasM.getBoundingClientRect();
+			const scaleX = canvasM.width / rect.width;
+			const scaleY = canvasM.height / rect.height;
+			const mouseX = (event.clientX - rect.left) * scaleX;
+			const mouseY = (event.clientY - rect.top) * scaleY;
+			ctxx.clearRect(0, 0, canvasM.width, canvasM.height);
+			ctxx.beginPath();
+			ctxx.arc(canvasM.width / 2, canvasM.height / 2, 5, 0, Math.PI * 2);
+			ctxx.fillStyle = "#ff0000";
+			ctxx.fill();
+			// 绘制中心到鼠标的红色实线
+			ctxx.beginPath();
+			ctxx.moveTo(canvasM.width / 2, canvasM.height / 2); // 起点：画布中心
+			ctxx.lineTo(mouseX, mouseY);                     // 终点：鼠标位置
+			ctxx.strokeStyle = "#FF0000";
+			ctxx.lineWidth = 2;
+			ctxx.stroke();
+			const distance = calculateDistanceFromCenter(event);
+			console.log(distance);
+			document.getElementById("ct").style.transform = `scale(${distance / 100})`;
+
+
+		}
+		// 角度规范化处理
+		if (AG >= 3600) { AG = AG / 10 }  // 防止角度值溢出
+		if (AG <= -3600) { AG = AG / 10 }
+		// 实时计算拖拽角度（弧度转角度）
+		AGG = 180 * Math.atan2(clientY - startY, clientX - startX) / Math.PI;
+	});
+	function getCurrentScale(elementId) {
+		const element = document.getElementById(elementId);
+		const transform = element.style.transform;
+		const scaleMatch = transform.match(/scale\(([\d.]+)\)/);
+		return scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+	}
+	// 鼠标释放处理（应用最终旋转）
+	document.addEventListener('mouseup', (e) => {
+		if (isDragging && modeID == 1) {
+			// 原有虚线绘制逻辑
+			const endX = e.clientX;
+			const endY = e.clientY;
+			const rect = canvasM.getBoundingClientRect();
+			const scaleX = canvasM.width / rect.width;
+			const scaleY = canvasM.height / rect.height;
+
+			ctxx.save();
+			ctxx.beginPath();
+			ctxx.setLineDash([5, 5]);
+			ctxx.moveTo(
+				(startX - rect.left) * scaleX,
+				(startY - rect.top) * scaleY
+			);
+			ctxx.lineTo(
+				(endX - rect.left) * scaleX,
+				(endY - rect.top) * scaleY
+			);
+			ctxx.strokeStyle = "#F00";
+			ctxx.lineWidth = 2;
+			ctxx.stroke();
+
+			setTimeout(() => {
+				ctxx.clearRect(0, 0, canvasM.width, canvasM.height);
+				ctxx.restore();
+			}, 500);
+
+			// 应用旋转/平移逻辑
+			const bgRect = document.getElementById("bg").getBoundingClientRect();
+			const midX = (startX + endX) / 2;
+			const midY = (startY + endY) / 2;
+
+			if ((isPointInElement(document.getElementById('video'), midX, midY) && canT)
+				&& !isPointInElement(document.getElementById('cBar'), endX, endY)) {
+
+				AG -= 180 * Math.atan2(endY - startY, endX - startX) / Math.PI;
+				const dragDistance = Math.sqrt(
+					(e.clientX - startX) * (e.clientX - startX) +
+					(e.clientY - startY) * (e.clientY - startY)
+				);
+
+				if (dragDistance >= 20) {
+					document.getElementById('videoc').style.transformOrigin = 'center center';
+					document.getElementById('videoc').style.transform = `rotate(${AG}deg)`;//大于20时旋转
+				} else {
+					var pX = (bgRect.left + (bgRect.right - bgRect.left) / 2) - midX;
+					var pY = (bgRect.top + (bgRect.bottom - bgRect.top) / 2) - midY;
+					document.getElementById("bg").style.transform = `translate(${pX}px, ${pY}px)`;//小于20时移动
+				}
+			}
+
+		}
+		if (modeID == 3) {
+			ctxx.clearRect(0, 0, canvasM.width, canvasM.height);
+			isDragging = false;
+			const dragDistance = Math.sqrt(
+				(event.clientX - startX) * (event.clientX - startX) +
+				(event.clientY - startY) * (event.clientY - startY)
+			);
+			if (dragDistance < 30) {
+				document.getElementById("ct").style.transform = `scale(${sc})`
+			}
+
+		}
+
+		// 强制状态重置
+		isDragging = false;
+		canT = false;
+		points = [];
+		ctxx.beginPath(); // 确保路径终止
+	});
+
+
+	// 视频控制函数
+	function reset() {
+		/* 重置所有变换参数 */
+		AG = 0;  // 重置旋转角度
+		txr = tyr = false;  // 重置镜像状态
+		isDragging = false;  // 重置拖拽状态
+		// 清除所有CSS变换
+		var screenHeight = window.innerHeight;
+		var halfScreenHeight = screenHeight * 0.5;
+		console.log(screenHeight);
+		document.getElementById("bg").style.transform = `translate(0px, ${halfScreenHeight}px)`;
+		document.getElementById('video').style.transform = ``;
+		document.getElementById('videoc').style.transform = `rotate(0deg)`;
+		document.getElementById('ct').style.transform = ``;
+	}
+
+	function setTXR() {
+		/* X轴镜像翻转 */
+		txr = !txr;  // 切换X轴镜像状态
+
+		document.getElementById('ct').style.transform += "rotateX(180deg)";
+
+		// 激活当前模式按钮
+		document.getElementById("btn4").style.color = "#fff"  // 白色文字
+
+
+		document.getElementById("btn4t").style.color = "#fff"  // 当前模式按钮文字高亮
+		setTimeout(() => {
+			if (modeID == 1) {
+				mode1();
+			}
+			if (modeID == 2) {
+				mode2();
+			}
+			if (modeID == 3) {
+				mode3();
+			}
+		}, 400);
+
+	}
+
+	function setTYR() {
+		/* Y轴镜像翻转 */
+		tyr = !tyr;  // 切换Y轴镜像状态
+
+		document.getElementById('ct').style.transform += "rotateY(180deg)";
+
+
+		// 激活当前模式按钮
+		document.getElementById("btn3").style.color = "#fff"  // 白色文字
+
+
+		document.getElementById("btn3t").style.color = "#fff"  // 当前模式按钮文字高亮
+		setTimeout(() => {
+			if (modeID == 1) {
+				mode1();
+			}
+			if (modeID == 2) {
+				mode2();
+			}
+			if (modeID == 3) {
+				mode3();
+			}
+		}, 400);
+	}
+
+	// 摄像头初始化
+	navigator.mediaDevices.getUserMedia({ video: true })
+		.then(function (stream) {
+			var video = document.getElementById('video');
+			video.srcObject = stream;  // 绑定视频流
+			video.play();  // 自动播放
+		})
+		.catch(function (e) {
+			alert(e);  // 错误提示
+		});
+
+	// 触摸事件兼容处理
+	document.addEventListener('touchstart', function (touchEvent) {
+		/* 将触摸事件转换为鼠标事件 */
+		lst = true;
+		var mouseEvent = new MouseEvent('mousedown', {
+			bubbles: true,
+			cancelable: true,
+			view: window,
+			clientX: touchEvent.touches[0].clientX,
+			clientY: touchEvent.touches[0].clientY
+		});
+		touchEvent.target.dispatchEvent(mouseEvent);
+	}, { passive: false });
+
+	document.addEventListener('touchmove', function (touchEvent) {
+		var mouseEvent = new MouseEvent('mousemove', {
+			bubbles: true,
+			cancelable: true,
+			view: window,
+			clientX: touchEvent.touches[0].clientX,
+			clientY: touchEvent.touches[0].clientY
+		});
+		touchEvent.target.dispatchEvent(mouseEvent);
+	}, { passive: false });
+
+	document.addEventListener('touchend', function (touchEvent) {
+		var mouseEvent = new MouseEvent('mouseup', {
+			bubbles: true,
+			cancelable: true,
+			view: window,
+			clientX: touchEvent.changedTouches[0].clientX,
+			clientY: touchEvent.changedTouches[0].clientY
+		});
+		touchEvent.target.dispatchEvent(mouseEvent);
+	}, { passive: false });
+	// 主画布初始化
+	const canvas = document.getElementById('canvas');
+	try {
+		canvas.width = win.width;   // 匹配NW.js窗口宽度
+		canvas.height = win.height; // 匹配NW.js窗口高度
+	} catch (error) {
+		// 降级处理：使用浏览器窗口尺寸
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	}
+
+	// 批注工具参数
+	const ctx = canvas.getContext('2d');
+	var body = document.compatMode === 'CSS1Compat' ?
+		document.documentElement : document.body;  // 兼容模式判断
+	ctx.lineJoin = 'round';  // 线条连接处圆角
+	ctx.lineCap = 'round';   // 线条末端圆角
+
+	// 绘制状态管理
+	let isDrawing = false;    // 绘制进行中标志
+	let isMouseDown = false;  // 鼠标按下状态
+	let lineColor;            // 当前画笔颜色
+	let lineWidth;            // 当前画笔粗细 
+	let points = [];          // 坐标点轨迹存储
+	let undoStack = [];       // 操作历史栈（用于撤销/恢复）
+	let step = 0;             // 当前操作步数
+	let ers = 2;              // 工具模式标识（0-画笔 / 1-橡皮擦 / 2-选择）
+
+	// 界面样式更新函数
+	body.onpointermove = function (e) {
+		/* 实时更新工具按钮状态 */
+		if (ers == 0) {  // 画笔模式激活
+			document.getElementById('er0').className = "button4";
+			document.getElementById('er1').className = "button2";
+			document.getElementById('er2').className = "button2";
+		}
+		else if (ers == 1) {  // 橡皮擦模式激活
+			document.getElementById('er0').className = "button2";
+			document.getElementById('er1').className = "button4";
+			document.getElementById('er2').className = "button2";
+		}
+		else {  // 选择模式激活
+			document.getElementById('er0').className = "button2";
+			document.getElementById('er1').className = "button2";
+			document.getElementById('er2').className = "button4";
+		}
+		// 实时更新尺寸预览颜色
+		document.getElementById('brushSizeLine').style.backgroundColor =
+			document.getElementById('brushColor').value;
+	};
+
+	// 绘制事件处理
+	canvas.onpointerdown = function (e) {
+		if (ers != 2) {  // 非选择模式时启用绘制
+			canvas.setPointerCapture(e.pointerId);  // 捕获指针
+			isDrawing = true;
+			isMouseDown = true;
+			points.push({ x: e.offsetX, y: e.offsetY });  // 记录起点
+			// 设置混合模式
+			ctx.globalCompositeOperation = ers == 1 ?
+				'destination-out' : 'source-over';  // 橡皮擦模式使用目标输出
+			ctx.beginPath();  // 开始新路径
+		}
+	};
+
+	canvas.onpointerup = function (e) {
+		isMouseDown = false;
+		points = [];  // 清空轨迹点
+		isDrawing = false;
+		ctx.closePath();  // 结束路径
+		ctx.globalCompositeOperation = 'source-over';  // 恢复默认混合模式
+		addUndoStack(canvas.toDataURL());  // 保存当前状态
+		canvas.releasePointerCapture(e.pointerId);  // 释放指针
+	};
+
+	// 核心绘制函数
+	function draw(mousex, mousey, m) {
+		if (m) {
+			points.push({ x: mousex, y: mousey });
+			ctx.beginPath();
+			// 使用二次贝塞尔曲线平滑路径
+			let x = (points[points.length - 2].x + points[points.length - 1].x) / 2,
+				y = (points[points.length - 2].y + points[points.length - 1].y) / 2;
+
+			if (points.length == 2) {  // 初始两点绘制直线
+				ctx.moveTo(points[0].x, points[0].y);
+				ctx.lineTo(x, y);
+			} else {  // 三点及以上使用曲线
+				let lastX = (points[points.length - 3].x + points[points.length - 2].x) / 2,
+					lastY = (points[points.length - 3].y + points[points.length - 2].y) / 2;
+				ctx.moveTo(lastX, lastY);
+				ctx.quadraticCurveTo(points[points.length - 2].x,
+					points[points.length - 2].y, x, y);
+			}
+			ctx.stroke();
+			points.slice(0, 1);  // 移除已处理点
+		} else {
+			// 延迟处理路径起点
+			window.setTimeout("ctx.moveTo(mousex,mousey)", 7)
+			ctx.lineTo(mousex, mousey);
+		}
+	}
+
+	// 历史记录管理
+	function addUndoStack(url) {
+		if (step < undoStack.length) {  // 如果存在可覆盖的历史记录
+			undoStack.length = step;    // 截断历史堆栈
+		}
+		undoStack.push(url);  // 保存当前画布快照
+		step++;  // 递增操作步数
+	}
+
+	function undo() {
+		if (step > 1) {  // 存在可撤销的操作
+			step--;
+			const image = new Image();
+			image.src = undoStack[step - 1];  // 加载历史快照
+			image.onload = function () {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(image, 0, 0);  // 重绘历史状态
+			}
+		} else {  // 重置为初始状态
+			step = 0;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		}
+	}
+
+	function restore() {
+		if (step < undoStack.length) {  // 存在可恢复的操作
+			step++;
+			const image = new Image();
+			image.src = undoStack[step - 1];  // 加载后续快照
+			image.onload = function () {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(image, 0, 0);  // 重绘后续状态
+			}
+		}
+	}
+	function freeze() {
+		if (isVideoFrozen()) {
+			resumeVideo();
+		} else {
+			freezeVideo();
+		}
+	}
+	// 判断视频是否冻结
+	function isVideoFrozen() {
+		const video = document.getElementById('video');
+		return video ? video.paused : false;
+	}
+	function freezeVideo() {
+		const video = document.getElementById('video');
+		if (video) {
+			video.pause(); // 暂停视频播放
+		}
+		document.getElementById("btnP").style.backgroundColor = "#D00000ee";
+		
+		document.getElementById("btnP").style.color = "#fff";
+		
+		document.getElementById("btnPt").style.color = "#fff";
+	}
+	function resumeVideo() {
+		const video = document.getElementById('video');
+		if (video) {
+			video.play(); // 继续播放视频
+		}
+		document.getElementById("btnP").style.backgroundColor = "#00000000";
+		
+		document.getElementById("btnP").style.color = "#212121";
+		
+		document.getElementById("btnPt").style.color = "#212121";
+	}
+	function mode1() {
+		/* 切换到平移旋转模式 */
+		// 重置其他按钮样式
+		var btnList = document.getElementsByClassName('btn');
+		for (var i = 0; i < btnList.length; i++) {
+			if (btnList[i].id != "btn1") {
+				btnList[i].style.backgroundColor = "#00000000"  // 透明背景
+				btnList[i].style.color = "#212121"  // 默认文字颜色
+			}
+		}
+		// 激活当前模式按钮
+		document.getElementById("btn1").style.backgroundColor = "#0083D0ee"  // 半透明蓝色背景
+		document.getElementById("btn1").style.color = "#fff"  // 白色文字
+
+		modeID = 1;  // 设置模式标识为平移旋转模式
+
+		// 更新按钮文字颜色
+		var btnT_List = document.getElementsByClassName('btnT');
+		for (var i = 0; i < btnT_List.length; i++) {
+			if (btnT_List[i].id != "btn1t") {
+				btnT_List[i].style.color = "#212121"  // 重置其他按钮文字为默认颜色
+			}
+		}
+		document.getElementById("btn1t").style.color = "#fff"  // 当前模式按钮文字高亮
+
+		document.getElementById("pz").style.display = "none";  // 隐藏批注工具栏
+		ers = 2;  // 切换到选择工具模式
+	}
+
+	function mode2() {
+		/* 切换到批注模式 */
+		// 重置其他按钮样式
+		var btnList = document.getElementsByClassName('btn');
+		for (var i = 0; i < btnList.length; i++) {
+			if (btnList[i].id != "btn2") {
+				btnList[i].style.backgroundColor = "#00000000"  // 透明背景
+				btnList[i].style.color = "#212121"  // 默认文字颜色
+			}
+		}
+		// 激活当前模式按钮
+		document.getElementById("btn2").style.backgroundColor = "#0083D0ee"  // 半透明蓝色背景
+		document.getElementById("btn2").style.color = "#fff"  // 白色文字
+		modeID = 2;  // 设置模式标识为批注模式
+
+		// 更新按钮文字颜色
+		var btnT_List = document.getElementsByClassName('btnT');
+		for (var i = 0; i < btnT_List.length; i++) {
+			if (btnT_List[i].id != "btn2t") {
+				btnT_List[i].style.color = "#212121"  // 重置其他按钮文字为默认颜色
+			}
+		}
+		document.getElementById("btn2t").style.color = "#fff"  // 当前模式按钮文字高亮
+
+		document.getElementById("pz").style.display = "block";  // 显示批注工具栏
+		ers = 0;  // 切换到画笔工具模式
+	}
+
+	function mode3() {
+		/* 切换到缩放模式 */
+		// 重置其他按钮样式
+		var btnList = document.getElementsByClassName('btn');
+		for (var i = 0; i < btnList.length; i++) {
+			if (btnList[i].id != "btn5") {
+				btnList[i].style.backgroundColor = "#00000000"  // 透明背景
+				btnList[i].style.color = "#212121"  // 默认文字颜色
+			}
+		}
+		// 激活当前模式按钮
+		document.getElementById("btn5").style.backgroundColor = "#0083D0ee"  // 半透明蓝色背景
+		document.getElementById("btn5").style.color = "#fff"  // 白色文字
+		// 直接设置 canvasM 的 z-index 值
+		document.getElementById('canvasM').style.zIndex = '98';
+		// 直接设置 canvas 的 z-index 值
+		document.getElementById('canvas').style.zIndex = '99';
+		modeID = 3;  // 设置模式标识为批注模式
+
+		// 更新按钮文字颜色
+		var btnT_List = document.getElementsByClassName('btnT');
+		for (var i = 0; i < btnT_List.length; i++) {
+			if (btnT_List[i].id != "btn5t") {
+				btnT_List[i].style.color = "#212121"  // 重置其他按钮文字为默认颜色
+			}
+		}
+
+		document.getElementById("pz").style.display = "none";  // 隐藏批注工具栏
+		ers = 2;  // 切换到选择工具模式
+		document.getElementById("btn5t").style.color = "#fff"  // 当前模式按钮文字高亮
+		ctxx.strokeStyle = "#FF0000"; // 设置矩形颜色
+		ctxx.lineWidth = 2;
+
+	}
+	mode1();
+	reset();
+</script>
+
+</html>
