@@ -98,22 +98,57 @@ function initFormEffects() {
 
 // 平滑滚动导航
 function initSmoothScroll() {
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            const targetId = link.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+                // 计算目标位置，考虑导航栏高度
+                const navHeight = document.querySelector('.glass-nav').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight - 20;
+                
+                // 使用更简单的平滑滚动方法，兼容性更好
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
+}
+
+// 滚动时高亮当前导航链接
+function initActiveNavHighlight() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    function updateActiveNav() {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 100; // 偏移量，提前激活
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', updateActiveNav);
+    
+    // 页面加载时也更新一次
+    updateActiveNav();
 }
 
 // 页面加载动画
@@ -129,6 +164,7 @@ function initPageLoadAnimations() {
         initCardEffects();
         initFormEffects();
         initSmoothScroll();
+        initActiveNavHighlight();
     });
 }
 
