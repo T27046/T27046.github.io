@@ -170,19 +170,60 @@ function initPageLoadAnimations() {
 
 // 响应式导航菜单
 function initResponsiveNav() {
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '☰';
-    
-    const nav = document.querySelector('.glass-nav');
+    const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (nav && navLinks) {
-        nav.appendChild(menuToggle);
-        
+    // 在手机版中隐藏菜单按钮，因为导航链接已被隐藏
+    if (window.innerWidth <= 768 && menuToggle) {
+        menuToggle.style.display = 'none';
+    }
+    
+    // 桌面版菜单功能
+    if (menuToggle && navLinks && window.innerWidth > 768) {
         menuToggle.addEventListener('click', function() {
             navLinks.classList.toggle('nav-active');
             menuToggle.classList.toggle('menu-active');
+            
+            // 防止滚动
+            if (navLinks.classList.contains('nav-active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // 点击导航链接时关闭菜单
+        const navLinksItems = navLinks.querySelectorAll('.nav-link');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                menuToggle.classList.remove('menu-active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // 点击菜单外部区域关闭菜单
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.glass-nav');
+            if (nav && !nav.contains(e.target) && navLinks.classList.contains('nav-active')) {
+                navLinks.classList.remove('nav-active');
+                menuToggle.classList.remove('menu-active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // 窗口大小变化时重置菜单状态
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('nav-active');
+                menuToggle.classList.remove('menu-active');
+                document.body.style.overflow = '';
+            } else {
+                // 手机版隐藏菜单按钮
+                if (menuToggle) {
+                    menuToggle.style.display = 'none';
+                }
+            }
         });
     }
 }

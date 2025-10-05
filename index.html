@@ -19,7 +19,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="msvalidate.01" content="85E3B79D89564A320E19DC5B170608C3" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>9o0d - 官方网站</title>
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
@@ -44,6 +44,12 @@
                 <a href="#about" class="nav-link">关于我们</a>
                 <a href="#contact" class="nav-link">联系我们</a>
             </div>
+            <div class="nav-windows-info">仅支持Windows系统</div>
+            <button class="menu-toggle" aria-label="菜单切换">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -54,7 +60,10 @@
             <p class="hero-subtitle">简单实用的鼠标连点助手 - 免费使用，功能齐全，纯净体验</p>
             
             <div class="button-group">
-                <button class="win10-btn primary-btn">标准版下载</button>
+                <button class="win10-btn primary-btn">
+                        <span class="desktop-text">下载标准版</span>
+                        <span class="mobile-text">下载标准版<br>(For Windows 10/11)</span>
+                    </button>
                 <a href="#features"><button class="win10-btn secondary-btn">了解更多</button></a>
             </div>
         </section>
@@ -232,9 +241,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             initWin10HoverEffects();
             
+            
+            
             // 为首页的标准版下载按钮添加点击事件
             const primaryDownloadBtn = document.querySelector('.primary-btn');
-            if (primaryDownloadBtn && primaryDownloadBtn.textContent.includes('标准版下载')) {
+            if (primaryDownloadBtn && (primaryDownloadBtn.textContent.includes('标准版下载') || primaryDownloadBtn.textContent.includes('下载标准版'))) {
                 primaryDownloadBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     window.open('https://www.9o0d.top/9o0dMC/9o0dMC.exe', '_blank');
@@ -264,8 +275,48 @@
                     
                     if (downloadUrl) {
                         window.open(downloadUrl, '_blank');
-                    } else {
-                        alert('下载链接暂未配置，请联系管理员。');
+                    }
+                });
+            });
+            
+            // 为复制链接按钮添加点击事件
+            const copyLinkBtns = document.querySelectorAll('.copy-link-btn');
+            copyLinkBtns.forEach((btn, index) => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 根据按钮索引设置不同的下载链接
+                    let downloadUrl = '';
+                    
+                    switch(index) {
+                        case 0: // 标准版
+                            downloadUrl = 'https://www.9o0d.top/9o0dMC/9o0dMC.exe'; 
+                            break;
+                        case 1: // 轻版
+                            downloadUrl = 'https://www.9o0d.top/9o0dMC/l.exe'; 
+                            break;
+                        case 2: // 99dd版本
+                            downloadUrl = 'https://pc-lsw6.lenovomm.cn/8a6fc7629011aa429bd068c392ae44de/1759612373/dlserver/fileman/pcstore/ali/pcsd-pcmgr-appstore/appstore/apps/adp/pkg/1701-2025-04-11072013-1744327213281.exe';
+                            break;
+                    }
+                    
+                    if (downloadUrl) {
+                        // 复制链接到剪贴板
+                        navigator.clipboard.writeText(downloadUrl).then(() => {
+                            // 显示复制成功状态
+                            const originalText = btn.textContent;
+                            btn.textContent = '已复制';
+                            btn.classList.add('copied');
+                            
+                            // 2秒后恢复原始状态
+                            setTimeout(() => {
+                                btn.textContent = originalText;
+                                btn.classList.remove('copied');
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('复制失败:', err);
+                            alert('复制失败，请手动复制链接：' + downloadUrl);
+                        });
                     }
                 });
             });
