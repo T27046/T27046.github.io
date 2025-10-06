@@ -1,4 +1,4 @@
-// 地铁线路数据 - 以线路为中心的存储结构
+// 地铁线路数据 - 以线路为中心的存储结构 
 const subwayData = `lineId,lineName,color,isExpress,stationSequence
 K1,K1,#53c700,true,"旧园:1,纽克北站:2"
 K2,K2,#005eff,true,"新城口:1,旧园郊(快船):2"
