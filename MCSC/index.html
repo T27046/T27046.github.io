@@ -1140,7 +1140,8 @@
                                         transfer: stationInfo.transfer === 'true',
                                         transferLines: stationInfo.transferLines ? stationInfo.transferLines.split(',') : [],
                                         transferPlatforms: stationInfo.transferPlatforms ? stationInfo.transferPlatforms.split(',') : [],
-                                        isMajor: stationInfo.isMajor === 'true'
+                                        isMajor: stationInfo.isMajor === 'true',
+                                        management: stationInfo.management || '公共' 
                                     };
                                     line.stations.push(station);
                                     stations.push(station);
@@ -1598,6 +1599,12 @@
                 const chineseName = station.name;
                 const englishName = station.englishName;
                 
+                // 创建运营单位信息显示
+                let managementInfo = '';
+                if (station.management) {
+                    managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #666;">${station.management}</div>`;
+                }
+                
                 // 创建换乘信息显示 - 处理线路数和站台数不等的情况
                 let transferInfo = '';
                 if (station.transfer && station.transferLines.length > 0) {
@@ -1621,6 +1628,7 @@
                 label.innerHTML = `
                     <div class="station-name-chinese" style="font-size: ${chineseFontSize}px;">${chineseName}</div>
                     <div class="station-name-english" style="font-size: ${englishFontSize}px;">${englishName}</div>
+                    ${managementInfo}
                     ${transferInfo}
                 `;
                 
@@ -2413,32 +2421,32 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 `;
 
         // 站点坐标信息（单独存储）
-        const stationCoordinates = `name,englishName,X,Y,transfer,transferLines,transferPlatforms,isMajor
-旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4","3F,地下,2F,2F,2F",true
-旧园郊(快船),Jiuyuanjiao (Express),-247,146,true,,,false
-旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false
+        const stationCoordinates = `name,englishName,X,Y,transfer,transferLines,transferPlatforms,isMajor,management
+旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4","3F,地下,2F,2F,2F",true,沙明轨道交通
+旧园郊(快船),Jiuyuanjiao (Express),-247,146,true,,,false,沙明轨道交通
+旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,沙明轨道交通
 
-新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true
-仙雪,Xianxue,-284,16,false,,,false
-十字口,Shizikou,-330,16,true,"S1,S3,S9","站台 1 ,站台 2 ,站台 3",true
-速炉,Sulu,-377,16,false,,,false
-渔场,Yuchang,-206,66,true,"S2,S5","1F,2F",false
-沙北东站,Shabei East Station,-325,-490,false,,,false
-沙北站,Shabei Station,-522,-550,true,"HCL","",false
+新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true,沙明轨道交通
+仙雪,Xianxue,-284,16,false,,,false,沙明轨道交通
+十字口,Shizikou,-330,16,true,"S1,S3,S9","站台 1 ,站台 2 ,站台 3",true,沙明轨道交通
+速炉,Sulu,-377,16,false,,,false,沙明轨道交通
+渔场,Yuchang,-206,66,true,"S2,S5","1F,2F",false,沙明轨道交通
+沙北东站,Shabei East Station,-325,-490,false,,,false,沙明轨道交通
+沙北站,Shabei Station,-522,-550,true,"HCL","",false,沙明轨道交通
 
-工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false
-纽克北站,Niuke North Station,-963,93,true,"K1,N1","地上,地下",false
-劫掠前哨,Jielueqianshao,-630,233,false,,,false
-纽克站,Niuke Station,-800,333,true,"近西南线,N1","地上,地下",false
-阿萨伟,Asawei,-900,-370,false,,,false
-府邸,Fudi,-757,264,true,,,false
+工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false,纽克永恒铁路、沙明轨道交通
+纽克北站,Niuke North Station,-963,93,true,"K1,N1","地上,地下",false,纽克永恒铁路、沙明轨道交通
+劫掠前哨,Jielueqianshao,-630,233,false,,,false,纽克永恒铁路
+纽克站,Niuke Station,-800,333,true,"近西南线,N1","地上,地下",false,纽克永恒铁路、沙明轨道交通
+阿萨伟,Asawei,-900,-370,false,,,false,纽克永恒铁路
+府邸,Fudi,-757,264,true,,,false,纽克永恒铁路
 
-北桥,Beiqiao,-136,-224,false,,,false
-北桥泰加,Beiqiao Taiga,-330,-224,false,,,false
+北桥,Beiqiao,-136,-224,false,,,false,沙明轨道交通(北桥)
+北桥泰加,Beiqiao Taiga,-330,-224,false,,,false,沙明轨道交通(北桥)
 
 
-南江畔,Nanjiangpan,-42,226,false,,,false
-近东南一村,Jindongnan I,125,226,false,,,false
+南江畔,Nanjiangpan,-42,226,false,,,false,沙明轨道交通
+近东南一村,Jindongnan I,125,226,false,,,false,沙明轨道交通
 
 `;
     </script>
