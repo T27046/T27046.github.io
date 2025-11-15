@@ -1643,7 +1643,7 @@
                 // 创建运营单位信息显示
                 let managementInfo = '';
                 if (station.management) {
-                    managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #666;">${station.management}</div>`;
+                    managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #a00;">${station.management}</div>`;
                 }
                 
                 // 创建换乘信息显示 - 处理线路数和站台数不等的情况
@@ -1850,8 +1850,33 @@
                             appState.ctx.stroke();
                         }
                         
-                        // 移除线路ID标识显示
-                        // 不再在线路上添加线路ID文字标注
+                        // 在线路中间位置显示线路编号（避开站点位置）
+                        if (line.stations.length > 1 && line.lineType !== 'walking') {
+                            // 计算线路的几何中点，而不是站点位置
+                            const startStation = line.stations[0];
+                            const endStation = line.stations[line.stations.length - 1];
+                            
+                            // 计算线路的几何中心点
+                            const centerX = (startStation.X + endStation.X) / 2;
+                            const centerY = (startStation.Y + endStation.Y) / 2;
+                            
+                            // 将世界坐标转换为屏幕坐标
+                            const centerScreenPos = this.worldToScreen(centerX, centerY);
+                            
+                            // 设置文字样式
+                            appState.ctx.font = `${12 * appState.mapScale}px Arial`;
+                            appState.ctx.textAlign = 'center';
+                            appState.ctx.textBaseline = 'middle';
+                            
+                            // 添加白色描边背景，提高可读性
+                            appState.ctx.strokeStyle = '#FFFFFF';
+                            appState.ctx.lineWidth = 3 * appState.mapScale;
+                            appState.ctx.strokeText(line.id, centerScreenPos.x, centerScreenPos.y);
+                            
+                            // 绘制与线路颜色一致的编号文字
+                            appState.ctx.fillStyle = line.color;
+                            appState.ctx.fillText(line.id, centerScreenPos.x, centerScreenPos.y);
+                        }
                     }
                 });
             },
