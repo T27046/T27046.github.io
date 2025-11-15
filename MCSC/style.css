@@ -133,8 +133,9 @@ body {
 }
 
 .transfer-info {
-    max-height: 200px;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
+    min-height: auto;
 }
 
 .transfer-step {
