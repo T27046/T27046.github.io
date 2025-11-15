@@ -1599,26 +1599,21 @@
                     line.stations.forEach(station => {
                         const screenPos = this.worldToScreen(station.X, station.Y);
                         
-                        // 绘制站点标记 - 淡蓝渐变填充，无描边
+                        // 绘制站点标记 - 通过两个重叠的圆实现黑色描边白色背景
+                        
+                        // 先绘制大黑圆作为描边
                         appState.ctx.beginPath();
-                        
-                        // 站点圆圈大小：6px
-                        const circleRadius = 6 * appState.mapScale;
-                        appState.ctx.arc(screenPos.x, screenPos.y, circleRadius, 0, 2 * Math.PI);
-                        
-                        // 创建淡蓝渐变填充
-                        const gradient = appState.ctx.createRadialGradient(
-                            screenPos.x, screenPos.y, 0,
-                            screenPos.x, screenPos.y, circleRadius
-                        );
-                        gradient.addColorStop(0, '#e6f7ff'); // 中心浅蓝
-                        gradient.addColorStop(1, '#b3e0ff'); // 边缘稍深蓝
-                        
-                        // 填充：淡蓝渐变
-                        appState.ctx.fillStyle = gradient;
+                        const outerRadius = 6 * appState.mapScale; // 外圆半径
+                        appState.ctx.arc(screenPos.x, screenPos.y, outerRadius, 0, 2 * Math.PI);
+                        appState.ctx.fillStyle = '#000000'; // 黑色填充
                         appState.ctx.fill();
                         
-                        // 无描边
+                        // 再绘制小白圆作为背景
+                        appState.ctx.beginPath();
+                        const innerRadius = 5.5 * appState.mapScale; // 内圆半径，略小于外圆
+                        appState.ctx.arc(screenPos.x, screenPos.y, innerRadius, 0, 2 * Math.PI);
+                        appState.ctx.fillStyle = '#FFFFFF'; // 白色填充
+                        appState.ctx.fill();
                         // 添加站名标签
                         this.addStationLabel(station, screenPos.x, screenPos.y);
                     });
@@ -2473,14 +2468,14 @@ K2,K2,#005eff,true,"瑜西:1,新城口:2,旧园郊(快船):3"
 北桥线,北桥线,#ff8fa4,false,"旧园:1,北桥:2"
 
 N1,N1,#E3002B,false,"纽克北站:1,工业园:2,纽克站:3"
-HCL专线,HCL专线,#bfa15c,false,"沙北站:1,府邸:2,阿萨伟:3"
+HCL线,HCL线,#bfa15c,false,"沙北站:1,府邸:2,阿萨伟:3"
 
 S1,S1,#00c3ff,false,"新城口:1,仙雪:2,十字口:3,塘心:4"
 S2,S2,#00ffaa,false,"新城口:1,渔场:2"
 S3,S3,#fcba77,false,"工业园:1,十字口:2"
 S4,S4,#ff5900,false,"旧园:1,新城口:2"
 S5,S5,#b7ff00,false,"渔场:1,旧园:2"
-S6,S6,#b7ff00,false,"旧园郊(铁路):1,南江畔:2,近东南一村:3"
+S6,S6,#a600ff,false,"旧园郊(铁路):1,南江畔:2,近东南一村:3"
 S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
 
