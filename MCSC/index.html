@@ -92,23 +92,23 @@
             flex: 1;
             overflow: hidden;
             position: relative;
-            background: white;
-            border-radius: 24px 24px 0 0;
-            margin: 20px 20px 0 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: transparent;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         /* 底部控制面板 */
         .bottom-panel {
-            position: absolute;
+            position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
             border-top: 1px solid #e2e8f0;
             padding: 20px;
-            z-index: 100;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -117,6 +117,7 @@
             height: 60vh;
             overflow-y: auto;
             transition: height 0.3s ease, max-height 0.3s ease;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .bottom-panel.collapsed {
@@ -142,33 +143,56 @@
         /* 底部面板收起/展开按钮 */
         .bottom-panel-toggle {
             position: absolute;
-            top: -20px;
+            top: 0px;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
+            width: 80px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid #ffffff;
             border-bottom: none;
-            border-radius: 10px 10px 0 0;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: #667eea;
-            z-index: 101;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            color: white;
+            z-index: 1001;
+            box-shadow: 0 -4px 15px rgba(102, 126, 234, 0.4);
+            font-weight: 600;
+            font-size: 12px;
         }
 
         .bottom-panel-toggle:hover {
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            box-shadow: 0 -6px 20px rgba(102, 126, 234, 0.6);
+            transform: translateX(-50%) translateY(-3px);
+        }
+
+        .bottom-panel-toggle:active {
+            transform: translateX(-50%) translateY(0);
+            box-shadow: 0 -2px 8px rgba(102, 126, 234, 0.3);
         }
 
         .bottom-panel.collapsed .bottom-panel-toggle svg {
             transform: rotate(180deg);
+        }
+
+        .bottom-panel-toggle svg {
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+        }
+
+        /* 收起状态下的按钮样式 */
+        .bottom-panel.collapsed .bottom-panel-toggle {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            box-shadow: 0 -4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .bottom-panel.collapsed .bottom-panel-toggle:hover {
+            background: linear-gradient(135deg, #43A047 0%, #3d8b40 100%);
+            box-shadow: 0 -6px 20px rgba(76, 175, 80, 0.6);
         }
 
         /* 侧边栏 */
@@ -419,7 +443,10 @@
             overflow: hidden;
             background: #f8f9fa;
             touch-action: none;
-            margin-bottom: 300px; /* 为底部面板预留空间 */
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
         }
 
         #mapCanvas {
@@ -484,7 +511,7 @@
             color: #000000; /* 黑色文字 */
             white-space: nowrap;
             box-shadow: none;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6); /* 白色发光效果 */
+            /*text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6);*/
             backdrop-filter: none;
             pointer-events: none;
             z-index: 100;
@@ -501,7 +528,7 @@
             color: #000000; /* 黑色文字 */
             white-space: nowrap;
             box-shadow: none;
-            text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.6); /* 中文发光效果 */
+            /*text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.6);*/
             backdrop-filter: none;
             margin-bottom: 1px;
         }
@@ -515,7 +542,7 @@
             color: #333333; /* 深灰色 */
             white-space: nowrap;
             box-shadow: none;
-            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6); /* 英文发光效果 */
+            /*text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6); */
             backdrop-filter: none;
         }
         
@@ -526,7 +553,7 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 3px;
             color: #000000; /* 黑色文字 */
-            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6); /* 换乘信息发光效果 */
+            /*text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6);*/
             border: 1px solid #e0e0e0;
             font-size: 8px;
             line-height: 1.2;
@@ -839,7 +866,21 @@
         // 底部面板收起/展开功能
         toggleBottomPanel() {
             const bottomPanel = document.querySelector('.bottom-panel');
-            bottomPanel.classList.toggle('collapsed');
+            const toggleButton = document.querySelector('.bottom-panel-toggle');
+            const isCollapsed = bottomPanel.classList.toggle('collapsed');
+            
+            // 更新按钮提示文本
+            if (isCollapsed) {
+                toggleButton.setAttribute('title', '展开面板');
+                toggleButton.setAttribute('aria-label', '展开底部面板');
+                // 添加收起状态指示
+                this.showNotification('底部面板已收起', 'success');
+            } else {
+                toggleButton.setAttribute('title', '收起面板');
+                toggleButton.setAttribute('aria-label', '收起底部面板');
+                // 添加展开状态指示
+                this.showNotification('底部面板已展开', 'success');
+            }
         },
 
             parseCSV(csvText) {
@@ -1141,7 +1182,7 @@
                                         transferLines: stationInfo.transferLines ? stationInfo.transferLines.split(',') : [],
                                         transferPlatforms: stationInfo.transferPlatforms ? stationInfo.transferPlatforms.split(',') : [],
                                         isMajor: stationInfo.isMajor === 'true',
-                                        management: stationInfo.management || '公共' 
+                                        management: stationInfo.management || '' 
                                     };
                                     line.stations.push(station);
                                     stations.push(station);
