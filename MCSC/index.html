@@ -1517,6 +1517,8 @@
                 } else if (e.touches.length === 2) {
                     appState.isPinching = true;
                     appState.lastTouchDistance = this.getTouchDistance(e.touches[0], e.touches[1]);
+                    // 保存多指落点中心位置
+                    appState.lastTouchCenter = this.getTouchCenter(e.touches[0], e.touches[1]);
                 }
             },
 
@@ -1540,8 +1542,22 @@
                     const currentDistance = this.getTouchDistance(e.touches[0], e.touches[1]);
                     const scaleFactor = currentDistance / appState.lastTouchDistance;
                     
+                    // 获取当前多指落点中心
+                    const currentCenter = this.getTouchCenter(e.touches[0], e.touches[1]);
+                    
+                    // 保存旧的缩放比例
+                    const oldScale = appState.mapScale;
+                    
+                    // 更新缩放比例
                     appState.mapScale = Math.max(0.5, Math.min(3, appState.mapScale * scaleFactor));
                     appState.lastTouchDistance = currentDistance;
+                    
+                    // 以多指落点中心为缩放中心，调整地图偏移量
+                    this.adjustOffsetForPinchZoom(oldScale, appState.lastTouchCenter, currentCenter);
+                    
+                    // 更新中心位置
+                    appState.lastTouchCenter = currentCenter;
+                    
                     this.render();
                 }
             },
@@ -1555,6 +1571,42 @@
                 const dx = touch1.clientX - touch2.clientX;
                 const dy = touch1.clientY - touch2.clientY;
                 return Math.sqrt(dx * dx + dy * dy);
+            },
+
+            getTouchCenter(touch1, touch2) {
+                return {
+                    x: (touch1.clientX + touch2.clientX) / 2,
+                    y: (touch1.clientY + touch2.clientY) / 2
+                };
+            },
+
+            adjustOffsetForPinchZoom(oldScale, oldCenter, newCenter) {
+                const canvasRect = appState.canvas.getBoundingClientRect();
+                
+                // 将屏幕坐标转换为相对于画布的坐标
+                const oldCenterX = oldCenter.x - canvasRect.left;
+                const oldCenterY = oldCenter.y - canvasRect.top;
+                const newCenterX = newCenter.x - canvasRect.left;
+                const newCenterY = newCenter.y - canvasRect.top;
+                
+                // 计算缩放前的中心点对应的世界坐标
+                const centerX = appState.canvas.width / 2;
+                const centerY = appState.canvas.height / 2;
+                const scale = 2; // 与worldToScreen中的scale一致
+                const offsetX = 400; // 与worldToScreen中的offsetX一致
+                const offsetY = -100; // 与worldToScreen中的offsetY一致
+                
+                // 将旧的中心点位置转换为世界坐标
+                const worldX = (oldCenterX - centerX - appState.mapOffset.x) / (scale * oldScale) - offsetX;
+                const worldY = (oldCenterY - centerY - appState.mapOffset.y) / (scale * oldScale) - offsetY;
+                
+                // 计算缩放后的中心点应该对应的屏幕坐标
+                const newScreenX = centerX + (worldX + offsetX) * scale * appState.mapScale + appState.mapOffset.x;
+                const newScreenY = centerY + (worldY + offsetY) * scale * appState.mapScale + appState.mapOffset.y;
+                
+                // 调整地图偏移量，使新的中心点位置保持不变
+                appState.mapOffset.x += newCenterX - newScreenX;
+                appState.mapOffset.y += newCenterY - newScreenY;
             },
 
             worldToScreen(x, y) {
