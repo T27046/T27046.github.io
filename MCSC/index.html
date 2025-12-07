@@ -2623,17 +2623,26 @@
                     // 转换为DataURL
                     const dataURL = tempCanvas.toDataURL('image/png');
                     
-                    // 创建下载链接
-                    const link = document.createElement('a');
-                    link.download = `旧园通线路图_${new Date().toLocaleDateString().replace(/\//g, '-')}.png`;
-                    link.href = dataURL;
+                    // 检测是否为移动设备
+                    const isMobile = this.isMobileDevice();
                     
-                    // 触发下载
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    utils.showNotification('完整地图图片已保存');
+                    if (isMobile) {
+                        // 移动端：显示弹窗让用户长按保存
+                        this.showImagePopup(dataURL);
+                        utils.showNotification('请长按图片保存到相册');
+                    } else {
+                        // 桌面端：直接下载
+                        const link = document.createElement('a');
+                        link.download = `Jiuyuantong_${new Date().toLocaleDateString().replace(/\//g, '-')}.png`;
+                        link.href = dataURL;
+                        
+                        // 触发下载
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        utils.showNotification('完整地图图片已保存');
+                    }
                 } catch (error) {
                     console.error('保存图片失败:', error);
                     utils.showNotification('保存图片失败，请重试', 'error');
@@ -2665,6 +2674,156 @@
                         }
                     });
                 });
+            },
+
+            // 检测是否为移动设备
+            isMobileDevice() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                       (window.innerWidth <= 768);
+            },
+
+            // 显示图片弹窗（用于移动端）
+            showImagePopup(dataURL) {
+                // 先移除已存在的弹窗
+                const existingPopup = document.getElementById('imagePopup');
+                if (existingPopup) {
+                    document.body.removeChild(existingPopup);
+                }
+
+                // 创建弹窗容器
+                const popup = document.createElement('div');
+                popup.id = 'imagePopup';
+                popup.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.9);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 9999;
+                    padding: 20px;
+                    box-sizing: border-box;
+                `;
+                
+                // 创建图片元素
+                const img = document.createElement('img');
+                img.src = dataURL;
+                img.style.cssText = `
+                    max-width: 95%;
+                    max-height: 85%;
+                    border-radius: 12px;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                    object-fit: contain;
+                    display: block;
+                    background: white;
+                    padding: 10px;
+                `;
+                
+                // 创建说明文字
+                const instruction = document.createElement('div');
+                instruction.textContent = '请长按图片保存到相册';
+                instruction.style.cssText = `
+                    color: white;
+                    font-size: 18px;
+                    margin-top: 25px;
+                    text-align: center;
+                    background: rgba(0, 0, 0, 0.7);
+                    padding: 12px 24px;
+                    border-radius: 25px;
+                    font-weight: bold;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                `;
+                
+                // 创建关闭按钮
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = '×';
+                closeBtn.style.cssText = `
+                    position: absolute;
+                    top: 30px;
+                    right: 30px;
+                    background: rgba(255, 0, 0, 0.8);
+                    border: 2px solid rgba(255, 255, 255, 0.5);
+                    color: white;
+                    font-size: 24px;
+                    font-weight: bold;
+                    padding: 8px 12px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    width: 44px;
+                    height: 44px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+                `;
+                
+                // 添加关闭按钮悬停效果
+                closeBtn.addEventListener('mouseenter', () => {
+                    closeBtn.style.background = 'rgba(255, 0, 0, 0.9)';
+                    closeBtn.style.transform = 'scale(1.1)';
+                    closeBtn.style.boxShadow = '0 6px 16px rgba(255, 0, 0, 0.5)';
+                });
+                closeBtn.addEventListener('mouseleave', () => {
+                    closeBtn.style.background = 'rgba(255, 0, 0, 0.8)';
+                    closeBtn.style.transform = 'scale(1)';
+                    closeBtn.style.boxShadow = '0 4px 12px rgba(255, 0, 0, 0.3)';
+                });
+                
+                // 添加事件监听
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.closeImagePopup();
+                });
+                
+                // 点击弹窗背景关闭
+                popup.addEventListener('click', (e) => {
+                    if (e.target === popup) {
+                        this.closeImagePopup();
+                    }
+                });
+                
+                // 图片加载错误处理
+                img.onerror = () => {
+                    console.error('图片加载失败');
+                    utils.showNotification('图片加载失败，请重试', 'error');
+                    this.closeImagePopup();
+                };
+                
+                // 图片加载成功处理
+                img.onload = () => {
+                    console.log('图片加载成功');
+                    // 添加到页面
+                    document.body.appendChild(popup);
+                };
+                
+                // 先添加到页面再设置src，确保加载事件正确触发
+                document.body.appendChild(popup);
+                
+                // 最后设置图片源，开始加载
+                img.src = dataURL;
+                
+                // 添加元素到弹窗
+                popup.appendChild(closeBtn);
+                popup.appendChild(img);
+                popup.appendChild(instruction);
+                
+                // 保存弹窗引用以便后续关闭
+                window.currentImagePopup = popup;
+            },
+
+            // 关闭图片弹窗
+            closeImagePopup() {
+                const popup = document.getElementById('imagePopup');
+                if (popup) {
+                    document.body.removeChild(popup);
+                }
+                window.currentImagePopup = null;
             }
         };
 
