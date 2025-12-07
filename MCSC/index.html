@@ -2789,11 +2789,13 @@
                 });
                 
                 // 图片加载错误处理
-                img.onerror = () => {
-                    console.error('图片加载失败');
-                    utils.showNotification('图片加载失败，请重试', 'error');
-                    this.closeImagePopup();
-                };
+                 img.onerror = () => {
+                     console.error('图片加载失败');
+                     // 先关闭图片弹窗
+                     this.closeImagePopup();
+                     // 显示错误信息弹窗
+                     this.showErrorPopup('图片加载失败', '地图图片生成失败，请稍后重试');
+                 };
                 
                 // 图片加载成功处理
                 img.onload = () => {
@@ -2818,13 +2820,150 @@
             },
 
             // 关闭图片弹窗
-            closeImagePopup() {
-                const popup = document.getElementById('imagePopup');
-                if (popup) {
-                    document.body.removeChild(popup);
-                }
-                window.currentImagePopup = null;
-            }
+             closeImagePopup() {
+                 const popup = document.getElementById('imagePopup');
+                 if (popup) {
+                     document.body.removeChild(popup);
+                 }
+                 window.currentImagePopup = null;
+             },
+
+             // 显示错误弹窗
+             showErrorPopup(title, message) {
+                 // 先移除已存在的错误弹窗
+                 const existingErrorPopup = document.getElementById('errorPopup');
+                 if (existingErrorPopup) {
+                     document.body.removeChild(existingErrorPopup);
+                 }
+
+                 // 创建错误弹窗容器
+                 const errorPopup = document.createElement('div');
+                 errorPopup.id = 'errorPopup';
+                 errorPopup.style.cssText = `
+                     position: fixed;
+                     top: 0;
+                     left: 0;
+                     width: 100%;
+                     height: 100%;
+                     background: rgba(0, 0, 0, 0.8);
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: center;
+                     align-items: center;
+                     z-index: 10000;
+                     padding: 20px;
+                     box-sizing: border-box;
+                 `;
+                 
+                 // 创建错误内容容器
+                 const errorContent = document.createElement('div');
+                 errorContent.style.cssText = `
+                     background: white;
+                     border-radius: 12px;
+                     padding: 30px;
+                     max-width: 90%;
+                     max-height: 80%;
+                     text-align: center;
+                     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                     display: flex;
+                     flex-direction: column;
+                     align-items: center;
+                     gap: 20px;
+                 `;
+                 
+                 // 创建错误图标
+                 const errorIcon = document.createElement('div');
+                 errorIcon.innerHTML = '⚠️';
+                 errorIcon.style.cssText = `
+                     font-size: 48px;
+                     margin-bottom: 10px;
+                 `;
+                 
+                 // 创建错误标题
+                 const errorTitle = document.createElement('h3');
+                 errorTitle.textContent = title;
+                 errorTitle.style.cssText = `
+                     color: #d32f2f;
+                     font-size: 20px;
+                     font-weight: bold;
+                     margin: 0;
+                     text-align: center;
+                 `;
+                 
+                 // 创建错误信息
+                 const errorMessage = document.createElement('p');
+                 errorMessage.textContent = message;
+                 errorMessage.style.cssText = `
+                     color: #666;
+                     font-size: 16px;
+                     margin: 0;
+                     text-align: center;
+                     line-height: 1.5;
+                 `;
+                 
+                 // 创建确定按钮
+                 const confirmBtn = document.createElement('button');
+                 confirmBtn.textContent = '确定';
+                 confirmBtn.style.cssText = `
+                     background: #d32f2f;
+                     color: white;
+                     border: none;
+                     padding: 12px 30px;
+                     border-radius: 25px;
+                     font-size: 16px;
+                     font-weight: bold;
+                     cursor: pointer;
+                     transition: all 0.3s ease;
+                     min-width: 100px;
+                     box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+                 `;
+                 
+                 // 添加按钮悬停效果
+                 confirmBtn.addEventListener('mouseenter', () => {
+                     confirmBtn.style.background = '#b71c1c';
+                     confirmBtn.style.transform = 'translateY(-2px)';
+                     confirmBtn.style.boxShadow = '0 6px 16px rgba(211, 47, 47, 0.4)';
+                 });
+                 confirmBtn.addEventListener('mouseleave', () => {
+                     confirmBtn.style.background = '#d32f2f';
+                     confirmBtn.style.transform = 'translateY(0)';
+                     confirmBtn.style.boxShadow = '0 4px 12px rgba(211, 47, 47, 0.3)';
+                 });
+                 
+                 // 添加确定按钮事件
+                 confirmBtn.addEventListener('click', () => {
+                     this.closeErrorPopup();
+                 });
+                 
+                 // 点击弹窗背景关闭
+                 errorPopup.addEventListener('click', (e) => {
+                     if (e.target === errorPopup) {
+                         this.closeErrorPopup();
+                     }
+                 });
+                 
+                 // 组装错误弹窗内容
+                 errorContent.appendChild(errorIcon);
+                 errorContent.appendChild(errorTitle);
+                 errorContent.appendChild(errorMessage);
+                 errorContent.appendChild(confirmBtn);
+                 errorPopup.appendChild(errorContent);
+                 
+                 // 添加到页面
+                 document.body.appendChild(errorPopup);
+                 
+                 // 保存错误弹窗引用
+                 window.currentErrorPopup = errorPopup;
+             },
+
+             // 关闭错误弹窗
+             closeErrorPopup() {
+                 const errorPopup = document.getElementById('errorPopup');
+                 if (errorPopup) {
+                     document.body.removeChild(errorPopup);
+                 }
+                 window.currentErrorPopup = null;
+             }
         };
 
         // 初始化应用
