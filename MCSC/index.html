@@ -462,7 +462,7 @@
 
         .map-controls {
             position: absolute;
-            bottom: 24px;
+            top: 24px;
             right: 20px;
             display: flex;
             flex-direction: column;
@@ -636,7 +636,7 @@
             }
             
             .map-controls {
-                bottom: 16px;
+                top: 16px;
                 right: 12px;
                 gap: 4px;
             }
@@ -694,7 +694,7 @@
             }
             
             .map-controls {
-                bottom: 12px;
+                top: 12px;
                 right: 8px;
             }
             
@@ -765,6 +765,7 @@
                     <button id="zoomIn" class="map-btn" title="放大">+</button>
                     <button id="zoomOut" class="map-btn" title="缩小">-</button>
                     <button id="resetView" class="map-btn" title="重置视图">↺</button>
+                    <button id="saveImage" class="map-btn" title="保存图片">保存</button>
                 </div>
             </div>
 
@@ -1958,6 +1959,10 @@
             render() {
                 this.clearMap();
                 
+                // 设置白色背景
+                appState.ctx.fillStyle = '#ffffff';
+                appState.ctx.fillRect(0, 0, appState.canvas.width, appState.canvas.height);
+                
                 if (appState.lines.length > 0) {
                     this.displayLines(appState.lines);
                     this.displayStations(appState.lines);
@@ -1978,6 +1983,7 @@
                 document.getElementById('zoomIn').addEventListener('click', () => this.handleZoomIn());
                 document.getElementById('zoomOut').addEventListener('click', () => this.handleZoomOut());
                 document.getElementById('resetView').addEventListener('click', () => this.handleResetView());
+                document.getElementById('saveImage').addEventListener('click', () => this.handleSaveImage());
                 
                 // 绑定搜索功能事件
                 this.initSearchFunctionality();
@@ -2494,6 +2500,165 @@
                 appState.mapScale = 1;
                 appState.mapOffset = { x: 0, y: 0 };
                 mapRenderer.render();
+            },
+
+            handleSaveImage() {
+                try {
+                    // 保存当前的地图状态
+                    const originalScale = appState.mapScale;
+                    const originalOffset = { ...appState.mapOffset };
+                    
+                    // 动态计算完整地图的范围
+                    let minX = Infinity, maxX = -Infinity;
+                    let minY = Infinity, maxY = -Infinity;
+                    
+                    if (appState.stations && appState.stations.length > 0) {
+                        appState.stations.forEach(station => {
+                            if (station.X !== undefined && station.Y !== undefined) {
+                                minX = Math.min(minX, station.X);
+                                maxX = Math.max(maxX, station.X);
+                                minY = Math.min(minY, station.Y);
+                                maxY = Math.max(maxY, station.Y);
+                            }
+                        });
+                    }
+                    
+                    // 如果没有有效数据，使用默认范围（这个范围改不得）
+                    if (minX === Infinity) {
+                        minX = -1000; maxX = 1000;
+                        minY = -1000; maxY = 1000;
+                    }
+                    
+                    // 设置合适的缩放比例以显示完整地图
+                    const targetScale = 0.8; // 调整这个值以获得最佳显示效果
+                    
+                    // 创建临时Canvas来渲染完整地图
+                    const tempCanvas = document.createElement('canvas');
+                    const tempCtx = tempCanvas.getContext('2d');
+                    
+                    // 设置临时Canvas尺寸，确保完整地图能够显示
+                    const scale = 2; // 与worldToScreen中的scale一致
+                    const offsetX = 400; // 与worldToScreen中的offsetX一致
+                    const offsetY = -100; // 与worldToScreen中的offsetY一致
+                    
+                    // 计算所需Canvas尺寸，确保能容纳完整地图
+                    const margin = 100; // 边距
+                    
+                    // 关键修复：正确计算地图的实际显示范围
+                    // 根据worldToScreen公式：screenX = centerX + (x + offsetX) * scale * mapScale + mapOffset.x
+                    // 当centerX = canvas.width/2，mapOffset.x = 0时，地图的实际显示范围是：
+                    // 从 -centerX 到 +centerX，而不是从0开始
+                    
+                    // 计算地图在转换后的坐标系中的最大范围
+                    const maxAbsX = Math.max(Math.abs(minX + offsetX), Math.abs(maxX + offsetX));
+                    const maxAbsY = Math.max(Math.abs(minY + offsetY), Math.abs(maxY + offsetY));
+                    
+                    // 计算所需的Canvas尺寸（考虑中心点偏移后的完整范围）
+                    const requiredWidth = maxAbsX * 2 * scale * targetScale + margin * 2;
+                    const requiredHeight = maxAbsY * 2 * scale * targetScale + margin * 2;
+                    
+                    tempCanvas.width = Math.max(2000, requiredWidth);
+                    tempCanvas.height = Math.max(1500, requiredHeight);
+                    
+                    // 设置临时Canvas的上下文
+                    tempCtx.fillStyle = '#ffffff';
+                    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+                    
+                    // 临时修改appState以渲染到临时Canvas
+                    const originalCanvas = appState.canvas;
+                    const originalCtx = appState.ctx;
+                    
+                    appState.canvas = tempCanvas;
+                    appState.ctx = tempCtx;
+                    appState.mapScale = targetScale;
+                    
+                    // 计算中心点（Canvas的中心）
+                    const centerX = tempCanvas.width / 2;
+                    const centerY = tempCanvas.height / 2;
+                    
+                    // 关键修复：不需要额外的偏移，因为worldToScreen函数已经考虑了centerX和centerY
+                    appState.mapOffset = { 
+                        x: 0,
+                        y: 0
+                    };
+                    
+                    // 关键修复：临时修改worldToScreen函数，使其使用固定的中心点计算
+                    const originalWorldToScreen = mapRenderer.worldToScreen;
+                    mapRenderer.worldToScreen = function(x, y) {
+                        const screenX = centerX + (x + offsetX) * scale * appState.mapScale + appState.mapOffset.x;
+                        const screenY = centerY + (y + offsetY) * scale * appState.mapScale + appState.mapOffset.y;
+                        return { x: screenX, y: screenY };
+                    };
+                    
+                    // 重新渲染完整地图
+                    mapRenderer.clearMap();
+                    
+                    // 渲染所有线路和站点
+                    if (appState.lines && appState.lines.length > 0) {
+                        mapRenderer.displayLines(appState.lines);
+                        mapRenderer.displayStations(appState.lines);
+                        
+                        // 在Canvas上绘制站点名字（用于图片保存）
+                        this.drawStationNamesOnCanvas(appState.lines);
+                    }
+                    
+                    // 恢复原始状态
+                    appState.canvas = originalCanvas;
+                    appState.ctx = originalCtx;
+                    appState.mapScale = originalScale;
+                    appState.mapOffset = originalOffset;
+                    
+                    // 恢复原始的worldToScreen函数
+                    mapRenderer.worldToScreen = originalWorldToScreen;
+                    
+                    // 重新渲染原始视图
+                    mapRenderer.render();
+                    
+                    // 转换为DataURL
+                    const dataURL = tempCanvas.toDataURL('image/png');
+                    
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.download = `完整地铁线路图_${new Date().toLocaleDateString().replace(/\//g, '-')}.png`;
+                    link.href = dataURL;
+                    
+                    // 触发下载
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    utils.showNotification('完整地图图片已保存');
+                } catch (error) {
+                    console.error('保存图片失败:', error);
+                    utils.showNotification('保存图片失败，请重试', 'error');
+                }
+            },
+            
+            drawStationNamesOnCanvas(lines) {
+                const ctx = appState.ctx;
+                const scale = appState.mapScale;
+                
+                lines.forEach(line => {
+                    line.stations.forEach(station => {
+                        const screenPos = mapRenderer.worldToScreen(station.X, station.Y);
+                        
+                        // 设置字体样式
+                        ctx.font = `${Math.max(10, 12 * scale)}px Arial, sans-serif`;
+                        ctx.fillStyle = '#000000';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        
+                        // 绘制站点名字
+                        ctx.fillText(station.name, screenPos.x, screenPos.y - 15 * scale);
+                        
+                        // 如果有英文名字，也绘制
+                        if (station.englishName && station.englishName !== station.name) {
+                            ctx.font = `${Math.max(8, 10 * scale)}px Arial, sans-serif`;
+                            ctx.fillStyle = '#666666';
+                            ctx.fillText(station.englishName, screenPos.x, screenPos.y + 15 * scale);
+                        }
+                    });
+                });
             }
         };
 
@@ -2538,6 +2703,7 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4","3F,地下,2F,2F,2F",true,
 旧园郊(快船),Jiuyuanjiao (Express),-247,146,true,,,false,
 旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,
+世界中心·矿山,World Center,0,0,false,,,false,
 
 新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true,
 仙雪,Xianxue,-284,16,false,,,false,
@@ -2572,6 +2738,7 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
         const walkingData = `color,isExpress,lineType,stationSequence
 #808080,false,walking,"旧园郊(铁路):1,旧园郊(快船):2"
 #808080,false,walking,"府邸:1,工业园:2"
+#808080,false,walking,"世界中心·矿山:1,旧园:2"
 #808080,false,walking,"北桥:1,瑜西:2,北桥泰加:3"
 `;
     </script>
