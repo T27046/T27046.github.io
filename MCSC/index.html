@@ -3001,69 +3001,6 @@
                 // 最后设置图片源，开始加载
                 img.src = dataURL;
                 
-                // 显示下载备选方案
-                showDownloadFallback(dataURL) {
-                    // 创建一个简单的下载提示
-                    const fallbackDiv = document.createElement('div');
-                    fallbackDiv.style.cssText = `
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: white;
-                        padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                        z-index: 10001;
-                        text-align: center;
-                        max-width: 300px;
-                    `;
-                    
-                    fallbackDiv.innerHTML = `
-                        <div style="color: #333; font-size: 16px; margin-bottom: 15px;">
-                            📋 图片无法自动显示，请手动操作：
-                        </div>
-                        <div style="color: #666; font-size: 14px; line-height: 1.4; margin-bottom: 20px;">
-                            • 右键点击地址栏<br>
-                            • 选择"在新标签页中打开链接"<br>
-                            • 右键图片保存
-                        </div>
-                        <button id="closeFallback" style="
-                            background: #4caf50;
-                            color: white;
-                            border: none;
-                            padding: 8px 16px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-size: 14px;
-                        ">知道了</button>
-                    `;
-                    
-                    const overlay = document.createElement('div');
-                    overlay.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        z-index: 10000;
-                    `;
-                    
-                    overlay.addEventListener('click', () => {
-                        document.body.removeChild(overlay);
-                        document.body.removeChild(fallbackDiv);
-                    });
-                    
-                    fallbackDiv.querySelector('#closeFallback').addEventListener('click', () => {
-                        document.body.removeChild(overlay);
-                        document.body.removeChild(fallbackDiv);
-                    });
-                    
-                    document.body.appendChild(overlay);
-                    document.body.appendChild(fallbackDiv);
-                },
-                
                 // 添加元素到弹窗
                 popup.appendChild(closeBtn);
                 popup.appendChild(img);
