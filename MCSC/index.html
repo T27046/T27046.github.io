@@ -2645,7 +2645,35 @@
                     }
                 } catch (error) {
                     console.error('保存图片失败:', error);
-                    utils.showNotification('保存图片失败，请重试', 'error');
+                    
+                    // 检测设备类型，提供更精确的错误信息
+                    const isMobile = this.isMobileDevice();
+                    const deviceInfo = this.getDeviceInfo();
+                    
+                    // 构建详细的错误信息
+                    const errorDetails = {
+                        message: error.message || error.toString(),
+                        stack: error.stack || '无堆栈信息',
+                        deviceType: isMobile ? '移动设备' : '桌面设备',
+                        deviceInfo: deviceInfo,
+                        timestamp: new Date().toLocaleString(),
+                        canvasSize: appState.canvas ? `${appState.canvas.width}x${appState.canvas.height}` : '未知',
+                        mapScale: appState.mapScale || '未知',
+                        stationsCount: appState.stations ? appState.stations.length : 0,
+                        linesCount: appState.lines ? appState.lines.length : 0,
+                        userAgent: navigator.userAgent,
+                        viewportSize: `${window.innerWidth}x${window.innerHeight}`,
+                        availableMemory: this.getAvailableMemory(),
+                        supportInfo: {
+                            canvas: !!document.createElement('canvas').getContext,
+                            toDataURL: !!document.createElement('canvas').toDataURL,
+                            blob: !!HTMLCanvasElement.prototype.toBlob,
+                            download: 'download' in document.createElement('a')
+                        }
+                    };
+                    
+                    // 显示详细的错误弹窗
+                    this.showDetailedErrorPopup('地图保存失败', errorDetails);
                 }
             },
             
@@ -3018,12 +3046,337 @@
 
              // 关闭错误弹窗
              closeErrorPopup() {
-                 const errorPopup = document.getElementById('errorPopup');
-                 if (errorPopup) {
-                     document.body.removeChild(errorPopup);
-                 }
-                 window.currentErrorPopup = null;
-             }
+                const errorPopup = document.getElementById('errorPopup');
+                if (errorPopup) {
+                    document.body.removeChild(errorPopup);
+                }
+                window.currentErrorPopup = null;
+            },
+
+            // 获取设备详细信息
+            getDeviceInfo() {
+                const ua = navigator.userAgent;
+                let deviceType = '未知';
+                let os = '未知';
+                let browser = '未知';
+                
+                // 检测设备类型
+                if (/Android/i.test(ua)) {
+                    deviceType = 'Android设备';
+                    os = 'Android';
+                } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                    deviceType = 'iOS设备';
+                    os = 'iOS';
+                } else if (/Windows/i.test(ua)) {
+                    deviceType = 'Windows设备';
+                    os = 'Windows';
+                } else if (/Mac/i.test(ua)) {
+                    deviceType = 'Mac设备';
+                    os = 'macOS';
+                } else if (/Linux/i.test(ua)) {
+                    deviceType = 'Linux设备';
+                    os = 'Linux';
+                }
+                
+                // 检测浏览器
+                if (/Chrome/i.test(ua) && !/Edge/i.test(ua)) {
+                    browser = 'Chrome';
+                } else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) {
+                    browser = 'Safari';
+                } else if (/Firefox/i.test(ua)) {
+                    browser = 'Firefox';
+                } else if (/Edge/i.test(ua)) {
+                    browser = 'Edge';
+                } else if (/Opera/i.test(ua) || /OPR/i.test(ua)) {
+                    browser = 'Opera';
+                }
+                
+                return {
+                    deviceType,
+                    os,
+                    browser,
+                    screenSize: `${screen.width}x${screen.height}`,
+                    pixelRatio: window.devicePixelRatio || 1,
+                    touchSupport: 'ontouchstart' in window,
+                    orientation: screen.orientation ? screen.orientation.type : '未知'
+                };
+            },
+
+            // 获取可用内存信息
+            getAvailableMemory() {
+                try {
+                    if ('memory' in performance) {
+                        const mem = performance.memory;
+                        return {
+                            total: mem.totalJSHeapSize,
+                            used: mem.usedJSHeapSize,
+                            limit: mem.jsHeapSizeLimit,
+                            usage: Math.round((mem.usedJSHeapSize / mem.jsHeapSizeLimit) * 100)
+                        };
+                    }
+                } catch (e) {
+                    console.warn('无法获取内存信息:', e);
+                }
+                return null;
+            },
+
+            // 显示详细错误弹窗
+            showDetailedErrorPopup(title, errorDetails) {
+                // 先移除已存在的错误弹窗
+                const existingErrorPopup = document.getElementById('errorPopup');
+                if (existingErrorPopup) {
+                    document.body.removeChild(existingErrorPopup);
+                }
+
+                // 创建错误弹窗容器
+                const errorPopup = document.createElement('div');
+                errorPopup.id = 'errorPopup';
+                errorPopup.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 10000;
+                    padding: 20px;
+                    box-sizing: border-box;
+                `;
+                
+                // 创建错误内容容器
+                const errorContent = document.createElement('div');
+                errorContent.style.cssText = `
+                    background: white;
+                    border-radius: 12px;
+                    padding: 30px;
+                    max-width: 95%;
+                    max-height: 90%;
+                    text-align: left;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    overflow-y: auto;
+                `;
+                
+                // 创建错误图标
+                const errorIcon = document.createElement('div');
+                errorIcon.innerHTML = '🚨';
+                errorIcon.style.cssText = `
+                    font-size: 48px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                `;
+                
+                // 创建错误标题
+                const errorTitle = document.createElement('h3');
+                errorTitle.textContent = title;
+                errorTitle.style.cssText = `
+                    color: #d32f2f;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin: 0;
+                    text-align: center;
+                `;
+                
+                // 设备信息部分
+                const deviceSection = document.createElement('div');
+                deviceSection.style.cssText = `
+                    background: #e3f2fd;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border-left: 4px solid #2196f3;
+                `;
+                deviceSection.innerHTML = `
+                    <strong>📱 设备信息:</strong><br>
+                    <strong>设备类型:</strong> ${errorDetails.deviceInfo.deviceType}<br>
+                    <strong>操作系统:</strong> ${errorDetails.deviceInfo.os}<br>
+                    <strong>浏览器:</strong> ${errorDetails.deviceInfo.browser}<br>
+                    <strong>屏幕分辨率:</strong> ${errorDetails.deviceInfo.screenSize}<br>
+                    <strong>像素密度:</strong> ${errorDetails.deviceInfo.pixelRatio}<br>
+                    <strong>触摸支持:</strong> ${errorDetails.deviceInfo.touchSupport ? '是' : '否'}<br>
+                    <strong>屏幕方向:</strong> ${errorDetails.deviceInfo.orientation}
+                `;
+                
+                // 错误详情部分
+                const errorSection = document.createElement('div');
+                errorSection.style.cssText = `
+                    background: #ffebee;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border-left: 4px solid #f44336;
+                `;
+                errorSection.innerHTML = `
+                    <strong>❌ 错误详情:</strong><br>
+                    <strong>错误信息:</strong> ${errorDetails.message}<br>
+                    <strong>时间:</strong> ${errorDetails.timestamp}<br>
+                    <strong>视口大小:</strong> ${errorDetails.viewportSize}<br>
+                    <strong>用户代理:</strong> ${errorDetails.userAgent}
+                `;
+                
+                // 地图状态部分
+                const mapSection = document.createElement('div');
+                mapSection.style.cssText = `
+                    background: #f3e5f5;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border-left: 4px solid #9c27b0;
+                `;
+                mapSection.innerHTML = `
+                    <strong>🗺️ 地图状态:</strong><br>
+                    <strong>Canvas尺寸:</strong> ${errorDetails.canvasSize}<br>
+                    <strong>地图缩放:</strong> ${errorDetails.mapScale}<br>
+                    <strong>站点数量:</strong> ${errorDetails.stationsCount}<br>
+                    <strong>线路数量:</strong> ${errorDetails.linesCount}
+                `;
+                
+                // 兼容性检查部分
+                const compatSection = document.createElement('div');
+                compatSection.style.cssText = `
+                    background: #fff3e0;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border-left: 4px solid #ff9800;
+                `;
+                compatSection.innerHTML = `
+                    <strong>⚙️ 兼容性检查:</strong><br>
+                    <strong>Canvas支持:</strong> ${errorDetails.supportInfo.canvas ? '✅' : '❌'}<br>
+                    <strong>toDataURL支持:</strong> ${errorDetails.supportInfo.toDataURL ? '✅' : '❌'}<br>
+                    <strong>Blob支持:</strong> ${errorDetails.supportInfo.blob ? '✅' : '❌'}<br>
+                    <strong>下载支持:</strong> ${errorDetails.supportInfo.download ? '✅' : '❌'}
+                `;
+                
+                // 内存信息部分（如果有的话）
+                if (errorDetails.availableMemory) {
+                    const memorySection = document.createElement('div');
+                    memorySection.style.cssText = `
+                        background: #e8f5e8;
+                        border-radius: 8px;
+                        padding: 15px;
+                        border-left: 4px solid #4caf50;
+                    `;
+                    const mem = errorDetails.availableMemory;
+                    memorySection.innerHTML = `
+                        <strong>💾 内存信息:</strong><br>
+                        <strong>总内存:</strong> ${Math.round(mem.total / 1024 / 1024)}MB<br>
+                        <strong>已使用:</strong> ${Math.round(mem.used / 1024 / 1024)}MB<br>
+                        <strong>内存限制:</strong> ${Math.round(mem.limit / 1024 / 1024)}MB<br>
+                        <strong>使用率:</strong> ${mem.usage}%
+                    `;
+                    errorContent.appendChild(memorySection);
+                }
+                
+                // 调用堆栈部分
+                const stackSection = document.createElement('div');
+                stackSection.style.cssText = `
+                    background: #f5f5f5;
+                    border-radius: 8px;
+                    padding: 15px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    color: #666;
+                    line-height: 1.3;
+                    max-height: 150px;
+                    overflow-y: auto;
+                    border-left: 4px solid #607d8b;
+                `;
+                stackSection.innerHTML = `<strong>📋 调用堆栈:</strong><br>${errorDetails.stack}`;
+                
+                // 解决方案建议部分
+                const solutionSection = document.createElement('div');
+                solutionSection.style.cssText = `
+                    background: #e8f5e8;
+                    border-radius: 8px;
+                    padding: 15px;
+                    border-left: 4px solid #4caf50;
+                `;
+                
+                // 根据错误类型提供不同的解决建议
+                let suggestions = '';
+                if (errorDetails.deviceType === '移动设备') {
+                    suggestions = `
+                        <strong>💡 移动设备解决方案:</strong><br>
+                        • 确保浏览器版本较新（建议使用Chrome、Safari或Edge最新版本）<br>
+                        • 检查设备存储空间是否充足<br>
+                        • 尝试关闭其他标签页释放内存<br>
+                        • 如问题持续，请尝试在桌面设备上使用
+                    `;
+                } else {
+                    suggestions = `
+                        <strong>💡 桌面设备解决方案:</strong><br>
+                        • 刷新页面重试<br>
+                        • 检查浏览器是否支持Canvas功能<br>
+                        • 尝试使用其他浏览器<br>
+                        • 确保页面完全加载后再尝试保存
+                    `;
+                }
+                solutionSection.innerHTML = suggestions;
+                
+                // 组装内容
+                errorContent.appendChild(errorIcon);
+                errorContent.appendChild(errorTitle);
+                errorContent.appendChild(deviceSection);
+                errorContent.appendChild(errorSection);
+                errorContent.appendChild(mapSection);
+                errorContent.appendChild(compatSection);
+                errorContent.appendChild(stackSection);
+                errorContent.appendChild(solutionSection);
+                
+                // 创建确定按钮
+                const confirmBtn = document.createElement('button');
+                confirmBtn.textContent = '我知道了';
+                confirmBtn.style.cssText = `
+                    background: #d32f2f;
+                    color: white;
+                    border: none;
+                    padding: 12px 30px;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    min-width: 100px;
+                    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+                    align-self: center;
+                `;
+                
+                // 添加按钮悬停效果
+                confirmBtn.addEventListener('mouseenter', () => {
+                    confirmBtn.style.background = '#b71c1c';
+                    confirmBtn.style.transform = 'translateY(-2px)';
+                    confirmBtn.style.boxShadow = '0 6px 16px rgba(211, 47, 47, 0.4)';
+                });
+                confirmBtn.addEventListener('mouseleave', () => {
+                    confirmBtn.style.background = '#d32f2f';
+                    confirmBtn.style.transform = 'translateY(0)';
+                    confirmBtn.style.boxShadow = '0 4px 12px rgba(211, 47, 47, 0.3)';
+                });
+                
+                // 添加确定按钮事件
+                confirmBtn.addEventListener('click', () => {
+                    this.closeErrorPopup();
+                });
+                
+                // 点击弹窗背景关闭
+                errorPopup.addEventListener('click', (e) => {
+                    if (e.target === errorPopup) {
+                        this.closeErrorPopup();
+                    }
+                });
+                
+                errorContent.appendChild(confirmBtn);
+                errorPopup.appendChild(errorContent);
+                
+                // 添加到页面
+                document.body.appendChild(errorPopup);
+                
+                // 保存错误弹窗引用
+                window.currentErrorPopup = errorPopup;
+            }
         };
 
         // 初始化应用
