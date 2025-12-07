@@ -2557,8 +2557,10 @@
                     const requiredWidth = maxAbsX * 2 * scale * targetScale + margin * 2;
                     const requiredHeight = maxAbsY * 2 * scale * targetScale + margin * 2;
                     
-                    tempCanvas.width = Math.max(2000, requiredWidth);
-                    tempCanvas.height = Math.max(1500, requiredHeight);
+                    // 使用高分辨率以获得更清晰的图片
+                    const resolutionMultiplier = 3; // 提高分辨率倍数
+                    tempCanvas.width = Math.max(3000, requiredWidth * resolutionMultiplier);
+                    tempCanvas.height = Math.max(2250, requiredHeight * resolutionMultiplier);
                     
                     // 设置临时Canvas的上下文
                     tempCtx.fillStyle = '#ffffff';
@@ -2570,7 +2572,7 @@
                     
                     appState.canvas = tempCanvas;
                     appState.ctx = tempCtx;
-                    appState.mapScale = targetScale;
+                    appState.mapScale = targetScale * resolutionMultiplier;
                     
                     // 计算中心点（Canvas的中心）
                     const centerX = tempCanvas.width / 2;
@@ -2592,6 +2594,10 @@
                     
                     // 重新渲染完整地图
                     mapRenderer.clearMap();
+                    
+                    // 在临时Canvas上设置白色背景
+                    tempCtx.fillStyle = '#ffffff';
+                    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
                     
                     // 渲染所有线路和站点
                     if (appState.lines && appState.lines.length > 0) {
@@ -2619,7 +2625,7 @@
                     
                     // 创建下载链接
                     const link = document.createElement('a');
-                    link.download = `完整地铁线路图_${new Date().toLocaleDateString().replace(/\//g, '-')}.png`;
+                    link.download = `旧园通线路图_${new Date().toLocaleDateString().replace(/\//g, '-')}.png`;
                     link.href = dataURL;
                     
                     // 触发下载
@@ -2642,20 +2648,20 @@
                     line.stations.forEach(station => {
                         const screenPos = mapRenderer.worldToScreen(station.X, station.Y);
                         
-                        // 设置字体样式
-                        ctx.font = `${Math.max(10, 12 * scale)}px Arial, sans-serif`;
+                        // 设置字体样式（在高分辨率下保持清晰）
+                        ctx.font = `${Math.max(14, 16 * scale)}px Arial, sans-serif`;
                         ctx.fillStyle = '#000000';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
                         
                         // 绘制站点名字
-                        ctx.fillText(station.name, screenPos.x, screenPos.y - 15 * scale);
+                        ctx.fillText(station.name, screenPos.x, screenPos.y - 18 * scale);
                         
                         // 如果有英文名字，也绘制
                         if (station.englishName && station.englishName !== station.name) {
-                            ctx.font = `${Math.max(8, 10 * scale)}px Arial, sans-serif`;
-                            ctx.fillStyle = '#666666';
-                            ctx.fillText(station.englishName, screenPos.x, screenPos.y + 15 * scale);
+                            ctx.font = `${Math.max(12, 14 * scale)}px Arial, sans-serif`;
+                            ctx.fillStyle = '#333333';
+                            ctx.fillText(station.englishName, screenPos.x, screenPos.y + 18 * scale);
                         }
                     });
                 });
