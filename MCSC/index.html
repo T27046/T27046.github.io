@@ -836,7 +836,10 @@
             isPinching: false,
             lastTouchPos: { x: 0, y: 0 },
             lastTouchDistance: 0,
-            stationLabels: []
+            stationLabels: [],
+            // 新增：节点转折点管理
+            nodes: [],
+            nodeLabels: []
         };
 
         // 工具函数
@@ -1016,6 +1019,70 @@
                     'S6': '#b7ff00'       // 黄绿色（来自数据文件）
                 };
                 return colors[lineId] || '#000000'; // 默认黑色
+            },
+
+            // 节点数据结构
+            Node: class {
+                constructor(id, name, X, Y, type = 'turn') {
+                    this.id = id;
+                    this.name = name;
+                    this.X = X;
+                    this.Y = Y;
+                    this.type = type; // 'turn': 转折点, 'station': 站点
+                    this.connectedLines = [];
+                }
+            },
+
+            // 解析节点数据
+            parseNodeData(nodeData) {
+                const nodes = [];
+                const rows = nodeData.trim().split('\n');
+                const headers = rows[0].split(',');
+                
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (!row.trim()) continue;
+                    
+                    const values = [];
+                    let current = '';
+                    let inQuotes = false;
+                    
+                    for (let j = 0; j < row.length; j++) {
+                        const char = row[j];
+                        if (char === '"') {
+                            inQuotes = !inQuotes;
+                        } else if (char === ',' && !inQuotes) {
+                            values.push(current.trim());
+                            current = '';
+                        } else {
+                            current += char;
+                        }
+                    }
+                    values.push(current.trim());
+                    
+                    if (values.length === headers.length) {
+                        const nodeInfo = {};
+                        headers.forEach((header, index) => {
+                            nodeInfo[header] = values[index];
+                        });
+                        
+                        const node = new this.Node(
+                            nodeInfo.id || `node_${i}`,
+                            nodeInfo.name || `节点${i}`,
+                            parseFloat(nodeInfo.X || 0),
+                            parseFloat(nodeInfo.Y || 0),
+                            nodeInfo.type || 'turn'
+                        );
+                        
+                        if (nodeInfo.connectedLines) {
+                            node.connectedLines = nodeInfo.connectedLines.split(',').map(line => line.trim());
+                        }
+                        
+                        nodes.push(node);
+                    }
+                }
+                
+                return nodes;
             },
 
             parseJSONData(jsonText) {
@@ -1818,113 +1885,217 @@
                 return station ? station.englishName : chineseName;
             },
 
-            displayLines(lines) {
+            // 检测线路上的转折点
+            findTurnPoints(line) {
+                const turnPoints = [];
+                
+                if (line.stations.length < 3) {
+                    return turnPoints; // 少于3个站点无法形成转折
+                }
+                
+                // 检查每个中间站点是否为转折点
+                for (let i = 1; i < line.stations.length - 1; i++) {
+                    const prevStation = line.stations[i - 1];
+                    const currentStation = line.stations[i];
+                    const nextStation = line.stations[i + 1];
+                    
+                    // 计算向量
+                    const vec1 = {
+                        x: currentStation.X - prevStation.X,
+                        y: currentStation.Y - prevStation.Y
+                    };
+                    const vec2 = {
+                        x: nextStation.X - currentStation.X,
+                        y: nextStation.Y - currentStation.Y
+                    };
+                    
+                    // 计算向量夹角（使用点积公式）
+                    const dotProduct = vec1.x * vec2.x + vec1.y * vec2.y;
+                    const magnitude1 = Math.sqrt(vec1.x * vec1.x + vec1.y * vec1.y);
+                    const magnitude2 = Math.sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
+                    
+                    if (magnitude1 > 0 && magnitude2 > 0) {
+                        const cosAngle = dotProduct / (magnitude1 * magnitude2);
+                        const angle = Math.acos(Math.max(-1, Math.min(1, cosAngle))) * (180 / Math.PI);
+                        
+                        // 如果夹角小于150度，认为是转折点
+                        if (angle < 150) {
+                            turnPoints.push({
+                                station: currentStation,
+                                angle: angle,
+                                index: i
+                            });
+                        }
+                    }
+                }
+                
+                return turnPoints;
+            },
+
+            // 绘制带转折点的线路
+            displayLinesWithTurns(lines) {
                 lines.forEach(line => {
                     if (line.stations.length > 1) {
+                        // 查找转折点
+                        const turnPoints = this.findTurnPoints(line);
+                        
+                        // 如果没有转折点，直接绘制直线
+                        if (turnPoints.length === 0) {
+                            this.drawStraightLine(line);
+                        } else {
+                            // 分段绘制线路，在转折点处断开
+                            this.drawSegmentedLine(line, turnPoints);
+                        }
+                    }
+                });
+            },
+
+            // 绘制直线线路（无转折点）
+            drawStraightLine(line) {
+                appState.ctx.beginPath();
+                
+                line.stations.forEach((station, index) => {
+                    const screenPos = this.worldToScreen(station.X, station.Y);
+                    
+                    if (index === 0) {
+                        appState.ctx.moveTo(screenPos.x, screenPos.y);
+                    } else {
+                        appState.ctx.lineTo(screenPos.x, screenPos.y);
+                    }
+                });
+                
+                this.applyLineStyle(line);
+            },
+
+            // 绘制分段线路（有转折点）
+            drawSegmentedLine(line, turnPoints) {
+                const segments = [];
+                let startIndex = 0;
+                
+                // 根据转折点分割线路
+                turnPoints.forEach(turnPoint => {
+                    segments.push({
+                        start: startIndex,
+                        end: turnPoint.index,
+                        stations: line.stations.slice(startIndex, turnPoint.index + 1)
+                    });
+                    startIndex = turnPoint.index;
+                });
+                
+                // 添加最后一段
+                segments.push({
+                    start: startIndex,
+                    end: line.stations.length - 1,
+                    stations: line.stations.slice(startIndex)
+                });
+                
+                // 绘制每段线路
+                segments.forEach(segment => {
+                    if (segment.stations.length > 1) {
                         appState.ctx.beginPath();
                         
-                        // 绘制线路线段
-                        line.stations.forEach((station, index) => {
+                        segment.stations.forEach((station, index) => {
                             const screenPos = this.worldToScreen(station.X, station.Y);
                             
                             if (index === 0) {
                                 appState.ctx.moveTo(screenPos.x, screenPos.y);
                             } else {
-                                const prevStation = line.stations[index - 1];
-                                const prevScreenPos = this.worldToScreen(prevStation.X, prevStation.Y);
-                                
-                                // 计算两个站点之间的水平和垂直距离
-                                const dx = screenPos.x - prevScreenPos.x;
-                                const dy = screenPos.y - prevScreenPos.y;
-                                
-                                // 所有线路：取消倾角限制，直接绘制直线
                                 appState.ctx.lineTo(screenPos.x, screenPos.y);
                             }
                         });
                         
-                        appState.ctx.strokeStyle = line.color;
+                        this.applyLineStyle(line);
+                    }
+                });
+            },
+
+            // 应用线路样式
+            applyLineStyle(line) {
+                appState.ctx.strokeStyle = line.color;
+                
+                // 中国铁路特快线样式：更粗的线条和虚线样式
+                console.log(`渲染线路 ${line.name} - isExpress: ${line.isExpress}, lineType: ${line.lineType}`);
+                
+                if (line.lineType === 'walking') {
+                    // 步行路样式：特快线样式改灰，去除描边，增加线段距离，添加圆角
+                    console.log(`应用步行路样式到线路 ${line.name}`);
+                    
+                    appState.ctx.lineCap = 'round'; // 添加圆角效果
+                    
+                    // 根据地图缩放比例动态调整虚线样式，增加线段距离
+                    const dashLength = 12 * appState.mapScale;
+                    const gapLength = 12 * appState.mapScale; // 增加间隙距离
+                    
+                    // 直接绘制灰色虚线，去除描边
+                    appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
+                    appState.ctx.strokeStyle = '#808080'; // 灰色
+                    appState.ctx.lineWidth = 6 * appState.mapScale; // 与特快线彩色线条宽度一致
+                    appState.ctx.stroke();
+                    
+                } else if (line.isExpress) {
+                    console.log(`应用特快线样式到线路 ${line.name}`);
+                    
+                    // 中国铁路特快线样式：无圆角，黑色描边
+                    appState.ctx.lineCap = 'butt'; // 无圆角
+                    
+                    // 根据地图缩放比例动态调整虚线样式
+                    const dashLength = 12 * appState.mapScale;
+                    const gapLength = 8 * appState.mapScale;
+                    
+                    // 第一步：绘制完整的黑色背景描边（包括线段和间隙）
+                    appState.ctx.setLineDash([]); // 实线用于背景描边
+                    appState.ctx.strokeStyle = '#000000';
+                    appState.ctx.lineWidth = 8 * appState.mapScale; // 黑色描边宽度
+                    appState.ctx.stroke();
+                    
+                    // 第二步：绘制白色背景（包括线段和间隙）
+                    appState.ctx.setLineDash([]); // 实线用于白色背景
+                    appState.ctx.strokeStyle = '#FFFFFF';
+                    appState.ctx.lineWidth = 6 * appState.mapScale; // 白色背景宽度
+                    appState.ctx.stroke();
+                    
+                    // 第三步：绘制彩色虚线线段
+                    appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
+                    appState.ctx.strokeStyle = line.color;
+                    appState.ctx.lineWidth = 6 * appState.mapScale; // 彩色线条宽度
+                    appState.ctx.stroke();
+                    
+                } else {
+                    appState.ctx.lineCap = 'round';
+                    appState.ctx.lineWidth = 4 * appState.mapScale;
+                    appState.ctx.setLineDash([]); // 实线样式
+                    appState.ctx.stroke();
+                }
+            },
+
+            // 显示线路编号标签
+            displayLineLabels(lines) {
+                lines.forEach(line => {
+                    if (line.stations.length > 1 && line.lineType !== 'walking') {
+                        // 计算线路的几何中点，而不是站点位置
+                        const startStation = line.stations[0];
+                        const endStation = line.stations[line.stations.length - 1];
                         
-                        // 中国铁路特快线样式：更粗的线条和虚线样式
-                        console.log(`渲染线路 ${line.name} - isExpress: ${line.isExpress}, lineType: ${line.lineType}`);
+                        // 计算线路的几何中心点
+                        const centerX = (startStation.X + endStation.X) / 2;
+                        const centerY = (startStation.Y + endStation.Y) / 2;
                         
-                        if (line.lineType === 'walking') {
-                            // 步行路样式：特快线样式改灰，去除描边，增加线段距离，添加圆角
-                            console.log(`应用步行路样式到线路 ${line.name}`);
-                            
-                            appState.ctx.lineCap = 'round'; // 添加圆角效果
-                            
-                            // 根据地图缩放比例动态调整虚线样式，增加线段距离
-                            const dashLength = 12 * appState.mapScale;
-                            const gapLength = 12 * appState.mapScale; // 增加间隙距离
-                            
-                            // 直接绘制灰色虚线，去除描边
-                            appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
-                            appState.ctx.strokeStyle = '#808080'; // 灰色
-                            appState.ctx.lineWidth = 6 * appState.mapScale; // 与特快线彩色线条宽度一致
-                            appState.ctx.stroke();
-                            
-                        } else if (line.isExpress) {
-                            console.log(`应用特快线样式到线路 ${line.name}`);
-                            
-                            // 中国铁路特快线样式：无圆角，黑色描边
-                            appState.ctx.lineCap = 'butt'; // 无圆角
-                            
-                            // 根据地图缩放比例动态调整虚线样式
-                            const dashLength = 12 * appState.mapScale;
-                            const gapLength = 8 * appState.mapScale;
-                            
-                            // 第一步：绘制完整的黑色背景描边（包括线段和间隙）
-                            appState.ctx.setLineDash([]); // 实线用于背景描边
-                            appState.ctx.strokeStyle = '#000000';
-                            appState.ctx.lineWidth = 8 * appState.mapScale; // 黑色描边宽度
-                            appState.ctx.stroke();
-                            
-                            // 第二步：绘制白色背景（包括线段和间隙）
-                            appState.ctx.setLineDash([]); // 实线用于白色背景
-                            appState.ctx.strokeStyle = '#FFFFFF';
-                            appState.ctx.lineWidth = 6 * appState.mapScale; // 白色背景宽度
-                            appState.ctx.stroke();
-                            
-                            // 第三步：绘制彩色虚线线段
-                            appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
-                            appState.ctx.strokeStyle = line.color;
-                            appState.ctx.lineWidth = 6 * appState.mapScale; // 彩色线条宽度
-                            appState.ctx.stroke();
-                            
-                        } else {
-                            appState.ctx.lineCap = 'round';
-                            appState.ctx.lineWidth = 4 * appState.mapScale;
-                            appState.ctx.setLineDash([]); // 实线样式
-                            appState.ctx.stroke();
-                        }
+                        // 将世界坐标转换为屏幕坐标
+                        const centerScreenPos = this.worldToScreen(centerX, centerY);
                         
-                        // 在线路中间位置显示线路编号（避开站点位置）
-                        if (line.stations.length > 1 && line.lineType !== 'walking') {
-                            // 计算线路的几何中点，而不是站点位置
-                            const startStation = line.stations[0];
-                            const endStation = line.stations[line.stations.length - 1];
-                            
-                            // 计算线路的几何中心点
-                            const centerX = (startStation.X + endStation.X) / 2;
-                            const centerY = (startStation.Y + endStation.Y) / 2;
-                            
-                            // 将世界坐标转换为屏幕坐标
-                            const centerScreenPos = this.worldToScreen(centerX, centerY);
-                            
-                            // 设置文字样式
-                            appState.ctx.font = `${12 * appState.mapScale}px Arial`;
-                            appState.ctx.textAlign = 'center';
-                            appState.ctx.textBaseline = 'middle';
-                            
-                            // 添加白色描边背景，提高可读性
-                            appState.ctx.strokeStyle = '#FFFFFF';
-                            appState.ctx.lineWidth = 3 * appState.mapScale;
-                            appState.ctx.strokeText(line.id, centerScreenPos.x, centerScreenPos.y);
-                            
-                            // 绘制与线路颜色一致的编号文字
-                            appState.ctx.fillStyle = line.color;
-                            appState.ctx.fillText(line.id, centerScreenPos.x, centerScreenPos.y);
-                        }
+                        // 设置文字样式
+                        appState.ctx.font = `${12 * appState.mapScale}px Arial`;
+                        appState.ctx.textAlign = 'center';
+                        appState.ctx.textBaseline = 'middle';
+                        
+                        // 添加白色描边背景，提高可读性
+                        appState.ctx.strokeStyle = '#FFFFFF';
+                        appState.ctx.lineWidth = 3 * appState.mapScale;
+                        appState.ctx.strokeText(line.id, centerScreenPos.x, centerScreenPos.y);
+                        
+                        // 绘制与线路颜色一致的编号文字
+                        appState.ctx.fillStyle = line.color;
+                        appState.ctx.fillText(line.id, centerScreenPos.x, centerScreenPos.y);
                     }
                 });
             },
@@ -1964,8 +2135,42 @@
                 appState.ctx.fillRect(0, 0, appState.canvas.width, appState.canvas.height);
                 
                 if (appState.lines.length > 0) {
-                    this.displayLines(appState.lines);
+                    // 使用新的带转折点的线路绘制方法
+                    this.displayLinesWithTurns(appState.lines);
+                    this.displayLineLabels(appState.lines);
                     this.displayStations(appState.lines);
+                    
+                    // 显示节点转折点
+                    this.displayNodes();
+                }
+            },
+
+            // 显示节点转折点
+            displayNodes() {
+                if (appState.nodes && appState.nodes.length > 0) {
+                    appState.nodes.forEach(node => {
+                        const screenPos = this.worldToScreen(node.X, node.Y);
+                        
+                        // 绘制节点标记
+                        appState.ctx.beginPath();
+                        appState.ctx.arc(screenPos.x, screenPos.y, 6 * appState.mapScale, 0, 2 * Math.PI);
+                        appState.ctx.fillStyle = node.type === 'turn' ? '#FF6B6B' : '#4ECDC4';
+                        appState.ctx.fill();
+                        
+                        // 添加白色边框
+                        appState.ctx.strokeStyle = '#FFFFFF';
+                        appState.ctx.lineWidth = 2 * appState.mapScale;
+                        appState.ctx.stroke();
+                        
+                        // 显示节点名称（可选）
+                        if (appState.mapScale > 0.5) {
+                            appState.ctx.font = `${10 * appState.mapScale}px Arial`;
+                            appState.ctx.fillStyle = '#333333';
+                            appState.ctx.textAlign = 'center';
+                            appState.ctx.textBaseline = 'top';
+                            appState.ctx.fillText(node.name, screenPos.x, screenPos.y + 10 * appState.mapScale);
+                        }
+                    });
                 }
             },
 
