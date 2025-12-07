@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,8 @@
             user-select: none;
         }
 
-        html, body {
+        html,
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
@@ -267,7 +269,7 @@
             flex-direction: column;
             gap: 8px;
         }
-        
+
         .search-select-group {
             display: flex;
             flex-direction: column;
@@ -277,15 +279,15 @@
             padding: 16px;
             background: #f8fafc;
         }
-        
+
         .searchable-select-container {
             position: relative;
         }
-        
+
         .searchable-select {
             position: relative;
         }
-        
+
         .searchable-select-input {
             width: 100%;
             padding: 16px 20px;
@@ -301,18 +303,18 @@
             background-size: 16px;
             backdrop-filter: blur(10px);
         }
-        
+
         .searchable-select-input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             background-color: white;
         }
-        
+
         .searchable-select-input:hover {
             border-color: #b8c2cc;
         }
-        
+
         .searchable-select-options {
             position: absolute;
             top: 100%;
@@ -328,18 +330,18 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: none;
         }
-        
+
         .searchable-select-option {
             padding: 12px;
             cursor: pointer;
             border-bottom: 1px solid #f2f2f7;
             transition: background-color 0.2s ease;
         }
-        
+
         .searchable-select-option:hover {
             background-color: #f2f2f7;
         }
-        
+
         .searchable-select-option:last-child {
             border-bottom: none;
         }
@@ -366,7 +368,7 @@
             outline: none;
             border-color: #007AFF;
         }
-        
+
         .strategy-select {
             width: 100%;
             padding: 12px;
@@ -384,12 +386,12 @@
             background-size: 16px;
             margin-bottom: 8px;
         }
-        
+
         .strategy-select:focus {
             outline: none;
             border-color: #007AFF;
         }
-        
+
         .route-options {
             margin: 15px 0;
             padding: 10px;
@@ -397,7 +399,7 @@
             border-radius: 8px;
             border: 1px solid #e0e0e0;
         }
-        
+
         .route-options label {
             display: block;
             margin-bottom: 5px;
@@ -408,7 +410,8 @@
 
 
 
-        .route-info, .transfer-info {
+        .route-info,
+        .transfer-info {
             margin-top: 12px;
             max-height: 120px;
             overflow-y: auto;
@@ -508,7 +511,8 @@
             border: none;
             font-size: 12px;
             font-weight: 600;
-            color: #000000; /* 黑色文字 */
+            color: #000000;
+            /* 黑色文字 */
             white-space: nowrap;
             box-shadow: none;
             /*text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.6);*/
@@ -517,7 +521,7 @@
             z-index: 100;
             transform: translate(-50%, -100%);
         }
-        
+
         /* 双语站名样式 */
         .station-name-chinese {
             background: none;
@@ -525,45 +529,48 @@
             border: none;
             font-size: 11px;
             font-weight: bold;
-            color: #000000; /* 黑色文字 */
+            color: #000000;
+            /* 黑色文字 */
             white-space: nowrap;
             box-shadow: none;
             /*text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.6);*/
             backdrop-filter: none;
             margin-bottom: 1px;
         }
-        
+
         .station-name-english {
             background: none;
             padding: 0;
             border: none;
             font-size: 9px;
             font-weight: normal;
-            color: #333333; /* 深灰色 */
+            color: #333333;
+            /* 深灰色 */
             white-space: nowrap;
             box-shadow: none;
             /*text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6); */
             backdrop-filter: none;
         }
-        
+
         /* 换乘信息样式 */
         .station-transfer-info {
             margin-top: 2px;
             padding: 2px 4px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 3px;
-            color: #000000; /* 黑色文字 */
+            color: #000000;
+            /* 黑色文字 */
             /*text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.6);*/
             border: 1px solid #e0e0e0;
             font-size: 8px;
             line-height: 1.2;
         }
-        
+
         .transfer-lines {
             color: #007AFF;
             font-weight: bold;
         }
-        
+
         .transfer-platforms {
             color: #666666;
             font-size: 7px;
@@ -573,36 +580,36 @@
 
         /* 移动端优化 - 高德地图风格 */
         @media (max-width: 768px) {
-            
+
             .btn {
                 padding: 5px 8px;
                 font-size: 11px;
                 min-height: 30px;
                 border-radius: 6px;
             }
-            
+
             .btn.primary {
                 background: linear-gradient(135deg, #1E90FF, #007AFF);
             }
-            
+
             .btn.secondary {
                 background: rgba(255, 255, 255, 0.9);
                 color: #007AFF;
                 border: 1px solid rgba(30, 144, 255, 0.3);
             }
-            
+
             .sidebar {
                 max-height: 35vh;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
                 border-bottom: 1px solid rgba(30, 144, 255, 0.3);
             }
-            
+
             .panel-container {
                 padding: 6px 10px;
                 gap: 6px;
             }
-            
+
             .panel {
                 padding: 10px;
                 min-width: 260px;
@@ -610,23 +617,23 @@
                 border: 1px solid rgba(30, 144, 255, 0.15);
                 box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
             }
-            
+
             .panel h3 {
                 font-size: 13px;
                 margin-bottom: 6px;
                 color: #007AFF;
             }
-            
+
             .station-select {
                 padding: 8px;
                 font-size: 12px;
                 border: 1px solid rgba(30, 144, 255, 0.2);
             }
-            
+
             .map-container {
                 background: #f8f9fa;
             }
-            
+
             .map-btn {
                 width: 44px;
                 height: 44px;
@@ -634,13 +641,13 @@
                 background: linear-gradient(135deg, #1E90FF, #007AFF);
                 box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
             }
-            
+
             .map-controls {
                 top: 16px;
                 right: 12px;
                 gap: 4px;
             }
-            
+
             .station-label {
                 background: none;
                 border: none;
@@ -651,53 +658,53 @@
 
         /* 小屏幕手机优化 - 高德地图风格 */
         @media (max-width: 480px) {
-            
+
             .btn {
                 padding: 4px 6px;
                 font-size: 10px;
                 min-height: 28px;
                 border-radius: 4px;
             }
-            
+
             .sidebar {
                 max-height: 28vh;
             }
-            
+
             .panel-container {
                 padding: 4px 8px;
                 gap: 4px;
             }
-            
+
             .panel {
                 padding: 8px;
                 min-width: 220px;
             }
-            
+
             .panel h3 {
                 font-size: 12px;
                 margin-bottom: 4px;
             }
-            
+
             .station-select {
                 padding: 6px;
                 font-size: 11px;
             }
-            
+
             .map-container {
                 height: 72vh;
             }
-            
+
             .map-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
             }
-            
+
             .map-controls {
                 top: 12px;
                 right: 8px;
             }
-            
+
             .station-label {
                 font-size: 8px;
                 padding: 0;
@@ -706,7 +713,7 @@
                 box-shadow: none;
                 text-shadow: none;
             }
-            
+
             .notification {
                 top: 10px;
                 right: 10px;
@@ -725,7 +732,7 @@
             color: white;
             z-index: 10000;
             animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
             font-weight: 600;
             font-size: 15px;
             backdrop-filter: blur(20px);
@@ -746,6 +753,7 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -753,6 +761,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
 
@@ -774,10 +783,11 @@
                 <!-- 收起/展开按钮 -->
                 <div class="bottom-panel-toggle" onclick="utils.toggleBottomPanel()">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
                     </svg>
                 </div>
-                
+
                 <div class="panel">
                     <h3>站点选择</h3>
                     <div class="route-form">
@@ -792,7 +802,7 @@
                                     <option value="">选择起点站</option>
                                 </select>
                             </div>
-                            
+
                             <div class="searchable-select-container">
                                 <div class="searchable-select" data-for="endStation">
                                     <input type="text" class="searchable-select-input" placeholder="搜索终点站...">
@@ -803,14 +813,14 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <button id="calculateRoute" class="btn primary">计算路径</button>
                     </div>
                     <div id="routeInfo" class="route-info">
                         <p>请选择起点和终点站进行路径规划</p>
                     </div>
                 </div>
-                
+
                 <div class="panel">
                     <h3>换乘信息</h3>
                     <div id="transferInfo" class="transfer-info">
@@ -845,60 +855,60 @@
                 const notification = document.createElement('div');
                 notification.className = `notification ${type}`;
                 notification.textContent = message;
-                
+
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.remove();
                 }, 3000);
             },
 
             // 移动端侧边栏折叠功能
-        toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('collapsed');
-        },
+            toggleSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.classList.toggle('collapsed');
+            },
 
-        // 检测是否为移动设备（基于显示区域尺寸）
-        isMobileDevice() {
-            return window.innerWidth <= 768;
-        },
+            // 检测是否为移动设备（基于显示区域尺寸）
+            isMobileDevice() {
+                return window.innerWidth <= 768;
+            },
 
-        // 底部面板收起/展开功能
-        toggleBottomPanel() {
-            const bottomPanel = document.querySelector('.bottom-panel');
-            const toggleButton = document.querySelector('.bottom-panel-toggle');
-            const isCollapsed = bottomPanel.classList.toggle('collapsed');
-            
-            // 更新按钮提示文本
-            if (isCollapsed) {
-                toggleButton.setAttribute('title', '展开面板');
-                toggleButton.setAttribute('aria-label', '展开底部面板');
-                // 添加收起状态指示
-                this.showNotification('底部面板已收起', 'success');
-            } else {
-                toggleButton.setAttribute('title', '收起面板');
-                toggleButton.setAttribute('aria-label', '收起底部面板');
-                // 添加展开状态指示
-                this.showNotification('底部面板已展开', 'success');
-            }
-        },
+            // 底部面板收起/展开功能
+            toggleBottomPanel() {
+                const bottomPanel = document.querySelector('.bottom-panel');
+                const toggleButton = document.querySelector('.bottom-panel-toggle');
+                const isCollapsed = bottomPanel.classList.toggle('collapsed');
+
+                // 更新按钮提示文本
+                if (isCollapsed) {
+                    toggleButton.setAttribute('title', '展开面板');
+                    toggleButton.setAttribute('aria-label', '展开底部面板');
+                    // 添加收起状态指示
+                    this.showNotification('底部面板已收起', 'success');
+                } else {
+                    toggleButton.setAttribute('title', '收起面板');
+                    toggleButton.setAttribute('aria-label', '收起底部面板');
+                    // 添加展开状态指示
+                    this.showNotification('底部面板已展开', 'success');
+                }
+            },
 
             parseCSV(csvText) {
                 const lines = csvText.trim().split('\n');
                 const headers = lines[0].split(',').map(h => h.trim());
                 const data = [];
-                
+
                 for (let i = 1; i < lines.length; i++) {
                     // 改进的CSV解析，处理包含逗号的引号字段
                     const line = lines[i];
                     const values = [];
                     let current = '';
                     let inQuotes = false;
-                    
+
                     for (let j = 0; j < line.length; j++) {
                         const char = line[j];
-                        
+
                         if (char === '"') {
                             inQuotes = !inQuotes;
                         } else if (char === ',' && !inQuotes) {
@@ -909,10 +919,10 @@
                         }
                     }
                     values.push(current.trim()); // 添加最后一个字段
-                    
+
                     // 移除字段值中的引号
                     const cleanedValues = values.map(v => v.replace(/^"/, '').replace(/"$/, ''));
-                    
+
                     if (cleanedValues.length === headers.length) {
                         const item = {};
                         headers.forEach((header, index) => {
@@ -944,14 +954,14 @@
         const dataProcessor = {
             parseCSVData(csvText) {
                 const data = utils.parseCSV(csvText);
-                
+
                 // 按线路分组站点数据
                 const linesMap = new Map();
-                
+
                 data.forEach(item => {
                     const lineId = item.line || '1';
                     const lineName = item.lineName || `线路${lineId}`;
-                    
+
                     if (!linesMap.has(lineId)) {
                         linesMap.set(lineId, {
                             id: lineId,
@@ -960,7 +970,7 @@
                             stations: []
                         });
                     }
-                    
+
                     const station = {
                         name: item.name || item.station || '',
                         englishName: item.englishName || item.english_name || item.name || '',
@@ -972,23 +982,23 @@
                         transferLines: item.transferLines ? item.transferLines.split(',').map(line => line.trim()) : [],
                         transferPlatforms: item.transferPlatforms ? item.transferPlatforms.split(',').map(platform => platform.trim()) : []
                     };
-                    
+
                     if (station.name && !isNaN(station.latitude) && !isNaN(station.longitude)) {
                         linesMap.get(lineId).stations.push(station);
                     }
                 });
-                
+
                 // 对每条线路的站点按sequence排序
                 linesMap.forEach(line => {
                     line.stations.sort((a, b) => a.sequence - b.sequence);
                 });
-                
+
                 return {
                     lines: Array.from(linesMap.values()),
                     stations: Array.from(linesMap.values()).flatMap(line => line.stations)
                 };
             },
-            
+
             getLineColor(lineId) {
                 const colors = {
                     '1': '#FF0000',        // 红色
@@ -1034,7 +1044,7 @@
 
             groupStationsByLine(stations) {
                 const linesMap = new Map();
-                
+
                 stations.forEach(station => {
                     if (!linesMap.has(station.line)) {
                         linesMap.set(station.line, {
@@ -1046,22 +1056,22 @@
                     }
                     linesMap.get(station.line).stations.push(station);
                 });
-                
+
                 // 按站点顺序排序，支持sequenceList
                 linesMap.forEach(line => {
                     line.stations.sort((a, b) => {
                         // 优先使用sequenceList中对应线路的顺序
                         const aSeqList = a.sequenceList || [a.sequence];
                         const bSeqList = b.sequenceList || [b.sequence];
-                        
+
                         // 使用第一个有效的序列值进行排序
                         const aSeq = aSeqList.length > 0 ? aSeqList[0] : a.sequence;
                         const bSeq = bSeqList.length > 0 ? bSeqList[0] : b.sequence;
-                        
+
                         return aSeq - bSeq;
                     });
                 });
-                
+
                 return Array.from(linesMap.values());
             },
 
@@ -1071,15 +1081,15 @@
                 const lines = [];
                 const rows = lineData.trim().split('\n');
                 const headers = rows[0].split(',');
-                
+
                 for (let i = 1; i < rows.length; i++) {
                     const row = rows[i];
                     if (!row.trim()) continue;
-                    
+
                     const values = [];
                     let current = '';
                     let inQuotes = false;
-                    
+
                     for (let j = 0; j < row.length; j++) {
                         const char = row[j];
                         if (char === '"') {
@@ -1092,7 +1102,7 @@
                         }
                     }
                     values.push(current.trim());
-                    
+
                     if (values.length === headers.length) {
                         const line = {};
                         headers.forEach((header, index) => {
@@ -1101,7 +1111,7 @@
                         lines.push(line);
                     }
                 }
-                
+
                 return lines;
             },
 
@@ -1109,15 +1119,15 @@
                 const stations = [];
                 const rows = stationData.trim().split('\n');
                 const headers = rows[0].split(',');
-                
+
                 for (let i = 1; i < rows.length; i++) {
                     const row = rows[i];
                     if (!row.trim()) continue;
-                    
+
                     const values = [];
                     let current = '';
                     let inQuotes = false;
-                    
+
                     for (let j = 0; j < row.length; j++) {
                         const char = row[j];
                         if (char === '"') {
@@ -1130,7 +1140,7 @@
                         }
                     }
                     values.push(current.trim());
-                    
+
                     if (values.length === headers.length) {
                         const station = {};
                         headers.forEach((header, index) => {
@@ -1139,20 +1149,20 @@
                         stations.push(station);
                     }
                 }
-                
+
                 return stations;
             },
 
             combineLineAndStationData(linesData, stationsData) {
                 const lines = [];
                 const stations = [];
-                
+
                 // 处理每条线路
                 linesData.forEach((lineInfo, index) => {
                     // 生成默认的线路ID和名称（对于没有lineId和lineName的步行路线路）
                     const lineId = lineInfo.lineId || `W${index + 1}`;
                     const lineName = lineInfo.lineName || '步行路';
-                    
+
                     const line = {
                         id: lineId,
                         name: lineName,
@@ -1161,7 +1171,7 @@
                         lineType: lineInfo.lineType || 'subway', // 默认地铁类型
                         stations: []
                     };
-                    
+
                     // 解析站点序列
                     if (lineInfo.stationSequence) {
                         const stationPairs = lineInfo.stationSequence.split(',');
@@ -1183,7 +1193,7 @@
                                         transferLines: stationInfo.transferLines ? stationInfo.transferLines.split(',') : [],
                                         transferPlatforms: stationInfo.transferPlatforms ? stationInfo.transferPlatforms.split(',') : [],
                                         isMajor: stationInfo.isMajor === 'true',
-                                        management: stationInfo.management || '' 
+                                        management: stationInfo.management || ''
                                     };
                                     line.stations.push(station);
                                     stations.push(station);
@@ -1191,12 +1201,12 @@
                             }
                         });
                     }
-                    
+
                     // 按序列号排序站点
                     line.stations.sort((a, b) => a.sequence - b.sequence);
                     lines.push(line);
                 });
-                
+
                 return { lines, stations };
             }
         };
@@ -1205,13 +1215,13 @@
         const routePlanner = {
             buildGraph(lines) {
                 const graph = {};
-                
+
                 // 首先收集所有站点（包含步行路线路）
                 const allStations = [];
                 lines.forEach(line => {
                     allStations.push(...line.stations);
                 });
-                
+
                 // 连接同一条线路上的相邻站点（包含步行路线路）
                 // 只连接至少包含2个站点的线路，确保用户能够乘坐该线路到另一站
                 lines.forEach(line => {
@@ -1219,56 +1229,56 @@
                     if (line.stations.length < 2) {
                         return;
                     }
-                    
+
                     const stations = line.stations;
                     for (let i = 0; i < stations.length - 1; i++) {
                         const stationA = stations[i];
                         const stationB = stations[i + 1];
-                        
+
                         // 使用唯一标识符作为节点名称
                         const nodeA = `${stationA.name}_${stationA.line}`;
                         const nodeB = `${stationB.name}_${stationB.line}`;
-                        
+
                         const distance = utils.calculateDistance(
                             stationA.X, stationA.Y,
                             stationB.X, stationB.Y
                         );
-                        
+
                         if (!graph[nodeA]) graph[nodeA] = {};
                         if (!graph[nodeB]) graph[nodeB] = {};
-                        
+
                         graph[nodeA][nodeB] = distance;
                         graph[nodeB][nodeA] = distance;
                     }
                 });
-                
+
                 // 连接换乘站（允许步行路线路与地铁线路之间的换乘）
                 allStations.forEach(stationA => {
                     // 对于步行路线路，允许与地铁线路换乘，即使站点本身不支持换乘
                     const lineAInfo = lines.find(l => l.id === stationA.line);
                     const isWalkingLineA = lineAInfo && lineAInfo.lineType === 'walking';
-                    
+
                     // 如果站点支持换乘，或者是步行路线路的站点，则允许换乘连接
                     if (stationA.transfer || isWalkingLineA) {
                         const nodeA = `${stationA.name}_${stationA.line}`;
-                        
+
                         // 查找同一位置的其他站点
                         allStations.forEach(stationB => {
                             if (stationB.name === stationA.name && stationB.line !== stationA.line) {
                                 // 查找线路B信息
                                 const lineBInfo = lines.find(l => l.id === stationB.line);
                                 const isWalkingLineB = lineBInfo && lineBInfo.lineType === 'walking';
-                                
+
                                 // 对于步行路线路与地铁线路之间的换乘，允许连接
                                 // 或者两个站点都支持换乘
-                                if ((stationB.transfer || isWalkingLineB) && lineAInfo && lineBInfo && 
+                                if ((stationB.transfer || isWalkingLineB) && lineAInfo && lineBInfo &&
                                     !(lineAInfo.isExpress && lineBInfo.isExpress)) {
-                                    
+
                                     const nodeB = `${stationB.name}_${stationB.line}`;
-                                    
+
                                     if (!graph[nodeA]) graph[nodeA] = {};
                                     if (!graph[nodeB]) graph[nodeB] = {};
-                                    
+
                                     // 换乘距离设为0（同一位置）
                                     graph[nodeA][nodeB] = 0;
                                     graph[nodeB][nodeA] = 0;
@@ -1277,7 +1287,7 @@
                         });
                     }
                 });
-                
+
                 return graph;
             },
 
@@ -1285,25 +1295,25 @@
                 const distances = {};
                 const previous = {};
                 const nodes = new Set();
-                
+
                 // 处理起点和终点，如果它们不包含线路信息，需要找到对应的节点
                 let startNode = start;
                 let endNode = end;
-                
+
                 if (!start.includes('_')) {
                     const matchingNodes = Object.keys(graph).filter(node => node.startsWith(start + '_'));
                     if (matchingNodes.length > 0) {
                         startNode = matchingNodes[0];
                     }
                 }
-                
+
                 if (!end.includes('_')) {
                     const matchingNodes = Object.keys(graph).filter(node => node.startsWith(end + '_'));
                     if (matchingNodes.length > 0) {
                         endNode = matchingNodes[0];
                     }
                 }
-                
+
                 // 初始化
                 for (let node in graph) {
                     distances[node] = Infinity;
@@ -1311,7 +1321,7 @@
                     nodes.add(node);
                 }
                 distances[startNode] = 0;
-                
+
                 while (nodes.size > 0) {
                     let smallest = null;
                     for (let node of nodes) {
@@ -1319,11 +1329,11 @@
                             smallest = node;
                         }
                     }
-                    
+
                     if (smallest === endNode) break;
-                    
+
                     nodes.delete(smallest);
-                    
+
                     for (let neighbor in graph[smallest]) {
                         const edgeWeight = graph[smallest][neighbor];
                         const alt = distances[smallest] + edgeWeight;
@@ -1333,7 +1343,7 @@
                         }
                     }
                 }
-                
+
                 // 构建路径
                 const path = [];
                 let current = endNode;
@@ -1341,7 +1351,7 @@
                     path.unshift(current);
                     current = previous[current];
                 }
-                
+
                 return {
                     distance: distances[endNode],
                     path: path
@@ -1352,7 +1362,7 @@
                 const transfers = [];
                 let currentLine = null;
                 let currentSegment = [];
-                
+
                 route.path.forEach((station, index) => {
                     // 查找站点信息，考虑站点名称可能重复的情况
                     const stationInfo = appState.stations.find(s => {
@@ -1363,12 +1373,12 @@
                         // 否则按名称匹配
                         return s.name === station;
                     });
-                    
+
                     if (!stationInfo) return;
-                    
+
                     // 查找线路信息
                     const lineInfo = lines.find(l => l.id === stationInfo.line);
-                    
+
                     // 如果是步行路线路，显示为步行换乘
                     if (lineInfo && lineInfo.lineType === 'walking') {
                         if (currentSegment.length > 1) { // 只添加至少包含2个站点的线路段
@@ -1388,7 +1398,7 @@
                         currentSegment = [];
                         return;
                     }
-                    
+
                     if (stationInfo.line !== currentLine) {
                         if (currentSegment.length > 1) { // 只添加至少包含2个站点的线路段
                             transfers.push({
@@ -1403,7 +1413,7 @@
                         currentSegment.push(station);
                     }
                 });
-                
+
                 if (currentSegment.length > 1) { // 只添加至少包含2个站点的线路段
                     transfers.push({
                         line: currentLine,
@@ -1411,7 +1421,7 @@
                         stations: currentSegment
                     });
                 }
-                
+
                 return transfers;
             }
         };
@@ -1421,16 +1431,16 @@
             init() {
                 appState.canvas = document.getElementById('mapCanvas');
                 appState.ctx = appState.canvas.getContext('2d');
-                
+
                 this.resizeCanvas();
                 window.addEventListener('resize', () => this.resizeCanvas());
-                
+
                 // 绑定事件（使用箭头函数保持正确的this上下文）
                 appState.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
                 appState.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
                 appState.canvas.addEventListener('mouseup', () => this.handleMouseUp());
                 appState.canvas.addEventListener('wheel', (e) => this.handleWheel(e));
-                
+
                 // 触摸事件支持
                 appState.canvas.addEventListener('touchstart', (e) => this.handleTouchStart(e));
                 appState.canvas.addEventListener('touchmove', (e) => this.handleTouchMove(e));
@@ -1453,12 +1463,12 @@
                 if (appState.isDragging) {
                     const deltaX = e.clientX - appState.lastMousePos.x;
                     const deltaY = e.clientY - appState.lastMousePos.y;
-                    
+
                     // 根据地图缩放比例调整移动速度（使用平方根函数实现更平滑的调整）
                     const speedFactor = Math.sqrt(1 / appState.mapScale);
                     appState.mapOffset.x += deltaX * speedFactor;
                     appState.mapOffset.y += deltaY * speedFactor;
-                    
+
                     appState.lastMousePos = { x: e.clientX, y: e.clientY };
                     this.render();
                 }
@@ -1471,39 +1481,39 @@
 
             handleWheel(e) {
                 e.preventDefault();
-                
+
                 // 获取鼠标相对于画布的位置
                 const canvasRect = appState.canvas.getBoundingClientRect();
                 const mouseX = e.clientX - canvasRect.left;
                 const mouseY = e.clientY - canvasRect.top;
-                
+
                 // 计算缩放前的鼠标位置对应的世界坐标
                 const oldScale = appState.mapScale;
                 const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
                 const newScale = Math.max(0.5, Math.min(3, oldScale * zoomFactor));
-                
+
                 // 计算缩放中心的世界坐标
                 const centerX = appState.canvas.width / 2;
                 const centerY = appState.canvas.height / 2;
                 const scale = 2; // 与worldToScreen中的scale一致
                 const offsetX = 400; // 与worldToScreen中的offsetX一致
                 const offsetY = -100; // 与worldToScreen中的offsetY一致
-                
+
                 // 将鼠标位置转换为世界坐标
                 const worldX = (mouseX - centerX - appState.mapOffset.x) / (scale * oldScale) - offsetX;
                 const worldY = (mouseY - centerY - appState.mapOffset.y) / (scale * oldScale) - offsetY;
-                
+
                 // 更新缩放比例
                 appState.mapScale = newScale;
-                
+
                 // 计算缩放后的鼠标位置应该对应的屏幕坐标
                 const newScreenX = centerX + (worldX + offsetX) * scale * newScale + appState.mapOffset.x;
                 const newScreenY = centerY + (worldY + offsetY) * scale * newScale + appState.mapOffset.y;
-                
+
                 // 调整地图偏移量，使鼠标位置保持不变
                 appState.mapOffset.x += mouseX - newScreenX;
                 appState.mapOffset.y += mouseY - newScreenY;
-                
+
                 this.render();
             },
 
@@ -1511,9 +1521,9 @@
                 e.preventDefault();
                 if (e.touches.length === 1) {
                     appState.isDragging = true;
-                    appState.lastTouchPos = { 
-                        x: e.touches[0].clientX, 
-                        y: e.touches[0].clientY 
+                    appState.lastTouchPos = {
+                        x: e.touches[0].clientX,
+                        y: e.touches[0].clientY
                     };
                 } else if (e.touches.length === 2) {
                     appState.isPinching = true;
@@ -1528,37 +1538,37 @@
                 if (appState.isDragging && e.touches.length === 1) {
                     const deltaX = e.touches[0].clientX - appState.lastTouchPos.x;
                     const deltaY = e.touches[0].clientY - appState.lastTouchPos.y;
-                    
+
                     // 根据地图缩放比例调整移动速度（使用平方根函数实现更平滑的调整）
                     const speedFactor = Math.sqrt(1 / appState.mapScale);
                     appState.mapOffset.x += deltaX * speedFactor;
                     appState.mapOffset.y += deltaY * speedFactor;
-                    
-                    appState.lastTouchPos = { 
-                        x: e.touches[0].clientX, 
-                        y: e.touches[0].clientY 
+
+                    appState.lastTouchPos = {
+                        x: e.touches[0].clientX,
+                        y: e.touches[0].clientY
                     };
                     this.render();
                 } else if (appState.isPinching && e.touches.length === 2) {
                     const currentDistance = this.getTouchDistance(e.touches[0], e.touches[1]);
                     const scaleFactor = currentDistance / appState.lastTouchDistance;
-                    
+
                     // 获取当前多指落点中心
                     const currentCenter = this.getTouchCenter(e.touches[0], e.touches[1]);
-                    
+
                     // 保存旧的缩放比例
                     const oldScale = appState.mapScale;
-                    
+
                     // 更新缩放比例
                     appState.mapScale = Math.max(0.5, Math.min(3, appState.mapScale * scaleFactor));
                     appState.lastTouchDistance = currentDistance;
-                    
+
                     // 以多指落点中心为缩放中心，调整地图偏移量
                     this.adjustOffsetForPinchZoom(oldScale, appState.lastTouchCenter, currentCenter);
-                    
+
                     // 更新中心位置
                     appState.lastTouchCenter = currentCenter;
-                    
+
                     this.render();
                 }
             },
@@ -1583,28 +1593,28 @@
 
             adjustOffsetForPinchZoom(oldScale, oldCenter, newCenter) {
                 const canvasRect = appState.canvas.getBoundingClientRect();
-                
+
                 // 将屏幕坐标转换为相对于画布的坐标
                 const oldCenterX = oldCenter.x - canvasRect.left;
                 const oldCenterY = oldCenter.y - canvasRect.top;
                 const newCenterX = newCenter.x - canvasRect.left;
                 const newCenterY = newCenter.y - canvasRect.top;
-                
+
                 // 计算缩放前的中心点对应的世界坐标
                 const centerX = appState.canvas.width / 2;
                 const centerY = appState.canvas.height / 2;
                 const scale = 2; // 与worldToScreen中的scale一致
                 const offsetX = 400; // 与worldToScreen中的offsetX一致
                 const offsetY = -100; // 与worldToScreen中的offsetY一致
-                
+
                 // 将旧的中心点位置转换为世界坐标
                 const worldX = (oldCenterX - centerX - appState.mapOffset.x) / (scale * oldScale) - offsetX;
                 const worldY = (oldCenterY - centerY - appState.mapOffset.y) / (scale * oldScale) - offsetY;
-                
+
                 // 计算缩放后的中心点应该对应的屏幕坐标
                 const newScreenX = centerX + (worldX + offsetX) * scale * appState.mapScale + appState.mapOffset.x;
                 const newScreenY = centerY + (worldY + offsetY) * scale * appState.mapScale + appState.mapOffset.y;
-                
+
                 // 调整地图偏移量，使新的中心点位置保持不变
                 appState.mapOffset.x += newCenterX - newScreenX;
                 appState.mapOffset.y += newCenterY - newScreenY;
@@ -1613,17 +1623,17 @@
             worldToScreen(x, y) {
                 const centerX = appState.canvas.width / 2;
                 const centerY = appState.canvas.height / 2;
-                
+
                 // 根据数据范围优化平面坐标系转换
                 // 数据范围：x: -963 到 39.9, y: 18 到 333
                 // 使用更合适的缩放因子和偏移量
                 const scale = 2; // 优化后的缩放因子
                 const offsetX = 400; // x轴偏移，使数据居中显示
                 const offsetY = -100; // y轴偏移，使数据居中显示
-                
+
                 const screenX = centerX + (x + offsetX) * scale * appState.mapScale + appState.mapOffset.x;
                 const screenY = centerY + (y + offsetY) * scale * appState.mapScale + appState.mapOffset.y;
-                
+
                 return { x: screenX, y: screenY };
             },
 
@@ -1647,20 +1657,20 @@
 
             displayStations(lines) {
                 this.clearStationLabels();
-                
+
                 lines.forEach(line => {
                     line.stations.forEach(station => {
                         const screenPos = this.worldToScreen(station.X, station.Y);
-                        
+
                         // 绘制站点标记 - 通过两个重叠的圆实现黑色描边白色背景
-                        
+
                         // 先绘制大黑圆作为描边
                         appState.ctx.beginPath();
                         const outerRadius = 6 * appState.mapScale; // 外圆半径
                         appState.ctx.arc(screenPos.x, screenPos.y, outerRadius, 0, 2 * Math.PI);
                         appState.ctx.fillStyle = '#000000'; // 黑色填充
                         appState.ctx.fill();
-                        
+
                         // 再绘制小白圆作为背景
                         appState.ctx.beginPath();
                         const innerRadius = 5.5 * appState.mapScale; // 内圆半径，略小于外圆
@@ -1676,36 +1686,36 @@
             addStationLabel(station, x, y) {
                 const label = document.createElement('div');
                 label.className = 'station-label';
-                
+
                 // 根据地图缩放比例动态计算字体大小
                 const baseFontScale = appState.mapScale;
                 const chineseFontSize = Math.max(8, 11 * baseFontScale); // 中文站名基础大小11px
                 const englishFontSize = Math.max(6, 9 * baseFontScale);  // 英文站名基础大小9px
                 const transferFontSize = Math.max(6, 8 * baseFontScale); // 换乘信息基础大小8px
                 const platformFontSize = Math.max(5, 7 * baseFontScale); // 站台信息基础大小7px
-                
+
                 // 创建双语显示：中文名称 + 英文名称
                 const chineseName = station.name;
                 const englishName = station.englishName;
-                
+
                 // 创建运营单位信息显示
                 let managementInfo = '';
                 if (station.management) {
                     managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #a00;">${station.management}</div>`;
                 }
-                
+
                 // 创建换乘信息显示 - 处理线路数和站台数不等的情况
                 let transferInfo = '';
                 if (station.transfer && station.transferLines.length > 0) {
                     const transferLines = station.transferLines.join('、');
-                    
+
                     // 只有当有换乘站台信息时才显示站台信息
                     let platformsInfo = '';
                     if (station.transferPlatforms && station.transferPlatforms.length > 0) {
                         const transferPlatforms = station.transferPlatforms.join('、');
                         platformsInfo = `<div class="transfer-platforms" style="font-size: ${platformFontSize}px;">换乘站台：${transferPlatforms}</div>`;
                     }
-                    
+
                     transferInfo = `
                         <div class="station-transfer-info" style="font-size: ${transferFontSize}px;">
                             <div class="transfer-lines">换乘线路：${transferLines}</div>
@@ -1713,38 +1723,38 @@
                         </div>
                     `;
                 }
-                
+
                 label.innerHTML = `
                     <div class="station-name-chinese" style="font-size: ${chineseFontSize}px;">${chineseName}</div>
                     <div class="station-name-english" style="font-size: ${englishFontSize}px;">${englishName}</div>
                     ${managementInfo}
                     ${transferInfo}
                 `;
-                
+
                 // 站名标签固定在站点上方
                 const labelOffset = 20 * baseFontScale;
                 let left = x;
                 let top = y - labelOffset; // 固定在站点上方
-                
+
                 // 使用CSS transform实现精确居中
                 // CSS中已有 transform: translate(-50%, -100%); 实现水平居中和垂直对齐
-                
+
                 label.style.left = left + 'px';
                 label.style.top = top + 'px';
-                
+
                 document.querySelector('.map-container').appendChild(label);
                 appState.stationLabels.push(label);
             },
-            
+
             // 添加线路ID标签（带线路颜色背景）
             addLineLabel(line, x, y) {
                 const label = document.createElement('div');
                 label.className = 'line-label';
-                
+
                 // 根据地图缩放比例动态计算字体大小
                 const baseFontScale = appState.mapScale;
                 const fontSize = Math.max(10, 14 * baseFontScale);
-                
+
                 // 设置标签样式
                 label.style.fontSize = fontSize + 'px';
                 label.style.fontWeight = 'bold';
@@ -1758,59 +1768,59 @@
                 label.style.pointerEvents = 'none';
                 label.style.position = 'absolute';
                 label.style.textAlign = 'center';
-                
+
                 // 设置标签内容（步行路线路只显示名称，不显示ID）
                 label.textContent = line.name;
-                
+
                 // 设置标签位置：更靠近线路中心，确保用户能看到
                 // 使用更小的偏移量，让标签更贴近线路
                 const offset = 6 * baseFontScale; // 使用较小的偏移量
-                
+
                 // 计算标签的边界位置
                 let finalX = x + offset;
                 let finalY = y - offset;
-                
+
                 // 简单的边界检查，确保标签在可视区域内
                 const mapContainer = document.querySelector('.map-container');
                 const containerRect = mapContainer.getBoundingClientRect();
                 const containerWidth = containerRect.width;
                 const containerHeight = containerRect.height;
-                
+
                 // 计算标签的预估尺寸
                 const labelWidth = label.textContent.length * fontSize * 0.6 + 12;
                 const labelHeight = fontSize + 4;
-                
+
                 // 确保标签不超出边界
-                if (finalX - labelWidth/2 < 0) {
-                    finalX = labelWidth/2 + 10;
+                if (finalX - labelWidth / 2 < 0) {
+                    finalX = labelWidth / 2 + 10;
                 }
-                if (finalX + labelWidth/2 > containerWidth) {
-                    finalX = containerWidth - labelWidth/2 - 10;
+                if (finalX + labelWidth / 2 > containerWidth) {
+                    finalX = containerWidth - labelWidth / 2 - 10;
                 }
-                if (finalY - labelHeight/2 < 0) {
-                    finalY = labelHeight/2 + 10;
+                if (finalY - labelHeight / 2 < 0) {
+                    finalY = labelHeight / 2 + 10;
                 }
-                if (finalY + labelHeight/2 > containerHeight) {
-                    finalY = containerHeight - labelHeight/2 - 10;
+                if (finalY + labelHeight / 2 > containerHeight) {
+                    finalY = containerHeight - labelHeight / 2 - 10;
                 }
-                
+
                 label.style.left = finalX + 'px';
                 label.style.top = finalY + 'px';
-                
+
                 // 使用CSS transform实现精确居中
                 label.style.transform = 'translate(-50%, -50%)';
-                
+
                 // 增强阴影效果，提高可读性
                 label.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.7)';
-                
+
                 // 添加边框增强对比度
                 label.style.border = '1px solid rgba(255, 255, 255, 0.3)';
-                
+
                 document.querySelector('.map-container').appendChild(label);
                 appState.lineLabels = appState.lineLabels || [];
                 appState.lineLabels.push(label);
             },
-            
+
             // 获取站点的英文名称
             getEnglishName(chineseName) {
                 // 从解析的数据中查找对应的英文名称
@@ -1822,105 +1832,105 @@
                 lines.forEach(line => {
                     if (line.stations.length > 1) {
                         appState.ctx.beginPath();
-                        
+
                         // 绘制线路线段
                         line.stations.forEach((station, index) => {
                             const screenPos = this.worldToScreen(station.X, station.Y);
-                            
+
                             if (index === 0) {
                                 appState.ctx.moveTo(screenPos.x, screenPos.y);
                             } else {
                                 const prevStation = line.stations[index - 1];
                                 const prevScreenPos = this.worldToScreen(prevStation.X, prevStation.Y);
-                                
+
                                 // 计算两个站点之间的水平和垂直距离
                                 const dx = screenPos.x - prevScreenPos.x;
                                 const dy = screenPos.y - prevScreenPos.y;
-                                
+
                                 // 所有线路：取消倾角限制，直接绘制直线
                                 appState.ctx.lineTo(screenPos.x, screenPos.y);
                             }
                         });
-                        
+
                         appState.ctx.strokeStyle = line.color;
-                        
+
                         // 中国铁路特快线样式：更粗的线条和虚线样式
                         console.log(`渲染线路 ${line.name} - isExpress: ${line.isExpress}, lineType: ${line.lineType}`);
-                        
+
                         if (line.lineType === 'walking') {
                             // 步行路样式：特快线样式改灰，去除描边，增加线段距离，添加圆角
                             console.log(`应用步行路样式到线路 ${line.name}`);
-                            
+
                             appState.ctx.lineCap = 'round'; // 添加圆角效果
-                            
+
                             // 根据地图缩放比例动态调整虚线样式，增加线段距离
                             const dashLength = 12 * appState.mapScale;
                             const gapLength = 12 * appState.mapScale; // 增加间隙距离
-                            
+
                             // 直接绘制灰色虚线，去除描边
                             appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
                             appState.ctx.strokeStyle = '#808080'; // 灰色
                             appState.ctx.lineWidth = 6 * appState.mapScale; // 与特快线彩色线条宽度一致
                             appState.ctx.stroke();
-                            
+
                         } else if (line.isExpress) {
                             console.log(`应用特快线样式到线路 ${line.name}`);
-                            
+
                             // 中国铁路特快线样式：无圆角，黑色描边
                             appState.ctx.lineCap = 'butt'; // 无圆角
-                            
+
                             // 根据地图缩放比例动态调整虚线样式
                             const dashLength = 12 * appState.mapScale;
                             const gapLength = 8 * appState.mapScale;
-                            
+
                             // 第一步：绘制完整的黑色背景描边（包括线段和间隙）
                             appState.ctx.setLineDash([]); // 实线用于背景描边
                             appState.ctx.strokeStyle = '#000000';
                             appState.ctx.lineWidth = 8 * appState.mapScale; // 黑色描边宽度
                             appState.ctx.stroke();
-                            
+
                             // 第二步：绘制白色背景（包括线段和间隙）
                             appState.ctx.setLineDash([]); // 实线用于白色背景
                             appState.ctx.strokeStyle = '#FFFFFF';
                             appState.ctx.lineWidth = 6 * appState.mapScale; // 白色背景宽度
                             appState.ctx.stroke();
-                            
+
                             // 第三步：绘制彩色虚线线段
                             appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
                             appState.ctx.strokeStyle = line.color;
                             appState.ctx.lineWidth = 6 * appState.mapScale; // 彩色线条宽度
                             appState.ctx.stroke();
-                            
+
                         } else {
                             appState.ctx.lineCap = 'round';
                             appState.ctx.lineWidth = 4 * appState.mapScale;
                             appState.ctx.setLineDash([]); // 实线样式
                             appState.ctx.stroke();
                         }
-                        
+
                         // 在线路中间位置显示线路编号（避开站点位置）
                         if (line.stations.length > 1 && line.lineType !== 'walking') {
                             // 计算线路的几何中点，而不是站点位置
                             const startStation = line.stations[0];
                             const endStation = line.stations[line.stations.length - 1];
-                            
+
                             // 计算线路的几何中心点
                             const centerX = (startStation.X + endStation.X) / 2;
                             const centerY = (startStation.Y + endStation.Y) / 2;
-                            
+
                             // 将世界坐标转换为屏幕坐标
                             const centerScreenPos = this.worldToScreen(centerX, centerY);
-                            
+
                             // 设置文字样式
                             appState.ctx.font = `${12 * appState.mapScale}px Arial`;
                             appState.ctx.textAlign = 'center';
                             appState.ctx.textBaseline = 'middle';
-                            
+
                             // 添加白色描边背景，提高可读性
                             appState.ctx.strokeStyle = '#FFFFFF';
                             appState.ctx.lineWidth = 3 * appState.mapScale;
                             appState.ctx.strokeText(line.id, centerScreenPos.x, centerScreenPos.y);
-                            
+
                             // 绘制与线路颜色一致的编号文字
                             appState.ctx.fillStyle = line.color;
                             appState.ctx.fillText(line.id, centerScreenPos.x, centerScreenPos.y);
@@ -1931,13 +1941,13 @@
 
             displayRoute(route, transfers) {
                 transfers.forEach(transfer => {
-                    const stations = transfer.stations.map(stationName => 
+                    const stations = transfer.stations.map(stationName =>
                         appState.stations.find(s => s.name === stationName)
                     ).filter(Boolean);
-                    
+
                     if (stations.length > 1) {
                         appState.ctx.beginPath();
-                        
+
                         stations.forEach((station, index) => {
                             const screenPos = this.worldToScreen(station.X, station.Y);
                             if (index === 0) {
@@ -1946,7 +1956,7 @@
                                 appState.ctx.lineTo(screenPos.x, screenPos.y);
                             }
                         });
-                        
+
                         appState.ctx.strokeStyle = dataProcessor.getLineColor(transfer.line);
                         appState.ctx.lineWidth = 6 * appState.mapScale;
                         appState.ctx.setLineDash([5, 5]);
@@ -1958,11 +1968,11 @@
 
             render() {
                 this.clearMap();
-                
+
                 // 设置白色背景
                 appState.ctx.fillStyle = '#ffffff';
                 appState.ctx.fillRect(0, 0, appState.canvas.width, appState.canvas.height);
-                
+
                 if (appState.lines.length > 0) {
                     this.displayLines(appState.lines);
                     this.displayStations(appState.lines);
@@ -1977,17 +1987,17 @@
             init() {
                 // 初始化地图
                 mapRenderer.init();
-                
+
                 // 绑定事件（使用箭头函数保持正确的this上下文）
                 document.getElementById('calculateRoute').addEventListener('click', () => this.handleRouteCalculation());
                 document.getElementById('zoomIn').addEventListener('click', () => this.handleZoomIn());
                 document.getElementById('zoomOut').addEventListener('click', () => this.handleZoomOut());
                 document.getElementById('resetView').addEventListener('click', () => this.handleResetView());
                 document.getElementById('saveImage').addEventListener('click', () => this.handleSaveImage());
-                
+
                 // 绑定搜索功能事件
                 this.initSearchFunctionality();
-                
+
                 // 启动时静默加载示例数据
                 setTimeout(() => {
                     this.handleLoadSampleSilent();
@@ -1998,27 +2008,27 @@
                 // 搜索框已被删除，此函数现在只保留空实现
                 // 可搜索下拉框的初始化在数据加载完成后调用
             },
-            
+
             initSearchableSelects() {
                 // 为起点站和终点站初始化可搜索下拉框
                 this.initSearchableSelect('startStation');
                 this.initSearchableSelect('endStation');
             },
-            
+
             initSearchableSelect(selectId) {
                 const originalSelect = document.getElementById(selectId);
                 const searchableSelect = document.querySelector(`.searchable-select[data-for="${selectId}"]`);
                 const searchInput = searchableSelect.querySelector('.searchable-select-input');
                 const optionsContainer = searchableSelect.querySelector('.searchable-select-options');
-                
+
                 // 初始化选项
                 this.populateSearchableOptions(selectId);
-                
+
                 // 搜索输入事件
                 searchInput.addEventListener('input', (e) => {
                     const query = e.target.value.trim().toLowerCase();
                     const options = optionsContainer.querySelectorAll('.searchable-select-option');
-                    
+
                     options.forEach(option => {
                         const text = option.textContent.toLowerCase();
                         if (text.includes(query)) {
@@ -2027,11 +2037,11 @@
                             option.style.display = 'none';
                         }
                     });
-                    
+
                     // 显示选项容器
                     optionsContainer.style.display = 'block';
                 });
-                
+
                 // 点击选项事件
                 optionsContainer.addEventListener('click', (e) => {
                     const option = e.target.closest('.searchable-select-option');
@@ -2039,55 +2049,55 @@
                         const value = option.dataset.value;
                         // 从选项的HTML内容中提取站点名称（第一个div的内容）
                         const stationName = option.querySelector('.search-result-name')?.textContent || option.textContent;
-                        
+
                         // 更新搜索输入框显示（只显示站点名称）
                         searchInput.value = stationName;
-                        
+
                         // 更新原始select元素
                         originalSelect.value = value;
-                        
+
                         // 隐藏选项容器
                         optionsContainer.style.display = 'none';
-                        
+
                         // 显示成功消息
                         utils.showNotification(`已选择站点：${stationName}`);
                     }
                 });
-                
+
                 // 点击外部关闭选项容器
                 document.addEventListener('click', (e) => {
                     if (!searchableSelect.contains(e.target)) {
                         optionsContainer.style.display = 'none';
                     }
                 });
-                
+
                 // 搜索框聚焦时显示所有选项
                 searchInput.addEventListener('focus', () => {
                     const options = optionsContainer.querySelectorAll('.searchable-select-option');
                     options.forEach(option => option.style.display = 'block');
                     optionsContainer.style.display = 'block';
                 });
-                
+
                 // 监听原始select变化，同步到搜索输入框
                 originalSelect.addEventListener('change', () => {
                     const selectedOption = originalSelect.options[originalSelect.selectedIndex];
                     if (selectedOption) {
                         searchInput.value = selectedOption.text;
                     }
-                    
+
                     // 检查是否起点和终点都已选择，如果是则自动计算路径
                     eventHandlers.autoCalculateRoute();
                 });
             },
-            
+
             populateSearchableOptions(selectId) {
                 const originalSelect = document.getElementById(selectId);
                 const searchableSelect = document.querySelector(`.searchable-select[data-for="${selectId}"]`);
                 const optionsContainer = searchableSelect.querySelector('.searchable-select-options');
-                
+
                 // 清空现有选项
                 optionsContainer.innerHTML = '';
-                
+
                 // 添加所有选项，显示双语和线路信息
                 for (let i = 0; i < originalSelect.options.length; i++) {
                     const option = originalSelect.options[i];
@@ -2096,14 +2106,14 @@
                         const stationName = option.text;
                         const valueParts = option.value.split('_');
                         const lineId = valueParts.length > 1 ? valueParts[1] : '';
-                        
+
                         // 查找站点详细信息
                         const station = appState.stations.find(s => s.name === stationName && s.line === lineId);
-                        
+
                         const optionElement = document.createElement('div');
                         optionElement.className = 'searchable-select-option';
                         optionElement.dataset.value = option.value;
-                        
+
                         if (station && station.englishName) {
                             // 显示双语和线路信息
                             optionElement.innerHTML = `
@@ -2117,7 +2127,7 @@
                                 <div class="search-result-line">${stationName} - ${lineId}</div>
                             `;
                         }
-                        
+
                         optionsContainer.appendChild(optionElement);
                     }
                 }
@@ -2126,14 +2136,14 @@
             handleFileImport(event) {
                 const file = event.target.files[0];
                 if (!file) return;
-                
+
                 const reader = new FileReader();
                 const self = this; // 保存正确的this引用
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     try {
                         const fileContent = e.target.result;
                         let data = {};
-                        
+
                         if (file.name.endsWith('.csv')) {
                             data = dataProcessor.parseCSVData(fileContent);
                         } else if (file.name.endsWith('.json')) {
@@ -2146,47 +2156,47 @@
                         } else {
                             throw new Error('不支持的文件格式');
                         }
-                        
+
                         if (data.stations.length === 0) {
                             throw new Error('未找到有效的站点数据');
                         }
-                        
+
                         // 处理数据
                         appState.stations = data.stations;
                         appState.lines = data.lines;
                         appState.graph = routePlanner.buildGraph(data.lines);
-                        
+
                         // 更新UI
                         mapRenderer.clearMap();
                         mapRenderer.render();
-                        
+
                         // 更新站点选择下拉菜单
                         self.updateStationSelects();
-                        
 
-                        
+
+
                         utils.showNotification(`成功导入 ${appState.stations.length} 个站点数据`);
-                        
+
                     } catch (error) {
                         utils.showNotification(error.message, 'error');
                         console.error('文件导入错误:', error);
                     }
                 };
-                
+
                 reader.readAsText(file);
             },
 
             updateStationSelects() {
                 const startSelect = document.getElementById('startStation');
                 const endSelect = document.getElementById('endStation');
-                
+
                 // 清空现有选项（保留第一个选项）
                 while (startSelect.options.length > 1) startSelect.remove(1);
                 while (endSelect.options.length > 1) endSelect.remove(1);
-                
+
                 // 使用Set来去重，只显示唯一的站点名称
                 const uniqueStationNames = [...new Set(appState.stations.map(station => station.name))];
-                
+
                 // 添加去重后的站点选项
                 uniqueStationNames.forEach(stationName => {
                     // 查找该站点的第一个线路作为默认值
@@ -2197,7 +2207,7 @@
                     startSelect.add(option1);
                     endSelect.add(option2);
                 });
-                
+
                 // 更新可搜索下拉框的选项
                 if (typeof this.populateSearchableOptions === 'function') {
                     this.populateSearchableOptions('startStation');
@@ -2210,15 +2220,15 @@
                 appState.lines = [];
                 appState.graph = null;
                 mapRenderer.clearMap();
-                
 
-                
+
+
                 const routeInfo = document.getElementById('routeInfo');
                 routeInfo.innerHTML = '<p>请选择起点和终点站进行路径规划</p>';
-                
+
                 const transferInfo = document.getElementById('transferInfo');
                 transferInfo.innerHTML = '<p>路径规划完成后显示换乘信息</p>';
-                
+
                 this.updateStationSelects();
                 utils.showNotification('地图已清除');
             },
@@ -2226,70 +2236,70 @@
             handleLoadSample() {
                 try {
                     console.log('开始加载地铁数据...');
-                    
+
                     // 使用全局变量subwayData和stationCoordinates，该变量在subway-data.js文件中定义
                     if (typeof subwayData === 'undefined' || typeof stationCoordinates === 'undefined') {
                         throw new Error('地铁数据未加载，请确保subway-data.js文件已正确引入');
                     }
-                    
+
                     // 解析地铁线路数据
                     const subwayLinesData = dataProcessor.parseLineData(subwayData);
                     console.log('解析后的地铁线路数据:', subwayLinesData);
-                    
+
                     // 检查特快线字段
                     subwayLinesData.forEach(line => {
                         console.log(`地铁线路 ${line.lineName} - isExpress: ${line.isExpress}, 类型: ${typeof line.isExpress}`);
                     });
-                    
+
                     // 解析地铁站点坐标数据
                     const subwayStationsData = dataProcessor.parseStationData(stationCoordinates);
                     console.log('解析后的地铁站点数据:', subwayStationsData);
-                    
+
                     // 合并地铁数据
                     const subwayCombinedData = dataProcessor.combineLineAndStationData(subwayLinesData, subwayStationsData);
                     console.log('合并后的地铁数据:', subwayCombinedData);
-                    
+
                     // 检查合并后的特快线信息
                     subwayCombinedData.lines.forEach(line => {
                         console.log(`合并后地铁线路 ${line.name} - isExpress: ${line.isExpress}, 类型: ${typeof line.isExpress}`);
                     });
-                    
+
                     // 初始化应用状态
                     appState.stations = [...subwayCombinedData.stations];
                     appState.lines = [...subwayCombinedData.lines];
-                    
+
                     // 如果存在步行路数据，加载并合并
                     if (typeof walkingData !== 'undefined') {
                         console.log('开始加载步行路数据...');
-                        
+
                         // 解析步行路线路数据
                         const walkingLinesData = dataProcessor.parseLineData(walkingData);
                         console.log('解析后的步行路线路数据:', walkingLinesData);
-                        
+
                         // 步行路站点直接调用subway-data.js中的站点数据
                         // 使用地铁站点数据作为步行路站点的坐标来源
                         const walkingCombinedData = dataProcessor.combineLineAndStationData(walkingLinesData, subwayStationsData);
                         console.log('合并后的步行路数据:', walkingCombinedData);
-                        
+
                         // 合并到应用状态
                         appState.stations = [...appState.stations, ...walkingCombinedData.stations];
                         appState.lines = [...appState.lines, ...walkingCombinedData.lines];
-                        
+
                         console.log(`成功加载 ${walkingCombinedData.lines.length} 条步行路线路`);
                     }
-                    
+
                     appState.graph = routePlanner.buildGraph(appState.lines);
-                    
+
                     console.log('应用状态更新完成:', {
                         stations: appState.stations.length,
                         lines: appState.lines.length,
                         graph: appState.graph ? '已构建' : '未构建'
                     });
-                    
+
                     // 更新UI
                     mapRenderer.clearMap();
                     mapRenderer.render();
-                    
+
                     // 设置地图中心为旧园站
                     const jiuyuanStation = appState.stations.find(station => station.name === '旧园');
                     if (jiuyuanStation) {
@@ -2297,26 +2307,26 @@
                         const screenPos = mapRenderer.worldToScreen(jiuyuanStation.X, jiuyuanStation.Y);
                         const canvasCenterX = appState.canvas.width / 2;
                         const canvasCenterY = appState.canvas.height / 2;
-                        
+
                         // 设置地图偏移量，使旧园站位于屏幕中心
                         appState.mapOffset.x = canvasCenterX - screenPos.x;
                         appState.mapOffset.y = canvasCenterY - screenPos.y;
-                        
+
                         // 重新渲染地图
                         mapRenderer.render();
                     }
-                    
+
                     // 更新站点选择下拉菜单
                     this.updateStationSelects();
-                    
+
                     // 初始化可搜索下拉框
                     if (typeof this.initSearchableSelects === 'function') {
                         this.initSearchableSelects();
                     }
-                    
+
                     console.log('subway-data.js数据加载完成');
                     utils.showNotification(`成功加载 ${appState.stations.length} 个站点数据`);
-                    
+
                 } catch (error) {
                     console.error('数据加载错误:', error);
                     utils.showNotification('数据加载失败: ' + error.message, 'error');
@@ -2326,51 +2336,51 @@
             handleLoadSampleSilent() {
                 try {
                     console.log('开始静默加载地铁数据...');
-                    
+
                     // 使用全局变量subwayData和stationCoordinates，该变量在subway-data.js文件中定义
                     if (typeof subwayData === 'undefined' || typeof stationCoordinates === 'undefined') {
                         console.error('地铁数据未加载，请确保subway-data.js文件已正确引入');
                         return;
                     }
-                    
+
                     // 解析地铁线路数据
                     const subwayLinesData = dataProcessor.parseLineData(subwayData);
-                    
+
                     // 解析地铁站点坐标数据
                     const subwayStationsData = dataProcessor.parseStationData(stationCoordinates);
-                    
+
                     // 合并地铁数据
                     const subwayCombinedData = dataProcessor.combineLineAndStationData(subwayLinesData, subwayStationsData);
-                    
+
                     // 初始化应用状态
                     appState.stations = [...subwayCombinedData.stations];
                     appState.lines = [...subwayCombinedData.lines];
-                    
+
                     // 如果存在步行路数据，加载并合并
                     if (typeof walkingData !== 'undefined') {
                         // 解析步行路线路数据
                         const walkingLinesData = dataProcessor.parseLineData(walkingData);
-                        
+
                         // 步行路站点直接调用subway-data.js中的站点数据
                         const walkingCombinedData = dataProcessor.combineLineAndStationData(walkingLinesData, subwayStationsData);
-                        
+
                         // 合并到应用状态
                         appState.stations = [...appState.stations, ...walkingCombinedData.stations];
                         appState.lines = [...appState.lines, ...walkingCombinedData.lines];
                     }
-                    
+
                     appState.graph = routePlanner.buildGraph(appState.lines);
-                    
+
                     console.log('静默加载应用状态更新完成:', {
                         stations: appState.stations.length,
                         lines: appState.lines.length,
                         graph: appState.graph ? '已构建' : '未构建'
                     });
-                    
+
                     // 更新UI
                     mapRenderer.clearMap();
                     mapRenderer.render();
-                    
+
                     // 设置地图中心为旧园站
                     const jiuyuanStation = appState.stations.find(station => station.name === '旧园');
                     if (jiuyuanStation) {
@@ -2378,25 +2388,25 @@
                         const screenPos = mapRenderer.worldToScreen(jiuyuanStation.X, jiuyuanStation.Y);
                         const canvasCenterX = appState.canvas.width / 2;
                         const canvasCenterY = appState.canvas.height / 2;
-                        
+
                         // 设置地图偏移量，使旧园站位于屏幕中心
                         appState.mapOffset.x = canvasCenterX - screenPos.x;
                         appState.mapOffset.y = canvasCenterY - screenPos.y;
-                        
+
                         // 重新渲染地图
                         mapRenderer.render();
                     }
-                    
+
                     // 更新站点选择下拉菜单
                     this.updateStationSelects();
-                    
+
                     // 初始化可搜索下拉框
                     if (typeof this.initSearchableSelects === 'function') {
                         this.initSearchableSelects();
                     }
-                    
+
                     console.log('subway-data.js数据静默加载完成');
-                    
+
                 } catch (error) {
                     console.error('数据静默加载错误:', error);
                 }
@@ -2405,7 +2415,7 @@
             autoCalculateRoute() {
                 const startStation = document.getElementById('startStation').value;
                 const endStation = document.getElementById('endStation').value;
-                
+
                 // 只有当起点和终点都已选择时才自动计算路径
                 if (startStation && endStation && startStation !== endStation) {
                     this.handleRouteCalculation();
@@ -2415,37 +2425,37 @@
             handleRouteCalculation() {
                 const startStation = document.getElementById('startStation').value;
                 const endStation = document.getElementById('endStation').value;
-                
+
                 if (!startStation || !endStation) {
                     utils.showNotification('请选择起点和终点站', 'error');
                     return;
                 }
-                
+
                 if (startStation === endStation) {
                     utils.showNotification('起点和终点不能相同', 'error');
                     return;
                 }
-                
+
                 if (!appState.graph) {
                     utils.showNotification('请先导入线路数据', 'error');
                     return;
                 }
-                
+
                 try {
                     // 计算路径
                     const route = routePlanner.dijkstra(appState.graph, startStation, endStation);
-                    
+
                     if (route.distance === Infinity) {
                         utils.showNotification('无法找到从起点到终点的路径', 'error');
                         return;
                     }
-                    
+
                     // 分析换乘信息
                     const transfers = routePlanner.analyzeTransfers(route, appState.lines);
-                    
+
                     // 显示路线
                     mapRenderer.displayRoute(route, transfers);
-                    
+
                     // 更新UI信息
                     const routeInfo = document.getElementById('routeInfo');
                     routeInfo.innerHTML = `
@@ -2453,14 +2463,14 @@
                         <p>途经站点: <span class="highlight">${route.path.length}</span> 个</p>
                         <p>换乘次数: <span class="highlight">${transfers.length - 1}</span> 次</p>
                     `;
-                    
+
                     // 更新换乘信息
                     const transferInfo = document.getElementById('transferInfo');
                     transferInfo.innerHTML = transfers.map((transfer, index) => {
                         // 查找线路信息，判断是否为步行路线路
                         const lineInfo = appState.lines.find(line => line.name === transfer.lineName || line.id === transfer.line);
                         const isWalkingLine = lineInfo && lineInfo.lineType === 'walking';
-                        
+
                         // 如果是步行路线路，完全不显示在换乘信息框中
                         if (isWalkingLine) {
                             return '';
@@ -2477,9 +2487,9 @@
                             `;
                         }
                     }).join('');
-                    
+
                     utils.showNotification(`路径规划完成`);
-                    
+
                 } catch (error) {
                     utils.showNotification('路径计算错误', 'error');
                     console.error('路径计算错误:', error);
@@ -2507,11 +2517,11 @@
                     // 保存当前的地图状态
                     const originalScale = appState.mapScale;
                     const originalOffset = { ...appState.mapOffset };
-                    
+
                     // 动态计算完整地图的范围
                     let minX = Infinity, maxX = -Infinity;
                     let minY = Infinity, maxY = -Infinity;
-                    
+
                     if (appState.stations && appState.stations.length > 0) {
                         appState.stations.forEach(station => {
                             if (station.X !== undefined && station.Y !== undefined) {
@@ -2522,110 +2532,110 @@
                             }
                         });
                     }
-                    
+
                     // 如果没有有效数据，使用默认范围（这个范围改不得）
                     if (minX === Infinity) {
                         minX = -1000; maxX = 1000;
                         minY = -1000; maxY = 1000;
                     }
-                    
+
                     // 设置合适的缩放比例以显示完整地图
                     const targetScale = 0.8; // 调整这个值以获得最佳显示效果
-                    
+
                     // 创建临时Canvas来渲染完整地图
                     const tempCanvas = document.createElement('canvas');
                     const tempCtx = tempCanvas.getContext('2d');
-                    
+
                     // 设置临时Canvas尺寸，确保完整地图能够显示
                     const scale = 2; // 与worldToScreen中的scale一致
                     const offsetX = 400; // 与worldToScreen中的offsetX一致
                     const offsetY = -100; // 与worldToScreen中的offsetY一致
-                    
+
                     // 计算所需Canvas尺寸，确保能容纳完整地图
                     const margin = 100; // 边距
-                    
+
                     // 关键修复：正确计算地图的实际显示范围
                     // 根据worldToScreen公式：screenX = centerX + (x + offsetX) * scale * mapScale + mapOffset.x
                     // 当centerX = canvas.width/2，mapOffset.x = 0时，地图的实际显示范围是：
                     // 从 -centerX 到 +centerX，而不是从0开始
-                    
+
                     // 计算地图在转换后的坐标系中的最大范围
                     const maxAbsX = Math.max(Math.abs(minX + offsetX), Math.abs(maxX + offsetX));
                     const maxAbsY = Math.max(Math.abs(minY + offsetY), Math.abs(maxY + offsetY));
-                    
+
                     // 计算所需的Canvas尺寸（考虑中心点偏移后的完整范围）
                     const requiredWidth = maxAbsX * 2 * scale * targetScale + margin * 2;
                     const requiredHeight = maxAbsY * 2 * scale * targetScale + margin * 2;
-                    
+
                     // 使用高分辨率以获得更清晰的图片
                     const resolutionMultiplier = 3; // 提高分辨率倍数
                     tempCanvas.width = Math.max(3000, requiredWidth * resolutionMultiplier);
                     tempCanvas.height = Math.max(2250, requiredHeight * resolutionMultiplier);
-                    
+
                     // 设置临时Canvas的上下文
                     tempCtx.fillStyle = '#ffffff';
                     tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-                    
+
                     // 临时修改appState以渲染到临时Canvas
                     const originalCanvas = appState.canvas;
                     const originalCtx = appState.ctx;
-                    
+
                     appState.canvas = tempCanvas;
                     appState.ctx = tempCtx;
                     appState.mapScale = targetScale * resolutionMultiplier;
-                    
+
                     // 计算中心点（Canvas的中心）
                     const centerX = tempCanvas.width / 2;
                     const centerY = tempCanvas.height / 2;
-                    
+
                     // 关键修复：不需要额外的偏移，因为worldToScreen函数已经考虑了centerX和centerY
-                    appState.mapOffset = { 
+                    appState.mapOffset = {
                         x: 0,
                         y: 0
                     };
-                    
+
                     // 关键修复：临时修改worldToScreen函数，使其使用固定的中心点计算
                     const originalWorldToScreen = mapRenderer.worldToScreen;
-                    mapRenderer.worldToScreen = function(x, y) {
+                    mapRenderer.worldToScreen = function (x, y) {
                         const screenX = centerX + (x + offsetX) * scale * appState.mapScale + appState.mapOffset.x;
                         const screenY = centerY + (y + offsetY) * scale * appState.mapScale + appState.mapOffset.y;
                         return { x: screenX, y: screenY };
                     };
-                    
+
                     // 重新渲染完整地图
                     mapRenderer.clearMap();
-                    
+
                     // 在临时Canvas上设置白色背景
                     tempCtx.fillStyle = '#ffffff';
                     tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-                    
+
                     // 渲染所有线路和站点
                     if (appState.lines && appState.lines.length > 0) {
                         mapRenderer.displayLines(appState.lines);
                         mapRenderer.displayStations(appState.lines);
-                        
+
                         // 在Canvas上绘制站点名字（用于图片保存）
                         this.drawStationNamesOnCanvas(appState.lines);
                     }
-                    
+
                     // 恢复原始状态
                     appState.canvas = originalCanvas;
                     appState.ctx = originalCtx;
                     appState.mapScale = originalScale;
                     appState.mapOffset = originalOffset;
-                    
+
                     // 恢复原始的worldToScreen函数
                     mapRenderer.worldToScreen = originalWorldToScreen;
-                    
+
                     // 重新渲染原始视图
                     mapRenderer.render();
-                    
+
                     // 转换为DataURL
                     const dataURL = tempCanvas.toDataURL('image/png');
-                    
+
                     // 检测是否为移动设备
                     const isMobile = this.isMobileDevice();
-                    
+
                     if (isMobile) {
                         // 移动端：显示弹窗让用户长按保存
                         try {
@@ -2651,11 +2661,11 @@
                     }
                 } catch (error) {
                     console.error('保存图片失败:', error);
-                    
+
                     // 检测设备类型，提供更精确的错误信息
                     const isMobile = this.isMobileDevice();
                     const deviceInfo = this.getDeviceInfo();
-                    
+
                     // 构建详细的错误信息
                     const errorDetails = {
                         message: error.message || error.toString(),
@@ -2677,29 +2687,29 @@
                             download: 'download' in document.createElement('a')
                         }
                     };
-                    
+
                     // 显示详细的错误弹窗
                     this.showDetailedErrorPopup('地图保存失败', errorDetails);
                 }
             },
-            
+
             drawStationNamesOnCanvas(lines) {
                 const ctx = appState.ctx;
                 const scale = appState.mapScale;
-                
+
                 lines.forEach(line => {
                     line.stations.forEach(station => {
                         const screenPos = mapRenderer.worldToScreen(station.X, station.Y);
-                        
+
                         // 设置字体样式（在高分辨率下保持清晰）
                         ctx.font = `${Math.max(14, 16 * scale)}px Arial, sans-serif`;
                         ctx.fillStyle = '#000000';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        
+
                         // 绘制站点名字
                         ctx.fillText(station.name, screenPos.x, screenPos.y - 18 * scale);
-                        
+
                         // 如果有英文名字，也绘制
                         if (station.englishName && station.englishName !== station.name) {
                             ctx.font = `${Math.max(12, 14 * scale)}px Arial, sans-serif`;
@@ -2713,7 +2723,7 @@
             // 检测是否为移动设备
             isMobileDevice() {
                 return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                       (window.innerWidth <= 768);
+                    (window.innerWidth <= 768);
             },
 
             // 下载图片的通用方法
@@ -2721,11 +2731,11 @@
                 const link = document.createElement('a');
                 link.download = filename;
                 link.href = dataURL;
-                
+
                 // 确保DOM已经准备好了
                 document.body.appendChild(link);
                 link.click();
-                
+
                 // 延迟移除链接，确保下载开始
                 setTimeout(() => {
                     if (document.body.contains(link)) {
@@ -2738,30 +2748,30 @@
             fallbackDownload(dataURL, filename) {
                 // 创建一个新的图片元素来验证dataURL
                 const img = new Image();
-                
+
                 img.onload = () => {
                     // 创建一个临时链接用于下载
                     const link = document.createElement('a');
                     link.href = dataURL;
                     link.download = filename;
                     link.style.display = 'none';
-                    
+
                     document.body.appendChild(link);
                     link.click();
-                    
+
                     setTimeout(() => {
                         if (document.body.contains(link)) {
                             document.body.removeChild(link);
                         }
                     }, 100);
                 };
-                
+
                 img.onerror = () => {
                     console.error('验证图片数据失败');
                     // 如果验证失败，尝试直接打开
                     window.open(dataURL, '_blank');
                 };
-                
+
                 img.src = dataURL;
             },
 
@@ -2791,7 +2801,7 @@
                     padding: 20px;
                     box-sizing: border-box;
                 `;
-                
+
                 // 创建图片元素
                 const img = document.createElement('img');
                 img.style.cssText = `
@@ -2804,7 +2814,7 @@
                     background: white;
                     padding: 10px;
                 `;
-                
+
                 // 创建说明文字
                 const instruction = document.createElement('div');
                 instruction.innerHTML = `
@@ -2813,7 +2823,7 @@
                         <div style="font-size: 14px; opacity: 0.8;">也可以点击下方按钮下载</div>
                     </div>
                 `;
-                
+
                 // 创建下载按钮（移动端备选方案）
                 const downloadBtn = document.createElement('button');
                 downloadBtn.textContent = '下载图片';
@@ -2830,7 +2840,7 @@
                     transition: all 0.3s ease;
                     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
                 `;
-                
+
                 // 创建关闭按钮
                 const closeBtn = document.createElement('button');
                 closeBtn.textContent = '×';
@@ -2855,7 +2865,7 @@
                     backdrop-filter: blur(10px);
                     box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
                 `;
-                
+
                 // 添加关闭按钮悬停效果
                 closeBtn.addEventListener('mouseenter', () => {
                     closeBtn.style.background = 'rgba(255, 0, 0, 0.9)';
@@ -2867,43 +2877,43 @@
                     closeBtn.style.transform = 'scale(1)';
                     closeBtn.style.boxShadow = '0 4px 12px rgba(255, 0, 0, 0.3)';
                 });
-                
+
                 // 添加事件监听
                 closeBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     this.closeImagePopup();
                 });
-                
+
                 // 点击弹窗背景关闭
                 popup.addEventListener('click', (e) => {
                     if (e.target === popup) {
                         this.closeImagePopup();
                     }
                 });
-                
+
                 // 图片加载错误处理
-                 img.onerror = (error) => {
-                     console.error('图片加载失败', error);
-                     // 先关闭图片弹窗
-                     this.closeImagePopup();
-                     // 显示错误信息弹窗
-                     const errorMsg = error ? error.message || error.toString() : '未知错误';
-                     this.showErrorPopup('图片加载失败', errorMsg, true);
-                 };
-                
+                img.onerror = (error) => {
+                    console.error('图片加载失败', error);
+                    // 先关闭图片弹窗
+                    this.closeImagePopup();
+                    // 显示错误信息弹窗
+                    const errorMsg = error ? error.message || error.toString() : '未知错误';
+                    this.showErrorPopup('图片加载失败', errorMsg, true);
+                };
+
                 // 图片加载成功处理
                 img.onload = () => {
                     console.log('图片加载成功');
                     // 添加到页面
                     document.body.appendChild(popup);
                 };
-                
+
                 // 先添加到页面再设置src，确保加载事件正确触发
                 document.body.appendChild(popup);
-                
+
                 // 最后设置图片源，开始加载
                 img.src = dataURL;
-                
+
                 // 下载按钮事件处理
                 downloadBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2915,7 +2925,7 @@
                         utils.showNotification('下载失败，请长按图片保存', 'error');
                     }
                 });
-                
+
                 // 下载按钮悬停效果
                 downloadBtn.addEventListener('mouseenter', () => {
                     downloadBtn.style.background = '#45a049';
@@ -2927,80 +2937,164 @@
                     downloadBtn.style.transform = 'translateY(0)';
                     downloadBtn.style.boxShadow = '0 4px 12px rgba(76, 175, 80, 0.3)';
                 });
-                
+
                 // 图片加载错误处理
                 img.onerror = (error) => {
                     console.error('图片加载失败', error);
+                    
+                    // 尝试在新标签页打开图片作为备选方案
+                    try {
+                        console.log('尝试在新标签页打开图片');
+                        const newWindow = window.open(dataURL, '_blank');
+                        
+                        // 检查是否成功打开了新窗口
+                        if (newWindow) {
+                            utils.showNotification('图片已在新标签页打开，请右键保存');
+                        } else {
+                            // 如果弹窗被阻止，提供下载链接
+                            this.showDownloadFallback(dataURL);
+                        }
+                    } catch (windowError) {
+                        console.error('打开新窗口失败:', windowError);
+                        this.showDownloadFallback(dataURL);
+                    }
+                    
                     // 先关闭图片弹窗
                     this.closeImagePopup();
-                    // 显示错误信息弹窗
-                    const errorMsg = error ? error.message || error.toString() : '未知错误';
-                    this.showDetailedErrorPopup('图片加载失败', {
-                        message: errorMsg,
-                        stack: error.stack || '无堆栈信息',
-                        deviceType: this.isMobileDevice() ? '移动设备' : '桌面设备',
-                        deviceInfo: this.getDeviceInfo(),
-                        timestamp: new Date().toLocaleString(),
-                        canvasSize: appState.canvas ? `${appState.canvas.width}x${appState.canvas.height}` : '未知',
-                        mapScale: appState.mapScale || '未知',
-                        stationsCount: appState.stations ? appState.stations.length : 0,
-                        linesCount: appState.lines ? appState.lines.length : 0,
-                        userAgent: navigator.userAgent,
-                        viewportSize: `${window.innerWidth}x${window.innerHeight}`,
-                        availableMemory: this.getAvailableMemory(),
-                        supportInfo: {
-                            canvas: !!document.createElement('canvas').getContext,
-                            toDataURL: !!document.createElement('canvas').toDataURL,
-                            blob: !!HTMLCanvasElement.prototype.toBlob,
-                            download: 'download' in document.createElement('a')
-                        }
-                    });
+                    
+                    // 显示错误信息弹窗（延迟一点显示，避免干扰用户体验）
+                    setTimeout(() => {
+                        const errorMsg = error ? error.message || error.toString() : '未知错误';
+                        this.showDetailedErrorPopup('图片显示异常', {
+                            message: errorMsg,
+                            stack: error.stack || '无堆栈信息',
+                            deviceType: this.isMobileDevice() ? '移动设备' : '桌面设备',
+                            deviceInfo: this.getDeviceInfo(),
+                            timestamp: new Date().toLocaleString(),
+                            canvasSize: appState.canvas ? `${appState.canvas.width}x${appState.canvas.height}` : '未知',
+                            mapScale: appState.mapScale || '未知',
+                            stationsCount: appState.stations ? appState.stations.length : 0,
+                            linesCount: appState.lines ? appState.lines.length : 0,
+                            userAgent: navigator.userAgent,
+                            viewportSize: `${window.innerWidth}x${window.innerHeight}`,
+                            availableMemory: this.getAvailableMemory(),
+                            supportInfo: {
+                                canvas: !!document.createElement('canvas').getContext,
+                                toDataURL: !!document.createElement('canvas').toDataURL,
+                                blob: !!HTMLCanvasElement.prototype.toBlob,
+                                download: 'download' in document.createElement('a')
+                            }
+                        });
+                    }, 1000);
                 };
-                
+
                 // 图片加载成功处理
                 img.onload = () => {
                     console.log('图片加载成功');
                     // 添加到页面
                     document.body.appendChild(popup);
                 };
-                
+
                 // 先添加到页面再设置src，确保加载事件正确触发
                 document.body.appendChild(popup);
-                
+
                 // 最后设置图片源，开始加载
                 img.src = dataURL;
+                
+                // 显示下载备选方案
+                showDownloadFallback(dataURL) {
+                    // 创建一个简单的下载提示
+                    const fallbackDiv = document.createElement('div');
+                    fallbackDiv.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                        z-index: 10001;
+                        text-align: center;
+                        max-width: 300px;
+                    `;
+                    
+                    fallbackDiv.innerHTML = `
+                        <div style="color: #333; font-size: 16px; margin-bottom: 15px;">
+                            📋 图片无法自动显示，请手动操作：
+                        </div>
+                        <div style="color: #666; font-size: 14px; line-height: 1.4; margin-bottom: 20px;">
+                            • 右键点击地址栏<br>
+                            • 选择"在新标签页中打开链接"<br>
+                            • 右键图片保存
+                        </div>
+                        <button id="closeFallback" style="
+                            background: #4caf50;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 14px;
+                        ">知道了</button>
+                    `;
+                    
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.5);
+                        z-index: 10000;
+                    `;
+                    
+                    overlay.addEventListener('click', () => {
+                        document.body.removeChild(overlay);
+                        document.body.removeChild(fallbackDiv);
+                    });
+                    
+                    fallbackDiv.querySelector('#closeFallback').addEventListener('click', () => {
+                        document.body.removeChild(overlay);
+                        document.body.removeChild(fallbackDiv);
+                    });
+                    
+                    document.body.appendChild(overlay);
+                    document.body.appendChild(fallbackDiv);
+                },
                 
                 // 添加元素到弹窗
                 popup.appendChild(closeBtn);
                 popup.appendChild(img);
                 popup.appendChild(instruction);
                 popup.appendChild(downloadBtn);
-                
+
                 // 保存弹窗引用以便后续关闭
                 window.currentImagePopup = popup;
             },
 
             // 关闭图片弹窗
-             closeImagePopup() {
-                 const popup = document.getElementById('imagePopup');
-                 if (popup) {
-                     document.body.removeChild(popup);
-                 }
-                 window.currentImagePopup = null;
-             },
+            closeImagePopup() {
+                const popup = document.getElementById('imagePopup');
+                if (popup) {
+                    document.body.removeChild(popup);
+                }
+                window.currentImagePopup = null;
+            },
 
-             // 显示错误弹窗
-             showErrorPopup(title, message, isDev = false) {
-                 // 先移除已存在的错误弹窗
-                 const existingErrorPopup = document.getElementById('errorPopup');
-                 if (existingErrorPopup) {
-                     document.body.removeChild(existingErrorPopup);
-                 }
+            // 显示错误弹窗
+            showErrorPopup(title, message, isDev = false) {
+                // 先移除已存在的错误弹窗
+                const existingErrorPopup = document.getElementById('errorPopup');
+                if (existingErrorPopup) {
+                    document.body.removeChild(existingErrorPopup);
+                }
 
-                 // 创建错误弹窗容器
-                 const errorPopup = document.createElement('div');
-                 errorPopup.id = 'errorPopup';
-                 errorPopup.style.cssText = `
+                // 创建错误弹窗容器
+                const errorPopup = document.createElement('div');
+                errorPopup.id = 'errorPopup';
+                errorPopup.style.cssText = `
                      position: fixed;
                      top: 0;
                      left: 0;
@@ -3015,10 +3109,10 @@
                      padding: 20px;
                      box-sizing: border-box;
                  `;
-                 
-                 // 创建错误内容容器
-                 const errorContent = document.createElement('div');
-                 errorContent.style.cssText = `
+
+                // 创建错误内容容器
+                const errorContent = document.createElement('div');
+                errorContent.style.cssText = `
                      background: white;
                      border-radius: 12px;
                      padding: 30px;
@@ -3031,36 +3125,36 @@
                      gap: 20px;
                      overflow-y: auto;
                  `;
-                 
-                 // 创建错误图标
-                 const errorIcon = document.createElement('div');
-                 errorIcon.innerHTML = '🐛';
-                 errorIcon.style.cssText = `
+
+                // 创建错误图标
+                const errorIcon = document.createElement('div');
+                errorIcon.innerHTML = '🐛';
+                errorIcon.style.cssText = `
                      font-size: 48px;
                      text-align: center;
                      margin-bottom: 10px;
                  `;
-                 
-                 // 创建错误标题
-                 const errorTitle = document.createElement('h3');
-                 errorTitle.textContent = title + (isDev ? ' (开发模式)' : '');
-                 errorTitle.style.cssText = `
+
+                // 创建错误标题
+                const errorTitle = document.createElement('h3');
+                errorTitle.textContent = title + (isDev ? ' (开发模式)' : '');
+                errorTitle.style.cssText = `
                      color: #d32f2f;
                      font-size: ${isDev ? '24px' : '20px'};
                      font-weight: bold;
                      margin: 0;
                      text-align: center;
                  `;
-                 
-                 if (isDev) {
-                     // 开发模式：显示详细错误信息
-                     const timestamp = new Date().toLocaleString();
-                     const userAgent = navigator.userAgent;
-                     const currentURL = window.location.href;
-                     const viewportSize = `${window.innerWidth}x${window.innerHeight}`;
-                     
-                     const debugInfo = document.createElement('div');
-                     debugInfo.style.cssText = `
+
+                if (isDev) {
+                    // 开发模式：显示详细错误信息
+                    const timestamp = new Date().toLocaleString();
+                    const userAgent = navigator.userAgent;
+                    const currentURL = window.location.href;
+                    const viewportSize = `${window.innerWidth}x${window.innerHeight}`;
+
+                    const debugInfo = document.createElement('div');
+                    debugInfo.style.cssText = `
                          background: #f5f5f5;
                          border-radius: 8px;
                          padding: 15px;
@@ -3070,7 +3164,7 @@
                          line-height: 1.4;
                          border-left: 4px solid #d32f2f;
                      `;
-                     debugInfo.innerHTML = `
+                    debugInfo.innerHTML = `
                          <strong>调试信息：</strong><br>
                          <strong>时间:</strong> ${timestamp}<br>
                          <strong>错误:</strong> ${message}<br>
@@ -3082,9 +3176,9 @@
                          <strong>站点数量:</strong> ${appState.stations ? appState.stations.length : 0}<br>
                          <strong>线路数量:</strong> ${appState.lines ? appState.lines.length : 0}
                      `;
-                     
-                     const stackTrace = document.createElement('div');
-                     stackTrace.style.cssText = `
+
+                    const stackTrace = document.createElement('div');
+                    stackTrace.style.cssText = `
                          background: #f0f0f0;
                          border-radius: 8px;
                          padding: 15px;
@@ -3096,34 +3190,34 @@
                          overflow-y: auto;
                          border-left: 4px solid #ff9800;
                      `;
-                     stackTrace.innerHTML = `<strong>调用堆栈:</strong><br>${new Error().stack || '无堆栈信息'}`;
-                     
-                     // 组装开发模式内容
-                     errorContent.appendChild(errorIcon);
-                     errorContent.appendChild(errorTitle);
-                     errorContent.appendChild(debugInfo);
-                     errorContent.appendChild(stackTrace);
-                 } else {
-                     // 用户模式：显示友好提示
-                     const errorMessage = document.createElement('p');
-                     errorMessage.textContent = message;
-                     errorMessage.style.cssText = `
+                    stackTrace.innerHTML = `<strong>调用堆栈:</strong><br>${new Error().stack || '无堆栈信息'}`;
+
+                    // 组装开发模式内容
+                    errorContent.appendChild(errorIcon);
+                    errorContent.appendChild(errorTitle);
+                    errorContent.appendChild(debugInfo);
+                    errorContent.appendChild(stackTrace);
+                } else {
+                    // 用户模式：显示友好提示
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = message;
+                    errorMessage.style.cssText = `
                          color: #666;
                          font-size: 16px;
                          margin: 0;
                          text-align: center;
                          line-height: 1.5;
                      `;
-                     
-                     errorContent.appendChild(errorIcon);
-                     errorContent.appendChild(errorTitle);
-                     errorContent.appendChild(errorMessage);
-                 }
-                 
-                 // 创建确定按钮
-                 const confirmBtn = document.createElement('button');
-                 confirmBtn.textContent = isDev ? '关闭调试' : '确定';
-                 confirmBtn.style.cssText = `
+
+                    errorContent.appendChild(errorIcon);
+                    errorContent.appendChild(errorTitle);
+                    errorContent.appendChild(errorMessage);
+                }
+
+                // 创建确定按钮
+                const confirmBtn = document.createElement('button');
+                confirmBtn.textContent = isDev ? '关闭调试' : '确定';
+                confirmBtn.style.cssText = `
                      background: ${isDev ? '#ff9800' : '#d32f2f'};
                      color: white;
                      border: none;
@@ -3137,47 +3231,47 @@
                      box-shadow: 0 4px 12px ${isDev ? 'rgba(255, 152, 0, 0.3)' : 'rgba(211, 47, 47, 0.3)'};
                      align-self: center;
                  `;
-                 
-                 // 添加按钮悬停效果
-                 confirmBtn.addEventListener('mouseenter', () => {
-                     confirmBtn.style.background = isDev ? '#f57c00' : '#b71c1c';
-                     confirmBtn.style.transform = 'translateY(-2px)';
-                     confirmBtn.style.boxShadow = isDev ? 
-                         '0 6px 16px rgba(255, 152, 0, 0.4)' : 
-                         '0 6px 16px rgba(211, 47, 47, 0.4)';
-                 });
-                 confirmBtn.addEventListener('mouseleave', () => {
-                     confirmBtn.style.background = isDev ? '#ff9800' : '#d32f2f';
-                     confirmBtn.style.transform = 'translateY(0)';
-                     confirmBtn.style.boxShadow = isDev ? 
-                         '0 4px 12px rgba(255, 152, 0, 0.3)' : 
-                         '0 4px 12px rgba(211, 47, 47, 0.3)';
-                 });
-                 
-                 // 添加确定按钮事件
-                 confirmBtn.addEventListener('click', () => {
-                     this.closeErrorPopup();
-                 });
-                 
-                 // 点击弹窗背景关闭
-                 errorPopup.addEventListener('click', (e) => {
-                     if (e.target === errorPopup) {
-                         this.closeErrorPopup();
-                     }
-                 });
-                 
-                 errorContent.appendChild(confirmBtn);
-                 errorPopup.appendChild(errorContent);
-                 
-                 // 添加到页面
-                 document.body.appendChild(errorPopup);
-                 
-                 // 保存错误弹窗引用
-                 window.currentErrorPopup = errorPopup;
-             },
 
-             // 关闭错误弹窗
-             closeErrorPopup() {
+                // 添加按钮悬停效果
+                confirmBtn.addEventListener('mouseenter', () => {
+                    confirmBtn.style.background = isDev ? '#f57c00' : '#b71c1c';
+                    confirmBtn.style.transform = 'translateY(-2px)';
+                    confirmBtn.style.boxShadow = isDev ?
+                        '0 6px 16px rgba(255, 152, 0, 0.4)' :
+                        '0 6px 16px rgba(211, 47, 47, 0.4)';
+                });
+                confirmBtn.addEventListener('mouseleave', () => {
+                    confirmBtn.style.background = isDev ? '#ff9800' : '#d32f2f';
+                    confirmBtn.style.transform = 'translateY(0)';
+                    confirmBtn.style.boxShadow = isDev ?
+                        '0 4px 12px rgba(255, 152, 0, 0.3)' :
+                        '0 4px 12px rgba(211, 47, 47, 0.3)';
+                });
+
+                // 添加确定按钮事件
+                confirmBtn.addEventListener('click', () => {
+                    this.closeErrorPopup();
+                });
+
+                // 点击弹窗背景关闭
+                errorPopup.addEventListener('click', (e) => {
+                    if (e.target === errorPopup) {
+                        this.closeErrorPopup();
+                    }
+                });
+
+                errorContent.appendChild(confirmBtn);
+                errorPopup.appendChild(errorContent);
+
+                // 添加到页面
+                document.body.appendChild(errorPopup);
+
+                // 保存错误弹窗引用
+                window.currentErrorPopup = errorPopup;
+            },
+
+            // 关闭错误弹窗
+            closeErrorPopup() {
                 const errorPopup = document.getElementById('errorPopup');
                 if (errorPopup) {
                     document.body.removeChild(errorPopup);
@@ -3191,7 +3285,7 @@
                 let deviceType = '未知';
                 let os = '未知';
                 let browser = '未知';
-                
+
                 // 检测设备类型
                 if (/Android/i.test(ua)) {
                     deviceType = 'Android设备';
@@ -3209,7 +3303,7 @@
                     deviceType = 'Linux设备';
                     os = 'Linux';
                 }
-                
+
                 // 检测浏览器
                 if (/Chrome/i.test(ua) && !/Edge/i.test(ua)) {
                     browser = 'Chrome';
@@ -3222,7 +3316,7 @@
                 } else if (/Opera/i.test(ua) || /OPR/i.test(ua)) {
                     browser = 'Opera';
                 }
-                
+
                 return {
                     deviceType,
                     os,
@@ -3278,7 +3372,7 @@
                     padding: 20px;
                     box-sizing: border-box;
                 `;
-                
+
                 // 创建错误内容容器
                 const errorContent = document.createElement('div');
                 errorContent.style.cssText = `
@@ -3294,7 +3388,7 @@
                     gap: 20px;
                     overflow-y: auto;
                 `;
-                
+
                 // 创建错误图标
                 const errorIcon = document.createElement('div');
                 errorIcon.innerHTML = '🚨';
@@ -3303,7 +3397,7 @@
                     text-align: center;
                     margin-bottom: 10px;
                 `;
-                
+
                 // 创建错误标题
                 const errorTitle = document.createElement('h3');
                 errorTitle.textContent = title;
@@ -3314,7 +3408,7 @@
                     margin: 0;
                     text-align: center;
                 `;
-                
+
                 // 设备信息部分
                 const deviceSection = document.createElement('div');
                 deviceSection.style.cssText = `
@@ -3333,7 +3427,7 @@
                     <strong>触摸支持:</strong> ${errorDetails.deviceInfo.touchSupport ? '是' : '否'}<br>
                     <strong>屏幕方向:</strong> ${errorDetails.deviceInfo.orientation}
                 `;
-                
+
                 // 错误详情部分
                 const errorSection = document.createElement('div');
                 errorSection.style.cssText = `
@@ -3349,7 +3443,7 @@
                     <strong>视口大小:</strong> ${errorDetails.viewportSize}<br>
                     <strong>用户代理:</strong> ${errorDetails.userAgent}
                 `;
-                
+
                 // 地图状态部分
                 const mapSection = document.createElement('div');
                 mapSection.style.cssText = `
@@ -3365,7 +3459,7 @@
                     <strong>站点数量:</strong> ${errorDetails.stationsCount}<br>
                     <strong>线路数量:</strong> ${errorDetails.linesCount}
                 `;
-                
+
                 // 兼容性检查部分
                 const compatSection = document.createElement('div');
                 compatSection.style.cssText = `
@@ -3381,7 +3475,7 @@
                     <strong>Blob支持:</strong> ${errorDetails.supportInfo.blob ? '✅' : '❌'}<br>
                     <strong>下载支持:</strong> ${errorDetails.supportInfo.download ? '✅' : '❌'}
                 `;
-                
+
                 // 内存信息部分（如果有的话）
                 if (errorDetails.availableMemory) {
                     const memorySection = document.createElement('div');
@@ -3401,7 +3495,7 @@
                     `;
                     errorContent.appendChild(memorySection);
                 }
-                
+
                 // 调用堆栈部分
                 const stackSection = document.createElement('div');
                 stackSection.style.cssText = `
@@ -3417,7 +3511,7 @@
                     border-left: 4px solid #607d8b;
                 `;
                 stackSection.innerHTML = `<strong>📋 调用堆栈:</strong><br>${errorDetails.stack}`;
-                
+
                 // 解决方案建议部分
                 const solutionSection = document.createElement('div');
                 solutionSection.style.cssText = `
@@ -3426,7 +3520,7 @@
                     padding: 15px;
                     border-left: 4px solid #4caf50;
                 `;
-                
+
                 // 根据错误类型提供不同的解决建议
                 let suggestions = '';
                 if (errorDetails.deviceType === '移动设备') {
@@ -3447,7 +3541,7 @@
                     `;
                 }
                 solutionSection.innerHTML = suggestions;
-                
+
                 // 组装内容
                 errorContent.appendChild(errorIcon);
                 errorContent.appendChild(errorTitle);
@@ -3457,7 +3551,7 @@
                 errorContent.appendChild(compatSection);
                 errorContent.appendChild(stackSection);
                 errorContent.appendChild(solutionSection);
-                
+
                 // 创建确定按钮
                 const confirmBtn = document.createElement('button');
                 confirmBtn.textContent = '我知道了';
@@ -3475,7 +3569,7 @@
                     box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
                     align-self: center;
                 `;
-                
+
                 // 添加按钮悬停效果
                 confirmBtn.addEventListener('mouseenter', () => {
                     confirmBtn.style.background = '#b71c1c';
@@ -3487,42 +3581,42 @@
                     confirmBtn.style.transform = 'translateY(0)';
                     confirmBtn.style.boxShadow = '0 4px 12px rgba(211, 47, 47, 0.3)';
                 });
-                
+
                 // 添加确定按钮事件
                 confirmBtn.addEventListener('click', () => {
                     this.closeErrorPopup();
                 });
-                
+
                 // 点击弹窗背景关闭
                 errorPopup.addEventListener('click', (e) => {
                     if (e.target === errorPopup) {
                         this.closeErrorPopup();
                     }
                 });
-                
+
                 errorContent.appendChild(confirmBtn);
                 errorPopup.appendChild(errorContent);
-                
+
                 // 添加到页面
                 document.body.appendChild(errorPopup);
-                
+
                 // 保存错误弹窗引用
                 window.currentErrorPopup = errorPopup;
             }
         };
 
         // 初始化应用
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             window.eventHandlers.init();
-            
+
             // 设置默认光标样式
             appState.canvas.style.cursor = 'grab';
-            
+
             // 初始渲染
             mapRenderer.render();
         });
     </script>
-    
+
     <!-- 内嵌地铁数据 -->
     <script>
         // 地铁线路数据 - 以线路为中心的存储结构 
@@ -3592,4 +3686,5 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 `;
     </script>
 </body>
+
 </html>
