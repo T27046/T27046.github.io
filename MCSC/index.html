@@ -3011,7 +3011,7 @@
                     
                     // 渲染所有线路和站点
                     if (appState.lines && appState.lines.length > 0) {
-                        mapRenderer.displayLines(appState.lines);
+                        mapRenderer.displayLinesWithTurns(appState.lines);
                         mapRenderer.displayStations(appState.lines);
                         
                         // 在Canvas上绘制站点名字（用于图片保存）
