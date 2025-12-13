@@ -3109,7 +3109,7 @@ S3,S3,#fcba77,false,"工业园:1,十字口:2"
 S4,S4,#ff5900,false,"旧园:1,新城口:2"
 S5,S5,#b7ff00,false,"渔场:1,旧园:2"
 S6,S6,#a600ff,false,"旧园郊(铁路):1,南江畔:2,近东南一村:3"
-S7,S7,#b700AA,false,"旧园:1,矿山:2,友谊长存纪念碑:3"
+S7,S7,#b700AA,false,"旧园:1,矿山:2,友谊长存纪念碑:3,南江畔:4"
 S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
 
@@ -3142,7 +3142,7 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 北桥泰加,Beiqiao Taiga,-330,-224,false,,,false,
 瑜西,Yuxi,-247,-231,false,,,false,
 
-南江畔,Nanjiangpan,-42,226,false,,,false,
+南江畔,Nanjiangpan,-42,226,true,"S6,S7","站台 1,站台 2",false,
 近东南一村,Jindongnan I,125,226,false,,,false,
 
 大西洋鲑,Daxiyanggui,-261,456,false,,,false,
@@ -3162,11 +3162,7 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
     <script>
         // 节点数据 x，y为坐标 line为线路id 节点在线路上的stn1和stn2两个站之间
         const nodeData = `x,y,line,stn1,stn2
-        -245,74,S2,渔场,新城口
-        -247,67,S4,新城口,旧园
-        -386,66,S3,十字口,工业园
-        -141,148,近西南线,旧园,旧园郊(铁路)
-        -141,230,近西南线,旧园,旧园郊(铁路)
+        
 `;
     </script>
 </body>
