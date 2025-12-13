@@ -3,7 +3,7 @@ const subwayData = `lineId,lineName,color,isExpress,stationSequence
 K1,K1,#53c700,true,"旧园:1,纽克北站:2"
 K2,K2,#005eff,true,"新城口:1,旧园郊(快船):2"
 
-近西南线,近西南线,#ffd500,false,"旧园:1,旧园郊(铁路):2,劫掠前哨:3,纽克站:4"
+近西南线,近西南线,#ffd500,false,"旧园:1|支线A:旧园郊(铁路):2,劫掠前哨:3,纽克站:4|支线B:劫掠前哨:2,纽克站:3"
 北桥线,北桥线,#ff8fa4,false,"旧园:1,北桥:2"
 
 N1,N1,#E3002B,false,"纽克北站:1,工业园:2,纽克站:3"

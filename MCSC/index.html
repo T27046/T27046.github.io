@@ -837,9 +837,8 @@
             lastTouchPos: { x: 0, y: 0 },
             lastTouchDistance: 0,
             stationLabels: [],
-            // 新增：节点转折点管理
-            nodes: [],
-            nodeLabels: []
+            // 新增：节点转折点管理（像站点一样存储）
+            nodes: []
         };
 
         // 工具函数
@@ -1033,32 +1032,22 @@
                 }
             },
 
-            // 解析节点数据
+            // 解析节点数据（适配您的CSV格式：x,y,line,stn1,stn2）
             parseNodeData(nodeData) {
                 const nodes = [];
                 const rows = nodeData.trim().split('\n');
-                const headers = rows[0].split(',');
                 
-                for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    if (!row.trim()) continue;
+                // 跳过空行
+                const nonEmptyRows = rows.filter(row => row.trim());
+                if (nonEmptyRows.length < 2) return nodes; // 至少需要标题行和一行数据
+                
+                const headers = nonEmptyRows[0].split(',').map(h => h.trim());
+                
+                for (let i = 1; i < nonEmptyRows.length; i++) {
+                    const row = nonEmptyRows[i].trim();
+                    if (!row) continue;
                     
-                    const values = [];
-                    let current = '';
-                    let inQuotes = false;
-                    
-                    for (let j = 0; j < row.length; j++) {
-                        const char = row[j];
-                        if (char === '"') {
-                            inQuotes = !inQuotes;
-                        } else if (char === ',' && !inQuotes) {
-                            values.push(current.trim());
-                            current = '';
-                        } else {
-                            current += char;
-                        }
-                    }
-                    values.push(current.trim());
+                    const values = row.split(',').map(v => v.trim());
                     
                     if (values.length === headers.length) {
                         const nodeInfo = {};
@@ -1066,17 +1055,19 @@
                             nodeInfo[header] = values[index];
                         });
                         
-                        const node = new this.Node(
-                            nodeInfo.id || `node_${i}`,
-                            nodeInfo.name || `节点${i}`,
-                            parseFloat(nodeInfo.X || 0),
-                            parseFloat(nodeInfo.Y || 0),
-                            nodeInfo.type || 'turn'
-                        );
-                        
-                        if (nodeInfo.connectedLines) {
-                            node.connectedLines = nodeInfo.connectedLines.split(',').map(line => line.trim());
-                        }
+                        // 根据您的CSV格式创建节点（作为特殊站点）
+                        const node = {
+                            id: `node_${nodes.length + 1}`,
+                            name: `${nodeInfo.stn1}_${nodeInfo.stn2}_节点`,
+                            X: parseFloat(nodeInfo.x),
+                            Y: parseFloat(nodeInfo.y),
+                            type: 'node', // 特殊类型：节点
+                            line: nodeInfo.line,
+                            stn1: nodeInfo.stn1,
+                            stn2: nodeInfo.stn2,
+                            englishName: `${nodeInfo.stn1}_${nodeInfo.stn2}_Node`,
+                            lineName: nodeInfo.line
+                        };
                         
                         nodes.push(node);
                     }
@@ -1226,37 +1217,53 @@
                         color: lineInfo.color,
                         isExpress: lineInfo.isExpress === 'true',
                         lineType: lineInfo.lineType || 'subway', // 默认地铁类型
-                        stations: []
+                        stations: [],
+                        branches: {} // 存储支线信息
                     };
                     
-                    // 解析站点序列
+                    // 解析站点序列（支持支线格式）
                     if (lineInfo.stationSequence) {
-                        const stationPairs = lineInfo.stationSequence.split(',');
-                        stationPairs.forEach(pair => {
-                            const [stationName, sequence] = pair.split(':');
-                            if (stationName && sequence) {
-                                // 查找站点信息
-                                const stationInfo = stationsData.find(s => s.name === stationName.trim());
-                                if (stationInfo) {
-                                    const station = {
-                                        name: stationInfo.name,
-                                        englishName: stationInfo.englishName,
-                                        X: parseFloat(stationInfo.X),
-                                        Y: parseFloat(stationInfo.Y),
-                                        line: line.id,
-                                        lineName: line.name,
-                                        sequence: parseInt(sequence),
-                                        transfer: stationInfo.transfer === 'true',
-                                        transferLines: stationInfo.transferLines ? stationInfo.transferLines.split(',') : [],
-                                        transferPlatforms: stationInfo.transferPlatforms ? stationInfo.transferPlatforms.split(',') : [],
-                                        isMajor: stationInfo.isMajor === 'true',
-                                        management: stationInfo.management || '' 
-                                    };
-                                    line.stations.push(station);
-                                    stations.push(station);
+                        // 检查是否包含支线分隔符
+                        if (lineInfo.stationSequence.includes('|')) {
+                            // 解析支线格式
+                            const parts = lineInfo.stationSequence.split('|');
+                            
+                            // 主线路部分（第一个部分）
+                            const mainLinePart = parts[0].trim();
+                            this.parseStationSequence(mainLinePart, line, stations, stationsData, 'main');
+                            
+                            // 支线部分（后续部分）
+                            for (let i = 1; i < parts.length; i++) {
+                                const branchPart = parts[i].trim();
+                                if (branchPart.includes(':')) {
+                                    const [branchName, branchStations] = branchPart.split(':');
+                                    if (branchName && branchStations) {
+                                        const branchLine = {
+                                            id: `${lineId}_${branchName.trim()}`,
+                                            name: `${lineName} ${branchName.trim()}`,
+                                            color: lineInfo.color,
+                                            isExpress: lineInfo.isExpress === 'true',
+                                            lineType: lineInfo.lineType || 'subway',
+                                            stations: [],
+                                            branchOf: lineId,
+                                            branchName: branchName.trim()
+                                        };
+                                        
+                                        this.parseStationSequence(branchStations.trim(), branchLine, stations, stationsData, branchName.trim());
+                                        
+                                        // 将支线添加到主线路的branches对象中
+                                        if (!line.branches) line.branches = {};
+                                        line.branches[branchName.trim()] = branchLine;
+                                        
+                                        // 将支线添加到线路列表中
+                                        lines.push(branchLine);
+                                    }
                                 }
                             }
-                        });
+                        } else {
+                            // 传统格式（无支线）
+                            this.parseStationSequence(lineInfo.stationSequence, line, stations, stationsData, 'main');
+                        }
                     }
                     
                     // 按序列号排序站点
@@ -1265,6 +1272,90 @@
                 });
                 
                 return { lines, stations };
+            },
+            
+            // 解析站点序列的辅助函数
+            parseStationSequence(sequenceString, line, stations, stationsData, branchType) {
+                const stationPairs = sequenceString.split(',');
+                stationPairs.forEach(pair => {
+                    const [stationName, sequence] = pair.split(':');
+                    if (stationName && sequence) {
+                        // 查找站点信息
+                        const stationInfo = stationsData.find(s => s.name === stationName.trim());
+                        if (stationInfo) {
+                            const station = {
+                                name: stationInfo.name,
+                                englishName: stationInfo.englishName,
+                                X: parseFloat(stationInfo.X),
+                                Y: parseFloat(stationInfo.Y),
+                                line: line.id,
+                                lineName: line.name,
+                                sequence: parseInt(sequence),
+                                transfer: stationInfo.transfer === 'true',
+                                transferLines: stationInfo.transferLines ? stationInfo.transferLines.split(',') : [],
+                                transferPlatforms: stationInfo.transferPlatforms ? stationInfo.transferPlatforms.split(',') : [],
+                                isMajor: stationInfo.isMajor === 'true',
+                                management: stationInfo.management || '',
+                                branch: branchType // 标记所属支线
+                            };
+                            line.stations.push(station);
+                            stations.push(station);
+                        }
+                    }
+                });
+            },
+
+            // 将节点插入到线路站点序列中
+            insertNodesIntoLineSequences(lines, nodes) {
+                nodes.forEach(node => {
+                    // 找到节点所属的线路
+                    const targetLine = lines.find(line => line.id === node.line);
+                    if (!targetLine) return;
+                    
+                    // 找到节点前后的站点
+                    const stn1Index = targetLine.stations.findIndex(station => station.name === node.stn1);
+                    const stn2Index = targetLine.stations.findIndex(station => station.name === node.stn2);
+                    
+                    // 确保两个站点都存在且相邻
+                    if (stn1Index !== -1 && stn2Index !== -1 && Math.abs(stn1Index - stn2Index) === 1) {
+                        // 确定插入位置（在stn1和stn2之间）
+                        const insertIndex = Math.max(stn1Index, stn2Index);
+                        
+                        // 计算插入节点的序列号（取前后站点的平均值）
+                        const prevStation = targetLine.stations[insertIndex - 1];
+                        const nextStation = targetLine.stations[insertIndex];
+                        const nodeSequence = (prevStation.sequence + nextStation.sequence) / 2;
+                        
+                        // 创建节点站点对象
+                        const nodeStation = {
+                            name: node.name,
+                            englishName: node.englishName,
+                            X: node.X,
+                            Y: node.Y,
+                            line: node.line,
+                            lineName: node.lineName,
+                            sequence: nodeSequence,
+                            transfer: false,
+                            transferLines: [],
+                            transferPlatforms: [],
+                            isMajor: false,
+                            management: '',
+                            type: 'node' // 标记为节点类型
+                        };
+                        
+                        // 插入节点到线路站点序列
+                        targetLine.stations.splice(insertIndex, 0, nodeStation);
+                        
+                        console.log(`在线路 ${node.line} 的 ${node.stn1} 和 ${node.stn2} 之间插入节点 ${node.name}`);
+                    }
+                });
+                
+                // 重新排序所有线路的站点
+                lines.forEach(line => {
+                    line.stations.sort((a, b) => a.sequence - b.sequence);
+                });
+                
+                return lines;
             }
         };
 
@@ -1717,23 +1808,29 @@
                 
                 lines.forEach(line => {
                     line.stations.forEach(station => {
+                        // 跳过节点，不显示节点标记
+                        if (station.type === 'node') {
+                            return;
+                        }
+                        
                         const screenPos = this.worldToScreen(station.X, station.Y);
                         
                         // 绘制站点标记 - 通过两个重叠的圆实现黑色描边白色背景
                         
                         // 先绘制大黑圆作为描边
                         appState.ctx.beginPath();
-                        const outerRadius = 6 * appState.mapScale; // 外圆半径
+                        const outerRadius = 6 * appState.mapScale;
                         appState.ctx.arc(screenPos.x, screenPos.y, outerRadius, 0, 2 * Math.PI);
-                        appState.ctx.fillStyle = '#000000'; // 黑色填充
+                        appState.ctx.fillStyle = '#000000';
                         appState.ctx.fill();
                         
-                        // 再绘制小白圆作为背景
+                        // 再绘制内圆作为背景
                         appState.ctx.beginPath();
-                        const innerRadius = 5.5 * appState.mapScale; // 内圆半径，略小于外圆
+                        const innerRadius = 5.5 * appState.mapScale;
                         appState.ctx.arc(screenPos.x, screenPos.y, innerRadius, 0, 2 * Math.PI);
-                        appState.ctx.fillStyle = '#FFFFFF'; // 白色填充
+                        appState.ctx.fillStyle = '#FFFFFF';
                         appState.ctx.fill();
+                        
                         // 添加站名标签
                         this.addStationLabel(station, screenPos.x, screenPos.y);
                     });
@@ -1741,6 +1838,11 @@
             },
 
             addStationLabel(station, x, y) {
+                // 跳过节点，不显示节点标签
+                if (station.type === 'node') {
+                    return;
+                }
+                
                 const label = document.createElement('div');
                 label.className = 'station-label';
                 
@@ -1932,26 +2034,44 @@
                 return turnPoints;
             },
 
-            // 绘制带转折点的线路
+            // 绘制带转折点的线路（支持支线）
             displayLinesWithTurns(lines) {
                 lines.forEach(line => {
+                    // 检查是否是支线
+                    const isBranchLine = line.branchOf && line.branchName;
+                    
                     if (line.stations.length > 1) {
                         // 查找转折点
                         const turnPoints = this.findTurnPoints(line);
                         
                         // 如果没有转折点，直接绘制直线
                         if (turnPoints.length === 0) {
-                            this.drawStraightLine(line);
+                            this.drawStraightLine(line, isBranchLine);
                         } else {
                             // 分段绘制线路，在转折点处断开
-                            this.drawSegmentedLine(line, turnPoints);
+                            this.drawSegmentedLine(line, turnPoints, isBranchLine);
                         }
+                    }
+                    
+                    // 如果这条线路有支线，也绘制支线
+                    if (line.branches && Object.keys(line.branches).length > 0) {
+                        Object.values(line.branches).forEach(branchLine => {
+                            if (branchLine.stations.length > 1) {
+                                const branchTurnPoints = this.findTurnPoints(branchLine);
+                                
+                                if (branchTurnPoints.length === 0) {
+                                    this.drawStraightLine(branchLine, true);
+                                } else {
+                                    this.drawSegmentedLine(branchLine, branchTurnPoints, true);
+                                }
+                            }
+                        });
                     }
                 });
             },
 
             // 绘制直线线路（无转折点）
-            drawStraightLine(line) {
+            drawStraightLine(line, isBranchLine = false) {
                 appState.ctx.beginPath();
                 
                 line.stations.forEach((station, index) => {
@@ -1964,11 +2084,11 @@
                     }
                 });
                 
-                this.applyLineStyle(line);
+                this.applyLineStyle(line, isBranchLine);
             },
 
             // 绘制分段线路（有转折点）
-            drawSegmentedLine(line, turnPoints) {
+            drawSegmentedLine(line, turnPoints, isBranchLine = false) {
                 const segments = [];
                 let startIndex = 0;
                 
@@ -2004,17 +2124,17 @@
                             }
                         });
                         
-                        this.applyLineStyle(line);
+                        this.applyLineStyle(line, isBranchLine);
                     }
                 });
             },
 
-            // 应用线路样式
-            applyLineStyle(line) {
+            // 应用线路样式（支持支线）
+            applyLineStyle(line, isBranchLine = false) {
                 appState.ctx.strokeStyle = line.color;
                 
                 // 中国铁路特快线样式：更粗的线条和虚线样式
-                console.log(`渲染线路 ${line.name} - isExpress: ${line.isExpress}, lineType: ${line.lineType}`);
+                console.log(`渲染线路 ${line.name} - isExpress: ${line.isExpress}, lineType: ${line.lineType}, isBranchLine: ${isBranchLine}`);
                 
                 if (line.lineType === 'walking') {
                     // 步行路样式：特快线样式改灰，去除描边，增加线段距离，添加圆角
@@ -2030,6 +2150,22 @@
                     appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
                     appState.ctx.strokeStyle = '#808080'; // 灰色
                     appState.ctx.lineWidth = 6 * appState.mapScale; // 与特快线彩色线条宽度一致
+                    appState.ctx.stroke();
+                    
+                } else if (isBranchLine) {
+                    // 支线样式：更细的虚线，与主线路区分
+                    console.log(`应用支线样式到线路 ${line.name}`);
+                    
+                    appState.ctx.lineCap = 'round'; // 圆角效果
+                    
+                    // 根据地图缩放比例动态调整虚线样式
+                    const dashLength = 8 * appState.mapScale;
+                    const gapLength = 6 * appState.mapScale;
+                    
+                    // 支线使用更细的虚线，无描边
+                    appState.ctx.setLineDash([dashLength, gapLength]); // 虚线样式
+                    appState.ctx.strokeStyle = line.color;
+                    appState.ctx.lineWidth = 4 * appState.mapScale; // 比主线路细
                     appState.ctx.stroke();
                     
                 } else if (line.isExpress) {
@@ -2139,9 +2275,6 @@
                     this.displayLinesWithTurns(appState.lines);
                     this.displayLineLabels(appState.lines);
                     this.displayStations(appState.lines);
-                    
-                    // 显示节点转折点
-                    this.displayNodes();
                 }
             },
 
@@ -2172,6 +2305,45 @@
                         }
                     });
                 }
+            },
+
+            // 自动检测并创建节点转折点（作为特殊站点处理）
+            detectAndCreateNodes(lines) {
+                const nodes = [];
+                const nodeMap = new Map(); // 用于去重
+                
+                lines.forEach(line => {
+                    if (line.stations.length < 3) return; // 少于3个站点无法形成转折
+                    
+                    // 检测线路上的转折点
+                    const turnPoints = this.findTurnPoints(line);
+                    
+                    turnPoints.forEach(turnPoint => {
+                        const station = turnPoint.station;
+                        const nodeKey = `${station.X}_${station.Y}`;
+                        
+                        // 避免重复节点
+                        if (!nodeMap.has(nodeKey)) {
+                            // 将节点作为特殊站点处理
+                            const node = {
+                                id: `node_${nodes.length + 1}`,
+                                name: `${station.name}_转折点`,
+                                X: station.X,
+                                Y: station.Y,
+                                type: 'node', // 特殊类型：节点
+                                originalStation: station.name,
+                                line: line.name,
+                                englishName: `${station.englishName || station.name}_TurnPoint`,
+                                lineName: line.name
+                            };
+                            
+                            nodes.push(node);
+                            nodeMap.set(nodeKey, node);
+                        }
+                    });
+                });
+                
+                return nodes;
             },
 
 
@@ -2359,6 +2531,14 @@
                         // 处理数据
                         appState.stations = data.stations;
                         appState.lines = data.lines;
+                        
+                        // 自动检测并添加节点转折点（作为特殊站点处理）
+                        const detectedNodes = this.detectAndCreateNodes(data.lines);
+                        
+                        // 将节点合并到站点数组中
+                        appState.stations = [...data.stations, ...detectedNodes];
+                        
+                        // 重新构建图（包含节点）
                         appState.graph = routePlanner.buildGraph(data.lines);
                         
                         // 更新UI
@@ -2368,9 +2548,7 @@
                         // 更新站点选择下拉菜单
                         self.updateStationSelects();
                         
-
-                        
-                        utils.showNotification(`成功导入 ${appState.stations.length} 个站点数据`);
+                        utils.showNotification(`成功导入 ${data.stations.length} 个站点数据，检测到 ${detectedNodes.length} 个转折点`);
                         
                     } catch (error) {
                         utils.showNotification(error.message, 'error');
@@ -2483,6 +2661,20 @@
                         console.log(`成功加载 ${walkingCombinedData.lines.length} 条步行路线路`);
                     }
                     
+                    // 解析并添加节点数据（作为特殊站点处理）
+                    if (typeof nodeData !== 'undefined') {
+                        console.log('开始解析节点数据...');
+                        const parsedNodes = dataProcessor.parseNodeData(nodeData);
+                        console.log('解析后的节点数据:', parsedNodes);
+                        
+                        // 将节点插入到线路站点序列中
+                        dataProcessor.insertNodesIntoLineSequences(appState.lines, parsedNodes);
+                        
+                        // 将节点合并到站点数组中
+                        appState.stations = [...appState.stations, ...parsedNodes];
+                        console.log(`成功加载 ${parsedNodes.length} 个节点数据`);
+                    }
+                    
                     appState.graph = routePlanner.buildGraph(appState.lines);
                     
                     console.log('应用状态更新完成:', {
@@ -2562,6 +2754,19 @@
                         // 合并到应用状态
                         appState.stations = [...appState.stations, ...walkingCombinedData.stations];
                         appState.lines = [...appState.lines, ...walkingCombinedData.lines];
+                    }
+                    
+                    // 解析并添加节点数据（作为特殊站点处理）
+                    if (typeof nodeData !== 'undefined') {
+                        console.log('开始静默解析节点数据...');
+                        const parsedNodes = dataProcessor.parseNodeData(nodeData);
+                        
+                        // 将节点插入到线路站点序列中
+                        dataProcessor.insertNodesIntoLineSequences(appState.lines, parsedNodes);
+                        
+                        // 将节点合并到站点数组中
+                        appState.stations = [...appState.stations, ...parsedNodes];
+                        console.log(`静默加载 ${parsedNodes.length} 个节点数据`);
                     }
                     
                     appState.graph = routePlanner.buildGraph(appState.lines);
@@ -2904,6 +3109,7 @@ S3,S3,#fcba77,false,"工业园:1,十字口:2"
 S4,S4,#ff5900,false,"旧园:1,新城口:2"
 S5,S5,#b7ff00,false,"渔场:1,旧园:2"
 S6,S6,#a600ff,false,"旧园郊(铁路):1,南江畔:2,近东南一村:3"
+S7,S7,#b700AA,false,"旧园:1,矿山:2,友谊长存纪念碑:3"
 S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
 
@@ -2911,10 +3117,11 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
         // 站点坐标信息（单独存储）
         const stationCoordinates = `name,englishName,X,Y,transfer,transferLines,transferPlatforms,isMajor,management
-旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4","3F,地下,2F,2F,2F",true,
+旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4,S7","3F,地下,2F,2F,2F,2F",true,
 旧园郊(快船),Jiuyuanjiao (Express),-247,146,true,,,false,
 旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,
-世界中心·矿山,World Center,0,0,false,,,false,
+矿山,Kuangshan,-60,62,false,,,false,
+友谊长存纪念碑,Monument to Eternal Friendship,-57,118,false,,,false,
 
 新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true,
 仙雪,Xianxue,-284,16,false,,,false,
@@ -2949,8 +3156,17 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
         const walkingData = `color,isExpress,lineType,stationSequence
 #808080,false,walking,"旧园郊(铁路):1,旧园郊(快船):2"
 #808080,false,walking,"府邸:1,工业园:2"
-#808080,false,walking,"世界中心·矿山:1,旧园:2"
 #808080,false,walking,"北桥:1,瑜西:2,北桥泰加:3"
+`;
+    </script>
+    <script>
+        // 节点数据 x，y为坐标 line为线路id 节点在线路上的stn1和stn2两个站之间
+        const nodeData = `x,y,line,stn1,stn2
+        -245,74,S2,渔场,新城口
+        -247,67,S4,新城口,旧园
+        -386,66,S3,十字口,工业园
+        -141,148,近西南线,旧园,旧园郊(铁路)
+        -141,230,近西南线,旧园,旧园郊(铁路)
 `;
     </script>
 </body>
