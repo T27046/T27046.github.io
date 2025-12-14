@@ -297,6 +297,130 @@
             transition: all 0.3s ease;
             background-image: url("data:image/svg+xml;charset=US-ASCII,<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 7.5L10 12.5L15 7.5' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
             background-repeat: no-repeat;
+
+        /* 图例样式 */
+        .legend-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 300px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .legend-container.collapsed {
+            max-height: 40px;
+            overflow: hidden;
+            padding: 8px 16px;
+        }
+
+        .legend-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .legend-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .legend-toggle {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #667eea;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .legend-toggle:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .legend-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .legend-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .legend-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .legend-line-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 2px;
+        }
+
+        .legend-line-details {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .legend-line-type {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        .legend-stations {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* 图例缩放适配 */
+        @media (max-width: 768px) {
+            .legend-container {
+                top: 10px;
+                right: 10px;
+                max-width: 250px;
+            }
+        }
             background-position: right 16px center;
             background-size: 16px;
             backdrop-filter: blur(10px);
@@ -761,11 +885,21 @@
             <!-- 地图区域 -->
             <div class="map-container">
                 <canvas id="mapCanvas"></canvas>
+                <!-- 图例容器 -->
+                <div class="legend-container" id="legendContainer">
+                    <div class="legend-header" onclick="mapRenderer.toggleLegend()">
+                        <h3 class="legend-title">线路图例</h3>
+                        <button class="legend-toggle" title="展开/收起图例">▼</button>
+                    </div>
+                    <div class="legend-content" id="legendContent">
+                        <!-- 图例内容将通过JavaScript动态生成 -->
+                    </div>
+                </div>
                 <div class="map-controls">
                     <button id="zoomIn" class="map-btn" title="放大">+</button>
                     <button id="zoomOut" class="map-btn" title="缩小">-</button>
                     <button id="resetView" class="map-btn" title="重置视图">↺</button>
-                    <button id="saveImage" class="map-btn" title="保存图片">保存</button>
+                    <button id="saveImage" class="map-btn" title="保存图片">📷</button>
                 </div>
             </div>
 
@@ -2346,6 +2480,166 @@
                 return nodes;
             },
 
+            // 图例相关功能
+            initLegend() {
+                this.isLegendExpanded = true;
+                this.updateLegend();
+            },
+
+            toggleLegend() {
+                const legendContainer = document.getElementById('legendContainer');
+                const toggleButton = legendContainer.querySelector('.legend-toggle');
+                
+                this.isLegendExpanded = !this.isLegendExpanded;
+                
+                if (this.isLegendExpanded) {
+                    legendContainer.classList.remove('collapsed');
+                    toggleButton.textContent = '▼';
+                    this.updateLegend();
+                } else {
+                    legendContainer.classList.add('collapsed');
+                    toggleButton.textContent = '▶';
+                }
+            },
+
+            updateLegend() {
+                if (!this.isLegendExpanded || !appState.lines || appState.lines.length === 0) return;
+                
+                const legendContent = document.getElementById('legendContent');
+                legendContent.innerHTML = '';
+                
+                // 按线路类型分组，过滤掉步行路
+                const linesByType = {};
+                appState.lines.forEach(line => {
+                    if (line.lineType === 'walking') return; // 跳过步行路
+                    if (!linesByType[line.lineType]) {
+                        linesByType[line.lineType] = [];
+                    }
+                    linesByType[line.lineType].push(line);
+                });
+                
+                // 按特定顺序显示线路类型，排除步行路
+                const typeOrder = ['subway', 'railway', 'bus'];
+                
+                typeOrder.forEach(type => {
+                    if (linesByType[type]) {
+                        linesByType[type].forEach(line => {
+                            this.addLegendItem(line, legendContent);
+                        });
+                    }
+                });
+            },
+
+            addLegendItem(line, container) {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                
+                // 根据是否为特快线路确定线路类型
+                const typeName = line.isExpress ? '快船' : '铁路';
+                
+                // 获取起点站和终点站
+                const startStation = line.stations[0]?.name || '未知';
+                const endStation = line.stations[line.stations.length - 1]?.name || '未知';
+                
+                // 获取线路特征描述
+                let features = '';
+                if (line.branchOf) {
+                    features += '支线';
+                }
+                
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${line.color}"></div>
+                    <div class="legend-info">
+                        <div class="legend-line-name">${line.name}</div>
+                        <div class="legend-line-details">
+                            <span class="legend-line-type">${typeName}</span>
+                            ${features ? `<span>${features}</span>` : ''}
+                        </div>
+                        <div class="legend-stations">${startStation} ↔ ${endStation}</div>
+                    </div>
+                `;
+                
+                container.appendChild(legendItem);
+            },
+
+            // 在Canvas上绘制图例（用于图片保存）
+            drawLegendOnCanvas(ctx, scale) {
+                if (!appState.lines || appState.lines.length === 0) return;
+                
+                // 过滤掉步行路线路
+                const filteredLines = appState.lines.filter(line => line.lineType !== 'walking');
+                if (filteredLines.length === 0) return;
+                
+                // 图例项参数
+                const itemWidth = 250 * scale;
+                const itemHeight = 80 * scale;
+                const padding = 20 * scale;
+                const spacing = 15 * scale;
+                
+                // 计算每行最多能容纳的图例项数量
+                const maxItemsPerRow = Math.floor((ctx.canvas.width - padding * 2) / (itemWidth + spacing));
+                const rows = Math.ceil(filteredLines.length / maxItemsPerRow);
+                
+                // 计算图例总高度和位置
+                const totalHeight = rows * itemHeight + (rows - 1) * spacing;
+                const legendY = ctx.canvas.height - (totalHeight + 50 * scale); // 底部留出50像素间距
+                
+                // 绘制图例背景
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+                ctx.lineWidth = 1 * scale;
+                ctx.fillRect(padding, legendY - padding, 
+                           ctx.canvas.width - padding * 2, totalHeight + padding * 2);
+                ctx.strokeRect(padding, legendY - padding, 
+                             ctx.canvas.width - padding * 2, totalHeight + padding * 2);
+                
+                // 绘制图例标题
+                ctx.font = `${16 * scale}px Arial`;
+                ctx.fillStyle = '#2c3e50';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                ctx.fillText('线路图例', ctx.canvas.width / 2, legendY - padding - 25 * scale);
+                
+                // 绘制每条线路的图例项（自动换行，左对齐）
+                filteredLines.forEach((line, index) => {
+                    const row = Math.floor(index / maxItemsPerRow);
+                    const col = index % maxItemsPerRow;
+                    
+                    // 计算每行的起始位置（左对齐）
+                    const rowStartX = padding;
+                    
+                    const itemX = rowStartX + col * (itemWidth + spacing);
+                    const itemY = legendY + row * (itemHeight + spacing);
+                    
+                    // 绘制颜色块
+                    ctx.fillStyle = line.color;
+                    ctx.fillRect(itemX, itemY, 20 * scale, 20 * scale);
+                    
+                    // 绘制线路名称
+                    ctx.font = `${14 * scale}px Arial`;
+                    ctx.fillStyle = '#2c3e50';
+                    ctx.textAlign = 'left';
+                    ctx.fillText(line.name, itemX + 25 * scale, itemY);
+                    
+                    // 绘制线路类型和特征
+                    ctx.font = `${12 * scale}px Arial`;
+                    ctx.fillStyle = '#666';
+                    
+                    // 根据是否为特快线路确定线路类型
+                    const typeName = line.isExpress ? '快船' : '铁路';
+                    let features = '';
+                    if (line.branchOf) features += '支线';
+                    
+                    ctx.fillText(`${typeName}${features ? ` - ${features}` : ''}`, 
+                               itemX + 25 * scale, itemY + 20 * scale);
+                    
+                    // 绘制起点终点
+                    const startStation = line.stations[0]?.name || '未知';
+                    const endStation = line.stations[line.stations.length - 1]?.name || '未知';
+                    ctx.fillText(`${startStation} ↔ ${endStation}`, 
+                               itemX + 25 * scale, itemY + 40 * scale);
+                });
+            }
 
         };
 
@@ -2354,6 +2648,9 @@
             init() {
                 // 初始化地图
                 mapRenderer.init();
+                
+                // 初始化图例
+                mapRenderer.initLegend();
                 
                 // 绑定事件（使用箭头函数保持正确的this上下文）
                 document.getElementById('calculateRoute').addEventListener('click', () => this.handleRouteCalculation());
@@ -2711,6 +3008,11 @@
                         this.initSearchableSelects();
                     }
                     
+                    // 更新图例
+                    if (typeof mapRenderer.updateLegend === 'function') {
+                        mapRenderer.updateLegend();
+                    }
+                    
                     console.log('subway-data.js数据加载完成');
                     utils.showNotification(`成功加载 ${appState.stations.length} 个站点数据`);
                     
@@ -3016,6 +3318,11 @@
                         
                         // 在Canvas上绘制站点名字（用于图片保存）
                         this.drawStationNamesOnCanvas(appState.lines);
+                    }
+                    
+                    // 在Canvas上绘制图例（用于图片保存）- 在渲染完成后单独绘制
+                    if (appState.lines && appState.lines.length > 0) {
+                        mapRenderer.drawLegendOnCanvas(tempCtx, targetScale * resolutionMultiplier);
                     }
                     
                     // 恢复原始状态
