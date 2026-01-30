@@ -3404,6 +3404,8 @@
 K1,K1,#53c700,true,"旧园:1,纽克北站:2"
 K2,K2,#005eff,true,"瑜西:1,新城口:2,旧园郊(快船):3,大西洋鲑:4"
 
+K99,K99(单向),#202000,true,"纽克北站:1,远西南·西要塞通道:2"
+
 近西南线,近西南线,#ffd500,false,"旧园:1,旧园郊(铁路):2,劫掠前哨:3,纽克站:4"
 北桥线,北桥线,#ff8fa4,false,"旧园:1,北桥:2"
 
@@ -3419,7 +3421,6 @@ S6,S6,#a600ff,false,"旧园郊(铁路):1,南江畔:2,近东南一村:3"
 S7,S7,#b700AA,false,"旧园:1,峨巗口:2,友谊长存纪念碑:3,南江畔:4,大西洋鲑:5"
 S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
-
 `;
 
         // 站点坐标信息（单独存储）
@@ -3429,6 +3430,8 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,
 峨巗口,Eyankou,-60,62,false,,,false,
 友谊长存纪念碑,Monument to Eternal Friendship,-57,118,false,,,false,
+远西南·西要塞通道,Yuanxinan,-966,1085,false,,,false,K99终点
+西要塞,Xiyaosai,-972,2004,false,,,false,
 
 新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true,
 仙雪,Xianxue,-284,16,false,,,false,
@@ -3438,12 +3441,12 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 沙北东站,Shabei East Station,-325,-490,false,,,false,
 沙北站,Shabei Station,-522,-550,true,"HCL","",false,
 
-工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false,废弃区域
-纽克北站,Niuke North Station,-963,93,true,"K1,N1","地上,地下",false,废弃区域
-劫掠前哨,Jielueqianshao,-630,233,false,,,false,废弃区域
-纽克站,Niuke Station,-800,333,true,"近西南线,N1","地上,地下",false,废弃区域
-阿萨伟,Asawei,-900,-370,false,,,false,废弃区域
-府邸,Fudi,-757,264,true,,,false,废弃区域
+工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false,
+纽克北站,Niuke North Station,-963,93,true,"K1,N1,K99","地上,地下,地下",false,K99起点
+劫掠前哨,Jielueqianshao,-630,233,false,,,false,
+纽克站,Niuke Station,-800,333,true,"近西南线,N1","地上,地下",false,
+阿萨伟,Asawei,-900,-370,false,,,false,
+府邸,Fudi,-757,264,true,,,false,
 
 北桥,Beiqiao,-136,-224,false,,,false,
 北桥泰加,Beiqiao Taiga,-330,-224,false,,,false,
@@ -3464,6 +3467,7 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 #808080,false,walking,"旧园郊(铁路):1,旧园郊(快船):2"
 #808080,false,walking,"府邸:1,工业园:2"
 #808080,false,walking,"北桥:1,瑜西:2,北桥泰加:3"
+#808080,false,walking,"远西南·西要塞通道:1,西要塞:2"
 `;
     </script>
     <script>
