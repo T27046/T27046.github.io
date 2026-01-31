@@ -301,7 +301,7 @@
         /* 图例样式 */
         .legend-container {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             right: 20px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -1994,7 +1994,7 @@
                 // 创建运营单位信息显示
                 let managementInfo = '';
                 if (station.management) {
-                    managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #a00;">${station.management}</div>`;
+                    managementInfo = `<div class="station-management" style="font-size: ${transferFontSize}px; color: #aaa;">${station.management}</div>`;
                 }
                 
                 // 创建换乘信息显示 - 处理线路数和站台数不等的情况
@@ -2652,6 +2652,9 @@
                 // 初始化图例
                 mapRenderer.initLegend();
                 
+                // 检测是否为移动端设备，如果是则隐藏保存按钮
+                this.detectMobileAndHideSaveButton();
+                
                 // 绑定事件（使用箭头函数保持正确的this上下文）
                 document.getElementById('calculateRoute').addEventListener('click', () => this.handleRouteCalculation());
                 document.getElementById('zoomIn').addEventListener('click', () => this.handleZoomIn());
@@ -2666,6 +2669,21 @@
                 setTimeout(() => {
                     this.handleLoadSampleSilent();
                 }, 100);
+            },
+
+            // 检测移动端设备并隐藏保存按钮
+            detectMobileAndHideSaveButton() {
+                // 检测是否为移动端设备
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                               (window.innerWidth <= 768 && window.innerHeight <= 1024);
+                
+                if (isMobile) {
+                    const saveButton = document.getElementById('saveImage');
+                    if (saveButton) {
+                        saveButton.style.display = 'none';
+                        console.log('移动端访问，已隐藏保存按钮');
+                    }
+                }
             },
 
             initSearchFunctionality() {
@@ -3410,6 +3428,7 @@ K99,K99(单向),#202000,true,"纽克北站:1,远西南·西要塞通道:2"
 北桥线,北桥线,#ff8fa4,false,"旧园:1,北桥:2"
 
 N1,N1,#E3002B,false,"纽克北站:1,工业园:2,纽克站:3"
+N2,N2,#66ccff,false,"阿萨伟:1,热德块:2"
 HCL线,HCL线,#bfa15c,false,"沙北站:1,府邸:2,阿萨伟:3"
 
 S1,S1,#00c3ff,false,"新城口:1,仙雪:2,十字口:3,塘心:4"
@@ -3425,37 +3444,37 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 
         // 站点坐标信息（单独存储）
         const stationCoordinates = `name,englishName,X,Y,transfer,transferLines,transferPlatforms,isMajor,management
-旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4,S7","3F,地下,2F,2F,2F,2F",true,
-旧园郊(快船),Jiuyuanjiao (Express),-247,146,true,,,false,
-旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,
-峨巗口,Eyankou,-60,62,false,,,false,
-友谊长存纪念碑,Monument to Eternal Friendship,-57,118,false,,,false,
-远西南·西要塞通道,Yuanxinan,-966,1085,false,,,false,K99终点
-西要塞,Xiyaosai,-972,2004,false,,,false,
+旧园,Jiuyuan,-137,66,true,"K1,近西南线,北桥线,S2,S4,S7","3F,地下,2F,2F,2F,2F",true,旧园
+旧园郊(快船),Jiuyuanjiao (Express),-238,146,true,,,false,旧园
+旧园郊(铁路),Jiuyuanjiao (Railway),-222,226,true,"近西南线,S6","-1F,-2F",false,旧园
+峨巗口,Eyankou,-60,66,false,,,false,旧园
+友谊长存纪念碑,Monument to Eternal Friendship,-60,118,false,,,false,旧园
+远西南·西要塞通道,Yuanxinan,-966,800,false,,,false,K99终点
+渔场,Yuchang,-206,66,true,"S2,S5","1F,2F",false,旧园
 
-新城口,Xinchengkou,-238,18,true,"K2,S1","2F,1F",true,
-仙雪,Xianxue,-284,16,false,,,false,
-十字口,Shizikou,-330,16,true,"S1,S3,S9","站台 1 ,站台 2 ,站台 3",true,
-塘心,Lake Center,-377,16,false,,,false,
-渔场,Yuchang,-206,66,true,"S2,S5","1F,2F",false,
+新城口,Xinchengkou,-238,16,true,"K2,S1","2F,1F",true,中潭
+仙雪,Xianxue,-284,16,false,,,false,中潭
+十字口,Shizikou,-330,16,true,"S1,S3,S9","站台 1 ,站台 2 ,站台 3",true,中潭
+塘心,Lake Center,-377,16,false,,,false,中潭
 沙北东站,Shabei East Station,-325,-490,false,,,false,
 沙北站,Shabei Station,-522,-550,true,"HCL","",false,
 
-工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false,
-纽克北站,Niuke North Station,-963,93,true,"K1,N1,K99","地上,地下,地下",false,K99起点
-劫掠前哨,Jielueqianshao,-630,233,false,,,false,
-纽克站,Niuke Station,-800,333,true,"近西南线,N1","地上,地下",false,
-阿萨伟,Asawei,-900,-370,false,,,false,
-府邸,Fudi,-757,264,true,,,false,
+工业园,Gongyeyuan,-814,255,true,"N1,S3","A,B",false,纽克
+纽克北站,Niuke North Station,-963,66,true,"K1,N1,K99","地上,地下,地下",false,纽克 K99起点
+劫掠前哨,Jielueqianshao,-630,226,false,,,false,纽克
+纽克站,Niuke Station,-814,333,true,"近西南线,N1","地上,地下",false,纽克
+阿萨伟,Asawei,-900,-370,false,,,false,纽克
+府邸,Fudi,-757,264,true,,,false,纽克
+热德块,Redekuai,-900,-730,true,,,false,纽克
 
-北桥,Beiqiao,-136,-224,false,,,false,
-北桥泰加,Beiqiao Taiga,-330,-224,false,,,false,
-瑜西,Yuxi,-247,-231,false,,,false,
+北桥,Beiqiao,-136,-224,false,,,false,北桥
+北桥泰加,Beiqiao Taiga,-330,-224,false,,,false,北桥
+瑜西,Yuxi,-238,-224,false,,,false,北桥
 
-南江畔,Nanjiangpan,-42,226,true,"S6,S7","站台 1,站台 2",false,
+南江畔,Nanjiangpan,-60,226,true,"S6,S7","站台 1,站台 2",false,
 近东南一村,Jindongnan I,125,226,false,,,false,
 
-大西洋鲑,Daxiyanggui,-261,456,false,,,false,
+大西洋鲑,Daxiyanggui,-238,456,false,,,false,大西洋鲑
 
 `;
     </script>
@@ -3467,7 +3486,6 @@ S9,S9,#92b0a8,false,"十字口:1,北桥泰加:2,沙北东站:3"
 #808080,false,walking,"旧园郊(铁路):1,旧园郊(快船):2"
 #808080,false,walking,"府邸:1,工业园:2"
 #808080,false,walking,"北桥:1,瑜西:2,北桥泰加:3"
-#808080,false,walking,"远西南·西要塞通道:1,西要塞:2"
 `;
     </script>
     <script>
