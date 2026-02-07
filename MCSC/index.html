@@ -2337,36 +2337,44 @@
             },
 
             // 显示线路编号标签
-            displayLineLabels(lines) {
-                lines.forEach(line => {
-                    if (line.stations.length > 1 && line.lineType !== 'walking') {
-                        // 计算线路的几何中点，而不是站点位置
-                        const startStation = line.stations[0];
-                        const endStation = line.stations[line.stations.length - 1];
-                        
-                        // 计算线路的几何中心点
-                        const centerX = (startStation.X + endStation.X) / 2;
-                        const centerY = (startStation.Y + endStation.Y) / 2;
-                        
-                        // 将世界坐标转换为屏幕坐标
-                        const centerScreenPos = this.worldToScreen(centerX, centerY);
-                        
-                        // 设置文字样式
-                        appState.ctx.font = `${12 * appState.mapScale}px Arial`;
-                        appState.ctx.textAlign = 'center';
-                        appState.ctx.textBaseline = 'middle';
-                        
-                        // 添加白色描边背景，提高可读性
-                        appState.ctx.strokeStyle = '#FFFFFF';
-                        appState.ctx.lineWidth = 3 * appState.mapScale;
-                        appState.ctx.strokeText(line.id, centerScreenPos.x, centerScreenPos.y);
-                        
-                        // 绘制与线路颜色一致的编号文字
-                        appState.ctx.fillStyle = line.color;
-                        appState.ctx.fillText(line.id, centerScreenPos.x, centerScreenPos.y);
-                    }
-                });
-            },
+displayLineLabels(lines) {
+    lines.forEach(line => {
+        if (line.stations.length > 1 && line.lineType !== 'walking') {
+            // 遍历线路的每一组相邻站点（逐段处理）
+            line.stations.forEach((station, index) => {
+                // 排除最后一个站点（无下一个站点可配对）
+                if (index < line.stations.length - 1) {
+                    const curStation = station;
+                    const nextStation = line.stations[index + 1];
+                    
+                    // 计算当前相邻站点段的中点（替代原线路整体几何中心）
+                    const midX = (curStation.X + nextStation.X) / 2;
+                    const midY = (curStation.Y + nextStation.Y) / 2;
+                    
+                    // 世界坐标转屏幕坐标
+                    const midScreenPos = this.worldToScreen(midX, midY);
+                    
+                    // 设置文字样式（随地图缩放适配）
+                    appState.ctx.font = `${12 * appState.mapScale}px Arial`;
+                    appState.ctx.textAlign = 'center';
+                    appState.ctx.textBaseline = 'middle';
+                    
+                    // 白色描边（提高文字可读性，描边宽度随缩放适配）
+                    appState.ctx.strokeStyle = '#FFFFFF';
+                    appState.ctx.lineWidth = 3 * appState.mapScale;
+                    appState.ctx.strokeText(line.id, midScreenPos.x, midScreenPos.y);
+                    
+                    // 绘制线路原色的标签文字
+                    appState.ctx.fillStyle = line.color;
+                    appState.ctx.fillText(line.id, midScreenPos.x, midScreenPos.y);
+                    
+                    // 【可选】仅在第一段绘制标签（避免多段标签重叠，注释则全段绘制）
+                    // break;
+                }
+            });
+        }
+    });
+},
 
             displayRoute(route, transfers) {
                 transfers.forEach(transfer => {
@@ -2417,23 +2425,23 @@
                         const screenPos = this.worldToScreen(node.X, node.Y);
                         
                         // 绘制节点标记
-                        appState.ctx.beginPath();
-                        appState.ctx.arc(screenPos.x, screenPos.y, 6 * appState.mapScale, 0, 2 * Math.PI);
-                        appState.ctx.fillStyle = node.type === 'turn' ? '#FF6B6B' : '#4ECDC4';
-                        appState.ctx.fill();
+                        //appState.ctx.beginPath();
+                        //appState.ctx.arc(screenPos.x, screenPos.y, 6 * appState.mapScale, 0, 2 * Math.PI);
+                        //appState.ctx.fillStyle = node.type === 'turn' ? '#FF6B6B' : '#4ECDC4';
+                        //appState.ctx.fill();
                         
                         // 添加白色边框
-                        appState.ctx.strokeStyle = '#FFFFFF';
-                        appState.ctx.lineWidth = 2 * appState.mapScale;
-                        appState.ctx.stroke();
+                        //appState.ctx.strokeStyle = '#FFFFFF';
+                        //appState.ctx.lineWidth = 2 * appState.mapScale;
+                        //appState.ctx.stroke();
                         
                         // 显示节点名称（可选）
                         if (appState.mapScale > 0.5) {
-                            appState.ctx.font = `${10 * appState.mapScale}px Arial`;
-                            appState.ctx.fillStyle = '#333333';
-                            appState.ctx.textAlign = 'center';
-                            appState.ctx.textBaseline = 'top';
-                            appState.ctx.fillText(node.name, screenPos.x, screenPos.y + 10 * appState.mapScale);
+                            //appState.ctx.font = `${10 * appState.mapScale}px Arial`;
+                            //appState.ctx.fillStyle = '#333333';
+                            //appState.ctx.textAlign = 'center';
+                            //appState.ctx.textBaseline = 'top';
+                            //appState.ctx.fillText(node.name, screenPos.x, screenPos.y + 10 * appState.mapScale);
                         }
                     });
                 }
@@ -3487,4 +3495,4 @@ Z3,Z3,#b7ff00,false,"工业园:1,十字口:2,北桥泰加:3,沙北东站:4"
 `;
     </script>
 </body>
-</html>
+</html>qqq
