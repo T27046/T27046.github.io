@@ -683,7 +683,7 @@
         
         .transfer-lines {
             color: #007AFF;
-            font-weight: bold;
+            font-size:7px;
         }
         
         .transfer-platforms {
@@ -2004,12 +2004,12 @@
                     let platformsInfo = '';
                     if (station.transferPlatforms && station.transferPlatforms.length > 0) {
                         const transferPlatforms = station.transferPlatforms.join('、');
-                        platformsInfo = `<div class="transfer-platforms" style="font-size: ${platformFontSize}px;">换乘站台：${transferPlatforms}</div>`;
+                        platformsInfo = `<div class="transfer-platforms" style="font-size: ${platformFontSize}px;">站台：${transferPlatforms}</div>`;
                     }
                     
                     transferInfo = `
                         <div class="station-transfer-info" style="font-size: ${transferFontSize}px;">
-                            <div class="transfer-lines">换乘线路：${transferLines}</div>
+                            <div class="transfer-lines">线路：${transferLines}</div>
                             ${platformsInfo}
                         </div>
                     `;
