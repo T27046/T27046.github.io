@@ -3426,7 +3426,7 @@ displayLineLabels(lines) {
         // 地铁线路数据 - 以线路为中心的存储结构 
         const subwayData = `lineId,lineName,color,isExpress,stationSequence
 K1,K1,#53c700,true,"旧园:1,纽克北站:2"
-K2,K2,#005eff,true,"瑜西:1,新城口:2,大西洋鲑:3"
+K2,K2,#005eff,true,"瑜西:1,新城口:2,旧园郊:3,大西洋鲑:4"
 
 K99,K99(单向),#202000,true,"纽克北站:1,远西南·西要塞通道:2"
 
@@ -3434,9 +3434,9 @@ K99,K99(单向),#202000,true,"纽克北站:1,远西南·西要塞通道:2"
 N1,N1,#E3002B,false,"纽克北站:1,工业园:2,纽克站:3,劫掠前哨:4,旧园郊:5,旧园:6,北桥:7,瑜西:8,北桥泰加:9"
 N2,N2,#66ccff,false,"阿萨伟:1,热德块:2"
 HCL线,HCL线,#bfa15c,false,"沙北站:1,府邸:2,阿萨伟:3"
-Z1,Z1,#ffd500,false,"十字口:1,新城口:2,渔场:3,旧园:4,峨巗口:5,友谊长存纪念碑:6,南江畔:7,大西洋鲑:8,南洲:9"
-Z2,Z2,#00d5ff,false,"旧园郊:1,近东南一村:2"
-Z3,Z3,#b7ff00,false,"工业园:1,十字口:2,北桥泰加:3,沙北东站:4"
+Z1,Z1,#00d5ff,false,"十字口:1,新城口:2,渔场:3,旧园:4,峨巗口:5,友谊长存纪念碑:6,南江畔:7,大西洋鲑:8,南洲:9"
+Z2,Z2,#ffd500,false,"旧园郊:1,近东南一村:2"
+Z3,Z3,#b7b700,false,"工业园:1,十字口:2,北桥泰加:3,沙北东站:4"
 潭区纵通线,潭区纵通线,#225500,true,"东角机场:1,十字口:2,南洲:3"
 潭区横通线,潭区横通线,#aadd00,true,"新城口:1,十字口:2,西坪:3"
 东角环线,东角环线,#660000,false,"东角机场:1,东角大道北:2,新城口:3,十字口:4,东角机场:5"
@@ -3445,28 +3445,28 @@ Z3,Z3,#b7ff00,false,"工业园:1,十字口:2,北桥泰加:3,沙北东站:4"
         // 站点坐标信息（单独存储）
         const stationCoordinates = `name,englishName,X,Y,transfer,transferLines,transferPlatforms,isMajor,management
 旧园,Jiuyuan,-137,66,true,"K1,N1,Z1","3F,地下,2F",true,旧园
-旧园郊,Jiuyuanjiao,-222,226,true,"N1,Z2","-1F,-2F",false,旧园
+旧园郊,Jiuyuanjiao,-238,226,true,"N1,Z2","-1F,-2F",false,旧园
 峨巗口,Eyankou,-60,66,false,,,false,旧园
 友谊长存纪念碑,Monument to Eternal Friendship,-60,118,false,,,false,旧园
 远西南·西要塞通道,Yuanxinan,-966,800,false,,,false,
 渔场,Yuchang,-206,66,false,,,false,旧园
 
-新城口,Xinchengkou,-238,16,true,"K2,Z1","2F,1F",true,中潭
-十字口,Shizikou,-330,16,true,"Z1,Z3,东角环线,中潭纵通","无站台信息",true,中潭
-沙北东站,Shabei East Station,-325,-490,false,,,false,
-沙北站,Shabei Station,-522,-550,true,"HCL","",false,
-南洲,Nanzhou,-330,66,true,"","",false,中潭（规划中，K1不停靠）
-西坪,Xiping,-440,16,false,,,false,中潭（规划中）
-东角机场,Dongjiao Airport,-330,-180,true,"东角环线,中潭纵通线","无站台信息",false,中潭（规划中）
-东角大道北,Dongjiao Ave. N.,-258,-150,false,,,false,中潭（规划中）
+新城口,Xinchengkou,-238,16,true,"K2,Z1","2F",true,中潭(东角)
+十字口,Shizikou,-330,16,true,"Z1,Z3,东角环线,中潭纵通","Z1、Z3:二层，其他线路建设中",true,中潭(东角)
+上河东站,Shabei East Station,-325,-490,false,,,false,中潭(上河)
+上河站,Shabei Station,-522,-550,true,"HCL","",false,中潭(上河)
+南洲,Nanzhou,-330,66,true,"","",false,中潭(西坪)（规划中，K1不停靠）
+西坪,Xiping,-440,16,false,,,false,中潭(西坪)（规划中）
+东角机场,Dongjiao Airport,-330,-180,true,"东角环线,中潭纵通线","无站台信息",false,中潭(东角)（规划中）
+东角大道北,Dongjiao Ave. N.,-258,-150,false,,,false,中潭(东角)（规划中）
 
-工业园,Gongyeyuan,-814,255,true,"N1,Z3","A,B",false,纽克
-纽克北站,Niuke North Station,-963,66,true,"K1,N1,K99","地上,地下,地下",false,纽克
-劫掠前哨,Jielueqianshao,-630,226,false,,,false,纽克
-纽克站,Niuke Station,-814,333,true,"近西南线,N1","地上,地下",false,纽克
-阿萨伟,Asawei,-900,-370,true,"HCL,N2","无站台信息",false,纽克
-府邸,Fudi,-757,264,true,,,false,纽克
-热德块,Redekuai,-900,-730,true,,,false,纽克
+工业园,Gongyeyuan,-814,255,true,"N1,Z3","A,B",false,纽克(市)
+纽克北站,Niuke North Station,-963,66,true,"K1,N1,K99","地上,地下,地下",false,纽克(市)
+劫掠前哨,Jielueqianshao,-630,226,false,,,false,纽克(地区)
+纽克站,Niuke Station,-814,333,true,"近西南线,N1","地上,地下",false,纽克(市)
+阿萨伟,Asawei,-900,-370,true,"HCL,N2","无站台信息",false,纽克(地区)
+府邸,Fudi,-757,264,true,,,false,纽克(市)
+热德块,Redekuai,-900,-730,true,,,false,纽克(地区)
 
 北桥,Beiqiao,-136,-224,false,,,false,北桥
 北桥泰加,Beiqiao Taiga,-330,-224,true,"N1,Z1","无站台信息",false,北桥
