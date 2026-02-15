@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动下载文件</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-status {
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pending { background-color: #ff9800; color: white; }
+        .downloading { background-color: #2196F3; color: white; }
+        .completed { background-color: #4CAF50; color: white; }
+        .error { background-color: #f44336; color: white; }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+        button:hover {
+            background-color: #1976D2;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>自动文件下载</h1>
+        
+        <div class="status" id="status">
+            准备开始下载...
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <ul class="file-list" id="fileList"></ul>
+        
+        <div class="controls">
+            <button id="startBtn" onclick="startDownloads()">开始下载</button>
+            <button id="stopBtn" onclick="stopDownloads()" disabled>停止下载</button>
+        </div>
+    </div>
+
+    <script>
+        // 要下载的文件列表
+        const filesToDownload = [
+            {
+                name: "mod.zip",
+                url: "mod.zip"
+            },
+            {
+                name: "mod.z01",
+                url: "mod.z01"
+            },
+            {
+                name: "mod.z02",
+                url: "mod.z02"
+            },
+            {
+                name: "mod.z03",
+                url: "mod.z03"
+            },
+            {
+                name: "mod.z04",
+                url: "mod.z04"
+            },
+            {
+                name: "mod.z05",
+                url: "mod.z05"
+            },
+            {
+                name: "mod.z06",
+                url: "mod.z06"
+            },
+            {
+                name: "mod.z07",
+                url: "mod.z07"
+            },
+            {
+                name: "mod.z08",
+                url: "mod.z08"
+            },
+            {
+                name: "mod.z09",
+                url: "mod.z09"
+            },
+            {
+                name: "mod.z10",
+                url: "mod.z10"
+            },
+            {
+                name: "mod.z11",
+                url: "mod.z11"
+            }
+        ];
+
+        let downloadQueue = [];
+        let currentDownloadIndex = 0;
+        let isDownloading = false;
+        let downloadController = null;
+
+        // 初始化页面
+        function initializePage() {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            filesToDownload.forEach((file, index) => {
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                li.innerHTML = `
+                    <span>${file.name}</span>
+                    <span class="file-status pending" id="status-${index}">等待</span>
+                `;
+                fileList.appendChild(li);
+                downloadQueue.push({...file, index, status: 'pending'});
+            });
+            
+            updateProgress();
+            
+            // 页面加载后3秒自动开始下载
+            setTimeout(() => {
+                if (!isDownloading) {
+                    startDownloads();
+                }
+            }, 3000);
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const completed = downloadQueue.filter(file => file.status === 'completed').length;
+            const total = downloadQueue.length;
+            const progress = (completed / total) * 100;
+            
+            document.getElementById('progress').style.width = progress + '%';
+            
+            if (completed === total) {
+                document.getElementById('status').innerHTML = `下载完成！共下载了 ${total} 个文件`;
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+            } else if (isDownloading) {
+                document.getElementById('status').innerHTML = `正在下载... (${completed}/${total})`;
+            }
+        }
+
+        // 更新文件状态
+        function updateFileStatus(index, status, message = '') {
+            const statusElement = document.getElementById(`status-${index}`);
+            if (statusElement) {
+                statusElement.textContent = message || getStatusText(status);
+                statusElement.className = `file-status ${status}`;
+                downloadQueue[index].status = status;
+            }
+            updateProgress();
+        }
+
+        // 获取状态文本
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': '等待',
+                'downloading': '下载中',
+                'completed': '完成',
+                'error': '错误'
+            };
+            return statusMap[status] || status;
+        }
+
+        // 下载单个文件
+        async function downloadFile(file) {
+            if (!isDownloading) return;
+            
+            updateFileStatus(file.index, 'downloading', '下载中...');
+            
+            try {
+                downloadController = new AbortController();
+                const response = await fetch(file.url, {
+                    signal: downloadController.signal
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = file.name;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                updateFileStatus(file.index, 'completed', '下载完成');
+                
+                // 延迟1秒后下载下一个文件
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    updateFileStatus(file.index, 'pending', '已取消');
+                } else {
+                    updateFileStatus(file.index, 'error', '下载失败');
+                    console.error(`下载 ${file.name} 失败:`, error);
+                }
+            }
+        }
+
+        // 开始下载所有文件
+        async function startDownloads() {
+            if (isDownloading) return;
+            
+            isDownloading = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            document.getElementById('status').innerHTML = '开始下载文件...';
+            
+            for (let i = currentDownloadIndex; i < downloadQueue.length; i++) {
+                if (!isDownloading) break;
+                currentDownloadIndex = i;
+                await downloadFile(downloadQueue[i]);
+            }
+            
+            if (isDownloading && currentDownloadIndex === downloadQueue.length - 1) {
+                isDownloading = false;
+                document.getElementById('stopBtn').disabled = true;
+            }
+        }
+
+        // 停止下载
+        function stopDownloads() {
+            isDownloading = false;
+            if (downloadController) {
+                downloadController.abort();
+            }
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('status').innerHTML = '下载已停止';
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', initializePage);
+    </script>
+</body>
+</html>
