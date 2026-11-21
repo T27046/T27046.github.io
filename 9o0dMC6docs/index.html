@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>9o0d 键鼠脚本编辑器 使用教程</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="description" content="9o0d 键鼠脚本编辑器使用教程：界面、图形化积木、脚本语言、运行调试、找图找字与实战案例。">
+<style>
+
+:root{
+  --bg:#f6f7f9;--surface:#fff;--ink:#16181d;--body:#4b5563;--muted:#6b7280;--faint:#9aa3af;
+  --line:#e6e8ec;--line-soft:#eef0f3;--accent:#0067c0;--accent-2:#2f86e0;
+  --accent-soft:#eaf2fb;--accent-line:#cfe3f8;
+  --amber:#9a6700;--amber-soft:#fffbf2;--amber-line:#f1dfb8;
+  --red:#b42318;--red-soft:#fff7f6;--red-line:#f3cfcb;
+  --radius:12px;--shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.05);
+  --mono:"Cascadia Code","JetBrains Mono","Consolas","SFMono-Regular",monospace;
+  --sans:"Inter","Segoe UI","Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;
+  --sidebar:286px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+::selection{background:#cfe4fb;color:#08243d}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.skip{position:fixed;top:-60px;left:16px;z-index:100;background:var(--accent);color:#fff;padding:9px 14px;border-radius:8px;font-size:13px;transition:top .15s}
+.skip:focus{top:10px;text-decoration:none}
+
+/* ---------- sidebar ---------- */
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:#fbfcfd;border-right:1px solid var(--line);z-index:40;display:flex}
+.sidebar-inner{display:flex;flex-direction:column;width:100%;padding:20px 16px 0;min-height:0}
+.brand{display:flex;align-items:center;gap:11px;padding:2px 6px 18px;color:inherit;flex:none}
+.brand:hover{text-decoration:none}
+.logo{width:36px;height:36px;flex:none;border-radius:10px;display:block;object-fit:cover;background:#111;box-shadow:0 6px 14px -8px rgba(16,24,40,.55)}
+.brand-name{display:block;font-size:15px;font-weight:700;line-height:1.25;letter-spacing:.01em}
+.brand-sub{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.search{position:relative;margin-bottom:12px;flex:none}
+.search>svg{position:absolute;left:10px;top:10px;width:14px;height:14px;color:var(--faint);pointer-events:none}
+.search input{width:100%;height:34px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:0 58px 0 31px;font:inherit;font-size:12.5px;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.search input::placeholder{color:#a8b0bb}
+.search input:focus{outline:none;border-color:#9cc6ec;box-shadow:0 0 0 3px rgba(0,103,192,.09)}
+.search kbd{position:absolute;right:7px;top:8px;font-family:var(--sans);font-size:10px;color:#98a1ad;background:#f3f5f8;border:1px solid #e4e8ee;border-radius:5px;padding:1px 5px;line-height:1.5}
+.nav{flex:1;overflow-y:auto;padding:2px 0 14px;scrollbar-width:thin;scrollbar-color:#d7dce4 transparent;min-height:0}
+.nav::-webkit-scrollbar{width:6px}
+.nav::-webkit-scrollbar-thumb{background:#dde2e9;border-radius:6px}
+.nav-group{margin-top:15px}
+.nav-group:first-child{margin-top:4px}
+.nav-title{font-size:10px;font-weight:700;letter-spacing:.14em;color:#a0a8b4;padding:0 10px 5px}
+.nav-item{margin:1px 0}
+.nav-row{display:flex;align-items:center;gap:2px}
+.nav-link{position:relative;flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;padding:6px 8px;border-radius:8px;color:#3f4652;font-size:13px;line-height:1.5;transition:background .12s,color .12s}
+.nav-link:hover{background:#eff3f8;color:#111;text-decoration:none}
+.nav-link.active{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.nav-link.active::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:2.5px;border-radius:2px;background:var(--accent)}
+.nav .num{flex:none;width:22px;font-size:10.5px;color:#a8b0bb;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.nav-link.active .num{color:#69a6dc}
+.tx{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-toggle{flex:none;width:22px;height:22px;display:grid;place-items:center;border:0;background:transparent;color:#a8b0bb;border-radius:6px;cursor:pointer;padding:0}
+.nav-toggle:hover{background:#eef2f7;color:#5b6472}
+.nav-toggle svg{width:11px;height:11px;transition:transform .18s}
+.nav-item.open>.nav-row>.nav-toggle svg{transform:rotate(90deg)}
+.nav-sub{display:none;margin:1px 0 3px;padding-left:8px}
+.nav-item.open>.nav-sub{display:block}
+.nav-sub a{position:relative;display:flex;align-items:baseline;gap:8px;padding:5px 8px 5px 10px;border-radius:7px;color:#5b6472;font-size:12.4px;line-height:1.5}
+.nav-sub a:hover{background:#eff3f8;color:#111;text-decoration:none}
+.nav-sub a.active{background:#eef6ff;color:var(--accent);font-weight:600}
+.nav-sub a.active::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:2px;border-radius:2px;background:#7cb6ea}
+.nav-sub a .num{width:32px;font-size:10px;color:#aab2bd}
+.nav-sub a.active .num{color:#69a6dc}
+.nav-sub a.sub2{padding-left:24px;font-size:12px;color:#6b7280}
+.nav-sub a.sub2 .num{width:42px}
+.nav-empty{padding:14px 10px;font-size:12px;color:var(--muted);line-height:1.7}
+.side-foot{flex:none;border-top:1px solid var(--line);padding:11px 8px 16px;display:flex;justify-content:space-between;font-size:11px;color:#98a1ad;letter-spacing:.02em}
+.side-foot b{color:#6b7280;font-weight:600}
+
+/* ---------- main ---------- */
+.main{margin-left:var(--sidebar);min-width:0}
+.progress{position:fixed;top:0;left:var(--sidebar);right:0;height:2px;z-index:50;pointer-events:none}
+.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#5aa9e8,#0067c0);transition:width .08s linear}
+.wrap{max-width:900px;margin:0 auto;padding:56px 52px 64px}
+.mobile-bar{display:none}
+.scrim{display:none;position:fixed;inset:0;background:rgba(15,23,42,.35);z-index:35}
+.scrim.show{display:block}
+
+/* ---------- hero ---------- */
+.hero{padding:8px 0 34px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--accent);text-transform:uppercase}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:var(--accent)}
+h1{font-size:42px;line-height:1.18;font-weight:800;letter-spacing:-.02em;margin:16px 0 14px;color:#111318}
+.lead{max-width:680px;font-size:16px;line-height:1.8;color:#4d5663;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 24px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-size:11.5px;color:#5f6875;line-height:1.6;max-width:100%}
+.chip b{color:#2f3742;font-weight:600}
+.dot{width:5px;height:5px;border-radius:50%;background:#38a169;flex:none}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 17px;border-radius:9px;font-size:13.5px;font-weight:600;border:1px solid transparent;transition:all .15s;line-height:1;cursor:pointer;font-family:inherit}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 16px -8px rgba(0,103,192,.7)}
+.btn-primary:hover{background:#005aa8}
+.btn-ghost{background:#fff;border-color:var(--line);color:#374151;box-shadow:var(--shadow)}
+.btn-ghost:hover{border-color:#c9d3df;background:#fbfcfe}
+.btn svg{width:14px;height:14px}
+
+/* ---------- chapters ---------- */
+.chapter{padding-top:46px}
+.chapter+.chapter{border-top:1px solid var(--line);margin-top:54px}
+.chapter-title{position:relative;margin:0 0 4px;font-size:29px;line-height:1.3;font-weight:800;letter-spacing:-.015em;color:#111318;display:flex;flex-direction:column;gap:3px;scroll-margin-top:26px}
+.ch-kicker{font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;font-variant-numeric:tabular-nums}
+.ch-name{display:block}
+h3{position:relative;font-size:18.5px;line-height:1.5;font-weight:700;margin:34px 0 8px;letter-spacing:-.005em;color:#1a1f27;scroll-margin-top:26px}
+h4{position:relative;font-size:15px;line-height:1.55;font-weight:700;margin:24px 0 6px;color:#232a33;scroll-margin-top:26px}
+.sec-num{display:inline-block;margin-right:8px;font-size:.74em;font-weight:700;color:#9aa3af;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.anchor{opacity:0;margin-left:8px;color:#b3bcc7;font-weight:400;font-size:.72em;text-decoration:none;transition:opacity .15s,color .15s}
+h2:hover .anchor,h3:hover .anchor,h4:hover .anchor,.anchor:focus-visible{opacity:1}
+.anchor:hover{color:var(--accent);text-decoration:none}
+
+/* ---------- content ---------- */
+.doc p{margin:10px 0;color:var(--body)}
+.doc>section p{max-width:820px}
+strong{color:#1f2937;font-weight:650}
+.bullets{margin:12px 0;padding-left:1.15rem;color:var(--body)}
+.bullets li{margin:6px 0;padding-left:2px}
+.bullets li::marker{color:#a9bacb}
+.steps{list-style:none;counter-reset:step;padding:0;margin:16px 0}
+.steps li{position:relative;counter-increment:step;padding:0 0 14px 34px;color:var(--body);list-style:none}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:counter(step);position:absolute;left:0;top:3px;width:23px;height:23px;border-radius:50%;background:#eaf2fb;border:1px solid #d2e4f8;color:var(--accent);font-size:11px;font-weight:700;display:grid;place-items:center;line-height:1}
+code{font-family:var(--mono);font-size:.86em;background:#eff4fa;border:1px solid #e2ebf5;color:#0b4f8a;padding:1px 5px;border-radius:5px;white-space:nowrap}
+
+/* ---------- code ---------- */
+.codeblock{position:relative;background:#101828;border:1px solid #1d2939;border-radius:11px;overflow:hidden;margin:18px 0;box-shadow:0 18px 40px -30px rgba(16,24,40,.5)}
+.code-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)}
+.code-head .lang{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;color:#98a6b8;letter-spacing:.03em}
+.code-head .lang::before{content:"";width:6px;height:6px;border-radius:50%;background:#3b82f6}
+.copy{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#c4d0de;font-family:var(--sans);font-size:10.5px;padding:3px 10px;border-radius:5px;cursor:pointer;transition:all .15s;line-height:1.6}
+.copy:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
+.copy.done{color:#86efac;border-color:rgba(134,239,172,.35)}
+.codeblock pre{margin:0;padding:15px 17px;overflow-x:auto;font-family:var(--mono);font-size:12.8px;line-height:1.9;color:#d7e2f0;tab-size:4}
+.codeblock pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit;white-space:pre;border-radius:0}
+.tok-com{color:#7487a0;font-style:italic}
+.tok-str{color:#9ae6b4}
+.tok-num{color:#f6c177}
+.tok-kw{color:#7cc4ff;font-weight:600}
+.tok-var{color:#c4b5fd}
+.tok-fn{color:#93c5fd}
+
+/* ---------- tables ---------- */
+.table-wrap{border:1px solid var(--line);border-radius:11px;background:#fff;overflow:auto;margin:16px 0;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:12.9px;min-width:520px}
+th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#7b8491;background:#f8fafc;padding:9px 13px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 13px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:#3f4854;line-height:1.7}
+td:first-child{white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fbfcfe}
+td code{font-size:11.6px;white-space:normal;word-break:break-word}
+td strong{font-weight:600}
+
+/* ---------- callouts ---------- */
+.callout{display:flex;gap:11px;border:1px solid var(--accent-line);border-radius:11px;background:#f6faff;padding:12px 14px;margin:18px 0;font-size:13.3px;line-height:1.75;color:#294055}
+.callout .ico{flex:none;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;margin-top:2px;background:#e4f0fc;color:var(--accent)}
+.callout .ico svg{width:12px;height:12px}
+.callout .cbody{min-width:0}
+.callout b{display:block;font-size:10.5px;letter-spacing:.1em;color:var(--accent);margin-bottom:1px}
+.callout p{margin:0;color:inherit;max-width:none}
+.callout.note{border-color:var(--amber-line);background:var(--amber-soft);color:#584210}
+.callout.note .ico{background:#faedcb;color:var(--amber)}
+.callout.note b{color:var(--amber)}
+.callout.warn{border-color:var(--red-line);background:var(--red-soft);color:#5c241d}
+.callout.warn .ico{background:#fbe2df;color:var(--red)}
+.callout.warn b{color:var(--red)}
+
+/* ---------- footer / to-top ---------- */
+.footer{border-top:1px solid var(--line);padding-top:22px;margin-top:12px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:11.5px;color:#98a1ad;line-height:1.8}
+.footer a{color:#7b8491}
+.footer a:hover{color:var(--accent)}
+.to-top{position:fixed;right:22px;bottom:22px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#6b7280;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px -8px rgba(16,24,40,.25);opacity:0;pointer-events:none;transition:all .2s;z-index:30;padding:0}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{color:var(--accent);border-color:#c9d9e8;transform:translateY(-2px)}
+.to-top svg{width:15px;height:15px}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){.wrap{padding:50px 38px 60px}}
+@media (max-width:980px){
+  .main{margin-left:0}
+  .progress{left:0}
+  .sidebar{transform:translateX(-102%);transition:transform .25s ease;box-shadow:20px 0 50px -30px rgba(16,24,40,.35)}
+  .sidebar.open{transform:none}
+  body.nav-open{overflow:hidden}
+  .mobile-bar{display:flex;position:sticky;top:0;z-index:30;align-items:center;gap:11px;height:52px;padding:0 16px;background:rgba(251,252,253,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+  .menu-btn{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--line);background:#fff;border-radius:8px;color:#4b5563;cursor:pointer;flex:none;padding:0}
+  .menu-btn svg{width:15px;height:15px}
+  .mobile-title{font-size:13px;font-weight:650;color:#29313c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mobile-title span{color:#9aa3af;font-weight:400}
+  .mobile-logo{margin-left:auto;width:28px;height:28px;border-radius:7px;display:block;flex:none;overflow:hidden;box-shadow:0 2px 6px -3px rgba(16,24,40,.5)}
+  .mobile-logo img{display:block;width:100%;height:100%;object-fit:cover}
+  .mobile-logo:hover{text-decoration:none}
+  .wrap{padding:34px 26px 56px}
+  h1{font-size:35px}
+  .chapter-title{font-size:26px;scroll-margin-top:70px}
+  h3,h4{scroll-margin-top:70px}
+}
+@media (max-width:620px){
+  .wrap{padding:26px 17px 48px}
+  h1{font-size:29px}
+  .lead{font-size:15px}
+  .chapter-title{font-size:23px}
+  h3{font-size:17px}
+  .chapter{padding-top:34px}
+  .chapter+.chapter{margin-top:40px}
+  .hero{padding-top:0}
+  .codeblock pre{font-size:11.8px;padding:13px 14px}
+  .to-top{right:14px;bottom:14px}
+  .footer{display:block}
+  .hero-actions .btn{flex:1;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+@media print{
+  .sidebar,.mobile-bar,.scrim,.progress,.copy,.to-top,.hero-actions,.anchor{display:none!important}
+  .main{margin:0}
+  .wrap{max-width:none;padding:0}
+  body{background:#fff;font-size:10.5pt;line-height:1.6}
+  .chapter+.chapter{border-top:1px solid #ddd;margin-top:26px;padding-top:22px}
+  .codeblock{box-shadow:none;break-inside:avoid;background:#fff;border:1px solid #ccc}
+  .codeblock pre{color:#111}
+  .codeblock .code-head{background:#f5f5f5;border-bottom-color:#e0e0e0}
+  .code-head .lang{color:#555}
+  table{min-width:0}
+  .table-wrap{overflow:visible;box-shadow:none}
+  .callout{break-inside:avoid}
+  .hero{border-bottom:0}
+}
+
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#preface">跳到正文</a>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="mobile-bar">
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="打开目录" aria-controls="sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <div class="mobile-title">使用教程 <span>· 9o0d 脚本编辑器</span></div>
+  <a class="mobile-logo" href="#top" aria-label="回到顶部"><img src="data:image/png;base64,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" alt="" width="28" height="28"></a>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <a class="brand" href="#top">
+      <img class="logo" src="data:image/png;base64,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" alt="" width="36" height="36">
+      <span>
+        <span class="brand-name">9o0d 脚本编辑器</span>
+        <span class="brand-sub">使用教程 · v6.0.2611.1</span>
+      </span>
+    </a>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      <input id="navSearch" type="search" placeholder="搜索目录" autocomplete="off" aria-label="搜索目录">
+      <kbd>Ctrl K</kbd>
+    </div>
+<nav class="nav" id="nav" aria-label="文档目录">
+<div class="nav-group"><div class="nav-title">入门</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#preface"><span class="num">序</span><span class="tx">前言</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 前言"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#preface-docs"><span class="num"></span><span class="tx">文档说明</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-1"><span class="num">01</span><span class="tx">认识脚本编辑器</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 认识脚本编辑器"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-1-1"><span class="num">1.1</span><span class="tx">它是什么</span></a>
+<a href="#sec-1-2"><span class="num">1.2</span><span class="tx">能做什么</span></a>
+<a href="#sec-1-3"><span class="num">1.3</span><span class="tx">两种打开方式</span></a>
+<a href="#sec-1-4"><span class="num">1.4</span><span class="tx">运行环境与权限</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-2"><span class="num">02</span><span class="tx">界面总览</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 界面总览"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-2-1"><span class="num">2.1</span><span class="tx">窗口与标题栏</span></a>
+<a href="#sec-2-2"><span class="num">2.2</span><span class="tx">图形化编辑页</span></a>
+<a href="#sec-2-3"><span class="num">2.3</span><span class="tx">代码编辑页</span></a>
+<a href="#sec-2-4"><span class="num">2.4</span><span class="tx">底部工具条</span></a>
+<a href="#sec-2-5"><span class="num">2.5</span><span class="tx">日志栏</span></a>
+<a href="#sec-2-6"><span class="num">2.6</span><span class="tx">快捷键</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-3"><span class="num">03</span><span class="tx">第一个脚本：五分钟上手</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 第一个脚本：五分钟上手"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-3-1"><span class="num">3.1</span><span class="tx">目标效果</span></a>
+<a href="#sec-3-2"><span class="num">3.2</span><span class="tx">搭建步骤</span></a>
+<a href="#sec-3-3"><span class="num">3.3</span><span class="tx">运行与观察</span></a>
+<a href="#sec-3-4"><span class="num">3.4</span><span class="tx">保存与再次打开</span></a>
+<a href="#sec-3-5"><span class="num">3.5</span><span class="tx">再进一步</span></a>
+</div>
+</div>
+</div>
+<div class="nav-group"><div class="nav-title">参考</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-4"><span class="num">04</span><span class="tx">图形化编辑详解</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 图形化编辑详解"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-4-1"><span class="num">4.1</span><span class="tx">添加积木</span></a>
+<a href="#sec-4-2"><span class="num">4.2</span><span class="tx">排序与嵌套</span></a>
+<a href="#sec-4-3"><span class="num">4.3</span><span class="tx">参数输入框</span></a>
+<a href="#sec-4-4"><span class="num">4.4</span><span class="tx">屏幕取点</span></a>
+<a href="#sec-4-5"><span class="num">4.5</span><span class="tx">按键捕获</span></a>
+<a href="#sec-4-6"><span class="num">4.6</span><span class="tx">图片槽位</span></a>
+<a href="#sec-4-7"><span class="num">4.7</span><span class="tx">注释与折叠</span></a>
+<a href="#sec-4-8"><span class="num">4.8</span><span class="tx">复制、粘贴、撤销与删除</span></a>
+<a href="#sec-4-9"><span class="num">4.9</span><span class="tx">变量与表达式栏</span></a>
+<a href="#sec-4-10"><span class="num">4.10</span><span class="tx">图形与代码互转</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-5"><span class="num">05</span><span class="tx">积木参考</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 积木参考"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-5-1"><span class="num">5.1</span><span class="tx">执行类</span></a>
+<a href="#sec-5-2"><span class="num">5.2</span><span class="tx">控制类</span></a>
+<a href="#sec-5-3"><span class="num">5.3</span><span class="tx">循环与函数</span></a>
+<a href="#sec-5-4"><span class="num">5.4</span><span class="tx">变量类</span></a>
+<a href="#sec-5-5"><span class="num">5.5</span><span class="tx">系统类</span></a>
+<a href="#sec-5-6"><span class="num">5.6</span><span class="tx">数学与逻辑</span></a>
+<a href="#sec-5-7"><span class="num">5.7</span><span class="tx">重点积木详解</span></a>
+<a class="sub2" href="#sec-5-7-1"><span class="num">5.7.1</span><span class="tx">移动与耗时</span></a>
+<a class="sub2" href="#sec-5-7-2"><span class="num">5.7.2</span><span class="tx">查找图像坐标</span></a>
+<a class="sub2" href="#sec-5-7-3"><span class="num">5.7.3</span><span class="tx">等待直到与循环直到</span></a>
+<a class="sub2" href="#sec-5-7-4"><span class="num">5.7.4</span><span class="tx">条件分支</span></a>
+<a class="sub2" href="#sec-5-7-5"><span class="num">5.7.5</span><span class="tx">窗口控制</span></a>
+<a class="sub2" href="#sec-5-7-6"><span class="num">5.7.6</span><span class="tx">输入文本与组合键</span></a>
+<a class="sub2" href="#sec-5-7-7"><span class="num">5.7.7</span><span class="tx">比较与逻辑</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-6"><span class="num">06</span><span class="tx">脚本语言参考</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 脚本语言参考"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-6-1"><span class="num">6.1</span><span class="tx">书写规则</span></a>
+<a href="#sec-6-2"><span class="num">6.2</span><span class="tx">语句速查</span></a>
+<a href="#sec-6-3"><span class="num">6.3</span><span class="tx">语句详解</span></a>
+<a class="sub2" href="#sec-6-3-1"><span class="num">6.3.1</span><span class="tx">移动与点击</span></a>
+<a class="sub2" href="#sec-6-3-2"><span class="num">6.3.2</span><span class="tx">等待与条件</span></a>
+<a class="sub2" href="#sec-6-3-3"><span class="num">6.3.3</span><span class="tx">循环、条件与函数</span></a>
+<a class="sub2" href="#sec-6-3-4"><span class="num">6.3.4</span><span class="tx">系统操作</span></a>
+<a href="#sec-6-4"><span class="num">6.4</span><span class="tx">表达式与函数</span></a>
+<a href="#sec-6-5"><span class="num">6.5</span><span class="tx">变量与坐标</span></a>
+<a href="#sec-6-6"><span class="num">6.6</span><span class="tx">完整示例</span></a>
+</div>
+</div>
+</div>
+<div class="nav-group"><div class="nav-title">进阶</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-7"><span class="num">07</span><span class="tx">运行、槽位与调试</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 运行、槽位与调试"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-7-1"><span class="num">7.1</span><span class="tx">槽位管理</span></a>
+<a href="#sec-7-2"><span class="num">7.2</span><span class="tx">运行与停止</span></a>
+<a href="#sec-7-3"><span class="num">7.3</span><span class="tx">速度倍率</span></a>
+<a href="#sec-7-4"><span class="num">7.4</span><span class="tx">断点</span></a>
+<a href="#sec-7-5"><span class="num">7.5</span><span class="tx">条件断点</span></a>
+<a href="#sec-7-6"><span class="num">7.6</span><span class="tx">单步与继续</span></a>
+<a href="#sec-7-7"><span class="num">7.7</span><span class="tx">变量监视</span></a>
+<a href="#sec-7-8"><span class="num">7.8</span><span class="tx">日志与错误定位</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-8"><span class="num">08</span><span class="tx">图像、文字与颜色识别</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 图像、文字与颜色识别"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-8-1"><span class="num">8.1</span><span class="tx">查找图像</span></a>
+<a href="#sec-8-2"><span class="num">8.2</span><span class="tx">查找文本</span></a>
+<a href="#sec-8-3"><span class="num">8.3</span><span class="tx">像素颜色</span></a>
+<a href="#sec-8-4"><span class="num">8.4</span><span class="tx">多屏、DPI 与坐标</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-9"><span class="num">09</span><span class="tx">文件与数据</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 文件与数据"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-9-1"><span class="num">9.1</span><span class="tx">.9mc 脚本文件</span></a>
+<a href="#sec-9-2"><span class="num">9.2</span><span class="tx">.9mcp 脚本包</span></a>
+<a href="#sec-9-3"><span class="num">9.3</span><span class="tx">导入录制文件</span></a>
+<a href="#sec-9-4"><span class="num">9.4</span><span class="tx">自动恢复</span></a>
+<a href="#sec-9-5"><span class="num">9.5</span><span class="tx">文件关联</span></a>
+</div>
+</div>
+</div>
+<div class="nav-group"><div class="nav-title">实战与排错</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-10"><span class="num">10</span><span class="tx">实战案例</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 实战案例"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-10-1"><span class="num">10.1</span><span class="tx">定时连点</span></a>
+<a href="#sec-10-2"><span class="num">10.2</span><span class="tx">找图后点击</span></a>
+<a href="#sec-10-3"><span class="num">10.3</span><span class="tx">等窗口出现并输入</span></a>
+<a href="#sec-10-4"><span class="num">10.4</span><span class="tx">OCR 定位按钮</span></a>
+<a href="#sec-10-5"><span class="num">10.5</span><span class="tx">函数封装</span></a>
+<a href="#sec-10-6"><span class="num">10.6</span><span class="tx">条件断点排查</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#chapter-11"><span class="num">11</span><span class="tx">常见问题与已知限制</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-label="展开 常见问题与已知限制"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</div>
+<div class="nav-sub">
+<a href="#sec-11-1"><span class="num">11.1</span><span class="tx">脚本运行了但鼠标不动</span></a>
+<a href="#sec-11-2"><span class="num">11.2</span><span class="tx">找图找不到</span></a>
+<a href="#sec-11-3"><span class="num">11.3</span><span class="tx">OCR 识别不到</span></a>
+<a href="#sec-11-4"><span class="num">11.4</span><span class="tx">等待条件一直不满足</span></a>
+<a href="#sec-11-5"><span class="num">11.5</span><span class="tx">停止不生效</span></a>
+<a href="#sec-11-6"><span class="num">11.6</span><span class="tx">断点不触发</span></a>
+<a href="#sec-11-7"><span class="num">11.7</span><span class="tx">安全与合规提示</span></a>
+<a href="#sec-11-8"><span class="num">11.8</span><span class="tx">已知限制清单</span></a>
+</div>
+</div>
+</div>
+<div class="nav-group"><div class="nav-title">附录</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#appendix-a"><span class="num">A</span><span class="tx">常用虚拟键码</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#appendix-b"><span class="num">B</span><span class="tx">常用脚本片段</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#appendix-c"><span class="num">C</span><span class="tx">错误信息对照</span></a>
+</div>
+</div>
+<div class="nav-item">
+<div class="nav-row">
+<a class="nav-link" href="#doc-end"><span class="num">终</span><span class="tx">文档结束</span></a>
+</div>
+</div>
+</div>
+<div class="nav-empty" id="navEmpty" hidden>没有匹配的章节</div>
+</nav>
+    <div class="side-foot"><span><b>v6.0.2611.1</b> · 2026-11-19</span><span>11 章 · 70 节</span></div>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<main class="main">
+  <div class="wrap">
+    <header class="hero">
+      <span class="eyebrow">9o0d MC6 · 使用教程</span>
+      <h1>9o0d 键鼠脚本编辑器 使用教程</h1>
+      <p class="lead">从界面认识、图形化积木到脚本语言、运行调试与实战案例的完整教程，也可当作日常速查手册。</p>
+      <div class="meta">
+        <span class="chip"><b>适用产品</b>9o0d 鼠标连点器 / 键鼠脚本编辑器</span>
+        <span class="chip"><b>版本</b>v6.0.2611.1</span>
+        <span class="chip"><b>更新</b>2026-11-19</span>
+        <span class="chip"><b>平台</b>Windows 10 / 11 x64</span>
+        <span class="chip"><span class="dot"></span>阅读约 32 分钟</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#chapter-1">开始阅读<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <button class="btn btn-ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>打印 / 存为 PDF</button>
+      </div>
+    </header>
+
+    <article class="doc" id="doc">
+<section class="chapter" aria-labelledby="preface">
+<h2 class="chapter-title" id="preface" data-toc><span class="ch-name">前言<a class="anchor" href="#preface" aria-label="本节链接">#</a></span></h2>
+<h3 id="preface-docs" data-toc>文档说明<a class="anchor" href="#preface-docs" aria-label="本节链接">#</a></h3>
+<p>本教程按“先会用、再查全”的顺序编写：第 2、3 章带你把界面认全并做出第一个脚本；第 4 至 6 章是图形化编辑、积木和脚本语言的完整参考；第 7 至 9 章讲运行调试、识别与文件；第 10 章给出可直接套用的实战案例；第 11 章与附录用于排错和速查。</p>
+<p>阅读约定：</p>
+<ul class="bullets"><li><strong>积木</strong>：图形化编辑页里的彩色块，是脚本的图形形态。</li><li><strong>代码</strong>：代码编辑页里的文本脚本，也是积木最终生成的形态。</li><li><strong>槽位</strong>：同一个脚本文件里的多个独立脚本，可单独运行，也可一次运行全部。</li><li>参数框里既可以填数字，也可以填 <code>$变量</code> 或表达式；文中统一用 <code>$name</code> 表示变量。</li><li>代码块中的缩进只是为了阅读，脚本本身不依赖缩进。</li></ul>
+<p><strong>适合谁读</strong>：初次接触脚本编辑器的用户，建议按第 2、3 章的顺序操作一遍；已经会搭积木、只想查参数的用户，可以直接翻到第 5、6 章；脚本不按预期运行时，先看第 11 章。</p>
+<p><strong>关于示例</strong>：书中的坐标、窗口标题、图片文件名都是示例值，复制后要替换成自己环境里的值。积木模式会自动把图片内嵌进脚本；代码模式里的 <code>find_image("...")</code> 需要写真实存在的文件路径。所有代码块都可以直接粘贴到代码编辑页。</p>
+<p><strong>关于版本</strong>：程序仍在持续更新，积木名称、界面布局和个别行为可能随版本变化。本手册以写作时的仓库代码为准；如果发现文字与界面不一致，以实际程序为准，并优先参考日志里的提示。</p>
+<aside class="callout tip" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span><div class="cbody"><b>提示</b><p>第一次使用建议先读第 2、3 章，跟着做一遍；遇到具体积木再查第 5 章，遇到写法问题查第 6 章。</p></div></aside>
+</section>
+<section class="chapter" aria-labelledby="chapter-1">
+<h2 class="chapter-title" id="chapter-1" data-toc><span class="ch-kicker">第 1 章</span><span class="ch-name">认识脚本编辑器<a class="anchor" href="#chapter-1" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-1-1" data-toc><span class="sec-num">1.1</span>它是什么<a class="anchor" href="#sec-1-1" aria-label="本节链接">#</a></h3>
+<p>脚本编辑器是 9o0d 鼠标连点器中的自动化工具。它把“移动鼠标、按下按键、等待、判断、循环、找图、找字”等动作编排成脚本，由程序在后台解释执行，并通过 Windows 的 SendInput 接口驱动真实的鼠标和键盘。</p>
+<p>同一个脚本有两种编辑方式：</p>
+<ul class="bullets"><li><strong>图形化编辑</strong>：从右侧面板拖积木，适合不写代码的用户。</li><li><strong>代码编辑</strong>：直接书写脚本语言，适合精细控制、批量修改和复制片段。</li></ul>
+<p>两种方式可以互转：切到代码页时，积木会生成代码；切回图形页时，代码会重新解析成积木。解析失败时会留在代码页，并在日志里说明原因。</p>
+<h3 id="sec-1-2" data-toc><span class="sec-num">1.2</span>能做什么<a class="anchor" href="#sec-1-2" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>类别</th>
+<th>能力</th>
+</tr></thead><tbody>
+<tr>
+<td>鼠标</td>
+<td>移动到坐标（6 种移动方式）、方向移动、相对移动、按下/抬起/点击、滚轮、拖拽</td>
+</tr>
+<tr>
+<td>键盘</td>
+<td>按下/抬起、组合键、逐字输入文本</td>
+</tr>
+<tr>
+<td>流程</td>
+<td>计数循环、条件循环、条件分支、跳出/继续、自定义函数</td>
+</tr>
+<tr>
+<td>识别</td>
+<td>屏幕找图（模板匹配）、找字（OCR）、取像素颜色、查找窗口</td>
+</tr>
+<tr>
+<td>系统</td>
+<td>执行 CMD、窗口激活/关闭/最小化/最大化/移动/缩放、剪贴板、音量、亮度</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>变量、数学运算、随机数、字符串拼接、比较、逻辑运算</td>
+</tr>
+<tr>
+<td>运行</td>
+<td>多槽位、运行全部、倍速、断点、条件断点、单步、变量监视、日志</td>
+</tr>
+</tbody></table></div>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>脚本驱动的是真实输入。运行前请把鼠标放到安全位置，不要在无人看管时运行会点击付款、删除、提交等危险按钮的脚本。</p></div></aside>
+<h3 id="sec-1-3" data-toc><span class="sec-num">1.3</span>两种打开方式<a class="anchor" href="#sec-1-3" aria-label="本节链接">#</a></h3>
+<ol class="steps"><li><strong>主程序</strong>：更多功能 → 快捷脚本。该功能需要高级通行证。</li><li><strong>双击脚本文件</strong>：已关联时，双击 <code>.9mc</code> 会直接打开脚本编辑器并载入该文件。</li></ol>
+<p>进入后主窗口会切换为脚本编辑器模式：最小 1100×650，可缩放、可最大化，标题栏出现“运行 / 导出 / 导入”。离开该页后窗口恢复为 820×450 的固定尺寸。</p>
+<h3 id="sec-1-4" data-toc><span class="sec-num">1.4</span>运行环境与权限<a class="anchor" href="#sec-1-4" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>Windows 10 / 11 x64，需要 .NET Framework 4.7.2 或更高版本。</li><li>“查找文本”依赖 Windows 自带的 OCR，需要系统安装对应语言包；程序优先使用简体中文，其次英文。</li><li>“查找图像”依赖 OpenCV 运行库，安装包已自带。</li><li>如果目标程序以管理员身份运行，脚本编辑器也要以管理员身份启动，否则输入可能被系统拦截（UIPI）。</li><li>多显示器、125% / 150% 缩放均可使用；脚本中的坐标统一按物理像素处理。</li></ul>
+</section>
+<section class="chapter" aria-labelledby="chapter-2">
+<h2 class="chapter-title" id="chapter-2" data-toc><span class="ch-kicker">第 2 章</span><span class="ch-name">界面总览<a class="anchor" href="#chapter-2" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-2-1" data-toc><span class="sec-num">2.1</span>窗口与标题栏<a class="anchor" href="#sec-2-1" aria-label="本节链接">#</a></h3>
+<p>进入脚本编辑器后，主窗口标题栏中间会出现三个按钮：</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>按钮</th>
+<th>作用</th>
+</tr></thead><tbody>
+<tr>
+<td>运行</td>
+<td>运行当前槽位的脚本；运行期间按钮不可用</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>打开保存对话框，保存当前脚本</td>
+</tr>
+<tr>
+<td>导入</td>
+<td>打开文件对话框，加载脚本或录制文件</td>
+</tr>
+</tbody></table></div>
+<aside class="callout tip" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span><div class="cbody"><b>提示</b><p>页面底部工具条上的“运行”按钮是隐藏的。运行当前脚本请点标题栏的“运行”；“运行全部”和“停止”在页面底部。</p></div></aside>
+<h3 id="sec-2-2" data-toc><span class="sec-num">2.2</span>图形化编辑页<a class="anchor" href="#sec-2-2" aria-label="本节链接">#</a></h3>
+<p>图形化编辑页从左到右分为四栏：</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>区域</th>
+<th>位置</th>
+<th>内容</th>
+</tr></thead><tbody>
+<tr>
+<td>变量/表达式栏</td>
+<td>最左</td>
+<td>自动列出脚本中出现的变量（坐标变量拆成 <code>.x</code> / <code>.y</code>），可手动添加变量，可把变量或随机数芯片拖进参数框</td>
+</tr>
+<tr>
+<td>工作区</td>
+<td>中间</td>
+<td>积木树。空工作区会提示“拖拽右侧积木到此处”</td>
+</tr>
+<tr>
+<td>积木面板</td>
+<td>右侧</td>
+<td>38 个积木入口，分执行、控制、循环、变量、其他、数学六类，顶部有搜索框</td>
+</tr>
+<tr>
+<td>快速跳转栏</td>
+<td>最右</td>
+<td>六个分类按钮，点击后滚到积木面板对应分组</td>
+</tr>
+</tbody></table></div>
+<p>积木面板顶部搜索框支持按中文名或命令名实时筛选；右侧的“+”取点按钮、下拉框、按键框、图片槽位都直接嵌在积木上，改完即生效。</p>
+<h3 id="sec-2-3" data-toc><span class="sec-num">2.3</span>代码编辑页<a class="anchor" href="#sec-2-3" aria-label="本节链接">#</a></h3>
+<p>代码编辑页由四部分组成：</p>
+<ul class="bullets"><li><strong>查找/替换栏</strong>：默认隐藏，<code>Ctrl+F</code> 打开查找，<code>Ctrl+H</code> 打开替换，<code>Esc</code> 关闭。</li><li><strong>语法检查栏</strong>：左侧“检查语法”按钮，右侧显示“✓ 语法正确”或“✗ 第 N 行: 原因”。</li><li><strong>编辑器</strong>：带行号、语法高亮、自动补全；横向不换行，长行用滚动条查看。</li><li><strong>右侧栏</strong>：上方是语法参考（move、循环、等待、变量、函数等示例），下方是运行时的变量监视面板。</li></ul>
+<h3 id="sec-2-4" data-toc><span class="sec-num">2.4</span>底部工具条<a class="anchor" href="#sec-2-4" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>控件</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>槽位下拉框</td>
+<td>切换当前脚本；切换时自动保存当前槽位</td>
+</tr>
+<tr>
+<td>+ / × / 改名</td>
+<td>新增 / 删除当前槽位、重命名当前槽位；重名会自动追加序号，至少保留一个槽位</td>
+</tr>
+<tr>
+<td>运行全部</td>
+<td>从第 1 个槽位开始依次运行；某个槽位出错就停止，不再继续</td>
+</tr>
+<tr>
+<td>停止</td>
+<td>中断正在运行的脚本；断点暂停时也能停止</td>
+</tr>
+<tr>
+<td>单步</td>
+<td>断点暂停后可用，执行下一条语句后再次暂停</td>
+</tr>
+<tr>
+<td>继续</td>
+<td>从断点恢复，直到下一个断点或脚本结束</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>0.25x / 0.5x / 1x / 2x / 4x，运行中也可切换</td>
+</tr>
+</tbody></table></div>
+<p>主程序窗口底部右侧还有“收藏”和“添加桌面”两个按钮：前者把“快捷脚本”加入主页收藏，后者在桌面创建直达脚本编辑器的快捷方式。</p>
+<h3 id="sec-2-5" data-toc><span class="sec-num">2.5</span>日志栏<a class="anchor" href="#sec-2-5" aria-label="本节链接">#</a></h3>
+<p>窗口最下方是 60 像素高的日志栏，记录：</p>
+<ul class="bullets"><li>引擎日志（带时间戳）：移动、点击、等待、查找结果、循环次数、错误等。</li><li>界面提示：保存、加载、断点、语法检查、槽位切换等。</li></ul>
+<p>“运行”会先清空日志，方便只看本次执行。出错时日志会给出具体行号和原因。</p>
+<h3 id="sec-2-6" data-toc><span class="sec-num">2.6</span>快捷键<a class="anchor" href="#sec-2-6" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>位置</th>
+<th>快捷键</th>
+<th>作用</th>
+</tr></thead><tbody>
+<tr>
+<td>图形化</td>
+<td>Ctrl+Z / Ctrl+Y</td>
+<td>撤销 / 重做</td>
+</tr>
+<tr>
+<td>图形化</td>
+<td>Ctrl+C / Ctrl+V</td>
+<td>复制 / 粘贴（以最近右键点过的积木为基准）</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>Ctrl+F / Ctrl+H</td>
+<td>查找 / 替换</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>Ctrl+/</td>
+<td>注释或取消注释选中行（无选中则当前行）</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>Esc</td>
+<td>关闭查找栏</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>Enter / Tab</td>
+<td>确认自动补全候选</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>Ctrl+Shift+S</td>
+<td>检查语法</td>
+</tr>
+</tbody></table></div>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>代码页按 Ctrl+Shift+S 或点“检查语法”按钮，都可以检查语法并高亮错误行。</p></div></aside>
+</section>
+<section class="chapter" aria-labelledby="chapter-3">
+<h2 class="chapter-title" id="chapter-3" data-toc><span class="ch-kicker">第 3 章</span><span class="ch-name">第一个脚本：五分钟上手<a class="anchor" href="#chapter-3" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-3-1" data-toc><span class="sec-num">3.1</span>目标效果<a class="anchor" href="#sec-3-1" aria-label="本节链接">#</a></h3>
+<p>让鼠标移到屏幕上的某个位置，左键点击一次，等待 1 秒，再重复 3 次。</p>
+<h3 id="sec-3-2" data-toc><span class="sec-num">3.2</span>搭建步骤<a class="anchor" href="#sec-3-2" aria-label="本节链接">#</a></h3>
+<ol class="steps"><li>打开脚本编辑器，确认当前在“图形化编辑”页。</li><li>在右侧积木面板找到“执行 → 移动到坐标”，按住拖到中间工作区。</li><li>点积木上的 <strong>＋</strong> 取点按钮（加号图标，提示“屏幕取点”），屏幕会出现全屏十字准星；把鼠标移到目标位置，按左键单击，坐标自动填回 X / Y。</li><li>移动方式保持“瞬移”（当前版本最稳妥）；确认你的版本平滑移动正常后，也可以改成“线性”并填写耗时（例如 300）。</li><li>从面板拖入“鼠标按下”，按键选“左键”；再拖入“鼠标抬起”，同样选“左键”。</li><li>拖入“等待”，把毫秒数改成 1000。</li><li>拖入“循环 → 重复循环”，次数填 3。把前面四个积木依次拖进循环体（拖到循环内部，出现蓝色插入提示时松手）。</li><li>点击标题栏的“运行”。</li></ol>
+<p>生成的代码大致如下：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">move</span> <span class="tok-num">640</span>, <span class="tok-num">360</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">mouseup</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">1000</span></code></pre></figure>
+<p>放进循环后：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">loop</span> <span class="tok-num">3</span>
+    <span class="tok-kw">move</span> <span class="tok-num">640</span>, <span class="tok-num">360</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">mouseup</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">1000</span>
+<span class="tok-kw">endloop</span></code></pre></figure>
+<aside class="callout tip" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span><div class="cbody"><b>提示</b><p>没有“点击”积木，点击由“鼠标按下 + 鼠标抬起”组成；两者之间的间隔可以自己插“等待”控制。</p></div></aside>
+<h3 id="sec-3-3" data-toc><span class="sec-num">3.3</span>运行与观察<a class="anchor" href="#sec-3-3" aria-label="本节链接">#</a></h3>
+<p>点“运行”后，日志会逐条打印执行过程；标题栏的“运行”变灰，底部“停止”变红。要中断就点“停止”，正在进行的移动也会被取消。</p>
+<p>如果鼠标没有反应，先看日志有没有“脚本开始执行”；再看目标程序是否以管理员身份运行；最后检查坐标是否落在目标控件上。</p>
+<h3 id="sec-3-4" data-toc><span class="sec-num">3.4</span>保存与再次打开<a class="anchor" href="#sec-3-4" aria-label="本节链接">#</a></h3>
+<p>点标题栏“导出”，在保存对话框里选择格式：</p>
+<ul class="bullets"><li><code>.9mcp</code>：脚本包，保存全部槽位、积木树、自定义变量和内嵌图片，推荐日常使用。</li><li><code>.9mc</code>：纯文本脚本，只保存当前槽位的代码，适合分享片段。</li><li><code>.txt</code>：纯文本，便于用其他编辑器查看。</li></ul>
+<p>再次打开时点“导入”，或直接双击 <code>.9mc</code> 文件。</p>
+<h3 id="sec-3-5" data-toc><span class="sec-num">3.5</span>再进一步<a class="anchor" href="#sec-3-5" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>把“移动到坐标”换成“查找图像坐标”，就能让脚本自己找按钮，而不是写死坐标。</li><li>把“等待”换成“等待直到 → 存在窗口”，就能等目标窗口出现后再操作。</li><li>给循环加“条件分支”，就能按变量值决定继续还是跳出。</li></ul>
+</section>
+<section class="chapter" aria-labelledby="chapter-4">
+<h2 class="chapter-title" id="chapter-4" data-toc><span class="ch-kicker">第 4 章</span><span class="ch-name">图形化编辑详解<a class="anchor" href="#chapter-4" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-4-1" data-toc><span class="sec-num">4.1</span>添加积木<a class="anchor" href="#sec-4-1" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>从右侧面板拖到工作区：按住积木按钮拖到工作区，松手即插入。</li><li>用搜索框：输入“找图”“循环”“窗口”等中文名，或 <code>move</code>、<code>loop</code> 等命令名，面板只显示匹配项；点搜索框右侧的 × 清空。</li><li>收藏常用积木：右键面板中的积木 → “收藏”，它会出现在搜索框下方的“★ 收藏”区；再次右键可取消收藏。</li><li>用快速跳转栏：点“执行 / 控制 / 变量 / 循环 / 其他 / 数学”，面板滚到对应分类。</li><li>在容器内添加：循环、条件、函数积木内部有“+ 添加积木”按钮，也可直接把积木拖进去。</li></ul>
+<h3 id="sec-4-2" data-toc><span class="sec-num">4.2</span>排序与嵌套<a class="anchor" href="#sec-4-2" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>拖动积木到目标位置，出现蓝色插入线时松手，即插入到该位置。</li><li>拖到循环、条件、函数容器内部，会成为它的子积木。</li><li>条件积木有 if 和 else 两个容器；没有 else 时可点“添加 else”。</li><li>容器积木左上角的 ▾ / ▸ 可以折叠或展开子积木，长脚本更清爽。</li><li>拖到工作区根列表的空白处，会插入到列表末尾。</li></ul>
+<h3 id="sec-4-3" data-toc><span class="sec-num">4.3</span>参数输入框<a class="anchor" href="#sec-4-3" aria-label="本节链接">#</a></h3>
+<p>积木上的白色小输入框既可以填数字，也可以填变量或表达式，最终会原样拼进代码：</p>
+<ul class="bullets"><li>数字：<code>100</code>、<code>1.5</code>、<code>-20</code>。</li><li>变量：<code>$ctr.x</code>、<code>$pos.y</code>、<code>$count</code>。</li><li>表达式：<code>random(1, 100)</code>、<code>add($n, 1)</code>、<code>concat($s, "后缀")</code>（函数名区分大小写，建议全小写）。</li></ul>
+<p>如果填了拼写错误的内容，语法检查或运行时会在日志里报错。含中文或空格的值，在代码模式下需要用双引号包起来。</p>
+<h3 id="sec-4-4" data-toc><span class="sec-num">4.4</span>屏幕取点<a class="anchor" href="#sec-4-4" aria-label="本节链接">#</a></h3>
+<p>所有需要绝对屏幕坐标的积木大多带 <strong>＋取点</strong> 按钮：</p>
+<ul class="bullets"><li>点击后出现全屏十字准星，移动鼠标对准目标，按左键单击即捕获，按 <code>Esc</code> 取消。</li><li>坐标以物理像素为单位，主屏左上角为 (0, 0)，左侧或上方副屏为负值；多屏和缩放都不需要手工换算。</li><li>“鼠标拖拽”有两个取点按钮，分别填起点和终点；“像素颜色”的取点填 PixelX / PixelY。</li><li>“查找文本/图像”的“参考”坐标也有取点按钮，它决定“离哪个点最近”的匹配优先。</li><li>“窗口控制”的移动 / 调整大小参数目前没有取点按钮，需要手动填写坐标或尺寸。</li></ul>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>取点捕获的是当前屏幕位置。如果目标窗口会移动，或系统缩放改变，运行前要重新取点。</p></div></aside>
+<h3 id="sec-4-5" data-toc><span class="sec-num">4.5</span>按键捕获<a class="anchor" href="#sec-4-5" aria-label="本节链接">#</a></h3>
+<p>键盘按下/抬起、组合键、等待条件里的“键盘按下”都使用按键捕获框：</p>
+<ol class="steps"><li>点击输入框，框内显示“按下按键…”。</li><li>按下要绑定的键，框内显示键名（如 <code>A</code>、<code>Space</code>、<code>F5</code>），底层保存的是虚拟键码。</li><li>按 <code>Esc</code> 取消本次捕获，保留原来的键。</li><li>单独按 Ctrl / Shift / Alt / Win 不会生效，必须再按一个主键；组合键请用“组合键”积木，或给“键盘按下”添加多个键框。</li></ol>
+<h3 id="sec-4-6" data-toc><span class="sec-num">4.6</span>图片槽位<a class="anchor" href="#sec-4-6" aria-label="本节链接">#</a></h3>
+<p>“查找图像坐标”“等待直到 → 检测到图像”“循环直到 → 检测到图像”都有图片槽位：</p>
+<ul class="bullets"><li>点击槽位，选择一张本地图片；或把图片文件（png / jpg / jpeg / bmp / gif）直接拖到槽位上。</li><li>图片会自动转成 PNG 并以 base64 内嵌进脚本，不依赖原文件路径。</li><li>槽位显示 <code>[嵌入图像]</code> 或文件名；缩略信息不显示时，重新选择即可。</li></ul>
+<aside class="callout tip" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span><div class="cbody"><b>提示</b><p>截图要只包含目标本身，边缘不要带无关背景，也不要包含会变化的时间、数字、动画区域，否则相似度会被拉低。</p></div></aside>
+<h3 id="sec-4-7" data-toc><span class="sec-num">4.7</span>注释与折叠<a class="anchor" href="#sec-4-7" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li><strong>Shift + 点击积木</strong>：切换注释状态。被注释的积木半透明显示，生成代码时每行前加 <code>//</code>，运行时跳过。</li><li><strong>注释积木</strong>：专门用于写说明；Shift + 点击注释积木时，如果注释内容本身是一条可解析的语句，会尝试还原成对应积木。</li><li>右键菜单中的“复制 / 粘贴 / 删除”也可用于整理积木。</li></ul>
+<h3 id="sec-4-8" data-toc><span class="sec-num">4.8</span>复制、粘贴、撤销与删除<a class="anchor" href="#sec-4-8" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>右键积木 → 复制 / 粘贴 / 删除。</li><li>先右键点过某个积木，再按 <code>Ctrl+C</code> / <code>Ctrl+V</code>，会以该积木为基准复制或粘贴。</li><li><code>Ctrl+Z</code> / <code>Ctrl+Y</code> 在图形化页撤销、重做；删除、拖动、注释、改参数都可能进入历史。</li><li>粘贴到循环或条件内部时，会插入到该容器。</li></ul>
+<h3 id="sec-4-9" data-toc><span class="sec-num">4.9</span>变量与表达式栏<a class="anchor" href="#sec-4-9" aria-label="本节链接">#</a></h3>
+<p>左侧栏会自动收集脚本里“赋值类”积木产生的变量：</p>
+<ul class="bullets"><li>坐标变量（屏幕中心、查找文本、查找图像、查找窗口）显示为 <code>$name.x</code>、<code>$name.y</code> 两个芯片。</li><li>普通变量（数学、像素颜色、CMD 返回值、剪贴板、拼接、比较、逻辑）显示为 <code>$name</code>。</li><li>点“添加变量”可以手动声明一个变量名，不需要先赋值也能在参数里使用；未赋值时按 0 处理。</li><li>“表达式”区提供随机整数芯片，填好上下限后拖进参数框即可生成 <code>random(a, b)</code>。</li><li>把芯片拖到任意参数输入框上松手，变量名或表达式会自动填入。</li></ul>
+<h3 id="sec-4-10" data-toc><span class="sec-num">4.10</span>图形与代码互转<a class="anchor" href="#sec-4-10" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>切到“代码编辑”：如果工作区有积木，会用积木重新生成代码，覆盖代码框内容。</li><li>切回“图形化编辑”：会尝试把代码解析回积木；成功时日志提示“已同步”，失败时提示“同步失败”并留在代码页。</li><li>因为两种形态共用同一份脚本，建议固定用一种方式为主，另一种只用来查看或小改。</li></ul>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>代码里的 <code>click left</code> 解析回积木时会变成“鼠标按下”（丢失抬起动作）。要在两种模式间来回切换，点击请写成 <code>mousedown</code> + <code>mouseup</code> 两条，或直接用“按下 + 抬起”积木。</p></div></aside>
+</section>
+<section class="chapter" aria-labelledby="chapter-5">
+<h2 class="chapter-title" id="chapter-5" data-toc><span class="ch-kicker">第 5 章</span><span class="ch-name">积木参考<a class="anchor" href="#chapter-5" aria-label="本节链接">#</a></span></h2>
+<p>积木面板共 38 个入口、37 种类型（“数学运算”和“随机整数”共用一种类型，“定义函数”和“调用函数”各算一种）。本章按面板分类列出用途、参数与生成的代码。</p>
+<h3 id="sec-5-1" data-toc><span class="sec-num">5.1</span>执行类<a class="anchor" href="#sec-5-1" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>移动到坐标</td>
+<td>移到 (x, y)。模式：瞬移 / 线性 / 缓入 / 缓出 / 缓入缓出 / 曲线；非瞬移可填耗时（默认 20ms）。带取点按钮。</td>
+<td><code>move 100, 200, linear, 600</code></td>
+</tr>
+<tr>
+<td>鼠标按下</td>
+<td>按下并保持左 / 中 / 右键。</td>
+<td><code>mousedown left</code></td>
+</tr>
+<tr>
+<td>鼠标抬起</td>
+<td>抬起左 / 中 / 右键。</td>
+<td><code>mouseup right</code></td>
+</tr>
+<tr>
+<td>滚轮</td>
+<td>向上 / 下滑动指定刻度，120 约为一格。</td>
+<td><code>scroll up, 120</code></td>
+</tr>
+<tr>
+<td>键盘按下</td>
+<td>按住一个键；可用“+”添加多个键（如 17+65 表示 Ctrl+A）。</td>
+<td><code>keydown 17</code></td>
+</tr>
+<tr>
+<td>键盘抬起</td>
+<td>抬起按键；多键按相反顺序抬起。</td>
+<td><code>keyup 65</code></td>
+</tr>
+<tr>
+<td>向方向移动</td>
+<td>从上 / 下 / 左 / 右方向瞬时移动指定像素。</td>
+<td><code>move_dir up, 100</code></td>
+</tr>
+<tr>
+<td>相对移动</td>
+<td>以当前位置为基准偏移 (dx, dy)。模式：线性 / 平滑 / 曲线 / 缓入 / 缓出；可填耗时。</td>
+<td><code>move_rel 50, -30</code></td>
+</tr>
+<tr>
+<td>鼠标拖拽</td>
+<td>从起点拖到终点；可选取左 / 右 / 中键与耗时（默认 500ms）。</td>
+<td><code>drag 10, 10, 300, 300, left, 800</code></td>
+</tr>
+<tr>
+<td>输入文本</td>
+<td>逐字输入文本，可设字间间隔（默认 30ms）。文本以 <code>$</code> 开头时按变量处理。</td>
+<td><code>type_text "Hello", 30</code></td>
+</tr>
+<tr>
+<td>组合键</td>
+<td>同时按下一组键，再逆序释放，如 Ctrl+A。</td>
+<td><code>combo_key "17+65"</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-2" data-toc><span class="sec-num">5.2</span>控制类<a class="anchor" href="#sec-5-2" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>等待</td>
+<td>等待指定毫秒；等待过程可被“停止”打断。</td>
+<td><code>wait 1000</code></td>
+</tr>
+<tr>
+<td>等待直到</td>
+<td>轮询等待条件成立，可设超时；超时会报错并停止脚本。条件：U 盘插入 / 检测到文本 / 检测到图像 / 键盘按下 / 鼠标按下 / 鼠标移动超过 / 存在窗口。</td>
+<td><code>wait_until window, "记事本", 10000</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-3" data-toc><span class="sec-num">5.3</span>循环与函数<a class="anchor" href="#sec-5-3" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>重复循环</td>
+<td>按次数重复，0 表示无限循环；可嵌套。</td>
+<td><code>loop 3</code> … <code>endloop</code></td>
+</tr>
+<tr>
+<td>循环直到</td>
+<td>先判断条件，不成立才执行循环体；可设超时。条件同“等待直到”。</td>
+<td><code>loop_until key, 32, 5000</code></td>
+</tr>
+<tr>
+<td>条件分支</td>
+<td>条件为真执行 if 分支，否则执行 else；条件由 A、运算符、B 三段组成。</td>
+<td><code>if compare($n, "&gt;", 5)</code> … <code>endif</code></td>
+</tr>
+<tr>
+<td>跳出循环</td>
+<td>立即结束当前循环。</td>
+<td><code>break</code></td>
+</tr>
+<tr>
+<td>继续循环</td>
+<td>跳过本次剩余内容，进入下一次。</td>
+<td><code>continue</code></td>
+</tr>
+<tr>
+<td>定义函数</td>
+<td>定义一段可重复调用的积木序列；无参数、无返回值。</td>
+<td><code>func click_ok</code> … <code>endfunc</code></td>
+</tr>
+<tr>
+<td>调用函数</td>
+<td>调用已定义函数；定义可以写在调用之后。</td>
+<td><code>call click_ok</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-4" data-toc><span class="sec-num">5.4</span>变量类<a class="anchor" href="#sec-5-4" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>获取屏幕中心</td>
+<td>把主屏中心坐标存入变量（坐标类型）。</td>
+<td><code>$ctr = screen_center</code></td>
+</tr>
+<tr>
+<td>查找文本坐标</td>
+<td>OCR 找字，返回离参考点最近的文字中心（坐标类型）。找不到时返回参考点并写警告日志。</td>
+<td><code>$pos = find_text("确定", 0, 0)</code></td>
+</tr>
+<tr>
+<td>查找图像坐标</td>
+<td>模板匹配找图，返回匹配中心（坐标类型）。找不到时直接报错并停止脚本。</td>
+<td><code>$pos = find_image("btn.png", 0, 0, 0.80)</code></td>
+</tr>
+<tr>
+<td>查找窗口坐标</td>
+<td>按标题查找窗口，返回窗口中心（坐标类型）。支持完整标题，找不到完整标题时按部分标题再找一次。</td>
+<td><code>$win = find_window("记事本")</code></td>
+</tr>
+<tr>
+<td>像素颜色</td>
+<td>取屏幕像素颜色，返回字符串 <code>R,G,B</code>（0–255）。</td>
+<td><code>$c = pixel_color(100, 200)</code></td>
+</tr>
+<tr>
+<td>CMD返回值</td>
+<td>执行命令并取回标准输出，去掉首尾空白（字符串）。</td>
+<td><code>$out = cmd_capture("echo hi")</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-5" data-toc><span class="sec-num">5.5</span>系统类<a class="anchor" href="#sec-5-5" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>注释</td>
+<td>生成 <code>//</code> 注释，不执行；Shift+点击可切换。</td>
+<td><code>// 说明文字</code></td>
+</tr>
+<tr>
+<td>执行CMD命令</td>
+<td>执行命令，把标准输出、标准错误和退出码写入日志。</td>
+<td><code>cmd "notepad"</code></td>
+</tr>
+<tr>
+<td>窗口控制</td>
+<td>激活 / 关闭 / 最小化 / 最大化 / 移动 / 调整大小；移动填 x, y，调整大小填宽, 高。</td>
+<td><code>window activate, "记事本"</code></td>
+</tr>
+<tr>
+<td>音量控制</td>
+<td>增大 / 减小 / 静音切换 / 设定 0–100。</td>
+<td><code>volume set, 50</code></td>
+</tr>
+<tr>
+<td>亮度控制</td>
+<td>增大 / 减小 / 设定 0–100；设定依赖 WMI，一般只对笔记本有效。</td>
+<td><code>brightness up</code></td>
+</tr>
+<tr>
+<td>读剪贴板</td>
+<td>读取剪贴板文本到变量；读取失败时得到空字符串。</td>
+<td><code>$t = clipboard_read()</code></td>
+</tr>
+<tr>
+<td>写剪贴板</td>
+<td>把文本或变量写入剪贴板；以 <code>$</code> 开头时按变量处理。</td>
+<td><code>clipboard_write "Hello"</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-6" data-toc><span class="sec-num">5.6</span>数学与逻辑<a class="anchor" href="#sec-5-6" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>积木</th>
+<th>用途与参数</th>
+<th>生成代码</th>
+</tr></thead><tbody>
+<tr>
+<td>数学运算</td>
+<td>加 / 减 / 乘 / 除 / 幂，结果存入变量；除数为 0 时结果为 0。</td>
+<td><code>$r = add(1, 2)</code></td>
+</tr>
+<tr>
+<td>随机整数</td>
+<td>在 [A, B] 内取随机整数，包含两端；A 大于 B 时自动交换。</td>
+<td><code>$r = random(1, 100)</code></td>
+</tr>
+<tr>
+<td>字符串拼接</td>
+<td>两个值转成字符串后拼接。</td>
+<td><code>$s = concat("a", "b")</code></td>
+</tr>
+<tr>
+<td>比较运算</td>
+<td>比较两个值，返回 1 或 0；两边都是数字按数值比，否则按字符串（忽略大小写）比。</td>
+<td><code>$r = compare($n, "&gt;=", 5)</code></td>
+</tr>
+<tr>
+<td>逻辑运算</td>
+<td>与 / 或 / 非，返回 1 或 0；非 0 视为真，与/或有短路。</td>
+<td><code>$r = and(1, 0)</code></td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-5-7" data-toc><span class="sec-num">5.7</span>重点积木详解<a class="anchor" href="#sec-5-7" aria-label="本节链接">#</a></h3>
+<h4 id="sec-5-7-1" data-toc><span class="sec-num">5.7.1</span>移动与耗时<a class="anchor" href="#sec-5-7-1" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>“瞬移”直接跳到目标点，耗时参数不参与；其余模式按耗时插值，耗时被速度倍率整除（2x 时 600ms 实际约 300ms）。</li><li>不填耗时时，移动默认 20ms；曲线/平滑模式建议 300–800ms，过短会退化成近似瞬移。</li><li>“向方向移动”始终是瞬时移动，不受耗时影响；需要动画请用“相对移动”。</li><li>“相对移动”始终把模式和耗时写进代码（例如 <code>move_rel 50, -30, linear, 800</code>），界面填写的耗时不会被省略；耗时为空的按 500ms 处理。</li></ul>
+<h4 id="sec-5-7-2" data-toc><span class="sec-num">5.7.2</span>查找图像坐标<a class="anchor" href="#sec-5-7-2" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>原理：截取整个虚拟屏幕，转灰度，用归一化互相关做模板匹配，取相似度超过阈值且离参考点最近的匹配中心。</li><li>阈值默认 0.70，范围 0–1。界面越稳定、截图越干净，阈值可以越高（0.85–0.95）；光照或压缩变化大时适当降低（0.65–0.75）。</li><li>找不到时直接抛出运行时错误，脚本会停下；如果只是“等它出现”，请先用“等待直到 → 检测到图像”，或把查找放进“循环直到”里。</li><li>不支持缩放和旋转匹配。换了分辨率、缩放比例或窗口大小后，需要重新截图。</li><li>日志会打印找到的位置和相似度；相似度接近阈值却找不到时，优先重新裁剪截图，而不是盲目降低阈值。</li></ul>
+<h4 id="sec-5-7-3" data-toc><span class="sec-num">5.7.3</span>等待直到与循环直到<a class="anchor" href="#sec-5-7-3" aria-label="本节链接">#</a></h4>
+<p>七种条件的参数与轮询间隔：</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>条件</th>
+<th>参数</th>
+<th>轮询</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>U 盘插入</td>
+<td>无</td>
+<td>500ms</td>
+<td>以开始等待时的可移动磁盘数量为基准，数量增加才算插入</td>
+</tr>
+<tr>
+<td>检测到文本</td>
+<td>文本, 参考X, 参考Y</td>
+<td>500ms</td>
+<td>全屏 OCR，匹配离参考点最近的结果</td>
+</tr>
+<tr>
+<td>检测到图像</td>
+<td>图片, 参考X, 参考Y, 阈值</td>
+<td>500ms</td>
+<td>全屏模板匹配</td>
+</tr>
+<tr>
+<td>键盘按下</td>
+<td>虚拟键码</td>
+<td>50ms</td>
+<td>用 GetAsyncKeyState 轮询，极短的敲击可能漏掉</td>
+</tr>
+<tr>
+<td>鼠标按下</td>
+<td>left / middle / right</td>
+<td>50ms</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>鼠标移动超过</td>
+<td>距离（像素）</td>
+<td>50ms</td>
+<td>以第一次检查时的鼠标位置为基准，移动距离大于该值才算成立</td>
+</tr>
+<tr>
+<td>存在窗口</td>
+<td>窗口标题</td>
+<td>500ms</td>
+<td>先按完整标题精确查找，找不到再按“包含该文本”匹配部分标题</td>
+</tr>
+</tbody></table></div>
+<ul class="bullets"><li>超时单位是毫秒，填 0 或留空表示无限等待；超时会抛出运行时错误，脚本停止。</li><li>“循环直到”先判断条件，条件已成立时循环体一次也不执行；不是“至少执行一次”。</li><li>“等待直到”只等待、不执行动作；“循环直到”在等待期间反复执行循环体。</li></ul>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>“存在窗口”先按完整标题精确匹配，找不到再按“包含该文本”匹配第一个窗口。窗口标题会随文档名、页码变化（例如“无标题 - 记事本”），只写一段能唯一识别的标题也可以；为避免误匹配，标题越完整越稳妥。</p></div></aside>
+<h4 id="sec-5-7-4" data-toc><span class="sec-num">5.7.4</span>条件分支<a class="anchor" href="#sec-5-7-4" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>界面上的“如果 A 运算符 B”会生成 <code>compare(A, "运算符", B)</code>；运算符是字符串，必须带双引号。</li><li>条件表达式的值非 0 即视为真；<code>compare</code> 返回 1 或 0，所以可以直接作为条件。</li><li>需要“与 / 或 / 非”时，用逻辑积木先生成变量，或直接在条件里写 <code>and(compare(...), compare(...))</code>。</li><li>else 分支可以为空；空 else 也会生成 <code>else</code> 和 <code>endif</code>。</li></ul>
+<h4 id="sec-5-7-5" data-toc><span class="sec-num">5.7.5</span>窗口控制<a class="anchor" href="#sec-5-7-5" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>标题先按完整标题查找，找不到再按“包含该文本”查找第一个匹配窗口。</li><li>“激活”会把窗口置前；“关闭”发送 WM_CLOSE，不等待真正关闭；“最小化 / 最大化”立即生效。</li><li>“移动”填屏幕坐标 x, y，窗口大小保持不变；“调整大小”填宽、高，左上角保持不变。</li><li>目标窗口最小化时先激活再操作，避免看不到效果。</li></ul>
+<h4 id="sec-5-7-6" data-toc><span class="sec-num">5.7.6</span>输入文本与组合键<a class="anchor" href="#sec-5-7-6" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>“输入文本”逐字发送，间隔默认 30ms；间隔太小可能被目标程序丢弃，太大则明显变慢。</li><li>文本以 <code>$</code> 开头会被当作变量（例如填 <code>$name</code> 输入变量的值）。如果就是要输入以 <code>$</code> 开头的原文，请在代码模式写 <code>type_text "$100"</code>。</li><li>“组合键”保存的是虚拟键码串，如 <code>17+65</code>（Ctrl+A）、<code>17+86</code>（Ctrl+V）。按下顺序从左到右，释放顺序从右到左，中间没有额外延迟；个别程序需要更慢的节奏时，改用多条“键盘按下 / 抬起”并插入“等待”。</li><li>键码是十进制。常用键码见附录 A。</li></ul>
+<h4 id="sec-5-7-7" data-toc><span class="sec-num">5.7.7</span>比较与逻辑<a class="anchor" href="#sec-5-7-7" aria-label="本节链接">#</a></h4>
+<ul class="bullets"><li>两边都是数字时按数值比较；只要有一边是字符串，就按字符串序数比较并忽略大小写。</li><li>字符串比较使用 <code>string.Compare</code> 的序数规则，中文按 Unicode 编码顺序，不适合做“拼音排序”。</li><li><code>and</code> / <code>or</code> 有短路：左边已经能决定结果时，右边不会求值。</li><li>逻辑和比较都返回数字 1 / 0，可直接参与数学运算或作为条件。</li></ul>
+</section>
+<section class="chapter" aria-labelledby="chapter-6">
+<h2 class="chapter-title" id="chapter-6" data-toc><span class="ch-kicker">第 6 章</span><span class="ch-name">脚本语言参考<a class="anchor" href="#chapter-6" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-6-1" data-toc><span class="sec-num">6.1</span>书写规则<a class="anchor" href="#sec-6-1" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>一条语句一行；空行会被忽略；缩进只影响阅读，不影响执行。</li><li>关键字建议全小写；多数关键字也接受首字母大写（如 <code>Move</code>、<code>Loop</code>），但不要全大写。</li><li>注释用 <code>//</code>，可独占一行，也可写在行尾。</li><li>字符串用双引号，支持转义：<code>\n</code> 换行、<code>\t</code> 制表、<code>\"</code> 引号、<code>\\</code> 反斜杠。</li><li>数字支持整数、小数和负号，例如 <code>100</code>、<code>1.5</code>、<code>-20</code>。</li><li>变量以 <code>$</code> 开头，后面可以是字母、数字、下划线；变量名区分大小写。</li><li>语句之间不要用分号分隔；一行写两条语句会解析失败。</li></ul>
+<h3 id="sec-6-2" data-toc><span class="sec-num">6.2</span>语句速查<a class="anchor" href="#sec-6-2" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>语句</th>
+<th>语法</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>移动</td>
+<td><code>move x, y[, 模式[, 耗时]]</code></td>
+<td>模式：teleport / linear / ease_in / ease_out / smooth / curve</td>
+</tr>
+<tr>
+<td>点击</td>
+<td><code>click left</code></td>
+<td>立即按下并抬起；仅代码模式有，积木用按下 + 抬起</td>
+</tr>
+<tr>
+<td>按下 / 抬起</td>
+<td><code>mousedown left</code>、<code>mouseup right</code></td>
+<td>left / middle / right</td>
+</tr>
+<tr>
+<td>滚轮</td>
+<td><code>scroll up, 120</code></td>
+<td>方向 up / down</td>
+</tr>
+<tr>
+<td>拖拽</td>
+<td><code>drag x1, y1, x2, y2[, 按键[, 耗时]]</code></td>
+<td>默认 left、500ms</td>
+</tr>
+<tr>
+<td>方向移动</td>
+<td><code>move_dir up, 100</code></td>
+<td>up / down / left / right</td>
+</tr>
+<tr>
+<td>相对移动</td>
+<td><code>move_rel dx, dy[, 模式[, 耗时]]</code></td>
+<td>默认 linear、500ms</td>
+</tr>
+<tr>
+<td>按键</td>
+<td><code>keydown 17</code>、<code>keyup 17</code></td>
+<td>参数是十进制虚拟键码</td>
+</tr>
+<tr>
+<td>组合键</td>
+<td><code>combo_key "17+65"</code></td>
+<td>字符串，用 + 连接键码</td>
+</tr>
+<tr>
+<td>输入文本</td>
+<td><code>type_text "文本"[, 间隔]</code></td>
+<td>间隔默认 30ms；可传变量</td>
+</tr>
+<tr>
+<td>等待</td>
+<td><code>wait 1000</code></td>
+<td>毫秒</td>
+</tr>
+<tr>
+<td>等待直到</td>
+<td><code>wait_until 条件[, 参数…][, 超时]</code></td>
+<td>条件见 6.3.2</td>
+</tr>
+<tr>
+<td>计数循环</td>
+<td><code>loop 次数</code> … <code>endloop</code></td>
+<td>0 表示无限</td>
+</tr>
+<tr>
+<td>条件循环</td>
+<td><code>loop_until 条件[, 参数…][, 超时]</code> … <code>endloop</code></td>
+<td>先判断后执行</td>
+</tr>
+<tr>
+<td>条件分支</td>
+<td><code>if 表达式</code> … [<code>else</code> …] <code>endif</code></td>
+<td>非 0 为真</td>
+</tr>
+<tr>
+<td>函数</td>
+<td><code>func 名称</code> … <code>endfunc</code>，<code>call 名称</code></td>
+<td>无参数、无返回值</td>
+</tr>
+<tr>
+<td>跳出 / 继续</td>
+<td><code>break</code>、<code>continue</code></td>
+<td>只能出现在循环体内</td>
+</tr>
+<tr>
+<td>命令</td>
+<td><code>cmd "命令"</code></td>
+<td>输出写入日志</td>
+</tr>
+<tr>
+<td>窗口</td>
+<td><code>window 动作, "标题"[, 参数1, 参数2]</code></td>
+<td>动作见 6.3.4</td>
+</tr>
+<tr>
+<td>写剪贴板</td>
+<td><code>clipboard_write "文本"</code> 或 <code>clipboard_write $变量</code></td>
+<td>字符串或变量</td>
+</tr>
+<tr>
+<td>音量</td>
+<td><code>volume up</code> / <code>volume set, 50</code></td>
+<td>up / down / mute / set</td>
+</tr>
+<tr>
+<td>亮度</td>
+<td><code>brightness up</code> / <code>brightness set, 80</code></td>
+<td>up / down / set</td>
+</tr>
+<tr>
+<td>赋值</td>
+<td><code>$变量 = 表达式</code></td>
+<td>表达式见 6.4</td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-6-3" data-toc><span class="sec-num">6.3</span>语句详解<a class="anchor" href="#sec-6-3" aria-label="本节链接">#</a></h3>
+<h4 id="sec-6-3-1" data-toc><span class="sec-num">6.3.1</span>移动与点击<a class="anchor" href="#sec-6-3-1" aria-label="本节链接">#</a></h4>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">move</span> <span class="tok-num">640</span>, <span class="tok-num">360</span>
+<span class="tok-kw">move</span> <span class="tok-num">100</span>, <span class="tok-num">200</span>, linear, <span class="tok-num">600</span>
+<span class="tok-kw">move</span> <span class="tok-var">$ctr.x</span>, <span class="tok-var">$ctr.y</span>, curve, <span class="tok-num">800</span>
+
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left
+
+<span class="tok-kw">click</span> right
+<span class="tok-kw">scroll</span> down, <span class="tok-num">240</span>
+<span class="tok-kw">drag</span> <span class="tok-num">20</span>, <span class="tok-num">20</span>, <span class="tok-num">400</span>, <span class="tok-num">400</span>, left, <span class="tok-num">600</span>
+<span class="tok-kw">move_dir</span> down, <span class="tok-num">50</span>
+<span class="tok-kw">move_rel</span> -<span class="tok-num">30</span>, <span class="tok-num">0</span>, smooth, <span class="tok-num">300</span></code></pre></figure>
+<ul class="bullets"><li><code>move</code> 省略模式时为瞬移，此时耗时参数即使写了也不参与。</li><li><code>click</code> 等价于同一瞬间的按下 + 抬起，适合不需要按住时长的场景。</li><li><code>drag</code> 会先瞬移到起点，按下，再线性移动到终点，最后抬起；拖拽过程中无法插入等待。</li></ul>
+<h4 id="sec-6-3-2" data-toc><span class="sec-num">6.3.2</span>等待与条件<a class="anchor" href="#sec-6-3-2" aria-label="本节链接">#</a></h4>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">wait_until</span> usb, <span class="tok-num">10000</span>
+<span class="tok-kw">wait_until</span> text, <span class="tok-str">"登录"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">8000</span>
+<span class="tok-kw">wait_until</span> image, <span class="tok-str">"btn.png"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">0.85</span>, <span class="tok-num">8000</span>
+<span class="tok-kw">wait_until</span> key, <span class="tok-num">32</span>, <span class="tok-num">5000</span>
+<span class="tok-kw">wait_until</span> mouse, left, <span class="tok-num">5000</span>
+<span class="tok-kw">wait_until</span> mouse_moved, <span class="tok-num">100</span>, <span class="tok-num">5000</span>
+<span class="tok-kw">wait_until</span> <span class="tok-kw">window</span>, <span class="tok-str">"无标题 - 记事本"</span>, <span class="tok-num">5000</span></code></pre></figure>
+<p>参数顺序必须与条件匹配：</p>
+<ul class="bullets"><li><code>usb</code>：只有超时，<code>wait_until usb, 10000</code>。</li><li><code>text</code>：文本、参考 X、参考 Y、超时。</li><li><code>image</code>：图片、参考 X、参考 Y、阈值、超时；要写超时就必须先写阈值。</li><li><code>key</code>：键码、超时。</li><li><code>mouse</code>：按键、超时。</li><li><code>mouse_moved</code>：距离、超时。</li><li><code>window</code>：完整标题、超时。</li></ul>
+<p><code>loop_until</code> 的参数与 <code>wait_until</code> 相同，只是超时之后要跟循环体，并以 <code>endloop</code> 结束。</p>
+<h4 id="sec-6-3-3" data-toc><span class="sec-num">6.3.3</span>循环、条件与函数<a class="anchor" href="#sec-6-3-3" aria-label="本节链接">#</a></h4>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">loop</span> <span class="tok-num">3</span>
+    <span class="tok-kw">click</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">endloop</span>
+
+<span class="tok-kw">loop_until</span> image, <span class="tok-str">"done.png"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">0.85</span>, <span class="tok-num">30000</span>
+    <span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">endloop</span>
+
+<span class="tok-kw">if</span> <span class="tok-fn">compare</span>(<span class="tok-var">$count</span>, <span class="tok-str">"&gt;="</span>, <span class="tok-num">10</span>)
+    <span class="tok-kw">break</span>
+<span class="tok-kw">else</span>
+    <span class="tok-var">$count</span> = <span class="tok-fn">add</span>(<span class="tok-var">$count</span>, <span class="tok-num">1</span>)
+<span class="tok-kw">endif</span>
+
+<span class="tok-kw">func</span> click_ok
+    <span class="tok-kw">move</span> <span class="tok-num">500</span>, <span class="tok-num">400</span>, smooth, <span class="tok-num">300</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">50</span>
+    <span class="tok-kw">mouseup</span> left
+<span class="tok-kw">endfunc</span>
+
+<span class="tok-kw">call</span> click_ok</code></pre></figure>
+<ul class="bullets"><li><code>break</code> / <code>continue</code> 只影响最近一层循环；在 <code>if</code> 里也能用，异常会被外层循环捕获。</li><li>函数定义会在执行前统一收集，因此可以先 <code>call</code> 后 <code>func</code>；函数之间共享全局变量，没有局部变量。</li><li>函数不能带参数，也不能返回值；需要“参数”时，用全局变量在调用前赋值。</li></ul>
+<h4 id="sec-6-3-4" data-toc><span class="sec-num">6.3.4</span>系统操作<a class="anchor" href="#sec-6-3-4" aria-label="本节链接">#</a></h4>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">cmd</span> <span class="tok-str">"ipconfig /all"</span>
+<span class="tok-var">$out</span> = <span class="tok-fn">cmd_capture</span>(<span class="tok-str">"echo hello"</span>)
+
+<span class="tok-kw">window</span> activate, <span class="tok-str">"记事本"</span>
+<span class="tok-kw">window</span> minimize, <span class="tok-str">"记事本"</span>
+<span class="tok-kw">window</span> <span class="tok-kw">move</span>, <span class="tok-str">"记事本"</span>, <span class="tok-num">100</span>, <span class="tok-num">100</span>
+<span class="tok-kw">window</span> resize, <span class="tok-str">"记事本"</span>, <span class="tok-num">800</span>, <span class="tok-num">600</span>
+
+<span class="tok-kw">clipboard_write</span> <span class="tok-str">"要复制的内容"</span>
+<span class="tok-var">$text</span> = <span class="tok-fn">clipboard_read</span>()
+
+<span class="tok-kw">volume</span> up
+<span class="tok-kw">volume</span> set, <span class="tok-num">30</span>
+<span class="tok-kw">brightness</span> set, <span class="tok-num">70</span></code></pre></figure>
+<ul class="bullets"><li><code>window</code> 的动作为 activate / close / minimize / maximize / move / resize；move 和 resize 必须带两个数字参数。</li><li><code>cmd</code> 与 <code>cmd_capture</code> 都通过 <code>cmd.exe /c</code> 执行；前者把输出写到日志，后者只把标准输出存入变量（标准错误丢弃）。</li><li>命令里含双引号时写成 <code>\"</code>，例如 <code>cmd "echo \"hello\""</code>。</li><li>剪贴板操作在脚本线程执行，剪贴板被其他程序占用时可能失败；读取失败会得到空字符串。</li></ul>
+<h3 id="sec-6-4" data-toc><span class="sec-num">6.4</span>表达式与函数<a class="anchor" href="#sec-6-4" aria-label="本节链接">#</a></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>名称</th>
+<th>写法</th>
+<th>返回</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>屏幕中心</td>
+<td><code>screen_center</code></td>
+<td>坐标</td>
+<td>主屏中心，无括号</td>
+</tr>
+<tr>
+<td>查找文本</td>
+<td><code>find_text("文本", x, y)</code></td>
+<td>坐标</td>
+<td>OCR；找不到返回参考点并警告</td>
+</tr>
+<tr>
+<td>查找图像</td>
+<td><code>find_image("图片", x, y[, 阈值])</code></td>
+<td>坐标</td>
+<td>找不到报错；阈值为 0–1，默认 0.70</td>
+</tr>
+<tr>
+<td>查找窗口</td>
+<td><code>find_window("标题")</code></td>
+<td>坐标</td>
+<td>返回窗口中心；找不到报错</td>
+</tr>
+<tr>
+<td>像素颜色</td>
+<td><code>pixel_color(x, y)</code></td>
+<td>字符串</td>
+<td>形如 <code>255,0,0</code></td>
+</tr>
+<tr>
+<td>读剪贴板</td>
+<td><code>clipboard_read()</code></td>
+<td>字符串</td>
+<td>失败返回空串</td>
+</tr>
+<tr>
+<td>命令输出</td>
+<td><code>cmd_capture("命令")</code></td>
+<td>字符串</td>
+<td>标准输出，去首尾空白</td>
+</tr>
+<tr>
+<td>加 / 减 / 乘 / 除 / 幂</td>
+<td><code>add(a, b)</code> 等</td>
+<td>数字</td>
+<td>除数为 0 返回 0</td>
+</tr>
+<tr>
+<td>随机整数</td>
+<td><code>random(a, b)</code></td>
+<td>数字</td>
+<td>含两端；a 大于 b 自动交换</td>
+</tr>
+<tr>
+<td>拼接</td>
+<td><code>concat(a, b)</code></td>
+<td>字符串</td>
+<td>两边先转字符串</td>
+</tr>
+<tr>
+<td>比较</td>
+<td><code>compare(a, "运算符", b)</code></td>
+<td>数字 1/0</td>
+<td>运算符必须带引号</td>
+</tr>
+<tr>
+<td>与 / 或 / 非</td>
+<td><code>and(a, b)</code>、<code>or(a, b)</code>、<code>not(a)</code></td>
+<td>数字 1/0</td>
+<td>非 0 为真，与/或短路</td>
+</tr>
+</tbody></table></div>
+<p>表达式可以嵌套，也可以用括号改变结合顺序：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-var">$ok</span> = <span class="tok-fn">and</span>(<span class="tok-fn">compare</span>(<span class="tok-var">$x</span>, <span class="tok-str">"&gt;"</span>, <span class="tok-num">0</span>), <span class="tok-fn">compare</span>(<span class="tok-var">$y</span>, <span class="tok-str">"&gt;"</span>, <span class="tok-num">0</span>))
+<span class="tok-var">$n</span> = <span class="tok-fn">add</span>(<span class="tok-fn">mul</span>(<span class="tok-num">2</span>, <span class="tok-num">3</span>), <span class="tok-fn">random</span>(<span class="tok-num">1</span>, <span class="tok-num">10</span>))</code></pre></figure>
+<h3 id="sec-6-5" data-toc><span class="sec-num">6.5</span>变量与坐标<a class="anchor" href="#sec-6-5" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>变量不需要声明，直接赋值即可；读取未赋值的变量会按 0 处理，并在日志里提示。</li><li>坐标是一个“点”类型，可以整体赋值，也可以用 <code>.x</code> / <code>.y</code> 取分量：</li></ul>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-var">$ctr</span> = <span class="tok-kw">screen_center</span>
+<span class="tok-kw">move</span> <span class="tok-var">$ctr.x</span>, <span class="tok-var">$ctr.y</span>, smooth, <span class="tok-num">500</span>
+
+<span class="tok-var">$pos</span> = <span class="tok-fn">find_image</span>(<span class="tok-str">"ok.png"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">0.85</span>)
+<span class="tok-kw">move</span> <span class="tok-var">$pos.x</span>, <span class="tok-var">$pos.y</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">mouseup</span> left</code></pre></figure>
+<ul class="bullets"><li>把点当数字用（例如 <code>add($ctr, 1)</code>）会报“需要数字值”；必须取 <code>.x</code> 或 <code>.y</code>。</li><li>把字符串当数字用也会报错；<code>compare</code> 是例外，它会把非数字转成字符串比较。</li><li>变量名区分大小写，<code>$Pos</code> 和 <code>$pos</code> 是两个变量。</li></ul>
+<h3 id="sec-6-6" data-toc><span class="sec-num">6.6</span>完整示例<a class="anchor" href="#sec-6-6" aria-label="本节链接">#</a></h3>
+<p>下面的脚本演示了移动、循环、查找文本、变量和条件判断的组合：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-com">// 取屏幕中心作为参考点</span>
+<span class="tok-var">$ctr</span> = <span class="tok-kw">screen_center</span>
+
+<span class="tok-com">// 循环 3 次：移动到中心附近并点击</span>
+<span class="tok-kw">loop</span> <span class="tok-num">3</span>
+    <span class="tok-kw">move</span> <span class="tok-var">$ctr.x</span>, <span class="tok-var">$ctr.y</span>
+    <span class="tok-kw">wait</span> <span class="tok-num">200</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">50</span>
+    <span class="tok-kw">mouseup</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">endloop</span>
+
+<span class="tok-com">// 等待“确定”出现 8 秒，再点它</span>
+<span class="tok-kw">wait_until</span> text, <span class="tok-str">"确定"</span>, <span class="tok-var">$ctr.x</span>, <span class="tok-var">$ctr.y</span>, <span class="tok-num">8000</span>
+<span class="tok-var">$pos</span> = <span class="tok-fn">find_text</span>(<span class="tok-str">"确定"</span>, <span class="tok-var">$ctr.x</span>, <span class="tok-var">$ctr.y</span>)
+<span class="tok-kw">move</span> <span class="tok-var">$pos.x</span>, <span class="tok-var">$pos.y</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left</code></pre></figure>
+</section>
+<section class="chapter" aria-labelledby="chapter-7">
+<h2 class="chapter-title" id="chapter-7" data-toc><span class="ch-kicker">第 7 章</span><span class="ch-name">运行、槽位与调试<a class="anchor" href="#chapter-7" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-7-1" data-toc><span class="sec-num">7.1</span>槽位管理<a class="anchor" href="#sec-7-1" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>一个脚本文件可以包含多个槽位，适合把“登录、日常、退出”等流程分开维护。</li><li>点 + 新增（自动命名“脚本 N”），点“改名”重命名当前槽位，点 × 删除当前槽位；至少保留一个。</li><li>切换槽位时自动保存当前槽位的积木与代码，再载入目标槽位。</li><li>槽位名称最多 40 个字符，会随脚本包一起保存；重名时自动追加序号，下拉框里不会出现两个同名槽位。</li><li>“运行全部”从第 1 个槽位开始，跳过空槽位；某个槽位出错就停止，后面的槽位不再执行。</li></ul>
+<h3 id="sec-7-2" data-toc><span class="sec-num">7.2</span>运行与停止<a class="anchor" href="#sec-7-2" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>标题栏“运行”运行当前槽位；如果当前在图形化页，会先把积木生成代码再执行。</li><li>工作区没有积木，或代码为空时，只提示不运行。</li><li>运行会清空日志、清空变量监视，并在后台线程执行，界面不冻结。</li><li>“停止”会取消执行令牌：等待会被立即打断，移动中的鼠标操作也会尽快停止；如果正处于断点暂停，会先恢复再取消。</li><li>运行中“运行”不可用，“停止”可用；运行结束后自动恢复。</li></ul>
+<h3 id="sec-7-3" data-toc><span class="sec-num">7.3</span>速度倍率<a class="anchor" href="#sec-7-3" aria-label="本节链接">#</a></h3>
+<p>速度下拉框影响以下耗时：</p>
+<ul class="bullets"><li><code>wait</code> 的等待时长。</li><li><code>move</code> / <code>drag</code> / <code>move_rel</code> 的移动耗时。</li><li><code>type_text</code> 的字间间隔。</li></ul>
+<p>不影响：等待条件的轮询间隔、点击按下的持续时长（按下与抬起之间的间隔由脚本自己控制）、<code>cmd</code> 的执行时间。运行中切换速度会立即生效。</p>
+<h3 id="sec-7-4" data-toc><span class="sec-num">7.4</span>断点<a class="anchor" href="#sec-7-4" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>右键积木 → “设置断点”，积木左侧出现红点；再次右键可移除。</li><li>脚本执行到该积木的第一行时暂停，日志显示“🔴 [断点] 第 N 行暂停”，底部“单步”“继续”变为可用。</li><li>暂停期间可以查看变量监视、切换代码页查看执行行，也可以直接“停止”。</li></ul>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p>循环、条件、函数内部的嵌套积木也可以设置断点，运行到对应语句时会正常暂停。被 Shift+Click 注释（禁用）的积木整块不会执行，其内部断点也不会触发；另外断点行号是按积木生成的代码计算的，如果代码页被手工大改，行号可能对不上，建议在图形页设置断点。</p></div></aside>
+<h3 id="sec-7-5" data-toc><span class="sec-num">7.5</span>条件断点<a class="anchor" href="#sec-7-5" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>先设置断点，再右键 → “设置条件…”，输入表达式。</li><li>表达式为真（非 0）时才暂停；为空表示无条件断点。</li><li>条件里可以用变量和函数，例如 <code>compare($i, "==", 5)</code>、<code>compare($pos.x, "&gt;", 1000)</code>。</li><li>条件写错时，日志提示“条件求值失败”，并按无条件断点处理，避免脚本卡死。</li></ul>
+<h3 id="sec-7-6" data-toc><span class="sec-num">7.6</span>单步与继续<a class="anchor" href="#sec-7-6" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>命中断点后点“单步”：执行下一条语句，然后再次暂停。</li><li>点“继续”：不再逐步暂停，直到下一个断点或脚本结束。</li><li>单步模式会一直保持，直到点“继续”或脚本结束；期间每条语句前都会暂停。</li></ul>
+<h3 id="sec-7-7" data-toc><span class="sec-num">7.7</span>变量监视<a class="anchor" href="#sec-7-7" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>运行中每次变量赋值，右下角“变量监视”面板会新增或更新一行。</li><li>点击某个变量的值，会变成输入框；改成新值后回车或失焦，立即写回解释器，后续语句使用新值。</li><li>能转成数字的按数字写入，否则按字符串写入。</li><li>停止运行后面板自动隐藏。</li></ul>
+<h3 id="sec-7-8" data-toc><span class="sec-num">7.8</span>日志与错误定位<a class="anchor" href="#sec-7-8" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>语法错误：点“检查语法”或输入后自动检查，状态栏显示行号与原因，编辑器高亮错误行。</li><li>运行时错误：脚本停止，日志显示“运行时错误: 第 N 行: 原因”，代码页高亮该行，图形页对应积木红色边框闪烁。</li><li>常见运行时错误：找图未找到、等待超时、窗口未找到、变量类型不匹配、除数问题（除 0 已处理为 0）。</li></ul>
+</section>
+<section class="chapter" aria-labelledby="chapter-8">
+<h2 class="chapter-title" id="chapter-8" data-toc><span class="ch-kicker">第 8 章</span><span class="ch-name">图像、文字与颜色识别<a class="anchor" href="#chapter-8" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-8-1" data-toc><span class="sec-num">8.1</span>查找图像<a class="anchor" href="#sec-8-1" aria-label="本节链接">#</a></h3>
+<p>工作流程：截取整个虚拟屏幕 → 转灰度 → 用模板匹配计算相似度 → 取超过阈值且离参考点最近的匹配中心。</p>
+<p>提高成功率的方法：</p>
+<ol class="steps"><li>截图只保留目标本身，边缘不要带背景、阴影和相邻文字。</li><li>避免截到会变化的内容（时间、计数、动画、光标）。</li><li>保持运行时的缩放比例和截图时一致；换了显示器或缩放后重新截图。</li><li>先看日志里的相似度：接近阈值（如 0.68 对 0.70）说明图是对的，只是阈值略高；差很多说明截图或环境变了。</li><li>目标可能还没出现时，用“等待直到 → 检测到图像”，不要用“查找图像坐标”硬等。</li></ol>
+<p>阈值建议：</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>场景</th>
+<th>阈值</th>
+</tr></thead><tbody>
+<tr>
+<td>同一程序、同一缩放、静态按钮</td>
+<td>0.85–0.95</td>
+</tr>
+<tr>
+<td>有轻微压缩或抗锯齿差异</td>
+<td>0.75–0.85</td>
+</tr>
+<tr>
+<td>背景复杂或有轻微遮挡</td>
+<td>0.65–0.75</td>
+</tr>
+<tr>
+<td>低于 0.6</td>
+<td>误匹配风险高，不建议</td>
+</tr>
+</tbody></table></div>
+<h3 id="sec-8-2" data-toc><span class="sec-num">8.2</span>查找文本<a class="anchor" href="#sec-8-2" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>使用 Windows 自带 OCR，优先简体中文（zh-Hans-CN），不可用时回退英文（en-US）。</li><li>每次查找都会截取整个虚拟屏幕并识别，耗时通常在几百毫秒；不要把它放进高频循环。</li><li>匹配规则：去掉空格和制表符后做“包含”匹配，忽略大小写；先按行匹配，再按词匹配，最后尝试相邻两行拼接。</li><li>返回离参考点最近的匹配中心；参考点越接近目标，越不容易匹配到别处相同的文字。</li><li>“查找文本坐标”找不到时返回参考点并写警告，不会让脚本停下；“等待直到 → 检测到文本”找不到时只是条件不成立。</li><li>OCR 只返回文字的位置，不能返回识别出的文字内容；需要读取文字请用其他方式。</li><li>小字号、低对比度、艺术字、竖排文字、被遮挡的文字识别率较低；可以放大界面或改用找图。</li></ul>
+<h3 id="sec-8-3" data-toc><span class="sec-num">8.3</span>像素颜色<a class="anchor" href="#sec-8-3" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>返回字符串 <code>R,G,B</code>，例如 <code>255,0,0</code>，不是数字。</li><li>适合做“某点是否变红/变灰”的判断：先用比较积木与预期字符串比较。</li><li>独占全屏的 DirectX 游戏、受保护视频画面可能取不到真实颜色（返回黑色）。</li><li>多屏时坐标同样是物理像素，副屏为负坐标。</li></ul>
+<h3 id="sec-8-4" data-toc><span class="sec-num">8.4</span>多屏、DPI 与坐标<a class="anchor" href="#sec-8-4" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>所有坐标都是物理像素：主屏左上角 (0, 0)，左侧副屏 x 为负，上方副屏 y 为负。</li><li>屏幕截图覆盖整个虚拟屏幕，OCR 和找图返回的坐标已经加上了副屏偏移，可直接用于移动。</li><li>系统缩放 125% / 150% 不影响脚本，因为取点和执行都用物理像素；但缩放会改变控件外观，截图仍需与运行时一致。</li><li>显示器排列或分辨率变化后，旧的绝对坐标会失效，需要重新取点。</li></ul>
+</section>
+<section class="chapter" aria-labelledby="chapter-9">
+<h2 class="chapter-title" id="chapter-9" data-toc><span class="ch-kicker">第 9 章</span><span class="ch-name">文件与数据<a class="anchor" href="#chapter-9" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-9-1" data-toc><span class="sec-num">9.1</span>.9mc 脚本文件<a class="anchor" href="#sec-9-1" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>纯文本，内容是当前槽位的代码。</li><li>适合分享、备份、用其他编辑器查看。</li><li>双击已关联的 <code>.9mc</code> 会打开脚本编辑器并载入。</li><li>加载 <code>.9mc</code> 会替换当前代码并切到代码页；积木会在切回图形页时重新解析。</li></ul>
+<h3 id="sec-9-2" data-toc><span class="sec-num">9.2</span>.9mcp 脚本包<a class="anchor" href="#sec-9-2" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>JSON 格式，版本 2，保存全部槽位、每个槽位的积木树、代码、自定义变量，以及内嵌图片的 base64。</li><li>适合保存完整工程；内嵌图片不会因为换电脑或原图被删而失效。</li><li>结构示意（省略了大部分积木字段）：</li></ul>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">JSON</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code>{
+  <span class="tok-str">"version"</span>: <span class="tok-num">2</span>,
+  <span class="tok-str">"savedAt"</span>: <span class="tok-str">"2026-11-19 12:00:00"</span>,
+  <span class="tok-str">"slots"</span>: [
+    {
+      <span class="tok-str">"name"</span>: <span class="tok-str">"脚本 1"</span>,
+      <span class="tok-str">"code"</span>: <span class="tok-str">"move 100, 200\n..."</span>,
+      <span class="tok-str">"blocks"</span>: [ { <span class="tok-str">"Type"</span>: <span class="tok-num">0</span>, <span class="tok-str">"X"</span>: <span class="tok-str">"100"</span>, <span class="tok-str">"Y"</span>: <span class="tok-str">"200"</span> } ],
+      <span class="tok-str">"customVariables"</span>: [ <span class="tok-str">"count"</span> ]
+    }
+  ]
+}</code></pre></figure>
+<aside class="callout note" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><div class="cbody"><b>注意</b><p><code>.9mcp</code> 里的 <code>blocks</code> 字段名与脚本语言无关，是程序内部数据。手改 JSON 容易导致加载失败，建议只通过编辑器修改。</p></div></aside>
+<h3 id="sec-9-3" data-toc><span class="sec-num">9.3</span>导入录制文件<a class="anchor" href="#sec-9-3" aria-label="本节链接">#</a></h3>
+<p>“导入”支持 <code>.9mr</code>（鼠标录制）和 <code>.9kr</code>（键盘录制）：</p>
+<ul class="bullets"><li>程序会把录制动作转换成脚本语句，追加到当前代码末尾，并切到代码页。</li><li>是“追加”不是“替换”；导入前请确认当前代码是否需要保留。</li><li>转换后的语句是普通脚本，可以继续用积木或代码修改。</li></ul>
+<h3 id="sec-9-4" data-toc><span class="sec-num">9.4</span>自动恢复<a class="anchor" href="#sec-9-4" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>正常关闭主窗口并选择退出时，如果当前停留在脚本编辑器，程序会把所有槽位写入程序目录下的 <code>script_editor_temp.9mcp</code>（包含积木、代码、自定义变量和内嵌图片）。</li><li>下次进入编辑器时，如果当前只有一个空槽位，会自动恢复上次的内容，并在日志提示保存时间。</li><li>从托盘菜单完全退出等部分退出路径会清除临时文件；因此重要脚本仍建议正式保存为 <code>.9mcp</code>。</li><li>临时文件采用“先写 .tmp 再替换”的原子写入，恢复失败时会保留原文件并改名 <code>.corrupt</code>，避免一次中断就丢掉唯一备份。</li></ul>
+<h3 id="sec-9-5" data-toc><span class="sec-num">9.5</span>文件关联<a class="anchor" href="#sec-9-5" aria-label="本节链接">#</a></h3>
+<p>主程序注册 <code>.9mc</code> 关联；第二实例启动时会把文件参数转发给已运行实例。</p>
+</section>
+<section class="chapter" aria-labelledby="chapter-10">
+<h2 class="chapter-title" id="chapter-10" data-toc><span class="ch-kicker">第 10 章</span><span class="ch-name">实战案例<a class="anchor" href="#chapter-10" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-10-1" data-toc><span class="sec-num">10.1</span>定时连点<a class="anchor" href="#sec-10-1" aria-label="本节链接">#</a></h3>
+<p>场景：每 2 秒点一次“领取”，共 20 次。</p>
+<p>积木搭法：</p>
+<ol class="steps"><li>“重复循环”次数 20。</li><li>循环体内放“移动到坐标”（取点）→“鼠标按下”→“等待 50”→“鼠标抬起”→“等待 2000”。</li></ol>
+<p>代码：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">loop</span> <span class="tok-num">20</span>
+    <span class="tok-kw">move</span> <span class="tok-num">800</span>, <span class="tok-num">450</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">50</span>
+    <span class="tok-kw">mouseup</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">2000</span>
+<span class="tok-kw">endloop</span></code></pre></figure>
+<p>要点：按下与抬起之间留 30–80ms，能兼容大多数需要“按住时长”的控件；纯 <code>click</code> 没有这个间隔。</p>
+<h3 id="sec-10-2" data-toc><span class="sec-num">10.2</span>找图后点击<a class="anchor" href="#sec-10-2" aria-label="本节链接">#</a></h3>
+<p>场景：等“开始”按钮出现，点它。</p>
+<p>积木搭法：</p>
+<ol class="steps"><li>“等待直到”条件选“检测到图像”，图片槽位选按钮截图，参考坐标填 (0, 0)，阈值 0.85，超时 30000。</li><li>“查找图像坐标”用同一张图，变量名 <code>pos</code>。</li><li>“移动到坐标”填 <code>$pos.x</code>、<code>$pos.y</code>，模式可保持“瞬移”，也可以改成“线性”并填写耗时。</li><li>“鼠标按下”→“等待 50”→“鼠标抬起”。</li></ol>
+<p>代码：</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">wait_until</span> image, <span class="tok-str">"start.png"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">0.85</span>, <span class="tok-num">30000</span>
+<span class="tok-var">$pos</span> = <span class="tok-fn">find_image</span>(<span class="tok-str">"start.png"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">0.85</span>)
+<span class="tok-kw">move</span> <span class="tok-var">$pos.x</span>, <span class="tok-var">$pos.y</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left</code></pre></figure>
+<p>要点：先用等待再查找，避免“图还没出现就报错停止”；参考点填屏幕中心或按钮附近，可以减少误匹配。代码模式里的图片路径要写真实存在的文件；积木模式会自动把图片内嵌进脚本，不需要路径。</p>
+<h3 id="sec-10-3" data-toc><span class="sec-num">10.3</span>等窗口出现并输入<a class="anchor" href="#sec-10-3" aria-label="本节链接">#</a></h3>
+<p>场景：等记事本打开，激活它，粘贴一段文字。</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">wait_until</span> <span class="tok-kw">window</span>, <span class="tok-str">"无标题 - 记事本"</span>, <span class="tok-num">10000</span>
+<span class="tok-kw">window</span> activate, <span class="tok-str">"记事本"</span>
+<span class="tok-kw">wait</span> <span class="tok-num">300</span>
+<span class="tok-kw">clipboard_write</span> <span class="tok-str">"Hello 9o0d"</span>
+<span class="tok-kw">wait</span> <span class="tok-num">100</span>
+<span class="tok-kw">combo_key</span> <span class="tok-str">"17+86"</span></code></pre></figure>
+<p>要点：“存在窗口”先精确匹配完整标题，找不到再匹配部分标题，只写“记事本”这类可唯一识别的片段也可以；输入前留 200–500ms 让窗口获得焦点。输入文本用 <code>type_text "Hello 9o0d", 40</code> 即可，也可以先用“写剪贴板 + Ctrl+V”。</p>
+<h3 id="sec-10-4" data-toc><span class="sec-num">10.4</span>OCR 定位按钮<a class="anchor" href="#sec-10-4" aria-label="本节链接">#</a></h3>
+<p>场景：等“确认”两个字出现，点它。</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">wait_until</span> text, <span class="tok-str">"确认"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">10000</span>
+<span class="tok-var">$pos</span> = <span class="tok-fn">find_text</span>(<span class="tok-str">"确认"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>)
+<span class="tok-kw">move</span> <span class="tok-var">$pos.x</span>, <span class="tok-var">$pos.y</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left</code></pre></figure>
+<p>要点：参考点填 (0, 0) 表示优先取左上方向的结果；界面里有多个“确认”时，把参考点填到目标附近。OCR 较慢，超时不要设得太短。</p>
+<h3 id="sec-10-5" data-toc><span class="sec-num">10.5</span>函数封装<a class="anchor" href="#sec-10-5" aria-label="本节链接">#</a></h3>
+<p>场景：多处需要“点确定”，封装成函数。</p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">func</span> click_ok
+    <span class="tok-kw">wait_until</span> text, <span class="tok-str">"确定"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>, <span class="tok-num">8000</span>
+    <span class="tok-var">$p</span> = <span class="tok-fn">find_text</span>(<span class="tok-str">"确定"</span>, <span class="tok-num">0</span>, <span class="tok-num">0</span>)
+    <span class="tok-kw">move</span> <span class="tok-var">$p.x</span>, <span class="tok-var">$p.y</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">50</span>
+    <span class="tok-kw">mouseup</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">endfunc</span>
+
+<span class="tok-kw">call</span> click_ok
+<span class="tok-com">// ... 其他流程</span>
+<span class="tok-kw">call</span> click_ok</code></pre></figure>
+<p>要点：函数没有参数，变量是全局的；如果函数内用了 <code>$p</code>，外面也会看到同名变量。</p>
+<h3 id="sec-10-6" data-toc><span class="sec-num">10.6</span>条件断点排查<a class="anchor" href="#sec-10-6" aria-label="本节链接">#</a></h3>
+<p>场景：循环里 <code>$i</code> 一直不对，想在第 5 次循环时暂停检查。</p>
+<ol class="steps"><li>在循环体第一条积木上设置断点。</li><li>右键 → “设置条件…”，填 <code>compare($i, "==", 5)</code>。</li><li>运行；前 4 次不暂停，第 5 次进入暂停。</li><li>在变量监视里查看 <code>$i</code>、<code>$pos</code> 等值，必要时直接修改。</li><li>点“单步”逐条走，确认是哪一步把值改坏。</li></ol>
+</section>
+<section class="chapter" aria-labelledby="chapter-11">
+<h2 class="chapter-title" id="chapter-11" data-toc><span class="ch-kicker">第 11 章</span><span class="ch-name">常见问题与已知限制<a class="anchor" href="#chapter-11" aria-label="本节链接">#</a></span></h2>
+<h3 id="sec-11-1" data-toc><span class="sec-num">11.1</span>脚本运行了但鼠标不动<a class="anchor" href="#sec-11-1" aria-label="本节链接">#</a></h3>
+<ol class="steps"><li>看日志有没有“脚本开始执行”和具体动作；没有动作说明卡在等待条件。</li><li>目标程序是否以管理员身份运行？是的话，编辑器也要以管理员身份启动。</li><li>坐标是否在屏幕内？取点后窗口是否移动过？</li><li>是否被安全软件拦截了模拟输入？可先把脚本换成“移动”测试。</li><li>如果移动仍然只走一小步、或“输入文本”只出现第一个字符，请先确认程序是否为最新版本；旧版本的提前返回缺陷已在当前版本修复。</li></ol>
+<h3 id="sec-11-2" data-toc><span class="sec-num">11.2</span>找图找不到<a class="anchor" href="#sec-11-2" aria-label="本节链接">#</a></h3>
+<ol class="steps"><li>看日志里的最高相似度：接近阈值就调低阈值，差很多就重新截图。</li><li>截图是否包含了会变化的内容或背景？重新裁剪。</li><li>运行时的缩放、分辨率、主题是否与截图时一致？</li><li>图片是否被压缩或拉伸？用 PNG 原图。</li><li>是否在“等待直到 → 检测到图像”而不是“查找图像坐标”？后者找不到会直接停止。</li></ol>
+<h3 id="sec-11-3" data-toc><span class="sec-num">11.3</span>OCR 识别不到<a class="anchor" href="#sec-11-3" aria-label="本节链接">#</a></h3>
+<ol class="steps"><li>系统是否安装了中文 OCR 语言包？没有时程序回退英文，中文识别会失败。</li><li>文字是否太小、太淡、被遮挡或使用了艺术字？</li><li>是否在独占全屏的程序里？先窗口化再试。</li><li>参考点是否离目标太远，匹配到了别处相同的字？</li><li>OCR 每次全屏识别较慢，缩小等待频率或改用找图。</li></ol>
+<h3 id="sec-11-4" data-toc><span class="sec-num">11.4</span>等待条件一直不满足<a class="anchor" href="#sec-11-4" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li><code>usb</code>：只检测“开始等待后新增”的可移动磁盘；开始等待前已经插好的 U 盘不会触发。</li><li><code>key</code> / <code>mouse</code>：50ms 轮询，极短的敲击可能漏掉；按住不放最容易命中。</li><li><code>mouse_moved</code>：以第一次检查时的位置为基准，移动距离必须严格大于设定值。</li><li><code>window</code>：先按完整标题精确匹配，找不到再按部分标题匹配；标题变了只要包含所填片段仍可命中，但片段过短可能误匹配，尽量填能唯一识别的部分。</li><li><code>text</code> / <code>image</code>：缩小参考点范围，检查截图和 OCR。</li></ul>
+<h3 id="sec-11-5" data-toc><span class="sec-num">11.5</span>停止不生效<a class="anchor" href="#sec-11-5" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>停止会取消令牌，等待和移动会在下一个检查点退出；<code>cmd</code> 正在执行时要等命令结束。</li><li>如果脚本卡在断点，停止会先自动恢复再取消。</li><li>极端情况下弹窗或系统对话框阻塞了输入线程，需要手动关闭对话框。</li></ul>
+<h3 id="sec-11-6" data-toc><span class="sec-num">11.6</span>断点不触发<a class="anchor" href="#sec-11-6" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>嵌套积木的断点已支持：循环、条件、函数内部设置的断点会在对应语句暂停；被注释（禁用）的积木整块不执行，内部断点自然也不会触发。</li><li>断点行号是按积木生成的代码估算的；如果代码页被手工大改，行号可能对不上。</li><li>条件断点的表达式求值失败时按无条件处理，会每次都停；看日志确认。</li></ul>
+<h3 id="sec-11-7" data-toc><span class="sec-num">11.7</span>安全与合规提示<a class="anchor" href="#sec-11-7" aria-label="本节链接">#</a></h3>
+<ul class="bullets"><li>只运行来源可信的 <code>.9mc</code> / <code>.9mcp</code>。脚本可以执行 CMD、写剪贴板、控制窗口，等同于可执行程序。</li><li>不要把包含账号、密码、激活码的脚本随意分享；脚本包可能内嵌截图。</li><li>在游戏、办公、金融等环境中使用前，确认不违反目标软件的服务条款。</li><li>长时间运行建议加超时和日志，避免脚本卡死或误操作。</li></ul>
+<h3 id="sec-11-8" data-toc><span class="sec-num">11.8</span>已知限制清单<a class="anchor" href="#sec-11-8" aria-label="本节链接">#</a></h3>
+<p>以下是当前版本仍然存在的限制，多为设计或系统层面的取舍。此前版本中的平滑移动 / 拖拽 / 逐字输入提前返回、<code>click</code> 转积木只剩按下、相对移动丢失耗时、嵌套断点不触发、窗口等待只认完整标题、槽位不能改名、<code>Ctrl+Shift+S</code> 未绑定等问题均已修复，不再列出。</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>限制</th>
+<th>说明</th>
+<th>规避</th>
+</tr></thead><tbody>
+<tr>
+<td>函数参数</td>
+<td>函数无参数、无返回值</td>
+<td>用全局变量传值</td>
+</tr>
+<tr>
+<td>OCR 取词</td>
+<td>只返回位置，不返回识别文字</td>
+<td>用找图或外部工具</td>
+</tr>
+<tr>
+<td>找图缩放</td>
+<td>不支持缩放/旋转匹配</td>
+<td>固定分辨率与缩放，重新截图</td>
+</tr>
+<tr>
+<td>独占全屏</td>
+<td>截图/取色可能失败</td>
+<td>窗口化运行</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="chapter" aria-labelledby="appendix-a">
+<h2 class="chapter-title" id="appendix-a" data-toc><span class="ch-kicker">附录 A</span><span class="ch-name">常用虚拟键码<a class="anchor" href="#appendix-a" aria-label="本节链接">#</a></span></h2>
+<p>脚本中的 <code>keydown</code> / <code>keyup</code> 使用十进制虚拟键码；“组合键”字符串也用十进制，例如 <code>17+65</code>。</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>按键</th>
+<th>十进制</th>
+<th>十六进制</th>
+<th>按键</th>
+<th>十进制</th>
+<th>十六进制</th>
+</tr></thead><tbody>
+<tr>
+<td>Backspace</td>
+<td>8</td>
+<td>0x08</td>
+<td>0</td>
+<td>48</td>
+<td>0x30</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>9</td>
+<td>0x09</td>
+<td>1</td>
+<td>49</td>
+<td>0x31</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>13</td>
+<td>0x0D</td>
+<td>2</td>
+<td>50</td>
+<td>0x32</td>
+</tr>
+<tr>
+<td>Shift</td>
+<td>16</td>
+<td>0x10</td>
+<td>3</td>
+<td>51</td>
+<td>0x33</td>
+</tr>
+<tr>
+<td>Ctrl</td>
+<td>17</td>
+<td>0x11</td>
+<td>4</td>
+<td>52</td>
+<td>0x34</td>
+</tr>
+<tr>
+<td>Alt</td>
+<td>18</td>
+<td>0x12</td>
+<td>5</td>
+<td>53</td>
+<td>0x35</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>27</td>
+<td>0x1B</td>
+<td>6</td>
+<td>54</td>
+<td>0x36</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>32</td>
+<td>0x20</td>
+<td>7</td>
+<td>55</td>
+<td>0x37</td>
+</tr>
+<tr>
+<td>PageUp</td>
+<td>33</td>
+<td>0x21</td>
+<td>8</td>
+<td>56</td>
+<td>0x38</td>
+</tr>
+<tr>
+<td>PageDown</td>
+<td>34</td>
+<td>0x22</td>
+<td>9</td>
+<td>57</td>
+<td>0x39</td>
+</tr>
+<tr>
+<td>End</td>
+<td>35</td>
+<td>0x23</td>
+<td>A</td>
+<td>65</td>
+<td>0x41</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>36</td>
+<td>0x24</td>
+<td>B</td>
+<td>66</td>
+<td>0x42</td>
+</tr>
+<tr>
+<td>Left</td>
+<td>37</td>
+<td>0x25</td>
+<td>C</td>
+<td>67</td>
+<td>0x43</td>
+</tr>
+<tr>
+<td>Up</td>
+<td>38</td>
+<td>0x26</td>
+<td>D</td>
+<td>68</td>
+<td>0x44</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>39</td>
+<td>0x27</td>
+<td>E</td>
+<td>69</td>
+<td>0x45</td>
+</tr>
+<tr>
+<td>Down</td>
+<td>40</td>
+<td>0x28</td>
+<td>F</td>
+<td>70</td>
+<td>0x46</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>45</td>
+<td>0x2D</td>
+<td>G</td>
+<td>71</td>
+<td>0x47</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>46</td>
+<td>0x2E</td>
+<td>H</td>
+<td>72</td>
+<td>0x48</td>
+</tr>
+<tr>
+<td>Win 左</td>
+<td>91</td>
+<td>0x5B</td>
+<td>I</td>
+<td>73</td>
+<td>0x49</td>
+</tr>
+<tr>
+<td>Win 右</td>
+<td>92</td>
+<td>0x5C</td>
+<td>J</td>
+<td>74</td>
+<td>0x4A</td>
+</tr>
+<tr>
+<td>音量静音</td>
+<td>173</td>
+<td>0xAD</td>
+<td>K</td>
+<td>75</td>
+<td>0x4B</td>
+</tr>
+<tr>
+<td>音量减</td>
+<td>174</td>
+<td>0xAE</td>
+<td>L</td>
+<td>76</td>
+<td>0x4C</td>
+</tr>
+<tr>
+<td>音量加</td>
+<td>175</td>
+<td>0xAF</td>
+<td>M</td>
+<td>77</td>
+<td>0x4D</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>112</td>
+<td>0x70</td>
+<td>N</td>
+<td>78</td>
+<td>0x4E</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>113</td>
+<td>0x71</td>
+<td>O</td>
+<td>79</td>
+<td>0x4F</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>114</td>
+<td>0x72</td>
+<td>P</td>
+<td>80</td>
+<td>0x50</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>115</td>
+<td>0x73</td>
+<td>Q</td>
+<td>81</td>
+<td>0x51</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>116</td>
+<td>0x74</td>
+<td>R</td>
+<td>82</td>
+<td>0x52</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>117</td>
+<td>0x75</td>
+<td>S</td>
+<td>83</td>
+<td>0x53</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>118</td>
+<td>0x76</td>
+<td>T</td>
+<td>84</td>
+<td>0x54</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>119</td>
+<td>0x77</td>
+<td>U</td>
+<td>85</td>
+<td>0x55</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>120</td>
+<td>0x78</td>
+<td>V</td>
+<td>86</td>
+<td>0x56</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>121</td>
+<td>0x79</td>
+<td>W</td>
+<td>87</td>
+<td>0x57</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>122</td>
+<td>0x7A</td>
+<td>X</td>
+<td>88</td>
+<td>0x58</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>123</td>
+<td>0x7B</td>
+<td>Y</td>
+<td>89</td>
+<td>0x59</td>
+</tr>
+<tr>
+<td>小键盘 0</td>
+<td>96</td>
+<td>0x60</td>
+<td>Z</td>
+<td>90</td>
+<td>0x5A</td>
+</tr>
+<tr>
+<td>小键盘 1</td>
+<td>97</td>
+<td>0x61</td>
+<td>分号</td>
+<td>186</td>
+<td>0xBA</td>
+</tr>
+<tr>
+<td>小键盘 2</td>
+<td>98</td>
+<td>0x62</td>
+<td>等号</td>
+<td>187</td>
+<td>0xBB</td>
+</tr>
+<tr>
+<td>小键盘 3</td>
+<td>99</td>
+<td>0x63</td>
+<td>逗号</td>
+<td>188</td>
+<td>0xBC</td>
+</tr>
+<tr>
+<td>小键盘 4</td>
+<td>100</td>
+<td>0x64</td>
+<td>减号</td>
+<td>189</td>
+<td>0xBD</td>
+</tr>
+<tr>
+<td>小键盘 5</td>
+<td>101</td>
+<td>0x65</td>
+<td>句点</td>
+<td>190</td>
+<td>0xBE</td>
+</tr>
+<tr>
+<td>小键盘 6</td>
+<td>102</td>
+<td>0x66</td>
+<td>斜杠</td>
+<td>191</td>
+<td>0xBF</td>
+</tr>
+<tr>
+<td>小键盘 7</td>
+<td>103</td>
+<td>0x67</td>
+<td>反引号</td>
+<td>192</td>
+<td>0xC0</td>
+</tr>
+<tr>
+<td>小键盘 8</td>
+<td>104</td>
+<td>0x68</td>
+<td>方括号左</td>
+<td>219</td>
+<td>0xDB</td>
+</tr>
+<tr>
+<td>小键盘 9</td>
+<td>105</td>
+<td>0x69</td>
+<td>反斜杠</td>
+<td>220</td>
+<td>0xDC</td>
+</tr>
+<tr>
+<td>乘号</td>
+<td>106</td>
+<td>0x6A</td>
+<td>方括号右</td>
+<td>221</td>
+<td>0xDD</td>
+</tr>
+<tr>
+<td>加号</td>
+<td>107</td>
+<td>0x6B</td>
+<td>引号</td>
+<td>222</td>
+<td>0xDE</td>
+</tr>
+<tr>
+<td>减号（小键盘）</td>
+<td>109</td>
+<td>0x6D</td>
+<td>句点（小键盘）</td>
+<td>110</td>
+<td>0x6E</td>
+</tr>
+<tr>
+<td>除号（小键盘）</td>
+<td>111</td>
+<td>0x6F</td>
+<td>回车（小键盘）</td>
+<td>13</td>
+<td>0x0D</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="chapter" aria-labelledby="appendix-b">
+<h2 class="chapter-title" id="appendix-b" data-toc><span class="ch-kicker">附录 B</span><span class="ch-name">常用脚本片段<a class="anchor" href="#appendix-b" aria-label="本节链接">#</a></span></h2>
+<p><strong>按住 Ctrl 点选多项</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">keydown</span> <span class="tok-num">17</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">100</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">wait</span> <span class="tok-num">50</span>
+<span class="tok-kw">mouseup</span> left
+<span class="tok-kw">keyup</span> <span class="tok-num">17</span></code></pre></figure>
+<p><strong>无限循环 + 手动停止</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">loop</span> <span class="tok-num">0</span>
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">50</span>
+    <span class="tok-kw">mouseup</span> left
+    <span class="tok-kw">wait</span> <span class="tok-num">1000</span>
+<span class="tok-kw">endloop</span></code></pre></figure>
+<p><strong>按变量次数循环</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-var">$n</span> = <span class="tok-num">5</span>
+<span class="tok-kw">loop</span> <span class="tok-var">$n</span>
+    <span class="tok-kw">wait</span> <span class="tok-num">500</span>
+<span class="tok-kw">endloop</span></code></pre></figure>
+<p><strong>取窗口位置再点击</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-var">$win</span> = <span class="tok-fn">find_window</span>(<span class="tok-str">"计算器"</span>)
+<span class="tok-kw">move</span> <span class="tok-var">$win.x</span>, <span class="tok-var">$win.y</span>, smooth, <span class="tok-num">300</span>
+<span class="tok-kw">mousedown</span> left
+<span class="tok-kw">mouseup</span> left</code></pre></figure>
+<p><strong>条件成立才继续</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-var">$c</span> = <span class="tok-fn">pixel_color</span>(<span class="tok-num">100</span>, <span class="tok-num">100</span>)
+<span class="tok-kw">if</span> <span class="tok-fn">compare</span>(<span class="tok-var">$c</span>, <span class="tok-str">"=="</span>, <span class="tok-str">"255,0,0"</span>)
+    <span class="tok-kw">mousedown</span> left
+    <span class="tok-kw">mouseup</span> left
+<span class="tok-kw">endif</span></code></pre></figure>
+<p><strong>等待 U 盘插入后复制文件</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">wait_until</span> usb, <span class="tok-num">0</span>
+<span class="tok-kw">cmd</span> <span class="tok-str">"xcopy E:\*.* D:\backup\ /E /I /Y"</span></code></pre></figure>
+<p><strong>调节音量并切换静音</strong></p>
+<figure class="codeblock"><figcaption class="code-head"><span class="lang">脚本</span><button class="copy" type="button" aria-label="复制代码">复制</button></figcaption><pre><code><span class="tok-kw">volume</span> set, <span class="tok-num">40</span>
+<span class="tok-kw">volume</span> mute</code></pre></figure>
+<aside class="callout tip" role="note"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span><div class="cbody"><b>提示</b><p><code>volume mute</code> 是“切换”而不是“设为静音”，原本已静音时会取消静音。</p></div></aside>
+</section>
+<section class="chapter" aria-labelledby="appendix-c">
+<h2 class="chapter-title" id="appendix-c" data-toc><span class="ch-kicker">附录 C</span><span class="ch-name">错误信息对照<a class="anchor" href="#appendix-c" aria-label="本节链接">#</a></span></h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>提示</th>
+<th>原因</th>
+<th>处理</th>
+</tr></thead><tbody>
+<tr>
+<td>期望 …，但得到 …</td>
+<td>语法结构不完整或参数顺序错</td>
+<td>对照第 6 章补全参数</td>
+</tr>
+<tr>
+<td>无效的鼠标按键</td>
+<td>写成 left / middle / right 以外的值</td>
+<td>改成三个合法值之一</td>
+</tr>
+<tr>
+<td>未知关键字</td>
+<td>语句拼写错误</td>
+<td>检查拼写，参考 6.2</td>
+</tr>
+<tr>
+<td>字符串未闭合</td>
+<td>缺少结束双引号</td>
+<td>补 <code>"</code>，内部引号写成 <code>\"</code></td>
+</tr>
+<tr>
+<td>循环缺少 endloop</td>
+<td>loop / loop_until 没有结束标记</td>
+<td>补 <code>endloop</code></td>
+</tr>
+<tr>
+<td>条件分支缺少 endif</td>
+<td>if 没有结束标记</td>
+<td>补 <code>endif</code></td>
+</tr>
+<tr>
+<td>变量未赋值，按 0 处理</td>
+<td>读取了未赋值变量</td>
+<td>先赋值，或确认按 0 处理没问题</td>
+</tr>
+<tr>
+<td>需要数字值 / 需要字符串值</td>
+<td>类型用错，如把点当数字</td>
+<td>取 <code>.x</code> / <code>.y</code>，或改传字符串</td>
+</tr>
+<tr>
+<td>未找到窗口</td>
+<td>标题不匹配或窗口未打开</td>
+<td>先等窗口出现；标题可填完整标题或能唯一识别的部分标题</td>
+</tr>
+<tr>
+<td>未找到图像</td>
+<td>相似度低于阈值或图不对</td>
+<td>重新截图、调阈值、先等待</td>
+</tr>
+<tr>
+<td>等待条件超时</td>
+<td>条件一直不成立</td>
+<td>检查条件参数、放宽超时</td>
+</tr>
+<tr>
+<td>OCR 引擎不可用</td>
+<td>系统缺少 OCR 语言包</td>
+<td>安装语言包，或改用找图</td>
+</tr>
+<tr>
+<td>图像文件不存在</td>
+<td>代码模式引用了不存在的路径</td>
+<td>用内嵌图片或修正路径</td>
+</tr>
+<tr>
+<td>CMD 执行失败</td>
+<td>命令拼写或权限问题</td>
+<td>在命令行先验证命令</td>
+</tr>
+</tbody></table></div>
+</section>
+<section class="chapter" aria-labelledby="doc-end">
+<h2 class="chapter-title" id="doc-end" data-toc><span class="ch-name">文档结束<a class="anchor" href="#doc-end" aria-label="本节链接">#</a></span></h2>
+<p>本教程基于 2026 年 11 月的编辑器代码整理。如果界面或行为与你的版本不一致，以实际程序为准；也欢迎把遇到的问题反馈给作者，用于后续版本修订。</p>
+</section>
+    </article>
+
+    <footer class="footer">
+      <span>9o0d MC6 · 9o0d 键鼠脚本编辑器 使用教程 · 文档版本 v6.0.2611.1</span>
+      <span><a href="#top">回到顶部 ↑</a></span>
+    </footer>
+  </div>
+</main>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
+<script>
+
+(function(){
+  'use strict';
+  var $=function(s,c){return (c||document).querySelector(s);};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+  var sidebar=$('#sidebar'),scrim=$('#scrim'),menuBtn=$('#menuBtn'),nav=$('#nav'),
+      searchInput=$('#navSearch'),bar=$('#progressBar'),toTop=$('#toTop'),empty=$('#navEmpty');
+  if(!sidebar||!nav)return;
+
+  var items=$$('.nav-item',nav),groups=$$('.nav-group',nav),heads=$$('[data-toc]');
+  var activeId='';
+
+  function openNav(){sidebar.classList.add('open');scrim.classList.add('show');document.body.classList.add('nav-open');}
+  function closeNav(){sidebar.classList.remove('open');scrim.classList.remove('show');document.body.classList.remove('nav-open');}
+  if(menuBtn)menuBtn.addEventListener('click',function(){sidebar.classList.contains('open')?closeNav():openNav();});
+  if(scrim)scrim.addEventListener('click',closeNav);
+
+  function openItem(item){
+    if(!item)return;
+    item.classList.add('open');
+    var b=item.querySelector('.nav-toggle');
+    if(b)b.setAttribute('aria-expanded','true');
+  }
+  function closeItem(item){
+    if(!item)return;
+    item.classList.remove('open');
+    var b=item.querySelector('.nav-toggle');
+    if(b)b.setAttribute('aria-expanded','false');
+  }
+  function scrollIntoNav(link){
+    if(!nav)return;
+    var nr=nav.getBoundingClientRect(),r=link.getBoundingClientRect();
+    if(r.top<nr.top+8||r.bottom>nr.bottom-8){
+      nav.scrollTop+=(r.top-nr.top)-(nr.height/2)+(r.height/2);
+    }
+  }
+  function setActive(id){
+    if(!id||id===activeId)return;
+    activeId=id;
+    $$('.nav a.active',nav).forEach(function(a){a.classList.remove('active');});
+    var link=nav.querySelector('a[href="#'+id+'"]');
+    if(!link)return;
+    link.classList.add('active');
+    var parent=link.parentElement;
+    if(parent&&parent.classList.contains('nav-sub'))openItem(link.closest('.nav-item'));
+    scrollIntoNav(link);
+  }
+
+  var ticking=false;
+  function onScroll(){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      var y=window.pageYOffset||document.documentElement.scrollTop||0;
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      if(bar)bar.style.width=(h>0?Math.min(100,y/h*100):0)+'%';
+      if(toTop)toTop.classList.toggle('show',y>700);
+      var current=null;
+      for(var i=0;i<heads.length;i++){
+        if(heads[i].getBoundingClientRect().top<=120)current=heads[i];else break;
+      }
+      if(current){
+        setActive(current.id);
+      }else if(activeId){
+        activeId='';
+        $$('.nav a.active',nav).forEach(function(a){a.classList.remove('active');});
+      }
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+
+  function filterNav(q){
+    q=(q||'').trim().toLowerCase();
+    items.forEach(function(it){
+      var top=it.querySelector('.nav-link');
+      var subs=$$('.nav-sub a',it);
+      var topHit=!!top&&top.textContent.toLowerCase().indexOf(q)>-1;
+      var subHit=false;
+      subs.forEach(function(a){
+        var hit=!q||a.textContent.toLowerCase().indexOf(q)>-1;
+        if(hit)subHit=true;
+        a.hidden=!!q&&!hit;
+      });
+      var show=!q||topHit||subHit;
+      it.hidden=!show;
+      if(q&&show)openItem(it);
+    });
+    groups.forEach(function(g){
+      var visible=$$('.nav-item',g).filter(function(it){return !it.hidden;});
+      g.hidden=visible.length===0;
+    });
+    if(empty)empty.hidden=!q||$$('.nav-item:not([hidden])',nav).length>0;
+    if(!q){
+      items.forEach(closeItem);
+      var cur=nav.querySelector('a.active');
+      if(cur)openItem(cur.closest('.nav-item'));
+      else if(items[0])openItem(items[0]);
+      activeId='';
+      onScroll();
+    }
+  }
+  if(searchInput){
+    searchInput.addEventListener('input',function(){filterNav(searchInput.value);});
+    searchInput.addEventListener('keydown',function(e){
+      if(e.key==='Enter'){
+        var first=nav.querySelector('.nav-item:not([hidden]) .nav-link:not([hidden]),.nav-item:not([hidden]) .nav-sub a:not([hidden])');
+        if(first){e.preventDefault();first.click();}
+      }else if(e.key==='Escape'){
+        searchInput.value='';filterNav('');searchInput.blur();
+      }
+    });
+  }
+
+  nav.addEventListener('click',function(e){
+    var btn=e.target.closest('.nav-toggle');
+    if(btn){
+      e.preventDefault();
+      var it=btn.closest('.nav-item');
+      btn.setAttribute('aria-expanded',it.classList.contains('open')?'false':'true');
+      it.classList.toggle('open');
+      return;
+    }
+    var a=e.target.closest('a');
+    if(a){
+      var item=a.closest('.nav-item');
+      if(item&&a.classList.contains('nav-link'))openItem(item);
+      if(sidebar.classList.contains('open'))closeNav();
+    }
+  });
+
+  $$('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var block=btn.closest('.codeblock');
+      var code=block?block.querySelector('code'):null;
+      if(!code)return;
+      var text=code.innerText;
+      var label=btn.textContent;
+      function done(){
+        btn.textContent='已复制';
+        btn.classList.add('done');
+        setTimeout(function(){btn.textContent=label;btn.classList.remove('done');},1600);
+      }
+      function fallback(){
+        var ta=document.createElement('textarea');
+        ta.value=text;ta.setAttribute('readonly','');
+        ta.style.position='fixed';ta.style.top='-1000px';
+        document.body.appendChild(ta);ta.select();
+        try{document.execCommand('copy');done();}catch(err){}
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done,fallback);
+      }else fallback();
+    });
+  });
+
+  if(toTop)toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  $$('[data-print]').forEach(function(b){b.addEventListener('click',function(){window.print();});});
+
+  document.addEventListener('keydown',function(e){
+    var k=e.key?e.key.toLowerCase():'';
+    if((e.ctrlKey||e.metaKey)&&k==='k'){
+      e.preventDefault();
+      if(window.innerWidth<=980)openNav();
+      if(searchInput){searchInput.focus();searchInput.select();}
+    }else if(k==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){
+      e.preventDefault();
+      if(searchInput)searchInput.focus();
+    }else if(k==='escape'&&sidebar.classList.contains('open')){
+      closeNav();
+    }
+  });
+
+  if(items[0])openItem(items[0]);
+  onScroll();
+})();
+
+</script>
+</body>
+</html>
